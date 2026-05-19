@@ -116,10 +116,8 @@ function renderHome() {
     <!-- CABINET -->
     <section class="section section--dark" style="position:relative;overflow:hidden">
       <!-- fond 2 de la charte (orange chaud + lumière) -->
-      <div style="position:absolute;inset:0;background:#d4561f">
-        <img src="../media/fond 2.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
-        <div style="position:absolute;inset:0;background:rgba(13,10,31,0.5)"></div>
-      </div>
+      <div style="position:absolute;inset:0;background:url('../media/fond 2.png') center/cover #d4561f"></div>
+      <div style="position:absolute;inset:0;background:rgba(13,10,31,0.5)"></div>
       <div class="container" style="position:relative">
         <div class="grid-2" style="align-items:center">
           <div>
@@ -165,10 +163,8 @@ function renderHome() {
     <section class="section" style="padding-top:0">
       <div class="container">
         <div class="cta-band">
-          <!-- Fondu orange fluide (dégradé UNI charte, sans traits) -->
-          <div style="position:absolute;inset:0;overflow:hidden;border-radius:6px;background:#e8612a">
-            <img src="../media/fond orange doux.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
-          </div>
+          <!-- Fondu orange fluide via background CSS (couverture garantie) -->
+          <div style="position:absolute;inset:0;border-radius:6px;background:url('../media/fond orange doux.png') center/cover #e8612a"></div>
           <!-- Overlay léger pour lisibilité texte -->
           <div style="position:absolute;inset:0;background:rgba(13,10,31,0.18);border-radius:6px"></div>
           <div class="cta-band__content">
@@ -302,11 +298,7 @@ function renderSoins() {
         <h3 class="t-label" style="margin-bottom:32px">(  Forfaits  )</h3>
         <div class="grid-3">
           ${packages.map(p => `
-            <div class="forfait">
-              <!-- Fond réel de la charte -->
-              <div style="position:absolute;inset:0;overflow:hidden;border-radius:6px;background:#e8612a">
-                <img src="../media/fond ${p.fond}.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center">
-              </div>
+            <div class="forfait" style="background:url('../media/fond ${p.fond}.png') center/cover #e8612a">
               <div style="position:absolute;inset:0;background:rgba(13,10,31,0.15);border-radius:6px"></div>
               <div class="forfait__content">
                 <div>
@@ -397,11 +389,9 @@ function renderPractice({ idx, id, name, italic, quote, intro, approach, tarif, 
 
     <!-- TARIFS — fond de la charte -->
     <section class="section" style="position:relative;overflow:hidden;color:#fff">
-      <!-- Fond de la charte -->
-      <div style="position:absolute;inset:0">
-        <img src="../media/fond ${fond}.png" alt="" style="width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:rgba(13,10,31,0.55)"></div>
-      </div>
+      <!-- Fond de la charte via background CSS -->
+      <div style="position:absolute;inset:0;background:url('../media/fond ${fond}.png') center/cover #e8612a"></div>
+      <div style="position:absolute;inset:0;background:rgba(13,10,31,0.55)"></div>
       <div class="container" style="position:relative">
         <div class="grid-label-content">
           <div>
