@@ -1,0 +1,6 @@
+.DS_Store
+.claude/settings.local.json
+
+# Vidéos lourdes (>100Mo, limite GitHub)
+project/media/*.mov
+project/media/*.mp4
