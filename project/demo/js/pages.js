@@ -116,8 +116,8 @@ function renderHome() {
     <!-- CABINET -->
     <section class="section section--dark" style="position:relative;overflow:hidden">
       <!-- fond 2 de la charte (orange chaud + lumière) -->
-      <div style="position:absolute;inset:0">
-        <img src="../media/fond 2.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div style="position:absolute;inset:0;background:#d4561f">
+        <img src="../media/fond 2.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
         <div style="position:absolute;inset:0;background:rgba(13,10,31,0.5)"></div>
       </div>
       <div class="container" style="position:relative">
@@ -166,8 +166,8 @@ function renderHome() {
       <div class="container">
         <div class="cta-band">
           <!-- Fondu orange fluide (dégradé UNI charte, sans traits) -->
-          <div style="position:absolute;inset:0;overflow:hidden;border-radius:6px">
-            <img src="../media/fond orange doux.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+          <div style="position:absolute;inset:0;overflow:hidden;border-radius:6px;background:#e8612a">
+            <img src="../media/fond orange doux.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
           </div>
           <!-- Overlay léger pour lisibilité texte -->
           <div style="position:absolute;inset:0;background:rgba(13,10,31,0.18);border-radius:6px"></div>
@@ -301,8 +301,8 @@ function renderSoins() {
           ${packages.map(p => `
             <div class="forfait">
               <!-- Fond réel de la charte -->
-              <div style="position:absolute;inset:0;overflow:hidden;border-radius:6px">
-                <img src="../media/fond ${p.fond}.png" alt="" style="width:100%;height:100%;object-fit:cover">
+              <div style="position:absolute;inset:0;overflow:hidden;border-radius:6px;background:#e8612a">
+                <img src="../media/fond ${p.fond}.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center">
               </div>
               <div style="position:absolute;inset:0;background:rgba(13,10,31,0.15);border-radius:6px"></div>
               <div class="forfait__content">
