@@ -161,16 +161,16 @@ function renderHome() {
       </div>
     </section>
 
-    <!-- CTA — fond 1 de la charte -->
+    <!-- CTA — fondu orange doux (slide 18 charte) -->
     <section class="section" style="padding-top:0">
       <div class="container">
         <div class="cta-band">
-          <!-- Vrai fond de la charte (orange + lignes tracées) -->
+          <!-- Fondu orange fluide (dégradé UNI charte, sans traits) -->
           <div style="position:absolute;inset:0;overflow:hidden;border-radius:6px">
-            <img src="../media/fond 1.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+            <img src="../media/fond orange doux.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
           </div>
-          <!-- Overlay sombre pour lisibilité -->
-          <div style="position:absolute;inset:0;background:rgba(13,10,31,0.25);border-radius:6px"></div>
+          <!-- Overlay léger pour lisibilité texte -->
+          <div style="position:absolute;inset:0;background:rgba(13,10,31,0.18);border-radius:6px"></div>
           <div class="cta-band__content">
             <h3 class="cta-band__title">Réservez<br>votre première séance.</h3>
             <p class="cta-band__text">Un échange offert avant chaque suivi. Pour comprendre votre demande, ajuster, et trouver ensemble la bonne pratique.</p>
@@ -196,9 +196,9 @@ function renderSoins() {
   ];
 
   const packages = [
-    { name: 'Découverte',   detail: '3 Drainages Lymphatiques · valable 3 mois', price: '420 €', save: '−30 €', fond: '2' },
-    { name: 'Suivi Saison', detail: '5 soins au choix · valable 6 mois',         price: '680 €', save: '−70 €', fond: '1' },
-    { name: 'Intensif',     detail: '3 Soins Signature · valable 2 mois',        price: '780 €', save: '−60 €', fond: '2' },
+    { name: 'Découverte',   detail: '3 Drainages Lymphatiques · valable 3 mois', price: '420 €', save: '−30 €', fond: 'orange doux' },
+    { name: 'Suivi Saison', detail: '5 soins au choix · valable 6 mois',         price: '680 €', save: '−70 €', fond: '2' },
+    { name: 'Intensif',     detail: '3 Soins Signature · valable 2 mois',        price: '780 €', save: '−60 €', fond: 'orange doux' },
   ];
 
   return `
@@ -327,7 +327,7 @@ function renderSoins() {
 // ============================================================
 // PAGE PRATIQUE GÉNÉRIQUE (Yoga / Breathwork / Pilates)
 // ============================================================
-function renderPractice({ idx, id, name, italic, quote, intro, approach, tarif, photos, fond = '1' }) {
+function renderPractice({ idx, id, name, italic, quote, intro, approach, tarif, photos, fond = 'orange doux' }) {
   return `
     <!-- EN-TÊTE avec grande icône de la charte -->
     <div class="page-header" style="position:relative;overflow:hidden">
