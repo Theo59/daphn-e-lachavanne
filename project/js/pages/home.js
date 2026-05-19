@@ -23,7 +23,7 @@ function HomeDesktop() {
       <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;text-align:center">
         <span style="font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.4em;text-transform:uppercase;opacity:0.75;margin-bottom:24px">◦  soins · breathwork · yoga · pilates  ◦</span>
         <h1 style="font-family:'Tenor Sans',serif;font-size:132px;line-height:0.95;letter-spacing:-0.01em;font-weight:400;margin:0;max-width:1100px">
-          Libérer,<br><em style="font-style:italic;font-family:'Cormorant Garamond',serif;font-weight:300">circuler.</em>
+          L'art de<br><em style="font-style:italic;font-family:'Cormorant Garamond',serif;font-weight:300">la circulation.</em>
         </h1>
         <p style="font-size:16px;line-height:1.6;opacity:0.85;margin-top:36px;max-width:480px;font-style:italic">
           Je vous accueille dans mon cabinet du 7e arrondissement pour des soins sur-mesure —
@@ -133,7 +133,7 @@ function HomeMobile() {
       ${GradientBlob({ style: { mixBlendMode: 'screen', opacity: 0.45 } })}
       <div style="position:absolute;inset:0;padding:140px 24px 32px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff">
         <span style="font-family:'Tenor Sans',serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;opacity:0.8;margin-bottom:16px">soins · breathwork · yoga · pilates</span>
-        <h1 style="font-family:'Tenor Sans',serif;font-size:56px;line-height:0.95;margin:0;font-weight:400">Libérer,<br><em style="font-style:italic;font-family:'Cormorant Garamond',serif;font-weight:300">circuler.</em></h1>
+        <h1 style="font-family:'Tenor Sans',serif;font-size:56px;line-height:0.95;margin:0;font-weight:400">L'art de<br><em style="font-style:italic;font-family:'Cormorant Garamond',serif;font-weight:300">la circulation.</em></h1>
         <p style="font-size:14px;line-height:1.6;margin-top:20px;opacity:0.88;font-style:italic">Je vous accueille dans mon cabinet du 7e — soins sur-mesure, du mouvement à l'énergie.</p>
       </div>
     </section>
