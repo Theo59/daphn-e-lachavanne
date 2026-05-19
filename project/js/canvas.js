@@ -167,8 +167,8 @@ function renderCanvas() {
     <div style="min-height:100vh;background:#f0eee9;font-family:-apple-system,sans-serif;padding:80px 40px 120px">
       <!-- Header -->
       <div style="margin-bottom:80px;padding-top:20px">
-        <h1 style="font-size:28px;font-weight:500;color:rgba(40,30,20,0.85);margin:0 0 4px;font-family:-apple-system,sans-serif">Daphné Lachavanne</h1>
-        <p style="font-size:14px;color:rgba(60,50,40,0.6);margin:0;font-family:-apple-system,sans-serif">Maquettes site web · 7 pages · desktop + mobile</p>
+        <h1 style="font-size:28px;font-weight:500;color:rgba(40,30,20,0.85);margin:0 0 4px;font-family:-apple-system,sans-serif">L'Art de la Circulation</h1>
+        <p style="font-size:14px;color:rgba(60,50,40,0.6);margin:0;font-family:-apple-system,sans-serif">Daphné Lachavanne · Maquettes site web · 7 pages · desktop + mobile</p>
       </div>
 
       ${brandSection}
