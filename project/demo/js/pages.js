@@ -234,10 +234,10 @@ function renderSoins() {
     <section class="section--sm">
       <div class="container">
         <div class="photo-grid-soins">
-          ${Photo({ src: '../media/photo 1.jpg', aspect: '16/10', filter: 'contrast(1.05) brightness(0.9)' })}
+          ${Photo({ src: '../media/photo 1.jpg', aspect: '4/5', filter: 'contrast(1.05) brightness(0.9)' })}
           <div class="photo-grid-soins__right">
-            ${Photo({ src: '../media/6.jpg', aspect: 'auto', filter: 'contrast(1.05) brightness(0.9)', style: { height: '100%' } })}
-            ${PhotoSlot({ label: 'Huile · texture', kind: 'photo', aspect: 'auto', style: { height: '100%' } })}
+            ${Photo({ src: '../media/6.jpg', aspect: '4/5', filter: 'contrast(1.05) brightness(0.9)' })}
+            ${PhotoSlot({ label: 'Huile · texture', kind: 'photo', aspect: '4/5' })}
           </div>
         </div>
       </div>
