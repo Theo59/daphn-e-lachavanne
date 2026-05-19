@@ -114,8 +114,13 @@ function renderHome() {
     </section>
 
     <!-- CABINET -->
-    <section class="section section--dark">
-      <div class="container">
+    <section class="section section--dark" style="position:relative;overflow:hidden">
+      <!-- fond 2 de la charte (orange chaud + lumière) -->
+      <div style="position:absolute;inset:0">
+        <img src="../media/fond 2.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div style="position:absolute;inset:0;background:rgba(13,10,31,0.5)"></div>
+      </div>
+      <div class="container" style="position:relative">
         <div class="grid-2" style="align-items:center">
           <div>
             <span class="t-label">— Le lieu</span>
