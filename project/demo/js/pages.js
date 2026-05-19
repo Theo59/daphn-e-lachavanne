@@ -79,29 +79,37 @@ function renderHome() {
       </div>
     </section>
 
-    <!-- PRATIQUES -->
-    <section class="section" style="padding-top:0">
-      <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px">
+    <!-- PRATIQUES — icon grid style charte -->
+    <section class="service-icon-section" style="position:relative;overflow:hidden">
+      <!-- fond 3 (lavande) en arrière-plan -->
+      <div class="service-icon-section__bg">
+        <img src="../media/fond 3.png" alt="">
+      </div>
+      <!-- en-tête -->
+      <div class="container" style="position:relative;padding-top:56px;padding-bottom:40px;border-bottom:1px solid rgba(13,10,31,0.1)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
           <h3 class="t-label" style="font-size:12px">(  Pratiques  )</h3>
-          <span style="font-size:13px;color:rgba(13,10,31,0.55);max-width:380px;line-height:1.5;text-align:right">
+          <span style="font-size:13px;color:rgba(13,10,31,0.6);max-width:360px;line-height:1.5;text-align:right">
             Quatre disciplines, une même attention au corps.
           </span>
         </div>
-        <div class="grid-4">
-          ${practices.map(p => `
-            <a href="#${p.id}" class="practice-card">
-              ${Photo({ src: p.src, aspect: '3/4', filter: p.filter })}
-              <div class="practice-card__meta">
-                <div>
-                  <h4 class="practice-card__name">${p.name}</h4>
-                  <p class="practice-card__desc">${p.desc}</p>
-                </div>
-                ${ChartreIcon({ kind: p.id, size: 44 })}
-              </div>
-            </a>
-          `).join('')}
-        </div>
+      </div>
+      <!-- grille icônes -->
+      <div class="service-icon-grid service-icon-grid--sep" style="position:relative">
+        ${practices.map(p => `
+          <a href="#${p.id}" class="service-icon-card">
+            <div class="service-icon-card__icon">
+              <img src="${(() => {
+                const icons = { soins: '../media/Design sans titre (34).png', breathwork: '../media/illustration_select_21.png', yoga: '../media/illustration_select_30.png', pilates: '../media/illustration_select_38.png' };
+                return icons[p.id] || '';
+              })()}" alt="${p.name}">
+            </div>
+            <div class="service-icon-card__meta">
+              <h4 class="service-icon-card__name">${p.name}</h4>
+              <p class="service-icon-card__desc">${p.desc}</p>
+            </div>
+          </a>
+        `).join('')}
       </div>
     </section>
 
@@ -230,27 +238,53 @@ function renderSoins() {
       </div>
     </section>
 
-    <!-- CATALOGUE -->
-    <section class="section">
-      <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid #0d0a1f">
-          <h2 class="t-label" style="font-size:12px">(  Catalogue  )</h2>
-          <span style="font-size:13px;color:rgba(13,10,31,0.55)">Tous les soins · 40 min à 2h</span>
-        </div>
-        ${soins.map((s, i) => `
-          <div class="soin-row">
-            <span class="soin-row__num">0${i+1}</span>
-            <div>
-              <h3 class="soin-row__name">${s.name}</h3>
-              <p class="soin-row__sub">${s.sub}</p>
-            </div>
-            <p class="soin-row__text">${s.text}</p>
-            <div class="soin-row__price">
-              <span class="soin-row__price-val">${s.price}</span>
-              <a href="https://www.planity.com/daphne-lachavanne-75007-paris" target="_blank" class="link-arrow" style="font-size:10px">Réserver →</a>
-            </div>
+    <!-- CATALOGUE — icon grid + détail -->
+    <section class="service-icon-section" style="position:relative;overflow:hidden">
+      <!-- fond 3 en arrière-plan léger -->
+      <div class="service-icon-section__bg" style="opacity:0.55">
+        <img src="../media/fond 3.png" alt="">
+      </div>
+      <div style="position:relative">
+        <!-- en-tête -->
+        <div class="container" style="padding-top:56px;padding-bottom:40px;border-bottom:1px solid rgba(13,10,31,0.1)">
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <h2 class="t-label">(  Catalogue  )</h2>
+            <span style="font-size:13px;color:rgba(13,10,31,0.55)">Tous les soins · 40 min à 2h</span>
           </div>
-        `).join('')}
+        </div>
+        <!-- icon grid des soins -->
+        <div class="service-icon-grid service-icon-grid--sep" style="grid-template-columns:repeat(4,1fr)">
+          ${soins.map((s, i) => {
+            const icons = ['../media/Design sans titre (34).png','../media/cercle tracé.png','../media/rond.png','../media/illustration_select_21.png'];
+            return `
+            <div class="service-icon-card">
+              <div class="service-icon-card__icon">
+                <img src="${icons[i]}" alt="${s.name}">
+              </div>
+              <div class="service-icon-card__meta">
+                <h4 class="service-icon-card__name">${s.name}</h4>
+                <p class="service-icon-card__sub">${s.sub}</p>
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+        <!-- détail des soins -->
+        <div class="container" style="padding-top:0;padding-bottom:0">
+          ${soins.map((s, i) => `
+            <div class="soin-row">
+              <span class="soin-row__num">0${i+1}</span>
+              <div>
+                <h3 class="soin-row__name">${s.name}</h3>
+                <p class="soin-row__sub">${s.sub}</p>
+              </div>
+              <p class="soin-row__text">${s.text}</p>
+              <div class="soin-row__price">
+                <span class="soin-row__price-val">${s.price}</span>
+                <a href="https://www.planity.com/daphne-lachavanne-75007-paris" target="_blank" class="link-arrow" style="font-size:10px">Réserver →</a>
+              </div>
+            </div>
+          `).join('')}
+        </div>
       </div>
     </section>
 
@@ -317,32 +351,41 @@ function renderPractice({ idx, id, name, italic, quote, intro, approach, tarif, 
       </div>
     </section>
 
-    <!-- APPROCHE -->
-    <section class="section">
+    <!-- APPROCHE — intro texte + icon grid -->
+    <section class="section" style="padding-bottom:0">
       <div class="container">
         <div class="grid-label-content">
           <div>
             <h2 class="t-label" style="margin-bottom:24px">(  Approche  )</h2>
-            <!-- Icône de la charte pour chaque pratique -->
-            <div style="opacity:0.85">
-              ${ChartreIcon({ kind: id, size: 80 })}
-            </div>
           </div>
           <div>
-            <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-style:italic;font-weight:300;line-height:1.15;margin:0 0 36px">${italic}</h3>
-            <div class="grid-3" style="padding-top:20px;border-top:1px solid rgba(13,10,31,0.1)">
-              ${approach.map(a => `
-                <div class="pillar">
-                  ${Sym({ kind: a.sym, size: 28 })}
-                  <h4 class="pillar__title">${a.title}</h4>
-                  <p class="pillar__text">${a.text}</p>
-                </div>
-              `).join('')}
-            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-style:italic;font-weight:300;line-height:1.15;margin:0">${italic}</h3>
           </div>
         </div>
       </div>
     </section>
+    <!-- icon grid des approches sur fond 3 -->
+    <div class="service-icon-section" style="position:relative;overflow:hidden;margin-top:40px">
+      <div class="service-icon-section__bg" style="opacity:0.5">
+        <img src="../media/fond 3.png" alt="">
+      </div>
+      <div class="service-icon-grid service-icon-grid--3 service-icon-grid--sep" style="position:relative">
+        ${approach.map(a => {
+          const symIcons = { breath: '../media/illustration_select_21.png', spiral: '../media/illustration_select_30.png', sun: '../media/Design sans titre (34).png', wave: '../media/illustration_select_21.png', triangle: '../media/illustration_select_38.png', dot: '../media/cercle tracé.png', plus: '../media/rond.png', default: '../media/cercle tracé.png' };
+          const src = symIcons[a.sym] || symIcons.default;
+          return `
+          <div class="service-icon-card">
+            <div class="service-icon-card__icon">
+              <img src="${src}" alt="${a.title}">
+            </div>
+            <div class="service-icon-card__meta">
+              <h4 class="service-icon-card__name">${a.title}</h4>
+              <p class="service-icon-card__desc">${a.text}</p>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
 
     <!-- TARIFS — fond de la charte -->
     <section class="section" style="position:relative;overflow:hidden;color:#fff">

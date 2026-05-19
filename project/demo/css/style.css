@@ -436,7 +436,117 @@ p { line-height: 1.75; }
 .link-arrow:hover { opacity: 0.6; }
 
 /* ============================================================
-   PRACTICE CARDS (homepage)
+   SERVICE ICON GRID (style charte Renata França)
+   ============================================================ */
+.service-icon-section {
+  position: relative;
+  overflow: hidden;
+}
+.service-icon-section__bg {
+  position: absolute;
+  inset: 0;
+}
+.service-icon-section__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.service-icon-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.service-icon-grid--sep .service-icon-card {
+  border-right: 1px solid rgba(13,10,31,0.1);
+}
+.service-icon-grid--sep .service-icon-card:last-child {
+  border-right: none;
+}
+
+.service-icon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 60px 32px 56px;
+  text-decoration: none;
+  color: inherit;
+  gap: 28px;
+  transition: background 0.25s;
+}
+a.service-icon-card:hover {
+  background: rgba(13,10,31,0.04);
+}
+.service-icon-card__icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+.service-icon-card__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: multiply;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+a.service-icon-card:hover .service-icon-card__icon img {
+  transform: scale(1.06);
+}
+.service-icon-card__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.service-icon-card__name {
+  font-family: 'Tenor Sans', serif;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 0;
+}
+.service-icon-card__sub {
+  font-family: 'Tenor Sans', serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(13,10,31,0.5);
+  margin: 0;
+}
+.service-icon-card__desc {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba(13,10,31,0.6);
+  margin: 0;
+  max-width: 200px;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+@media (max-width: 900px) {
+  .service-icon-grid     { grid-template-columns: 1fr 1fr; }
+  .service-icon-grid--3  { grid-template-columns: 1fr 1fr; }
+  .service-icon-card     { padding: 40px 20px 36px; gap: 20px; }
+  .service-icon-card__icon { width: 90px; height: 90px; }
+}
+@media (max-width: 540px) {
+  .service-icon-grid     { grid-template-columns: 1fr 1fr; }
+  .service-icon-grid--3  { grid-template-columns: 1fr; }
+  .service-icon-card     { padding: 32px 16px; gap: 16px; }
+}
+
+/* ============================================================
+   PRACTICE CARDS (homepage — version photo, conservée)
    ============================================================ */
 .practice-card {
   text-decoration: none;
