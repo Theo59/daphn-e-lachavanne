@@ -7,6 +7,13 @@
       "runtimeArgs": ["-m", "http.server", "8787", "--directory", "project"],
       "autoPort": false,
       "port": 8787
+    },
+    {
+      "name": "daphne-demo",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8788", "--directory", "project"],
+      "autoPort": false,
+      "port": 8788
     }
   ]
 }
