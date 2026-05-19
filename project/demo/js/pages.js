@@ -230,12 +230,15 @@ function renderSoins() {
       </div>
     </div>
 
-    <!-- PHOTOS -->
+    <!-- PHOTOS — grille 2×2 -->
     <section class="section--sm">
       <div class="container">
         <div class="photo-grid-soins">
-          ${Photo({ src: '../media/photo 1.jpg', aspect: '4/5', filter: 'contrast(1.05) brightness(0.9)' })}
-          <div class="photo-grid-soins__right">
+          <div class="photo-grid-soins__col">
+            ${Photo({ src: '../media/photo 1.jpg', aspect: '4/5', filter: 'contrast(1.05) brightness(0.9)' })}
+            ${Photo({ src: '../media/photo tracé.png', aspect: '4/5', filter: 'contrast(1.02) brightness(0.95)' })}
+          </div>
+          <div class="photo-grid-soins__col">
             ${Photo({ src: '../media/6.jpg', aspect: '4/5', filter: 'contrast(1.05) brightness(0.9)' })}
             ${PhotoSlot({ label: 'Huile · texture', kind: 'photo', aspect: '4/5' })}
           </div>

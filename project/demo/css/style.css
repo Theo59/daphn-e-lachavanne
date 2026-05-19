@@ -789,18 +789,21 @@ a.service-icon-card:hover .service-icon-card__icon img {
    ============================================================ */
 .photo-grid-soins {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1.15fr 1fr;
   gap: 12px;
   align-items: start;
 }
-.photo-grid-soins__right {
+.photo-grid-soins__col {
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
 }
 @media (max-width: 900px) {
+  .photo-grid-soins { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 540px) {
   .photo-grid-soins { grid-template-columns: 1fr; }
-  .photo-grid-soins__right { grid-template-columns: 1fr 1fr; }
+  .photo-grid-soins__col { grid-template-columns: 1fr 1fr; }
 }
 
 /* Photo grid about (4 colonnes) */
