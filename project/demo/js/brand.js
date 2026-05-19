@@ -26,12 +26,46 @@ const Brand = {
 };
 window.Brand = Brand;
 
-// Logo — utilise le PNG de la charte
+// Logo — utilise les vrais PNG de la charte (noir ou blanc)
 function Logo({ size = 22, dark = false } = {}) {
   const markH = Math.round(size * 2);
-  const imgStyle = `height:${markH}px;width:auto;display:block${dark ? ';filter:brightness(0) invert(1)' : ''}`;
+  const src = dark ? '../media/logo_blanc.png' : '../media/Logo_noir.png';
+  const imgStyle = `height:${markH}px;width:auto;display:block`;
   const spanStyle = `display:inline-flex;align-items:center;gap:${Math.round(size * 0.55)}px;font-family:'Tenor Sans',serif;font-size:${size}px;letter-spacing:0.04em;line-height:1;color:currentColor`;
-  return `<span style="${spanStyle}"><img src="../media/Logo_noir.png" alt="" aria-hidden="true" style="${imgStyle}"/><span style="display:inline-flex;gap:0.06em"><span>daphné</span><span style="opacity:0.7">lachavanne</span></span></span>`;
+  return `<span style="${spanStyle}"><img src="${src}" alt="" aria-hidden="true" style="${imgStyle}"/><span style="display:inline-flex;gap:0.06em"><span>daphné</span><span style="opacity:0.7">lachavanne</span></span></span>`;
+}
+
+// ---------- Icônes de la charte (illustrations encre) ----------
+// mix-blend-mode: multiply → fond blanc transparent sur surfaces claires
+// invert: true → version blanche pour surfaces sombres/colorées
+function ChartreIcon({ kind, size = 56, invert = false, style = '' } = {}) {
+  const icons = {
+    soins:      '../media/Design sans titre (34).png', // soleil radial
+    breathwork: '../media/illustration_select_21.png', // goutte
+    yoga:       '../media/illustration_select_30.png', // spirale
+    pilates:    '../media/illustration_select_38.png', // demi-lune
+    cercle:     '../media/cercle tracé.png',           // cercle calligraphique
+    rond:       '../media/rond.png',                   // cercle pratiques
+  };
+  const src = icons[kind];
+  if (!src) return '';
+  const blend = invert ? '' : 'mix-blend-mode:multiply;';
+  const inv   = invert ? 'filter:invert(1) brightness(10);' : '';
+  return `<img src="${src}" alt="" aria-hidden="true" style="width:${size}px;height:${size}px;object-fit:contain;display:block;${blend}${inv}${style}">`;
+}
+
+// ---------- Fond de la charte ----------
+// Remplace GradientBlob dans les sections CTA/accent
+function CharteFond({ variant = '1', style = {} } = {}) {
+  const fonds = {
+    '1': '../media/fond 1.png',       // orange + lignes tracées
+    '2': '../media/fond 2.png',       // orange intense + lumière
+    '3': '../media/fond 3.png',       // bleu lavande doux
+    'formes': '../media/fond formes.png', // formes orange+bleu
+  };
+  const src = fonds[variant] || fonds['1'];
+  const wrapStyle = st({ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', ...style });
+  return `<div style="${wrapStyle}"><img src="${src}" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;display:block"></div>`;
 }
 
 // GradientBlob
@@ -98,4 +132,4 @@ function PhotoSlot({ label = 'Photo', kind = 'photo', aspect = '4/5', style = {}
   return `<div style="${wrapStyle}"><div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>${badge}<span style="color:rgba(255,255,255,0.7);font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase">${label}</span></div>`;
 }
 
-Object.assign(window, { st, uid, Brand, Logo, GradientBlob, Sym, Photo, PhotoSlot });
+Object.assign(window, { st, uid, Brand, Logo, GradientBlob, Sym, Photo, PhotoSlot, ChartreIcon, CharteFond });

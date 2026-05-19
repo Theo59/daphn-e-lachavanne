@@ -1,0 +1,14 @@
+{
+  "name": "daphne-lachavanne",
+  "version": "1.0.0",
+  "description": "Site web Daphné Lachavanne — yoga, breathwork, pilates, soins",
+  "scripts": {
+    "start": "npx serve project -p 8787 --no-clipboard",
+    "demo": "npx serve project -p 8788 --no-clipboard",
+    "dev": "npx serve project -p 8787 --no-clipboard"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true
+}

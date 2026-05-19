@@ -1,14 +1,14 @@
-// pages.js — Les 7 pages du site démo
+// pages.js — Les 7 pages du site démo (avec assets de la charte)
 
 // ============================================================
 // HOMEPAGE
 // ============================================================
 function renderHome() {
   const practices = [
-    { id: 'soins',      name: 'Soins',      sym: 'sun',    src: '../media/photo 1.jpg', filter: 'contrast(1.05) brightness(0.88)', desc: 'Drainage lymphatique, massage holistique, soin énergétique.' },
-    { id: 'breathwork', name: 'Breathwork', sym: 'breath', src: '../media/photo 3.jpg', filter: 'contrast(1.1) brightness(0.82)',  desc: 'Respiration consciente. Libérer, recentrer, régénérer.' },
-    { id: 'yoga',       name: 'Yoga',       sym: 'spiral', src: '../media/10.jpg',       filter: 'grayscale(1) contrast(0.95)',     desc: 'Cours particuliers — postures, souffle, méditation.' },
-    { id: 'pilates',    name: 'Pilates',    sym: 'wave',   src: '../media/12.jpg',       filter: 'grayscale(1) contrast(0.95)',     desc: 'Corps profond, alignement durable, fluidité.' },
+    { id: 'soins',      name: 'Soins',      src: '../media/photo 1.jpg', filter: 'contrast(1.05) brightness(0.88)', desc: 'Drainage lymphatique, massage holistique, soin énergétique.' },
+    { id: 'breathwork', name: 'Breathwork', src: '../media/photo 3.jpg', filter: 'contrast(1.1) brightness(0.82)',  desc: 'Respiration consciente. Libérer, recentrer, régénérer.' },
+    { id: 'yoga',       name: 'Yoga',       src: '../media/10.jpg',       filter: 'grayscale(1) contrast(0.95)',     desc: 'Cours particuliers — postures, souffle, méditation.' },
+    { id: 'pilates',    name: 'Pilates',    src: '../media/12.jpg',       filter: 'grayscale(1) contrast(0.95)',     desc: 'Corps profond, alignement durable, fluidité.' },
   ];
 
   const testimonials = [
@@ -23,7 +23,6 @@ function renderHome() {
       <div class="hero__bg">
         <img src="../media/photo 2.jpg" alt="Daphné Lachavanne" style="filter:contrast(1.1) brightness(0.72)">
       </div>
-      ${GradientBlob({ style: { mixBlendMode: 'screen', opacity: 0.35 } })}
       <div class="hero__overlay"></div>
       <div class="hero__content">
         <span class="hero__label">◦  soins · breathwork · yoga · pilates  ◦</span>
@@ -50,8 +49,12 @@ function renderHome() {
     </section>
 
     <!-- MANIFESTE -->
-    <section class="section">
-      <div class="container">
+    <section class="section" style="position:relative;overflow:hidden">
+      <!-- fond formes en décoration -->
+      <div style="position:absolute;right:-120px;top:-80px;width:500px;opacity:0.12;pointer-events:none;transform:rotate(-15deg)">
+        <img src="../media/fond formes.png" alt="" style="width:100%;display:block">
+      </div>
+      <div class="container" style="position:relative">
         <div class="grid-2" style="align-items:center">
           <div>
             <span class="t-label">— Bienvenue</span>
@@ -94,7 +97,7 @@ function renderHome() {
                   <h4 class="practice-card__name">${p.name}</h4>
                   <p class="practice-card__desc">${p.desc}</p>
                 </div>
-                ${Sym({ kind: p.sym, size: 26 })}
+                ${ChartreIcon({ kind: p.id, size: 44 })}
               </div>
             </a>
           `).join('')}
@@ -123,8 +126,12 @@ function renderHome() {
     </section>
 
     <!-- TÉMOIGNAGES -->
-    <section class="section">
-      <div class="container">
+    <section class="section" style="position:relative;overflow:hidden">
+      <!-- cercle calligraphique en fond -->
+      <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:600px;height:600px;opacity:0.07;pointer-events:none">
+        <img src="../media/cercle tracé.png" alt="" style="width:100%;height:100%;object-fit:contain">
+      </div>
+      <div class="container" style="position:relative">
         <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:44px">
           <h3 class="t-label">(  Mots reçus  )</h3>
           <span style="font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.2em;color:rgba(13,10,31,0.55)">5,0 / 5 · Planity</span>
@@ -132,7 +139,7 @@ function renderHome() {
         <div class="grid-3">
           ${testimonials.map(t => `
             <figure class="testimonial">
-              ${Sym({ kind: 'dot', size: 28 })}
+              ${ChartreIcon({ kind: 'cercle', size: 32 })}
               <blockquote>« ${t.q} »</blockquote>
               <figcaption>${t.a}</figcaption>
             </figure>
@@ -141,12 +148,16 @@ function renderHome() {
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- CTA — fond 1 de la charte -->
     <section class="section" style="padding-top:0">
       <div class="container">
         <div class="cta-band">
-          <div class="cta-band__bg" style="background:linear-gradient(120deg,${Brand.orange} 0%,#c9285f 50%,${Brand.blue} 100%)"></div>
-          ${GradientBlob({ variant: 'mix', animated: true, style: { opacity: 0.55, mixBlendMode: 'overlay' } })}
+          <!-- Vrai fond de la charte (orange + lignes tracées) -->
+          <div style="position:absolute;inset:0;overflow:hidden;border-radius:6px">
+            <img src="../media/fond 1.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <!-- Overlay sombre pour lisibilité -->
+          <div style="position:absolute;inset:0;background:rgba(13,10,31,0.25);border-radius:6px"></div>
           <div class="cta-band__content">
             <h3 class="cta-band__title">Réservez<br>votre première séance.</h3>
             <p class="cta-band__text">Un échange offert avant chaque suivi. Pour comprendre votre demande, ajuster, et trouver ensemble la bonne pratique.</p>
@@ -165,22 +176,26 @@ function renderHome() {
 // ============================================================
 function renderSoins() {
   const soins = [
-    { name: 'Soin Signature',      sub: 'Drainage + breathwork + énergétique · 2h', price: '280 €', text: "Le soin le plus complet. Drainage lymphatique Renata França, respiration guidée et travail sur les centres énergétiques. Pour libérer les trois corps en une seule séance." },
+    { name: 'Soin Signature',       sub: 'Drainage + breathwork + énergétique · 2h', price: '280 €', text: "Le soin le plus complet. Drainage lymphatique Renata França, respiration guidée et travail sur les centres énergétiques. Pour libérer les trois corps en une seule séance." },
     { name: 'Drainage Lymphatique', sub: 'Méthode Renata França · 1h',               price: '150 €', text: "La technique originale, certifiée depuis 2013. Mouvements rythmiques et précis qui relancent la circulation lymphatique, allègent, désenflent et régénèrent." },
     { name: 'Miracle Face',         sub: 'Drainage facial · 40 min',                  price: '90 €',  text: "Drainage du visage et du crâne. Détonifie les traits, élimine les tensions, redonne de l'éclat et du volume. Idéal en soin express ou en complément corps." },
     { name: 'Combo Détox',          sub: 'Corps + Visage · 1h30',                     price: '200 €', text: "Drainage complet corps et visage en une session. Le traitement signature pour une détox profonde — le soin le plus demandé en préparation d'événement." },
   ];
 
   const packages = [
-    { name: 'Découverte',    detail: '3 Drainages Lymphatiques · valable 3 mois', price: '420 €', save: '−30 €', grad: `linear-gradient(160deg,${Brand.orange},#ff3d8a)` },
-    { name: 'Suivi Saison',  detail: '5 soins au choix · valable 6 mois',         price: '680 €', save: '−70 €', grad: `linear-gradient(160deg,#ff3d8a,${Brand.blue})` },
-    { name: 'Intensif',      detail: '3 Soins Signature · valable 2 mois',        price: '780 €', save: '−60 €', grad: `linear-gradient(160deg,#6b2dc9,${Brand.blue})` },
+    { name: 'Découverte',   detail: '3 Drainages Lymphatiques · valable 3 mois', price: '420 €', save: '−30 €', fond: '2' },
+    { name: 'Suivi Saison', detail: '5 soins au choix · valable 6 mois',         price: '680 €', save: '−70 €', fond: '1' },
+    { name: 'Intensif',     detail: '3 Soins Signature · valable 2 mois',        price: '780 €', save: '−60 €', fond: '2' },
   ];
 
   return `
     <!-- EN-TÊTE -->
-    <div class="page-header">
-      <div class="container">
+    <div class="page-header" style="position:relative;overflow:hidden">
+      <!-- Soleil radial de la charte en décoration -->
+      <div style="position:absolute;right:3.5rem;top:50%;transform:translateY(-50%);opacity:0.06;pointer-events:none">
+        ${ChartreIcon({ kind: 'soins', size: 340 })}
+      </div>
+      <div class="container" style="position:relative">
         <span class="t-label">— Pratique 01 / 04</span>
         <h1>Soins.</h1>
         <div class="grid-2" style="margin-top:48px">
@@ -239,15 +254,18 @@ function renderSoins() {
       </div>
     </section>
 
-    <!-- FORFAITS -->
+    <!-- FORFAITS — fonds de la charte -->
     <section class="section" style="padding-top:0">
       <div class="container">
         <h3 class="t-label" style="margin-bottom:32px">(  Forfaits  )</h3>
         <div class="grid-3">
           ${packages.map(p => `
             <div class="forfait">
-              <div class="forfait__bg" style="background:${p.grad}"></div>
-              ${GradientBlob({ style: { opacity: 0.4, mixBlendMode: 'overlay' } })}
+              <!-- Fond réel de la charte -->
+              <div style="position:absolute;inset:0;overflow:hidden;border-radius:6px">
+                <img src="../media/fond ${p.fond}.png" alt="" style="width:100%;height:100%;object-fit:cover">
+              </div>
+              <div style="position:absolute;inset:0;background:rgba(13,10,31,0.15);border-radius:6px"></div>
               <div class="forfait__content">
                 <div>
                   <span class="forfait__save">${p.save}</span>
@@ -270,11 +288,14 @@ function renderSoins() {
 // ============================================================
 // PAGE PRATIQUE GÉNÉRIQUE (Yoga / Breathwork / Pilates)
 // ============================================================
-function renderPractice({ idx, name, italic, quote, intro, approach, tarif, photos }) {
+function renderPractice({ idx, id, name, italic, quote, intro, approach, tarif, photos, fond = '1' }) {
   return `
-    <!-- EN-TÊTE -->
-    <div class="page-header">
-      <div class="container">
+    <!-- EN-TÊTE avec grande icône de la charte -->
+    <div class="page-header" style="position:relative;overflow:hidden">
+      <div style="position:absolute;right:3.5rem;top:50%;transform:translateY(-50%);opacity:0.07;pointer-events:none">
+        ${ChartreIcon({ kind: id, size: 320 })}
+      </div>
+      <div class="container" style="position:relative">
         <span class="t-label">— Pratique ${idx} / 04</span>
         <h1>${name}<em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">.</em></h1>
         <div class="grid-2" style="margin-top:44px">
@@ -300,7 +321,13 @@ function renderPractice({ idx, name, italic, quote, intro, approach, tarif, phot
     <section class="section">
       <div class="container">
         <div class="grid-label-content">
-          <h2 class="t-label">(  Approche  )</h2>
+          <div>
+            <h2 class="t-label" style="margin-bottom:24px">(  Approche  )</h2>
+            <!-- Icône de la charte pour chaque pratique -->
+            <div style="opacity:0.85">
+              ${ChartreIcon({ kind: id, size: 80 })}
+            </div>
+          </div>
           <div>
             <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-style:italic;font-weight:300;line-height:1.15;margin:0 0 36px">${italic}</h3>
             <div class="grid-3" style="padding-top:20px;border-top:1px solid rgba(13,10,31,0.1)">
@@ -317,12 +344,17 @@ function renderPractice({ idx, name, italic, quote, intro, approach, tarif, phot
       </div>
     </section>
 
-    <!-- TARIFS -->
-    <section class="section section--dark">
-      <div class="container">
+    <!-- TARIFS — fond de la charte -->
+    <section class="section" style="position:relative;overflow:hidden;color:#fff">
+      <!-- Fond de la charte -->
+      <div style="position:absolute;inset:0">
+        <img src="../media/fond ${fond}.png" alt="" style="width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:rgba(13,10,31,0.55)"></div>
+      </div>
+      <div class="container" style="position:relative">
         <div class="grid-label-content">
           <div>
-            <span class="t-label">(  Tarif &amp; Réservation  )</span>
+            <span style="font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;opacity:0.65">(  Tarif &amp; Réservation  )</span>
             <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(40px,5vw,56px);line-height:1;margin:20px 0 16px;font-weight:400">Sur<br>rendez-vous.</h3>
             <p style="font-size:14px;line-height:1.8;opacity:0.65;max-width:260px">Séances individuelles au cabinet. Réservation via Planity.</p>
             <a href="https://www.planity.com/daphne-lachavanne-75007-paris" target="_blank" class="btn btn--outline-white" style="margin-top:24px">Réserver →</a>
@@ -336,7 +368,7 @@ function renderPractice({ idx, name, italic, quote, intro, approach, tarif, phot
                 </div>
                 <div class="tarif-row__right">
                   <span class="tarif-row__price">${t.price}</span>
-                  <a href="https://www.planity.com/daphne-lachavanne-75007-paris" target="_blank" style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.7);border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px;transition:color .2s" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='rgba(255,255,255,0.7)'">Réserver →</a>
+                  <a href="https://www.planity.com/daphne-lachavanne-75007-paris" target="_blank" style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.65);border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px;transition:color .2s" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='rgba(255,255,255,0.65)'">Réserver →</a>
                 </div>
               </div>
             `).join('')}
@@ -349,7 +381,7 @@ function renderPractice({ idx, name, italic, quote, intro, approach, tarif, phot
 
 function renderYoga() {
   return renderPractice({
-    idx: '02', name: 'Yoga',
+    idx: '02', id: 'yoga', name: 'Yoga', fond: '1',
     italic: 'Une pratique du souffle, du sol vers le ciel.',
     quote: 'La posture juste commence par le souffle juste.',
     intro: "Cours particuliers uniquement. Vinyasa, hatha, yin — adaptés à votre corps, votre niveau, votre moment. Une heure d'attention complète, sans comparaison.",
@@ -372,7 +404,7 @@ function renderYoga() {
 
 function renderBreathwork() {
   return renderPractice({
-    idx: '03', name: 'Breathwork',
+    idx: '03', id: 'breathwork', name: 'Breathwork', fond: '3',
     italic: "Le souffle, comme un instrument que l'on apprend à jouer.",
     quote: "Entre l'inspire et l'expire, une pause naturelle — comme le silence en musique.",
     intro: "Respiration consciente, holotropique, cohérence cardiaque. En individuel ou en cercle fermé. Selon ce que vous traversez, on choisit ensemble la pratique.",
@@ -395,7 +427,7 @@ function renderBreathwork() {
 
 function renderPilates() {
   return renderPractice({
-    idx: '04', name: 'Pilates',
+    idx: '04', id: 'pilates', name: 'Pilates', fond: '2',
     italic: 'Force, alignement, fluidité. Le mouvement comme une écriture.',
     quote: 'Le mouvement précis est plus efficace que le mouvement fort.',
     intro: "Cours particuliers au sol et avec petit matériel. Travail postural, respiratoire et musculaire profond. En privé ou en duo — pour ajuster avec une précision millimétrique.",
@@ -459,7 +491,7 @@ function renderAbout() {
               J'ai rencontré le soin par le corps sportif. Danseuse, puis athlète, j'ai cherché ce qui soigne vraiment — pas seulement en surface.
             </p>
             <p style="margin:0 0 16px">
-              En 2013, la méthode Renata França a tout changé. Le drainage lymphatique comme art, comme langage, comme écoute du corps. Depuis, j'ai construit une pratique qui dépasse le massage : yoga, breathwork, énergétique, pilates. Chaque discipline m'a appris quelque chose sur la circulation — de l'énergie, du sang, du souffle, des émotions.
+              En 2013, la méthode Renata França a tout changé. Le drainage lymphatique comme art, comme langage, comme écoute du corps. Depuis, j'ai construit une pratique qui dépasse le massage : yoga, breathwork, énergétique, pilates.
             </p>
             <p style="color:rgba(13,10,31,0.55);margin:0">
               En 2025, j'ai formalisé cette approche sous le nom <em>L'Art de la Circulation</em>. Parce que tout, dans le corps, demande à circuler — et que mon rôle est de lever les obstacles qui freinent ce mouvement naturel.
@@ -493,10 +525,17 @@ function renderAbout() {
       </div>
     </section>
 
-    <!-- CITATION -->
-    <section class="section" style="text-align:center;position:relative;overflow:hidden">
-      ${GradientBlob({ variant: 'doux', style: { opacity: 0.14, transform: 'translateY(20%)' } })}
-      <div class="container" style="position:relative">
+    <!-- CITATION — fond 3 doux + cercle tracé -->
+    <section class="section" style="position:relative;overflow:hidden">
+      <!-- Fond lavande doux de la charte -->
+      <div style="position:absolute;inset:0">
+        <img src="../media/fond 3.png" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.35">
+      </div>
+      <!-- Cercle calligraphique -->
+      <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:70vw;max-width:700px;opacity:0.12;pointer-events:none">
+        <img src="../media/cercle tracé.png" alt="" style="width:100%;display:block">
+      </div>
+      <div class="container" style="position:relative;text-align:center">
         <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,4vw,52px);line-height:1.25;font-weight:300;max-width:900px;margin:0 auto">
           « Une couleur vivante, qui se transforme et évolue —<br>une vibration qui éveille les sens, une énergie en expansion. »
         </p>
@@ -512,8 +551,11 @@ function renderAbout() {
 function renderContact() {
   return `
     <!-- EN-TÊTE -->
-    <div class="page-header">
-      <div class="container">
+    <div class="page-header" style="position:relative;overflow:hidden">
+      <div style="position:absolute;right:3.5rem;bottom:0;opacity:0.06;pointer-events:none">
+        ${ChartreIcon({ kind: 'cercle', size: 300 })}
+      </div>
+      <div class="container" style="position:relative">
         <span class="t-label">— Réservation</span>
         <h1>
           Écrire,<br>
@@ -562,14 +604,15 @@ function renderContact() {
           <!-- Infos + Planity -->
           <div>
             <h2 class="t-label" style="margin-bottom:28px">(  Réservation en ligne  )</h2>
-            <!-- CTA Planity -->
-            <div style="position:relative;padding:32px;border-radius:6px;color:#fff;overflow:hidden;min-height:220px;margin-bottom:36px">
-              <div style="position:absolute;inset:0;background:linear-gradient(160deg,${Brand.orange} 0%,#c9285f 50%,${Brand.blue} 100%)"></div>
-              ${GradientBlob({ variant: 'mix', style: { opacity: 0.45, mixBlendMode: 'overlay' } })}
-              <div style="position:relative">
+
+            <!-- CTA Planity — fond 2 de la charte -->
+            <div style="position:relative;border-radius:6px;overflow:hidden;min-height:220px;margin-bottom:36px">
+              <img src="../media/fond 2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+              <div style="position:absolute;inset:0;background:rgba(13,10,31,0.3)"></div>
+              <div style="position:relative;padding:32px;color:#fff">
                 <span style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;opacity:0.85">Disponibilités en direct</span>
                 <h3 style="font-family:'Tenor Sans',serif;font-size:34px;line-height:1;margin:10px 0 14px;font-weight:400">Planity</h3>
-                <p style="font-size:14px;line-height:1.65;opacity:0.9;margin:0;max-width:340px">Choisissez votre soin, un créneau, et confirmez en deux minutes. Annulation gratuite jusqu'à 24h avant.</p>
+                <p style="font-size:14px;line-height:1.65;opacity:0.92;margin:0;max-width:340px">Choisissez votre soin, un créneau, et confirmez en deux minutes. Annulation gratuite jusqu'à 24h avant.</p>
                 <a href="https://www.planity.com/daphne-lachavanne-75007-paris" target="_blank" class="btn btn--white" style="margin-top:22px">
                   Réserver sur Planity ${Sym({ kind: 'arrow', size: 15 })}
                 </a>

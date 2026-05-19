@@ -765,3 +765,266 @@ hr.divider {
    SCROLL-BASED CLASSES (appliquées par JS)
    ============================================================ */
 body.menu-open { overflow: hidden; }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity  0.75s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Variantes de direction */
+.reveal[data-dir="left"]  { transform: translateX(-40px); }
+.reveal[data-dir="right"] { transform: translateX(40px); }
+.reveal[data-dir="scale"] { transform: scale(0.92); }
+.reveal[data-dir="left"].reveal--visible,
+.reveal[data-dir="right"].reveal--visible,
+.reveal[data-dir="scale"].reveal--visible { transform: none; }
+
+/* Stagger : délai injecté par JS via --stagger-delay */
+.reveal[data-stagger] {
+  transition-delay: var(--stagger-delay, 0s);
+}
+
+/* ============================================================
+   HERO ENTRANCE — séquence
+   ============================================================ */
+.hero-seq {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-seq--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Cas spécial : le titre sort d'en-bas avec plus d'amplitude */
+.hero__title.hero-seq { transform: translateY(50px); }
+
+/* Label : fade simple + léger étirement du letter-spacing */
+.hero__label.hero-seq {
+  transition: opacity 1.1s ease, letter-spacing 1.1s ease, transform 0.9s ease;
+  letter-spacing: 0.15em;
+}
+.hero__label.hero-seq--visible { letter-spacing: 0.4em; }
+
+/* ============================================================
+   BARRE DE PROGRESSION DE SCROLL
+   ============================================================ */
+.nav-progress {
+  position: fixed;
+  top: 68px; /* sous la nav */
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff7100 0%, #c9285f 60%, #16066e 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: 99;
+  pointer-events: none;
+  transition: transform 0.05s linear;
+}
+
+/* ============================================================
+   SWEEP DE TRANSITION DE PAGE
+   ============================================================ */
+.page-sweep {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: #0d0a1f;
+  pointer-events: none;
+  clip-path: inset(0 100% 0 0);
+}
+
+.page-sweep--in {
+  animation: sweepIn 0.28s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+.page-sweep--out {
+  animation: sweepOut 0.35s cubic-bezier(0.7, 0, 0.3, 1) 0.05s forwards;
+}
+
+@keyframes sweepIn {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+@keyframes sweepOut {
+  from { clip-path: inset(0 0% 0 0); }
+  to   { clip-path: inset(0 0% 0 100%); }
+}
+
+/* ============================================================
+   PAGE ENTER — override de l'ancien, plus élégant
+   ============================================================ */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.page-enter {
+  animation: pageIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ============================================================
+   NAV LINKS — underline animé
+   ============================================================ */
+.nav__link {
+  /* Remplace le border-bottom statique par un pseudo-élément animé */
+  border-bottom: none !important;
+  position: relative;
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav__link:hover::after,
+.nav__link--active::after {
+  transform: scaleX(1);
+}
+.nav__link:hover   { opacity: 1; }
+.nav__link--active { opacity: 1; }
+
+/* ============================================================
+   CURSEUR PERSONNALISÉ
+   ============================================================ */
+body:has(.custom-cursor) {
+  cursor: none;
+}
+body:has(.custom-cursor) a,
+body:has(.custom-cursor) button {
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: -8px;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(13,10,31,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s, border-color 0.3s, background 0.3s;
+  will-change: transform;
+}
+.custom-cursor--hover {
+  width: 44px;
+  height: 44px;
+  top: -22px;
+  left: -22px;
+  background: rgba(255,113,0,0.08);
+  border-color: rgba(255,113,0,0.6);
+}
+
+.custom-cursor__dot {
+  position: fixed;
+  top: -3px;
+  left: -3px;
+  width: 6px;
+  height: 6px;
+  background: #ff7100;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  transition: opacity 0.2s;
+}
+.custom-cursor__dot--hover { opacity: 0; }
+
+/* Sur mobile : masquer le curseur custom */
+@media (hover: none) {
+  .custom-cursor, .custom-cursor__dot { display: none; }
+}
+
+/* ============================================================
+   PHOTO HOVER — overlay reveal
+   ============================================================ */
+.photo-wrap {
+  position: relative;
+}
+.photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(13,10,31,0);
+  transition: background 0.4s ease;
+  pointer-events: none;
+}
+.practice-card:hover .photo-wrap::after { background: rgba(13,10,31,0.08); }
+.forfait:hover { box-shadow: 0 20px 60px rgba(13,10,31,0.25); }
+
+/* ============================================================
+   SECTION DARK — entrée avec légère saturation
+   ============================================================ */
+.section--dark {
+  transition: background 0.3s;
+}
+
+/* ============================================================
+   ANIMATIONS VARIOUS
+   ============================================================ */
+
+/* Pulse sur le dot orange Planity */
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,113,0,0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(255,113,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,113,0,0); }
+}
+[style*="background:#ff7100"][style*="border-radius:50%"] {
+  animation: pulse 2.5s infinite;
+}
+
+/* Bouton : shimmer sur hover */
+.btn--white, .btn--dark {
+  position: relative;
+  overflow: hidden;
+}
+.btn--white::before,
+.btn--dark::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+.btn--white:hover::before,
+.btn--dark:hover::before {
+  left: 150%;
+}
+
+/* ============================================================
+   MEDIA QUERIES — réduire les animations si préférence
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .hero-seq,
+  .page-sweep,
+  .page-enter,
+  .nav__link::after { transition: none; animation: none; }
+  .reveal, .hero-seq { opacity: 1; transform: none; }
+  .custom-cursor, .custom-cursor__dot { display: none; }
+  body { cursor: auto; }
+}

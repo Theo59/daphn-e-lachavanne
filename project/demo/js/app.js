@@ -17,9 +17,8 @@ function getPage() {
   return ROUTES[hash] ? hash : 'home';
 }
 
-function navigate(page) {
+function navigate(page, animate = false) {
   if (page === currentPage) return;
-  currentPage = page;
 
   const route     = ROUTES[page];
   const navRoot   = document.getElementById('nav-root');
@@ -28,32 +27,46 @@ function navigate(page) {
 
   // Nettoyage scroll listener précédent
   const oldNav = document.getElementById('main-nav');
-  if (oldNav && oldNav._cleanupScroll) {
-    oldNav._cleanupScroll();
+  if (oldNav && oldNav._cleanupScroll) oldNav._cleanupScroll();
+
+  function doRender() {
+    currentPage = page;
+
+    // Render nav
+    navRoot.innerHTML = renderNav(page);
+
+    // Render page
+    pageEl.innerHTML = `<div class="page-enter">${route.render()}</div>`;
+
+    // Render footer
+    footerEl.innerHTML = route.footer ? renderFooter() : '';
+
+    // Init nav interactions
+    initNavInteractions();
+
+    // Init animations
+    initAnimations();
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
-  // Render nav
-  navRoot.innerHTML = renderNav(page);
-
-  // Render page avec animation
-  pageEl.innerHTML = `<div class="page-enter">${route.render()}</div>`;
-
-  // Render footer
-  footerEl.innerHTML = route.footer ? renderFooter() : '';
-
-  // Init interactions nav (hamburger, scroll)
-  initNavInteractions();
-
-  // Scroll to top
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  // Transition sweep sur les navigations volontaires (pas le premier chargement)
+  if (animate && typeof triggerPageTransition === 'function') {
+    triggerPageTransition(doRender);
+  } else {
+    doRender();
+  }
 }
 
-// Hash router
+// Hash router — animate=true sur les navigations volontaires
 window.addEventListener('hashchange', () => {
-  navigate(getPage());
+  navigate(getPage(), true);
 });
 
 // Init au chargement
 window.addEventListener('DOMContentLoaded', () => {
-  navigate(getPage());
+  navigate(getPage(), false);
+  // Curseur custom (desktop)
+  initCustomCursor();
 });
