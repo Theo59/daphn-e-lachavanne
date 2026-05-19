@@ -66,7 +66,7 @@ function TypoArtboard() {
 function Artboard({ label, width, height, content } = {}) {
   return `<div style="display:inline-block;vertical-align:top">
     <div style="font-size:12px;color:rgba(60,50,40,0.7);margin-bottom:8px;font-family:-apple-system,sans-serif">${label}</div>
-    <div style="width:${width}px;height:${height}px;overflow:hidden;border-radius:6px;box-shadow:0 8px 30px rgba(0,0,0,0.12)">
+    <div style="width:${width}px;min-height:${height}px;border-radius:6px;box-shadow:0 8px 30px rgba(0,0,0,0.12);overflow:hidden">
       ${content}
     </div>
   </div>`;

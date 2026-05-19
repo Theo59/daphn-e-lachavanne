@@ -2,7 +2,7 @@
 // Daphné Lachavanne — vanilla JS
 
 function DesktopFrame({ children, url = 'daphnelachavanne.com', height = 900 } = {}) {
-  const outerStyle = `width:1440px;height:${height}px;background:${Brand.paper};box-shadow:0 30px 80px rgba(13,10,31,0.18),0 8px 24px rgba(13,10,31,0.08);border-radius:6px;overflow:hidden;font-family:"Inter",system-ui,sans-serif;color:${Brand.ink};position:relative`;
+  const outerStyle = `width:1440px;min-height:${height}px;background:${Brand.paper};box-shadow:0 30px 80px rgba(13,10,31,0.18),0 8px 24px rgba(13,10,31,0.08);border-radius:6px;overflow:hidden;font-family:"Inter",system-ui,sans-serif;color:${Brand.ink};position:relative`;
   return `<div style="${outerStyle}">
     <div style="height:36px;background:#e8e3da;display:flex;align-items:center;padding:0 14px;gap:8px;border-bottom:1px solid rgba(0,0,0,0.06)">
       <span style="width:10px;height:10px;border-radius:50%;background:#e8755a;display:inline-block"></span>
@@ -10,19 +10,19 @@ function DesktopFrame({ children, url = 'daphnelachavanne.com', height = 900 } =
       <span style="width:10px;height:10px;border-radius:50%;background:#9bc774;display:inline-block"></span>
       <div style="flex:1;margin-left:18px;height:22px;background:rgba(255,255,255,0.7);border-radius:4px;display:flex;align-items:center;padding:0 12px;font-size:11px;color:rgba(13,10,31,0.55);letter-spacing:0.04em">${url}</div>
     </div>
-    <div style="height:${height - 36}px;overflow:hidden;position:relative">${children}</div>
+    <div style="position:relative">${children}</div>
   </div>`;
 }
 
 function MobileFrame({ children, height = 812 } = {}) {
-  const outerStyle = `width:375px;height:${height}px;background:${Brand.paper};box-shadow:0 24px 60px rgba(13,10,31,0.22),0 6px 18px rgba(13,10,31,0.1);border-radius:36px;overflow:hidden;font-family:"Inter",system-ui,sans-serif;color:${Brand.ink};position:relative;border:8px solid #1a1612`;
+  const outerStyle = `width:375px;min-height:${height}px;background:${Brand.paper};box-shadow:0 24px 60px rgba(13,10,31,0.22),0 6px 18px rgba(13,10,31,0.1);border-radius:36px;overflow:hidden;font-family:"Inter",system-ui,sans-serif;color:${Brand.ink};position:relative;border:8px solid #1a1612`;
   return `<div style="${outerStyle}">
     <div style="height:40px;display:flex;align-items:center;justify-content:space-between;padding:12px 24px 0;font-size:13px;font-weight:600;position:absolute;top:0;left:0;right:0;z-index:5;color:${Brand.ink}">
       <span style="font-family:'Tenor Sans',serif;font-weight:400">9:41</span>
       <div style="position:absolute;left:50%;top:6px;transform:translateX(-50%);width:100px;height:22px;background:#1a1612;border-radius:12px"></div>
       <span style="display:flex;gap:4px;align-items:center;font-size:11px"><span>●●●●</span><span>&#x1F4F6;</span></span>
     </div>
-    <div style="height:100%;overflow:hidden;position:relative">${children}</div>
+    <div style="position:relative">${children}</div>
   </div>`;
 }
 
