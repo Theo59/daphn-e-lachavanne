@@ -1,14 +1,17 @@
 {
   "name": "daphne-lachavanne",
-  "version": "1.0.0",
-  "description": "Site web Daphné Lachavanne — yoga, breathwork, pilates, soins",
-  "scripts": {
-    "start": "npx serve project -p 8787 --no-clipboard",
-    "demo": "npx serve project -p 8788 --no-clipboard",
-    "dev": "npx serve project -p 8787 --no-clipboard"
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "UNLICENSED",
-  "private": true
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^6.3.5"
+  }
 }

@@ -1,0 +1,41 @@
+---
+import Logo from './Logo.astro';
+---
+
+<footer>
+  <div class="footer">
+    <div>
+      <Logo size={15} />
+      <p style="margin-top:18px;line-height:1.7;color:rgba(13,10,31,0.55);max-width:260px;font-size:13px">
+        Soins, drainage lymphatique,<br />yoga &amp; breathwork. Paris 7e.
+      </p>
+    </div>
+    <div>
+      <span class="footer__col-title">Pratiques</span>
+      <div class="footer__links">
+        <a href="/soins">Soins</a>
+        <a href="/breathwork">Breathwork</a>
+        <a href="/yoga">Yoga</a>
+        <a href="/pilates">Pilates</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer__col-title">Cabinet</span>
+      <div style="display:flex;flex-direction:column;gap:8px;color:rgba(13,10,31,0.55);line-height:1.7;font-size:13px">
+        <span>3 Rue Valadon<br />75007 Paris</span>
+        <a href="https://maps.google.com/?q=3+Rue+Valadon+75007+Paris" target="_blank" rel="noopener" style="color:#0d0a1f;text-decoration:none">Itinéraire →</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer__col-title">Suivre</span>
+      <div class="footer__links">
+        <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="/contact">Newsletter</a>
+        <a href="https://www.planity.com/daphne-lachavanne-75007-paris" target="_blank" rel="noopener">Planity</a>
+      </div>
+    </div>
+  </div>
+  <div style="padding:0 3.5rem 28px;font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.15em;color:rgba(13,10,31,0.35)">
+    © 2026 Daphné Lachavanne
+  </div>
+</footer>

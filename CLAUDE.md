@@ -1,78 +1,82 @@
 # Daphné Lachavanne — Site web
 
-Maquettes d'un site de praticienne bien-être (yoga, breathwork, pilates, soins) basée à Genève au Loft.
+Site de praticienne bien-être (yoga, breathwork, pilates, soins) basée à Genève au Loft.
 
 ## Lancer le projet
 
 ```bash
-cd project && python3 -m http.server 8787
-# puis ouvrir http://localhost:8787
+npm run dev
+# puis ouvrir http://localhost:4321
 ```
 
 ## Stack
 
-- React 18 via CDN (UMD) + Babel standalone — pas de build, JSX interprété dans le navigateur
-- Fichiers servis statiquement, pas de framework backend
+- **Astro** (static site generator) — composants `.astro`, CSS scopé, aucun JS runtime par défaut
+- Pas de React, pas de framework UI — HTML + CSS pur dans les composants Astro
+- Build statique : `npm run build` → `dist/`
 
 ## Structure
 
 ```
-project/
-  index.html          # Point d'entrée — charge tous les modules JSX via Babel
-  brand.jsx           # Tokens (Brand.*), Logo, GradientBlob, Sym, Photo, PhotoSlot
-  design-canvas.jsx   # DesignCanvas, DCSection, DCArtboard — canvas de maquettage
-  tweaks-panel.jsx    # Panel de tweaks live (palette, hero variant, toggles)
-  frames.jsx          # DesktopFrame, MobileFrame, DesktopNav, MobileNav, Footer
-  pages/
-    home.jsx          # Homepage (HomeDesktop, HomeMobile)
-    soins.jsx         # Soins (SoinsDesktop, SoinsMobile)
-    practices.jsx     # Yoga, Breathwork, Pilates (*Desktop, *Mobile × 3)
-    about-contact.jsx # À propos + Contact (*Desktop, *Mobile × 2)
-  media/
-    yoga-bow.jpg
-    yoga-childpose.jpg
-  uploads/            # Charte graphique et médias bruts
+site/
+  src/
+    layouts/
+      Layout.astro        # Shell HTML, importe Nav + Footer, props: activePage, darkNav
+    components/
+      Logo.astro           # SVG logo mark + wordmark
+      GradientBlob.astro   # Dégradé animé SVG (prop: variant)
+      Sym.astro            # Icônes SVG (prop: kind)
+      Photo.astro          # Image B&W (grayscale filter)
+      PhotoSlot.astro      # Placeholder sombre (prop: kind=photo|video)
+      Nav.astro            # Nav responsive (desktop + mobile menu)
+      Footer.astro         # Footer 4 colonnes
+    styles/
+      global.css           # CSS variables brand, reset, fonts (Google Fonts)
+    pages/
+      index.astro          # Homepage
+      soins.astro          # Soins
+      yoga.astro           # Yoga
+      breathwork.astro     # Breathwork
+      pilates.astro        # Pilates
+      about.astro          # À propos
+      contact.astro        # Contact
+  public/
+    media/                 # Photos et médias servis statiquement
 ```
 
-## 7 pages maquettées (desktop 1440 + mobile 375)
+## 7 pages
 
-| ID | Titre | Description |
-|----|-------|-------------|
-| home | 01 · Homepage | Hero vidéo, manifeste, pratiques, Loft, témoignages, CTA |
-| soins | 02 · Soins | Catalogue, durées, tarifs, forfaits |
-| yoga | 03 · Yoga | Pranayama, posture, méditation, planning |
-| breathwork | 04 · Breathwork | Cohérence, holotropique, tummo, cercles |
-| pilates | 05 · Pilates | Alignement, fluidité, mat & matériel |
-| about | 06 · À propos | Portrait, manifeste, parcours |
-| contact | 07 · Contact | Booking, formulaire, plan Loft |
+| Route | Titre | Description |
+|-------|-------|-------------|
+| / | Homepage | Hero plein écran, manifeste, pratiques, Loft, témoignages, CTA |
+| /soins | Soins | Catalogue, durées, tarifs, forfaits |
+| /yoga | Yoga | Pranayama, posture, méditation, planning |
+| /breathwork | Breathwork | Cohérence, holotropique, tummo, cercles |
+| /pilates | Pilates | Alignement, fluidité, mat & matériel |
+| /about | À propos | Portrait, manifeste, parcours |
+| /contact | Contact | Booking, formulaire, plan Loft |
 
-## Brand tokens (`brand.jsx`)
+## Brand tokens (`src/styles/global.css`)
 
-```js
-Brand.orange  = '#ff7100'   // accent principal
-Brand.blue    = '#16066e'   // bleu profond
-Brand.ink     = '#0d0a1f'   // texte
-Brand.paper   = '#f7f4ee'   // fond
-Brand.muted   = 'rgba(13,10,31,0.55)'
-Brand.rule    = 'rgba(13,10,31,0.12)'
+```css
+--orange: #ff7100      /* accent principal */
+--blue:   #16066e      /* bleu profond */
+--ink:    #0d0a1f      /* texte */
+--paper:  #f7f4ee      /* fond */
+--muted:  rgba(13,10,31,0.55)
+--rule:   rgba(13,10,31,0.12)
 ```
 
-**Typographies** : Tenor Sans (titres display), Cormorant Garamond italic (accents), Inter (corps)
+**Typographies** : `--font-display` Tenor Sans · `--font-accent` Cormorant Garamond italic · `--font-body` Inter
 
-**Dégradés** : `GradientBlob` variants — `doux`, `intense`, `aerien`, `mix`
+**GradientBlob variants** : `doux` · `intense` · `aerien` · `uni-orange` · `uni-blue` · `mix`
 
-**Symboles** : `Sym` kinds — `breath`, `spiral`, `sun`, `wave`, `triangle`, `dot`, `arrow`, `plus`
+**Sym kinds** : `breath` · `spiral` · `sun` · `wave` · `triangle` · `dot` · `arrow` · `plus`
 
-## Tweaks live (panel flottant)
+## Conventions
 
-- **Palette** : `default` (charte) / `warmer` / `cooler`
-- **Hero dégradé** : `doux` / `aerien` / `intense` / `mix`
-- **Italique d'accentuation** : toggle
-- **Badges vidéo** : toggle
-
-## Conventions de code
-
-- Chaque page exporte `*Desktop` et `*Mobile` sur `window` via `Object.assign(window, {...})`
-- `brand.jsx` expose `window.Brand` muté par le Tweaks panel avant chaque render
-- Les photos réelles utilisent `<Photo src="media/..." />`, les placeholders `<PhotoSlot />`
-- Pas de routing — tout s'affiche dans un scroll vertical (canvas de design)
+- Chaque page importe ses composants en frontmatter `---`
+- CSS scopé via `<style>` dans chaque `.astro` (pas de fuite entre composants)
+- Les photos réelles : `<Photo src="/media/..." />` · les placeholders : `<PhotoSlot />`
+- Responsive : breakpoint principal à 900px, secondaire à 560px
+- `--pad: clamp(24px, 4vw, 56px)` gère le padding horizontal

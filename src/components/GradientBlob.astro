@@ -1,0 +1,74 @@
+---
+type Variant = 'doux' | 'intense' | 'aerien' | 'uni-orange' | 'uni-blue' | 'mix';
+
+interface Props {
+  variant?: Variant;
+  animated?: boolean;
+  class?: string;
+  style?: string;
+}
+
+const { variant = 'doux', animated = true, class: cls = '', style = '' } = Astro.props;
+
+const id = `gb-${Math.random().toString(36).slice(2, 7)}`;
+
+type Stop = [string, string, number];
+
+const presets: Record<Variant, { stops: Stop[]; blur: number }> = {
+  doux:        { stops: [['0%', '#ff7100', 0.85], ['55%', '#ff3d8a', 0.7], ['100%', '#16066e', 0.95]], blur: 20 },
+  intense:     { stops: [['0%', '#ffb347', 1], ['40%', '#ff7100', 1], ['100%', '#16066e', 1]], blur: 6 },
+  aerien:      { stops: [['0%', '#ffd6a0', 0.9], ['60%', '#c9a4ff', 0.7], ['100%', '#16066e', 0.85]], blur: 28 },
+  'uni-orange':{ stops: [['0%', '#ffb347', 1], ['100%', '#ff7100', 1]], blur: 8 },
+  'uni-blue':  { stops: [['0%', '#3b1ec9', 1], ['100%', '#16066e', 1]], blur: 8 },
+  mix:         { stops: [['0%', '#ff7100', 1], ['50%', '#a01dbb', 1], ['100%', '#16066e', 1]], blur: 4 },
+};
+
+const p = presets[variant] ?? presets.doux;
+---
+
+<div class={`gradient-blob ${cls}`} style={style} aria-hidden="true">
+  <svg width="100%" height="100%" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id={`${id}-rg`} cx="50%" cy="50%" r="65%">
+        {p.stops.map(([offset, color, opacity]) => (
+          <stop offset={offset} stop-color={color} stop-opacity={opacity} />
+        ))}
+      </radialGradient>
+      <filter id={`${id}-bl`} x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation={p.blur} />
+      </filter>
+    </defs>
+    <g filter={`url(#${id}-bl)`}>
+      <ellipse cx="300" cy="400" rx="320" ry="380" fill={`url(#${id}-rg)`}>
+        {animated && (
+          <>
+            <animate attributeName="cx" values="280;320;280" dur="14s" repeatCount="indefinite" />
+            <animate attributeName="cy" values="380;420;380" dur="11s" repeatCount="indefinite" />
+            <animate attributeName="rx" values="300;340;300" dur="13s" repeatCount="indefinite" />
+          </>
+        )}
+      </ellipse>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .gradient-blob {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .gradient-blob svg {
+    display: block;
+  }
+</style>
+
+<script>
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<SVGAnimateElement>('.gradient-blob animate').forEach((el) => {
+      el.setAttribute('dur', 'indefinite');
+      el.setAttribute('repeatCount', '1');
+    });
+  }
+</script>

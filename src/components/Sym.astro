@@ -1,0 +1,86 @@
+---
+type Kind = 'breath' | 'spiral' | 'sun' | 'wave' | 'triangle' | 'dot' | 'arrow' | 'plus';
+
+interface Props {
+  kind: Kind;
+  size?: number;
+  stroke?: number;
+  color?: string;
+}
+
+const { kind, size = 48, stroke = 1.2, color = 'currentColor' } = Astro.props;
+
+const svgProps = {
+  width: size,
+  height: size,
+  viewBox: '0 0 48 48',
+  fill: 'none',
+  stroke: color,
+  'stroke-width': stroke,
+  'stroke-linecap': 'round' as const,
+  'stroke-linejoin': 'round' as const,
+  'aria-hidden': 'true',
+  focusable: 'false',
+};
+
+const sunRays = [...Array(8)].map((_, i) => {
+  const a = (i * Math.PI) / 4;
+  return {
+    x1: 24 + Math.cos(a) * 10,
+    y1: 24 + Math.sin(a) * 10,
+    x2: 24 + Math.cos(a) * 15,
+    y2: 24 + Math.sin(a) * 15,
+  };
+});
+---
+
+{kind === 'breath' && (
+  <svg {...svgProps}>
+    <ellipse cx="24" cy="24" rx="20" ry="10" />
+    <ellipse cx="24" cy="24" rx="14" ry="6" />
+    <circle cx="24" cy="24" r="1.5" fill={color} stroke="none" />
+  </svg>
+)}
+{kind === 'spiral' && (
+  <svg {...svgProps}>
+    <path d="M24 24 m-2 0 a2 2 0 1 1 4 0 a4 4 0 1 1 -8 0 a6 6 0 1 1 12 0 a8 8 0 1 1 -16 0 a10 10 0 1 1 20 0 a12 12 0 1 1 -24 0" />
+  </svg>
+)}
+{kind === 'sun' && (
+  <svg {...svgProps}>
+    <circle cx="24" cy="24" r="6" />
+    {sunRays.map((r) => (
+      <line x1={r.x1} y1={r.y1} x2={r.x2} y2={r.y2} />
+    ))}
+  </svg>
+)}
+{kind === 'wave' && (
+  <svg {...svgProps}>
+    <path d="M4 28 Q12 18 20 28 T36 28 T44 28" />
+    <path d="M4 36 Q12 26 20 36 T36 36 T44 36" opacity="0.5" />
+  </svg>
+)}
+{kind === 'triangle' && (
+  <svg {...svgProps}>
+    <path d="M24 8 L40 38 L8 38 Z" />
+  </svg>
+)}
+{kind === 'dot' && (
+  <svg {...svgProps}>
+    <circle cx="24" cy="24" r="2" fill={color} stroke="none" />
+    <circle cx="24" cy="24" r="10" />
+    <circle cx="24" cy="24" r="18" opacity="0.5" />
+  </svg>
+)}
+{kind === 'arrow' && (
+  <svg {...svgProps}>
+    <line x1="6" y1="24" x2="42" y2="24" />
+    <path d="M34 16 L42 24 L34 32" />
+  </svg>
+)}
+{kind === 'plus' && (
+  <svg {...svgProps}>
+    <line x1="24" y1="10" x2="24" y2="38" />
+    <line x1="10" y1="24" x2="38" y2="24" />
+  </svg>
+)}

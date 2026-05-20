@@ -1,0 +1,73 @@
+---
+interface Props {
+  label?: string;
+  kind?: 'photo' | 'video';
+  aspect?: string;
+  style?: string;
+  class?: string;
+}
+const { label = 'Photo', kind = 'photo', aspect = '4/5', style = '', class: cls = '' } = Astro.props;
+const isVideo = kind === 'video';
+---
+
+<div class={`slot ${cls}`} style={`aspect-ratio:${aspect};${style}`}>
+  <div class="slot-grain" />
+  {isVideo && (
+    <div class="slot-badge">
+      <span class="slot-dot" />
+      vidéo
+    </div>
+  )}
+  <span class="slot-label">{label}</span>
+</div>
+
+<style>
+  .slot {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg, #2a2520 0%, #4a4238 50%, #1a1612 100%);
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 14px;
+  }
+  .slot-grain {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.04) 0 1px,
+      transparent 1px 3px
+    );
+    mix-blend-mode: overlay;
+  }
+  .slot-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: var(--font-display);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .slot-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 8px var(--orange);
+  }
+  .slot-label {
+    position: relative;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+</style>
