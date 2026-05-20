@@ -5,7 +5,7 @@ Site de praticienne bien-être (yoga, breathwork, pilates, soins) basée à Gen�
 ## Lancer le projet
 
 ```bash
-cd site && npm run dev
+npm run dev
 # puis ouvrir http://localhost:4321
 ```
 
@@ -13,7 +13,7 @@ cd site && npm run dev
 
 - **Astro** (static site generator) — composants `.astro`, CSS scopé, aucun JS runtime par défaut
 - Pas de React, pas de framework UI — HTML + CSS pur dans les composants Astro
-- Build statique : `npm run build` → `site/dist/`
+- Build statique : `npm run build` → `dist/`
 
 ## Structure
 
