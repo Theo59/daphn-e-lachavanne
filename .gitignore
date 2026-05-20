@@ -17,8 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
-# media assets (large files managed separately)
-public/media/
+# Vidéos lourdes (>100Mo, limite GitHub)
+public/media/*.mov
+public/media/*.mp4
 
 # Claude Code local settings
 .claude/settings.local.json
