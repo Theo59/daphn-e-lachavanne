@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Sym from '../components/Sym.astro';
+
+const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
+
+const soins = [
+  { name: 'Soin Signature',       sub: 'Drainage + breathwork + énergétique · 2h', price: '280 €', text: "Le soin le plus complet. Drainage lymphatique Renata França, respiration guidée et travail sur les centres énergétiques. Pour libérer les trois corps en une seule séance.", icon: '/media/design-sans-titre-34.png' },
+  { name: 'Drainage Lymphatique', sub: 'Méthode Renata França · 1h',               price: '150 €', text: "La technique originale, certifiée depuis 2013. Mouvements rythmiques et précis qui relancent la circulation lymphatique, allègent, désenflent et régénèrent.",           icon: '/media/cercle-trace.png' },
+  { name: 'Miracle Face',         sub: 'Drainage facial · 40 min',                  price: '90 €',  text: "Drainage du visage et du crâne. Détonifie les traits, élimine les tensions, redonne de l'éclat et du volume. Idéal en soin express ou en complément corps.",          icon: '/media/rond.png' },
+  { name: 'Combo Détox',          sub: 'Corps + Visage · 1h30',                     price: '200 €', text: "Drainage complet corps et visage en une session. Le traitement signature pour une détox profonde — le soin le plus demandé en préparation d'événement.",              icon: '/media/illustration_select_21.png' },
+];
+
+const packages = [
+  { name: 'Découverte',   detail: '3 Drainages Lymphatiques · valable 3 mois', price: '420 €', save: '−30 €', fond: 'fond-2' },
+  { name: 'Suivi Saison', detail: '5 soins au choix · valable 6 mois',         price: '680 €', save: '−70 €', fond: 'fond-2' },
+  { name: 'Intensif',     detail: '3 Soins Signature · valable 2 mois',        price: '780 €', save: '−60 €', fond: 'fond-2' },
+];
+---
+
+<Layout activePage="soins" title="Soins — Daphné Lachavanne" description="Drainage lymphatique, massage holistique, soin énergétique. Paris 7e.">
+
+  <div class="page-header" style="position:relative;overflow:hidden">
+    <div class="container" style="position:relative">
+      <span class="t-label">— Pratique 01 / 04</span>
+      <h1>Soins.</h1>
+      <div class="grid-2" style="margin-top:48px">
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.5vw,32px);line-height:1.35;font-weight:300;margin:0">
+          « Le toucher est une langue. J'apprends à la parler avec patience — pour que le corps se souvienne. »
+        </p>
+        <div>
+          <p style="font-size:16px;line-height:1.85;color:rgba(13,10,31,0.55)">
+            Certifiée méthode Renata França depuis 2013, chaque soin commence par un échange.
+            Comprendre où vous en êtes, ce que vous cherchez. Puis nous laissons le silence prendre le relais.
+          </p>
+          <div style="margin-top:20px;display:flex;align-items:center;gap:16px">
+            <span class="t-label">Méthode Renata França</span>
+            <span style="width:28px;height:1px;background:rgba(13,10,31,0.4);display:inline-block"></span>
+            <span class="t-label">depuis 2013</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTOS — 2 colonnes × 2 photos -->
+  <section class="section--sm">
+    <div class="container">
+      <div class="photo-grid-soins">
+        <div class="photo-grid-soins__col">
+          <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
+            <img src="/media/photo-1.jpg" alt="Soin" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
+          </div>
+          <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
+            <img src="/media/photo-trace.png" alt="Soin" style="filter:contrast(1.02) brightness(0.95)" loading="lazy" />
+          </div>
+        </div>
+        <div class="photo-grid-soins__col">
+          <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
+            <img src="/media/6.jpg" alt="Soin" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
+          </div>
+          <div style="position:relative;aspect-ratio:4/5;width:100%;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
+            <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>
+            <span style="color:rgba(255,255,255,0.7);font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase">Huile · texture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOGUE — icon grid + soin-rows -->
+  <section class="service-icon-section" style="position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:url('/media/fond-3.png') center/cover;opacity:0.55"></div>
+    <div style="position:relative">
+      <div class="container" style="padding-top:56px;padding-bottom:40px;border-bottom:1px solid rgba(13,10,31,0.1)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <h2 class="t-label">(  Catalogue  )</h2>
+          <span style="font-size:13px;color:rgba(13,10,31,0.55)">Tous les soins · 40 min à 2h</span>
+        </div>
+      </div>
+      <div class="service-icon-grid service-icon-grid--sep">
+        {soins.map((s) => (
+          <div class="service-icon-card">
+            <div class="service-icon-card__icon">
+              <img src={s.icon} alt={s.name} />
+            </div>
+            <div class="service-icon-card__meta">
+              <h4 class="service-icon-card__name">{s.name}</h4>
+              <p class="service-icon-card__sub">{s.sub}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="container" style="padding-top:0;padding-bottom:0">
+        {soins.map((s, i) => (
+          <article class="soin-row">
+            <span class="soin-row__num">0{i + 1}</span>
+            <div>
+              <h3 class="soin-row__name">{s.name}</h3>
+              <p class="soin-row__sub">{s.sub}</p>
+            </div>
+            <p class="soin-row__text">{s.text}</p>
+            <div class="soin-row__price">
+              <span class="soin-row__price-val">{s.price}</span>
+              <a href={PLANITY} target="_blank" rel="noopener" class="link-arrow" style="font-size:10px">Réserver →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FORFAITS -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <h3 class="t-label" style="margin-bottom:32px">(  Forfaits  )</h3>
+      <div class="grid-3">
+        {packages.map((p) => (
+          <div class="forfait" style="background:#e8612a">
+            <div style={`position:absolute;inset:0;background:url('/media/${p.fond}.png') center/cover;mix-blend-mode:multiply;opacity:0.85`}></div>
+            <div style="position:absolute;inset:0;background:rgba(13,10,31,0.2)"></div>
+            <div class="forfait__content">
+              <div>
+                <span class="forfait__save">{p.save}</span>
+                <h4 class="forfait__name">{p.name}</h4>
+                <p class="forfait__detail">{p.detail}</p>
+              </div>
+              <div class="forfait__bottom">
+                <span class="forfait__price">{p.price}</span>
+                <Sym kind="arrow" size={20} color="#fff" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
+
+const principles = [
+  { icon: '/media/illustration_select_38.png', title: 'Alignement',   text: "Trouver l'axe, le centre, la verticale. Avant tout autre mouvement." },
+  { icon: '/media/illustration_select_21.png', title: 'Fluidité',     text: "Enchaînements lents, précis. Le contraire de la performance — et plus exigeant." },
+  { icon: '/media/rond.png',                   title: 'Renforcement', text: "Profond, durable, jamais brutal. Pour tenir le corps dans la durée." },
+];
+
+const tarifs = [
+  { title: 'Cours particulier', detail: '1h · au cabinet',   price: 'Sur devis' },
+  { title: 'Duo',               detail: '1h · 2 personnes',  price: 'Sur devis' },
+];
+---
+
+<Layout activePage="pilates" title="Pilates — Daphné Lachavanne" description="Cours de pilates au sol et matériel. Paris 7e.">
+
+  <div class="page-header" style="position:relative;overflow:hidden">
+    <div class="container" style="position:relative">
+      <span class="t-label">— Pratique 04 / 04</span>
+      <h1>Pilates<em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">.</em></h1>
+      <div class="grid-2" style="margin-top:44px">
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.5vw,32px);line-height:1.35;font-weight:300;margin:0">
+          « Le mouvement précis est plus efficace que le mouvement fort. »
+        </p>
+        <p style="font-size:16px;line-height:1.85;color:rgba(13,10,31,0.55)">
+          Cours particuliers au sol et avec petit matériel. Travail postural, respiratoire et musculaire profond. En privé ou en duo — pour ajuster avec une précision millimétrique.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section--sm">
+    <div class="container">
+      <div class="grid-3">
+        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+          <img src="/media/12.jpg" alt="Pilates" style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+        </div>
+        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+          <img src="/media/11.jpg" alt="Pilates" style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+        </div>
+        <div style="position:relative;aspect-ratio:3/4;width:100%;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
+          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>
+          <div style="position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.85);font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff7100;box-shadow:0 0 8px #ff7100"></span>vidéo
+          </div>
+          <span style="color:rgba(255,255,255,0.7);font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase">Pilates · séance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom:0">
+    <div class="container">
+      <div class="grid-label-content">
+        <div>
+          <h2 class="t-label" style="margin-bottom:24px">(  Approche  )</h2>
+        </div>
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-style:italic;font-weight:300;line-height:1.15;margin:0">
+            Force, alignement, fluidité. Le mouvement comme une écriture.
+          </h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="service-icon-section" style="position:relative;overflow:hidden;margin-top:40px">
+    <div style="position:absolute;inset:0;background:url('/media/fond-3.png') center/cover;opacity:0.5"></div>
+    <div class="service-icon-grid service-icon-grid--3 service-icon-grid--sep" style="position:relative">
+      {principles.map((pr) => (
+        <div class="service-icon-card">
+          <div class="service-icon-card__icon">
+            <img src={pr.icon} alt={pr.title} />
+          </div>
+          <div class="service-icon-card__meta">
+            <h4 class="service-icon-card__name">{pr.title}</h4>
+            <p class="service-icon-card__desc">{pr.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <section class="section" style="position:relative;overflow:hidden;color:#fff">
+    <div style="position:absolute;inset:0;background:url('/media/fond-2.png') center/cover #e8612a"></div>
+    <div style="position:absolute;inset:0;background:rgba(13,10,31,0.55)"></div>
+    <div class="container" style="position:relative">
+      <div class="grid-label-content">
+        <div>
+          <span style="font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;opacity:0.65">(  Tarif &amp; Réservation  )</span>
+          <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(40px,5vw,56px);line-height:1;margin:20px 0 16px;font-weight:400">Sur<br />rendez-vous.</h3>
+          <p style="font-size:14px;line-height:1.8;opacity:0.65;max-width:260px">Séances individuelles au cabinet. Réservation via Planity.</p>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:24px">Réserver →</a>
+        </div>
+        <div>
+          {tarifs.map((t) => (
+            <div class="tarif-row">
+              <div>
+                <h4 class="tarif-row__title">{t.title}</h4>
+                <p class="tarif-row__detail">{t.detail}</p>
+              </div>
+              <div class="tarif-row__right">
+                <span class="tarif-row__price">{t.price}</span>
+                <a href={PLANITY} target="_blank" rel="noopener" style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.65);border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px">Réserver →</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

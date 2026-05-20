@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Sym from '../components/Sym.astro';
+---
+
+<Layout activePage="contact" title="Contact — Daphné Lachavanne" description="Réserver une séance au cabinet, Paris 7e. Soins, yoga, breathwork, pilates.">
+
+  <div class="page-header container" style="position:relative;overflow:hidden">
+    <span class="t-label">— Réservation</span>
+    <h1>
+      Écrire,<br /><em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">réserver.</em>
+    </h1>
+  </div>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="grid-2">
+
+        <div>
+          <h2 class="t-label" style="margin-bottom:28px">(  Un message  )</h2>
+          <form class="form-group" action="#" method="post">
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-field__label">Prénom</label>
+                <input type="text" name="prenom" placeholder="Marie" autocomplete="given-name" />
+              </div>
+              <div class="form-field">
+                <label class="form-field__label">Nom</label>
+                <input type="text" name="nom" placeholder="Dupont" autocomplete="family-name" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-field__label">Email</label>
+              <input type="email" name="email" placeholder="vous@email.com" autocomplete="email" />
+            </div>
+            <div class="form-field">
+              <label class="form-field__label">Soin souhaité</label>
+              <input type="text" name="pratique" placeholder="Soin Signature · Drainage · Miracle Face…" />
+            </div>
+            <div class="form-field">
+              <label class="form-field__label">Votre message</label>
+              <textarea name="message" rows="4" placeholder="Dites-moi où vous en êtes, ce que vous cherchez…"></textarea>
+            </div>
+            <div>
+              <button type="submit" class="btn btn--dark">Envoyer →</button>
+            </div>
+          </form>
+        </div>
+
+        <div>
+          <h2 class="t-label" style="margin-bottom:28px">(  Réservation en ligne  )</h2>
+
+          <div style="position:relative;border-radius:6px;overflow:hidden;min-height:220px;margin-bottom:36px">
+            <img src="/media/fond-2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+            <div style="position:absolute;inset:0;background:rgba(13,10,31,0.3)"></div>
+            <div style="position:relative;padding:32px;color:#fff">
+              <span style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;opacity:0.85">Disponibilités en direct</span>
+              <h3 style="font-family:'Tenor Sans',serif;font-size:34px;line-height:1;margin:10px 0 14px;font-weight:400">Planity</h3>
+              <p style="font-size:14px;line-height:1.65;opacity:0.92;margin:0;max-width:340px">Choisissez votre soin, un créneau, et confirmez en deux minutes. Annulation gratuite jusqu'à 24h avant.</p>
+              <a href="https://www.planity.com/daphne-lachavanne-75007-paris" target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:22px">
+                Réserver sur Planity →
+              </a>
+            </div>
+          </div>
+
+          <h2 class="t-label" style="margin-bottom:20px">(  Le cabinet  )</h2>
+          <address style="font-style:normal">
+            <p style="font-family:'Tenor Sans',serif;font-size:22px;line-height:1.4;margin:0 0 14px;font-weight:400">
+              3 Rue Valadon<br />75007 Paris
+            </p>
+            <p style="font-size:13.5px;line-height:1.85;color:rgba(13,10,31,0.55);margin:0">
+              hello@daphnelachavanne.com<br /><br />
+              Lundi 15h – 22h30<br />
+              Mardi–Samedi 8h – 22h30<br />
+              Dimanche fermé
+            </p>
+          </address>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section--sm" style="padding-top:0">
+    <div class="container">
+      <div class="map-placeholder">
+        <svg width="100%" height="100%" viewBox="0 0 900 300" style="position:absolute;inset:0" aria-hidden="true">
+          <rect width="900" height="300" fill="#e8e3da" />
+          <g stroke="rgba(13,10,31,0.12)" fill="none" stroke-width="1">
+            {[...Array(12)].map((_, i) => (
+              <line x1={0} x2={900} y1={i * 28} y2={i * 28} />
+            ))}
+            {[...Array(20)].map((_, i) => (
+              <line x1={i * 50} x2={i * 50} y1={0} y2={300} />
+            ))}
+          </g>
+          <path d="M 0 160 Q 225 140 450 180 T 900 160" stroke="rgba(255,113,0,0.4)" stroke-width="2" fill="none" />
+          <circle cx="315" cy="158" r="12" fill="#ff7100" />
+          <circle cx="315" cy="158" r="22" fill="rgba(255,113,0,0.2)" />
+        </svg>
+        <div style="position:absolute;bottom:20px;left:20px;background:#fff;padding:12px 18px;border-radius:4px;box-shadow:0 4px 20px rgba(0,0,0,0.08)">
+          <span class="t-label" style="display:block;margin-bottom:4px">Le cabinet</span>
+          <span style="font-family:'Tenor Sans',serif;font-size:15px">3 Rue Valadon, Paris 7e</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

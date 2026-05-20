@@ -1,0 +1,92 @@
+---
+import Logo from './Logo.astro';
+
+interface Props {
+  active?: string;
+  dark?: boolean;
+}
+
+const { active = 'home', dark = false } = Astro.props;
+
+const items: [string, string, string][] = [
+  ['/', 'home', 'Accueil'],
+  ['/soins', 'soins', 'Soins'],
+  ['/yoga', 'yoga', 'Yoga'],
+  ['/breathwork', 'breathwork', 'Breathwork'],
+  ['/pilates', 'pilates', 'Pilates'],
+  ['/about', 'about', 'À propos'],
+  ['/contact', 'contact', 'Réserver'],
+];
+---
+
+<nav class:list={['nav', dark ? 'nav--hero' : 'nav--light']} id="main-nav" aria-label="Navigation principale">
+  <a href="/" class="nav__logo" aria-label="Accueil">
+    <Logo size={16} />
+  </a>
+
+  <ul class="nav__links" role="list">
+    {items.map(([href, key, label]) => (
+      <li>
+        <a
+          href={href}
+          class:list={['nav__link', active === key && 'nav__link--active']}
+        >
+          {label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <a href="/contact" class="nav__cta">Réserver</a>
+
+  <button class="nav__hamburger" id="hamburger-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation" aria-hidden="true">
+  <button class="mobile-menu__close" id="mobile-close" aria-label="Fermer le menu">✕</button>
+  <nav>
+    <ul class="mobile-menu__list" role="list">
+      {items.map(([href, , label]) => (
+        <li>
+          <a href={href} class="mobile-menu__link">{label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</div>
+
+<script>
+  const nav       = document.getElementById('main-nav')!;
+  const hamburger = document.getElementById('hamburger-btn')!;
+  const menu      = document.getElementById('mobile-menu')!;
+  const closeBtn  = document.getElementById('mobile-close')!;
+
+  function openMenu() {
+    menu.classList.add('is-open');
+    menu.setAttribute('aria-hidden', 'false');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    menu.setAttribute('aria-hidden', 'true');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+    hamburger.focus();
+  }
+
+  hamburger.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+
+  menu.querySelectorAll('.mobile-menu__link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('is-open')) closeMenu();
+  });
+</script>

@@ -1,0 +1,33 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+  aspect?: string;
+  grayscale?: boolean;
+  style?: string;
+  class?: string;
+}
+const { src, alt = '', aspect = '4/5', grayscale = true, style = '', class: cls = '' } = Astro.props;
+---
+
+<div class:list={['photo-wrap', grayscale && 'bw', cls]} style={`aspect-ratio:${aspect};${style}`}>
+  <img src={src} alt={alt} loading="lazy" />
+</div>
+
+<style>
+  .photo-wrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #2a2520;
+  }
+  .photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-wrap.bw img {
+    filter: grayscale(1) contrast(0.95);
+  }
+</style>

@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Sym from '../components/Sym.astro';
+
+const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
+---
+
+<Layout activePage="home" darkNav={true}>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="/media/photo-2.jpg" alt="Daphné Lachavanne" style="filter:contrast(1.1) brightness(0.72)" loading="eager" />
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <span class="hero__label">◦  soins · breathwork · yoga · pilates  ◦</span>
+      <h1 class="hero__title">
+        L'art de<br />
+        <em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">la circulation.</em>
+      </h1>
+      <p class="hero__sub">
+        Je vous accueille dans mon cabinet du 7e arrondissement pour des soins sur-mesure —
+        du mouvement à l'énergie.
+      </p>
+      <div style="margin-top:36px">
+        <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white">Prendre rendez-vous</a>
+      </div>
+    </div>
+    <div class="hero__footer">
+      <span>Paris · 7e arrondissement</span>
+      <span style="display:flex;gap:14px;align-items:center">
+        <span>Défiler</span>
+        <span style="width:24px;height:1px;background:currentColor;display:inline-block"></span>
+      </span>
+      <span>Saison · printemps 26</span>
+    </div>
+  </section>
+
+  <!-- BIENVENUE -->
+  <section class="section" style="position:relative;overflow:hidden">
+    <div style="position:absolute;right:-120px;top:-80px;width:500px;opacity:0.12;pointer-events:none;transform:rotate(-15deg)">
+      <img src="/media/fond-formes.png" alt="" style="width:100%;display:block" />
+    </div>
+    <div class="container" style="position:relative">
+      <div class="grid-2" style="align-items:center">
+        <div>
+          <span class="t-label">— Bienvenue</span>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(32px,4vw,56px);line-height:1.1;font-weight:300;margin-top:20px">
+            « Entre le corps<br />et l'âme, il y a<br />le souffle. »
+          </h2>
+        </div>
+        <div>
+          <p style="font-size:17px;line-height:1.85;color:#0d0a1f">
+            Certifiée méthode Renata França depuis 2013, j'ai développé <em>L'Art de la Circulation</em> —
+            une approche globale qui unit le mouvement, le souffle et le travail énergétique.
+          </p>
+          <p style="font-size:17px;line-height:1.85;color:rgba(13,10,31,0.55);margin-top:16px">
+            Pour libérer les trois corps : physique, mental, émotionnel. Chaque séance
+            est conçue pour vous — selon votre moment, votre demande, votre corps.
+          </p>
+          <a href="/about" class="link-arrow" style="margin-top:36px">
+            Mon histoire <Sym kind="arrow" size={18} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRATIQUES — icon grid -->
+  <section class="service-icon-section" style="position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:url('/media/fond-3.png') center/cover"></div>
+    <div class="container" style="position:relative;padding-top:56px;padding-bottom:40px;border-bottom:1px solid rgba(13,10,31,0.1)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <h3 class="t-label" style="font-size:12px">(  Pratiques  )</h3>
+        <span style="font-size:13px;color:rgba(13,10,31,0.6);max-width:360px;line-height:1.5;text-align:right">
+          Quatre disciplines, une même attention au corps.
+        </span>
+      </div>
+    </div>
+    <div class="service-icon-grid service-icon-grid--sep" style="position:relative">
+      <a href="/soins" class="service-icon-card">
+        <div class="service-icon-card__icon">
+          <img src="/media/design-sans-titre-34.png" alt="Soins" />
+        </div>
+        <div class="service-icon-card__meta">
+          <h4 class="service-icon-card__name">Soins</h4>
+          <p class="service-icon-card__desc">Drainage lymphatique, massage holistique, soin énergétique.</p>
+        </div>
+      </a>
+      <a href="/breathwork" class="service-icon-card">
+        <div class="service-icon-card__icon">
+          <img src="/media/illustration_select_21.png" alt="Breathwork" />
+        </div>
+        <div class="service-icon-card__meta">
+          <h4 class="service-icon-card__name">Breathwork</h4>
+          <p class="service-icon-card__desc">Respiration consciente. Libérer, recentrer, régénérer.</p>
+        </div>
+      </a>
+      <a href="/yoga" class="service-icon-card">
+        <div class="service-icon-card__icon">
+          <img src="/media/illustration_select_30.png" alt="Yoga" />
+        </div>
+        <div class="service-icon-card__meta">
+          <h4 class="service-icon-card__name">Yoga</h4>
+          <p class="service-icon-card__desc">Cours particuliers — postures, souffle, méditation.</p>
+        </div>
+      </a>
+      <a href="/pilates" class="service-icon-card">
+        <div class="service-icon-card__icon">
+          <img src="/media/illustration_select_38.png" alt="Pilates" />
+        </div>
+        <div class="service-icon-card__meta">
+          <h4 class="service-icon-card__name">Pilates</h4>
+          <p class="service-icon-card__desc">Corps profond, alignement durable, fluidité.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- MON CABINET -->
+  <section class="section section--dark" style="position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:url('/media/fond-2.png') center/cover #d4561f"></div>
+    <div style="position:absolute;inset:0;background:rgba(13,10,31,0.5)"></div>
+    <div class="container" style="position:relative">
+      <div class="grid-2" style="align-items:center">
+        <div>
+          <span class="t-label" style="color:rgba(255,255,255,0.6)">— Le lieu</span>
+          <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(56px,7vw,88px);line-height:0.95;margin:20px 0 24px;font-weight:400">
+            Mon<br />cabinet.
+          </h3>
+          <p style="font-size:17px;line-height:1.85;opacity:0.85;max-width:440px">
+            3 Rue Valadon, Paris 7e. Un espace confidentiel, sur rendez-vous,
+            pensé pour la qualité de présence et la profondeur du soin.
+          </p>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:28px">Prendre rendez-vous</a>
+        </div>
+        <div style="position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
+          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>
+          <div style="position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.85);font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff7100;box-shadow:0 0 8px #ff7100"></span>vidéo
+          </div>
+          <span style="color:rgba(255,255,255,0.7);font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase">Le cabinet · Paris 7e</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉMOIGNAGES -->
+  <section class="section" style="position:relative;overflow:hidden">
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:600px;height:600px;opacity:0.07;pointer-events:none">
+      <img src="/media/cercle-trace.png" alt="" style="width:100%;height:100%;object-fit:contain" />
+    </div>
+    <div class="container" style="position:relative">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:44px">
+        <h3 class="t-label">(  Mots reçus  )</h3>
+        <span style="font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.2em;color:rgba(13,10,31,0.55)">5,0 / 5 · Planity</span>
+      </div>
+      <div class="grid-3">
+        {[
+          ["Une expérience transformatrice. Daphné a une façon unique d'écouter le corps — son drainage est une révélation.", 'L.M. · drainage lymphatique'],
+          ["Son approche touche autant le corps que l'énergie. On repart transformé, allégé, différent.", 'S.T. · soin signature'],
+          ['Un regard très fin, une présence rare. Je repars chaque fois plus légère, plus juste.', 'C.R. · soin signature'],
+        ].map(([q, a]) => (
+          <figure class="testimonial">
+            <img src="/media/cercle-trace.png" alt="" aria-hidden="true" style="width:32px;height:32px;object-fit:contain;mix-blend-mode:multiply" />
+            <blockquote>« {q} »</blockquote>
+            <figcaption>{a}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="cta-band" style="background:#e8612a">
+        <div style="position:absolute;inset:0;background:url('/media/fond-2.png') center/cover;mix-blend-mode:multiply;opacity:0.85"></div>
+        <div style="position:absolute;inset:0;background:rgba(13,10,31,0.18)"></div>
+        <div class="cta-band__content">
+          <h3 class="cta-band__title">Réservez<br />votre première séance.</h3>
+          <p class="cta-band__text">
+            Un échange offert avant chaque suivi. Pour comprendre votre demande,
+            ajuster, et trouver ensemble la bonne pratique.
+          </p>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--white" style="margin-top:32px">
+            Réserver sur Planity <Sym kind="arrow" size={16} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
