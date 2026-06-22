@@ -8,7 +8,7 @@ const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
 const principles = [
   { icon: '/media/illustration_select_21.png', title: 'Pranayama', text: "Le souffle yogi en trois temps : diaphragmatique, thoracique, claviculaire. Tout part de là." },
-  { icon: '/media/illustration_select_30.png', title: 'Posture',   text: "Asanas tenues, ajustées, accompagnées. Pas de performance — juste de la justesse." },
+  { icon: '/media/illustration_select_30.png', title: 'Posture',   text: "Asanas tenues, ajustées, accompagnées. Pas de performance, juste de la justesse." },
   { icon: '/media/illustration_select_38.png',   title: 'Méditation',text: "Quelques minutes assises, pour laisser le corps se poser et la pratique s'intégrer." },
 ];
 
@@ -26,16 +26,16 @@ const serviceSchema = serviceLd({
   offers: tarifs.map((t) => ({ name: t.title, price: t.price, description: t.detail })),
 });
 
-const intro = `Le yoga avec Daphné Lachavanne se vit en cours particulier, dans un cabinet privé du 7e arrondissement de Paris, au 3 rue Valadon — sur la rive gauche. Une seule personne, une heure d'attention complète, sans miroir ni comparaison. Formée au yoga lors d'un cursus de 200 heures en Inde en 2017, elle enseigne le vinyasa, le hatha et le yin, et choisit le style selon votre corps, votre niveau et votre énergie du jour.
+const intro = `Le yoga avec Daphné Lachavanne se vit en cours particulier, dans un cabinet privé du 7e arrondissement de Paris, au 3 rue Valadon, sur la rive gauche. Une seule personne, une heure d'attention complète, sans miroir ni comparaison. Formée au yoga lors d'un cursus de 200 heures en Inde en 2017, elle enseigne le vinyasa, le hatha et le yin, et choisit le style selon votre corps, votre niveau et votre énergie du jour.
 
-Chaque séance repose sur trois piliers. Le pranayama d'abord : le souffle yogi en trois temps — diaphragmatique, thoracique, claviculaire — qui pose le système nerveux et prépare le mouvement. La posture ensuite : des asanas tenues, ajustées et accompagnées, où l'on cherche la justesse plutôt que la performance. La méditation enfin : quelques minutes assises, en pleine conscience, pour laisser la pratique s'intégrer.
+Chaque séance repose sur trois piliers. Le pranayama d'abord : le souffle yogi en trois temps (diaphragmatique, thoracique, claviculaire) qui pose le système nerveux et prépare le mouvement. La posture ensuite : des asanas tenues, ajustées et accompagnées, où l'on cherche la justesse plutôt que la performance. La méditation enfin : quelques minutes assises, en pleine conscience, pour laisser la pratique s'intégrer.
 
 Ce format en cours particulier convient au yoga débutant comme à une pratique avancée. Rien n'est standardisé : le rythme, les transitions et les appuis se construisent autour de vous. C'est aussi un espace pour celles et ceux qui n'osent pas le cours collectif, ou qui cherchent un suivi régulier auprès d'un professeur de yoga privé à Paris.
 
 Les tarifs sont clairs : le cours particulier d'une heure est à 90 €, et le forfait de 5 séances, valable 3 mois, à 400 €. Les séances ont lieu au cabinet, uniquement sur rendez-vous. La réservation se fait en ligne via Planity, où la pratique est notée 5,0 / 5. Pour toute question préalable, l'échange peut commencer par e-mail à hello@daphnelachavanne.com.`;
 
 const faqs = [
-  { q: "À qui s'adressent les cours de yoga ?", a: "À tous. Comme il s'agit de cours particuliers, la séance s'adapte à votre corps, votre niveau et votre moment — yoga débutant comme pratique confirmée. Le style, vinyasa, hatha ou yin, est choisi avec vous." },
+  { q: "À qui s'adressent les cours de yoga ?", a: "À tous. Comme il s'agit de cours particuliers, la séance s'adapte à votre corps, votre niveau et votre moment, yoga débutant comme pratique confirmée. Le style, vinyasa, hatha ou yin, est choisi avec vous." },
   { q: 'Où ont lieu les cours ? Proposez-vous des cours à domicile ?', a: 'Les cours particuliers de yoga ont lieu au cabinet privé du 7e, au 3 rue Valadon, sur la rive gauche à Paris, uniquement sur rendez-vous.' },
   { q: 'Combien coûte un cours et comment réserver ?', a: "Le cours particulier d'une heure est à 90 €. Le forfait de 5 séances, valable 3 mois, est à 400 €. La réservation se fait en ligne sur Planity." },
   { q: 'Que comprend une séance de yoga ?', a: 'Trois temps : le pranayama (souffle yogi en trois temps), la posture (asanas ajustées et accompagnées) et quelques minutes de méditation en pleine conscience pour intégrer la pratique.' },
@@ -48,14 +48,14 @@ const faqs = [
 
   <div class="page-header" style="position:relative;overflow:hidden">
     <div class="container" style="position:relative">
-      <span class="t-label">— Pratique 02 / 04</span>
+      <span class="t-label">Pratique 02 / 04</span>
       <h1>Yoga<em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">.</em></h1>
       <div class="grid-2" style="margin-top:44px">
         <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.5vw,32px);line-height:1.35;font-weight:300;margin:0">
           « La posture juste commence par le souffle juste. »
         </p>
         <p style="font-size:16px;line-height:1.85;color:rgba(13,10,31,0.55)">
-          Cours particuliers uniquement. Vinyasa, hatha, yin — adaptés à votre corps, votre niveau, votre moment. Une heure d'attention complète, sans comparaison.
+          Cours particuliers uniquement. Vinyasa, hatha, yin, adaptés à votre corps, votre niveau, votre moment. Une heure d'attention complète, sans comparaison.
         </p>
       </div>
     </div>

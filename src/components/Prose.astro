@@ -1,7 +1,10 @@
 ---
 /**
- * Bloc de prose éditoriale — texte riche, crawlable (SEO/GEO).
+ * Bloc de prose éditoriale, texte riche et crawlable (SEO/GEO).
  * `text` : paragraphes séparés par une ligne vide.
+ * Mise en page éditoriale : label en colonne latérale, paragraphe d'accroche
+ * mis en avant + lettrine, reste du texte en colonne lisible (~62ch).
+ * Tout le texte reste dans le DOM (aucune coupe), pour ne pas régresser le SEO.
  */
 interface Props {
   text: string;
@@ -10,23 +13,69 @@ interface Props {
 }
 const { text, label, flush = false } = Astro.props;
 const paragraphs = text.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
+const [lead, ...rest] = paragraphs;
 ---
 
 <section class={flush ? 'prose-block' : 'section prose-block'}>
   <div class="container">
-    {label && <h2 class="t-label" style="margin-bottom:28px">( {label} )</h2>}
-    {paragraphs.map((p) => <p>{p}</p>)}
+    <div class="prose-grid">
+      <aside class="prose-aside">
+        {label && <h2 class="t-label">( {label} )</h2>}
+      </aside>
+      <div class="prose-body">
+        {lead && <p class="prose-lead">{lead}</p>}
+        {rest.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  .prose-block p {
-    max-width: 70ch;
-    color: var(--ink);
-    opacity: 0.82;
-    line-height: 1.9;
-    font-size: 16px;
-    margin: 0 0 1.3em;
+  /* Reprend la grille label/contenu du reste du site (1fr / 2fr, gap 80px). */
+  .prose-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
   }
-  .prose-block p:last-child { margin-bottom: 0; }
+  .prose-aside {
+    position: sticky;
+    top: 100px;
+  }
+  .prose-aside .t-label { margin: 0; }
+
+  .prose-body { max-width: 62ch; }
+
+  /* Paragraphe d'accroche : plus grand, encré, avec lettrine Cormorant. */
+  .prose-lead {
+    font-size: clamp(19px, 2vw, 22px);
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0 0 1.4em;
+  }
+  .prose-lead::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 3.4em;
+    line-height: 0.78;
+    float: left;
+    padding: 0.06em 0.12em 0 0;
+    color: var(--orange);
+  }
+
+  /* Texte de fond : mesure courte, gris brand, rythme aéré. */
+  .prose-body p:not(.prose-lead) {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--muted);
+    margin: 0 0 1.2em;
+  }
+  .prose-body p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 900px) {
+    .prose-grid { grid-template-columns: 1fr; gap: 24px; }
+    .prose-aside { position: static; }
+    .prose-body { max-width: none; }
+  }
 </style>
