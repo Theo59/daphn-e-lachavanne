@@ -163,14 +163,15 @@ if (activePage !== 'home' && PAGE_LABELS[activePage]) {
   <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <!-- Données structurées globales : entreprise locale + praticienne -->
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 </head>
 <body>
+  <a href="#content" class="skip-link">Aller au contenu</a>
   <Nav active={activePage} dark={darkNav} />
-  <main>
+  <main id="content" tabindex="-1">
     <slot />
   </main>
   {!noFooter && <Footer />}

@@ -37,6 +37,12 @@ const faqs = [
 
         <div>
           <h2 class="t-label" style="margin-bottom:28px">(  Un message  )</h2>
+
+          <div id="contact-success" class="form-success" hidden role="status">
+            <p class="form-success__title">Message bien reçu.</p>
+            <p class="form-success__text">Je vous réponds sous 24 à 48 h. Pour réserver un créneau tout de suite, la prise de rendez-vous Planity est juste à côté.</p>
+          </div>
+
           <form class="form-group" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact?ok=1">
             <input type="hidden" name="form-name" value="contact" />
             <p hidden aria-hidden="true">
@@ -134,3 +140,40 @@ const faqs = [
   <Faq items={faqs} />
 
 </Layout>
+
+<style>
+  .form-success {
+    border-left: 2px solid var(--orange);
+    background: rgba(255,113,0,0.06);
+    padding: 22px 24px;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 8px;
+    animation: pageIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .form-success__title {
+    font-family: 'Tenor Sans', serif;
+    font-size: 19px;
+    line-height: 1.2;
+    margin: 0 0 8px;
+  }
+  .form-success__text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin: 0;
+    max-width: 44ch;
+  }
+</style>
+
+<script is:inline>
+  // Netlify renvoie vers /contact?ok=1 après envoi : on confirme et on masque le formulaire.
+  if (new URLSearchParams(location.search).get('ok')) {
+    const banner = document.getElementById('contact-success');
+    const form = document.querySelector('form[name="contact"]');
+    if (banner) {
+      banner.hidden = false;
+      banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    if (form) form.hidden = true;
+  }
+</script>
