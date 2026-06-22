@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Sym from '../components/Sym.astro';
+import Prose from '../components/Prose.astro';
+import Faq from '../components/Faq.astro';
+import { serviceLd } from '../lib/schema.ts';
 
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
@@ -16,9 +19,37 @@ const packages = [
   { name: 'Suivi Saison', detail: '5 soins au choix · valable 6 mois',         price: '680 €', save: '−70 €', fond: 'fond-2' },
   { name: 'Intensif',     detail: '3 Soins Signature · valable 2 mois',        price: '780 €', save: '−60 €', fond: 'fond-2' },
 ];
+
+const serviceSchema = serviceLd({
+  name: 'Soins & drainage lymphatique méthode Renata França',
+  serviceType: 'Drainage lymphatique',
+  description:
+    'Soins de drainage lymphatique méthode Renata França à Paris 7e : Drainage Lymphatique, Soin Signature, Miracle Face, Combo Détox et forfaits.',
+  path: '/soins',
+  offers: [
+    ...soins.map((s) => ({ name: s.name, price: s.price, description: s.sub })),
+    ...packages.map((p) => ({ name: `Forfait ${p.name}`, price: p.price, description: p.detail })),
+  ],
+});
+
+const intro = `Au 3 Rue Valadon, sur la rive gauche de Paris, le drainage lymphatique méthode Renata França se pratique dans un cabinet confidentiel du 7e arrondissement, sur rendez-vous uniquement. Certifiée depuis 2013, Daphné Lachavanne travaille par mouvements rythmiques et pressions précises qui relancent la circulation, désengorgent les tissus et laissent au corps une vraie sensation de légèreté.
+
+Le Drainage Lymphatique (1h, 150 €) accompagne les jambes lourdes comme les impressions de gonflement : il soulage, affine la silhouette et apaise. Sur le ventre, ce massage drainant aide à dégonfler et à retrouver de la légèreté.
+
+Pour le visage, le Miracle Face (40 min, 90 €) draine le visage et le crâne, détend les traits, redessine l'ovale et ravive l'éclat. Le Combo Détox (1h30, 200 €) réunit corps et visage en une seule séance, idéal en préparation d'un événement. Le Soin Signature (2h, 280 €) prolonge le geste par le breathwork et le travail énergétique, l'expérience la plus complète de L'Art de la Circulation, le concept né en 2025.
+
+Pour celles et ceux qui inscrivent le soin dans la durée, trois forfaits ponctuent les saisons : Découverte (3 Drainages Lymphatiques, 420 €, valable 3 mois), Suivi Saison (5 soins au choix, 680 €, valable 6 mois) et Intensif (3 Soins Signature, 780 €, valable 2 mois). Chaque rendez-vous se réserve en ligne sur Planity, où le cabinet affiche une note de 5,0 / 5. Une praticienne, une méthode, un lieu — pour que le corps se souvienne.`;
+
+const faqs = [
+  { q: 'Le drainage lymphatique aide-t-il vraiment pour les jambes lourdes ?', a: "Le Drainage Lymphatique méthode Renata França (1h, 150 €) relance la circulation par des mouvements rythmiques et précis. Il allège la sensation de jambes lourdes et de gonflement. C'est un soin de bien-être, sans visée médicale." },
+  { q: 'Combien coûte une séance de drainage lymphatique à Paris 7e ?', a: 'Le Drainage Lymphatique seul est à 150 € (1h). Le Miracle Face est à 90 € (40 min), le Combo Détox corps + visage à 200 € (1h30) et le Soin Signature à 280 € (2h). Des forfaits débutent à 420 € pour 3 drainages.' },
+  { q: "C'est quoi le Miracle Face ?", a: "Le Miracle Face (40 min, 90 €) est un drainage du visage et du crâne. Il détend les traits, élimine les tensions et ravive l'éclat. Il se pratique en soin express ou en complément d'un drainage corps." },
+  { q: 'Quelle est la différence entre le Soin Signature et un drainage simple ?', a: "Le Drainage Lymphatique (1h, 150 €) se concentre sur la circulation. Le Soin Signature (2h, 280 €) ajoute le breathwork et le travail énergétique au drainage Renata França : l'expérience la plus complète de L'Art de la Circulation." },
+  { q: 'Où se trouve le cabinet et comment réserver ?', a: "Le cabinet est au 3 Rue Valadon, 75007 Paris, sur la rive gauche, dans le 7e arrondissement. L'espace est privé et sur rendez-vous. La réservation se fait en ligne sur Planity, ou par e-mail à hello@daphnelachavanne.com." },
+];
 ---
 
-<Layout activePage="soins" title="Soins — Daphné Lachavanne" description="Drainage lymphatique, massage holistique, soin énergétique. Paris 7e.">
+<Layout activePage="soins" title="Drainage lymphatique Renata França — Paris 7e" description="Drainage lymphatique méthode Renata França à Paris 7e (75007). Soin Signature, Miracle Face, Combo Détox dès 90 €. Cabinet rive gauche, sur rendez-vous.">
 
   <div class="page-header" style="position:relative;overflow:hidden">
     <div class="container" style="position:relative">
@@ -49,15 +80,15 @@ const packages = [
       <div class="photo-grid-soins">
         <div class="photo-grid-soins__col">
           <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
-            <img src="/media/photo-1.jpg" alt="Soin" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
+            <img src="/media/photo-1.jpg" alt="Drainage lymphatique méthode Renata França au cabinet de Daphné Lachavanne, Paris 7e" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
           </div>
           <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
-            <img src="/media/photo-trace.png" alt="Soin" style="filter:contrast(1.02) brightness(0.95)" loading="lazy" />
+            <img src="/media/photo-trace.png" alt="Détail d'un soin de drainage corps, cabinet de bien-être Paris 7e" style="filter:contrast(1.02) brightness(0.95)" loading="lazy" />
           </div>
         </div>
         <div class="photo-grid-soins__col">
           <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
-            <img src="/media/6.jpg" alt="Soin" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
+            <img src="/media/6.jpg" alt="Cabinet de soins de Daphné Lachavanne, 3 rue Valadon, Paris 7e" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
           </div>
           <div style="position:relative;aspect-ratio:4/5;width:100%;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
             <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>
@@ -135,5 +166,11 @@ const packages = [
       </div>
     </div>
   </section>
+
+  <Prose text={intro} label="Le drainage lymphatique à Paris 7e" />
+
+  <Faq items={faqs} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
 </Layout>
