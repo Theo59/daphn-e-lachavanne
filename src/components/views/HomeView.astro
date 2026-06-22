@@ -1,0 +1,177 @@
+---
+/**
+ * Vue partagée de la page d'accueil. Rendue à la fois pour `/` (FR) et `/en` (EN).
+ * Tout le texte vient du dictionnaire src/i18n/home.ts (+ common.ts).
+ * Les routes (src/pages/index.astro, src/pages/en/index.astro) ne font que
+ * monter cette vue avec la bonne langue.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Sym from '../Sym.astro';
+import Prose from '../Prose.astro';
+import Faq from '../Faq.astro';
+import { home } from '../../i18n/home';
+import { common } from '../../i18n/common';
+import { localizePath } from '../../i18n/utils';
+import type { Lang } from '../../i18n/config';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = home[lang];
+const c = common[lang];
+
+const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
+
+// Icônes des cartes « pratiques », par clé (données structurelles, identiques FR/EN).
+const PRACTICE_ICONS: Record<string, string> = {
+  soins: '/media/design-sans-titre-34.png',
+  breathwork: '/media/illustration_select_21.png',
+  yoga: '/media/illustration_select_30.png',
+  pilates: '/media/illustration_select_38.png',
+};
+---
+
+<Layout
+  activePage="home"
+  darkNav={true}
+  title={t.meta.title}
+  description={t.meta.description}
+>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="/media/photo-2.jpg" alt={t.hero.imgAlt} style="filter:contrast(1.1) brightness(0.72)" loading="eager" fetchpriority="high" decoding="async" />
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <span class="hero__label">{t.hero.label}</span>
+      <h1 class="hero__title" style="margin-bottom:5rem">
+        {t.hero.titleLine1}<br />
+        <em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">{t.hero.titleLine2}</em>
+      </h1>
+      <p class="hero__sub">{t.hero.sub}</p>
+      <div style="margin-top:36px">
+        <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white">{c.cta.book}</a>
+      </div>
+    </div>
+    <div class="hero__footer">
+      <span>{t.hero.footer}</span>
+    </div>
+  </section>
+
+  <!-- BIENVENUE -->
+  <section class="section" style="position:relative;overflow:hidden">
+    <div style="position:absolute;right:-120px;top:-80px;width:500px;opacity:0.12;pointer-events:none;transform:rotate(-15deg)">
+      <img src="/media/fond-formes.png" alt="" style="width:100%;display:block" />
+    </div>
+    <div class="container" style="position:relative">
+      <div class="grid-2" style="align-items:center">
+        <div>
+          <span class="t-label">{t.welcome.label}</span>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(32px,4vw,56px);line-height:1.1;font-weight:300;margin-top:20px" set:html={t.welcome.quote} />
+        </div>
+        <div>
+          <p style="font-size:17px;line-height:1.85;color:#0d0a1f" set:html={t.welcome.body1Html} />
+          <p style="font-size:17px;line-height:1.85;color:rgba(13,10,31,0.55);margin-top:16px">{t.welcome.body2}</p>
+          <a href={localizePath('/about', lang)} class="link-arrow" style="margin-top:36px">
+            {t.welcome.link} <Sym kind="arrow" size={18} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRATIQUES - icon grid -->
+  <section class="service-icon-section" style="position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:url('/media/fond-3.png') center/cover"></div>
+    <div class="container" style="position:relative;padding-top:56px;padding-bottom:40px;border-bottom:1px solid rgba(13,10,31,0.1)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <h3 class="t-label" style="font-size:12px">{t.practices.label}</h3>
+        <span style="font-size:13px;color:rgba(13,10,31,0.6);max-width:360px;line-height:1.5;text-align:right">
+          {t.practices.caption}
+        </span>
+      </div>
+    </div>
+    <div class="service-icon-grid service-icon-grid--sep" style="position:relative">
+      {t.practices.items.map((item) => (
+        <a href={localizePath(`/${item.key}`, lang)} class="service-icon-card">
+          <div class="service-icon-card__icon">
+            <img src={PRACTICE_ICONS[item.key]} alt={item.name} />
+          </div>
+          <div class="service-icon-card__meta">
+            <h4 class="service-icon-card__name">{item.name}</h4>
+            <p class="service-icon-card__desc">{item.desc}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- MON CABINET -->
+  <section class="section section--dark" style="position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:url('/media/fond-2.png') center/cover #d4561f"></div>
+    <div style="position:absolute;inset:0;background:rgba(13,10,31,0.5)"></div>
+    <div class="container" style="position:relative">
+      <div class="grid-2" style="align-items:center">
+        <div>
+          <span class="t-label" style="color:rgba(255,255,255,0.6)">{t.cabinet.label}</span>
+          <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(56px,7vw,88px);line-height:0.95;margin:20px 0 24px;font-weight:400">
+            {t.cabinet.titleLine1}<br />{t.cabinet.titleLine2}
+          </h3>
+          <p style="font-size:17px;line-height:1.85;opacity:0.85;max-width:440px">{t.cabinet.body}</p>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:28px">{c.cta.book}</a>
+        </div>
+        <div class="photo-wrap" style="aspect-ratio:16/10;border-radius:2px">
+          <img src="/media/photo-1.jpg" alt={t.cabinet.imgAlt} loading="lazy" decoding="async" style="filter:contrast(1.05) brightness(0.96)" />
+          <span style="position:absolute;bottom:14px;left:16px;z-index:1;color:#fff;font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-shadow:0 1px 12px rgba(13,10,31,0.6)">{t.cabinet.caption}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉMOIGNAGES -->
+  <section class="section" style="position:relative;overflow:hidden;padding-top:calc(7rem + 24px);padding-bottom:calc(7rem + 24px)">
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:600px;height:600px;opacity:0.07;pointer-events:none">
+      <img src="/media/cercle-trace.png" alt="" style="width:100%;height:100%;object-fit:contain" />
+    </div>
+    <div class="container" style="position:relative">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:44px">
+        <h3 class="t-label">{t.testimonials.label}</h3>
+        <span style="font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.2em;color:rgba(13,10,31,0.55)">{t.testimonials.rating}</span>
+      </div>
+      <div class="grid-3">
+        {t.testimonials.items.map((item) => (
+          <figure class="testimonial">
+            <img src="/media/cercle-trace.png" alt="" aria-hidden="true" style="width:32px;height:32px;object-fit:contain;mix-blend-mode:multiply" />
+            <blockquote>« {item.quote} »</blockquote>
+            <figcaption>{item.author}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Prose text={t.prose.text} label={t.prose.label} />
+
+  <Faq items={t.faqs} title={c.faqTitle} />
+
+  <!-- CTA -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="cta-band" style="background:#e8612a">
+        <div style="position:absolute;inset:0;background:url('/media/fond-2.png') center/cover;mix-blend-mode:multiply;opacity:0.85"></div>
+        <div style="position:absolute;inset:0;background:rgba(13,10,31,0.18)"></div>
+        <div class="cta-band__content">
+          <h3 class="cta-band__title">{t.ctaBand.titleLine1}<br />{t.ctaBand.titleLine2}</h3>
+          <p class="cta-band__text">{t.ctaBand.text}</p>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--white" style="margin-top:32px">
+            {c.cta.bookPlanity} <Sym kind="arrow" size={16} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

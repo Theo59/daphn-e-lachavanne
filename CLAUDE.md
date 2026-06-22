@@ -80,3 +80,38 @@ site/
 - Les photos réelles : `<Photo src="/media/..." />` · les placeholders : `<PhotoSlot />`
 - Responsive : breakpoint principal à 900px, secondaire à 560px
 - `--pad: clamp(24px, 4vw, 56px)` gère le padding horizontal
+
+## i18n — Bilingue FR / EN
+
+Site bilingue : **FR à la racine** (`/`, `/soins`…), **EN sous `/en`** (`/en`, `/en/soins`…), via l'i18n natif d'Astro (`astro.config.mjs` → bloc `i18n`, `prefixDefaultLocale: false`).
+
+### Changer un texte
+
+**Tous les textes vivent dans `src/i18n/`**, un fichier par page, les deux langues côte à côte :
+
+```
+src/i18n/
+  config.ts     # langues (LOCALES), libellés, codes (HTML_LANG, OG_LOCALE)
+  utils.ts      # getLangFromUrl, localizePath, getAlternates (hreflang/switcher)
+  common.ts     # nav, footer, CTA, switcher, faqTitle, descriptions JSON-LD
+  home.ts soins.ts yoga.ts breathwork.ts pilates.ts about.ts contact.ts legal.ts
+```
+
+Chaque fichier exporte `{ fr, en }`. Pour modifier un texte : **édite la valeur dans le bloc `fr` ou `en`** du fichier concerné. Rien d'autre à toucher. `en` est typé `satisfies typeof fr` → **oublier une clé casse le build** (parité garantie au type-check).
+
+- Données non-textuelles (chemins d'icônes, de fonds) : dans la **vue**, pas le dico (maps par clé, ex. `PRACTICE_ICONS`).
+- HTML inline (`<em>`, `<br />`) : clés suffixées `…Html`, rendues via `set:html`.
+- Prix : `150 €` (FR) / `€150` (EN) ; « Sur devis » / « On request ».
+
+### Architecture (un seul markup par page)
+
+- `src/components/views/<Page>View.astro` : la vue partagée, `interface Props { lang }`, tout le texte tiré du dico. **C'est là qu'est le markup.**
+- `src/pages/<page>.astro` (coquille FR `lang="fr"`) et `src/pages/en/<page>.astro` (coquille EN `lang="en"`) : 3 lignes, montent la vue.
+- `Layout.astro` dérive la langue de l'URL → `<html lang>`, `hreflang` (fr/en/x-default), `og:locale`, JSON-LD `inLanguage`. `Nav`/`Footer` localisent liens + libellés ; le **switcher FR/EN** pointe vers l'URL équivalente.
+- 404 : page unique bilingue (Astro ne sert qu'un `/404.html` en statique).
+
+### Ajouter une langue
+
+1. L'ajouter à `LOCALES` + `*_LANG`/labels dans `config.ts`.
+2. Remplir le bloc de la nouvelle langue dans chaque `src/i18n/*.ts`.
+3. Créer les coquilles `src/pages/<lang>/<page>.astro`.
