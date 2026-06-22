@@ -14,7 +14,7 @@ interface Props {
 }
 
 const {
-  title = 'Daphné Lachavanne — Yoga · Breathwork · Pilates · Soins à Paris 7e',
+  title = 'Daphné Lachavanne | Yoga, Breathwork, Pilates & Soins à Paris 7e',
   description = 'Praticienne bien-être à Paris 7e : drainage lymphatique Renata França, yoga, breathwork et pilates. Cabinet 3 Rue Valadon, sur rendez-vous.',
   activePage = 'home',
   darkNav = false,
@@ -40,7 +40,7 @@ const structuredData = {
     {
       '@type': ['LocalBusiness', 'HealthAndBeautyBusiness'],
       '@id': `${base}/#business`,
-      name: 'Daphné Lachavanne — L’Art de la Circulation',
+      name: 'Daphné Lachavanne · L’Art de la Circulation',
       alternateName: 'Daphné Lachavanne',
       description:
         'Praticienne bien-être à Paris 7e : drainage lymphatique méthode Renata França, soins, yoga, breathwork et pilates, en cabinet privé sur rendez-vous.',
@@ -48,7 +48,7 @@ const structuredData = {
       image: `${base}/og-image.jpg`,
       logo: `${base}/media/logo-noir.png`,
       email: 'hello@daphnelachavanne.com',
-      priceRange: '60–780 €',
+      priceRange: '60-780 €',
       currenciesAccepted: 'EUR',
       address: {
         '@type': 'PostalAddress',
@@ -94,7 +94,7 @@ const structuredData = {
       image: `${base}/media/photo-1.jpg`,
       knowsAbout: ['Drainage lymphatique', 'Méthode Renata França', 'Yoga', 'Breathwork', 'Pilates', 'Reiki'],
       hasCredential: [
-        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Méthode Renata França — drainage lymphatique', dateCreated: '2013' },
+        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Méthode Renata França, drainage lymphatique', dateCreated: '2013' },
         { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Formation yoga 200h', dateCreated: '2017' },
         { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Breathwork holotropique', dateCreated: '2019' },
         { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Reiki & magnétisme', dateCreated: '2022' },
@@ -111,7 +111,7 @@ const structuredData = {
   ],
 };
 
-// Fil d'Ariane (BreadcrumbList) pour les pages internes — aide la compréhension de la hiérarchie.
+// Fil d'Ariane (BreadcrumbList) pour les pages internes, aide la compréhension de la hiérarchie.
 const PAGE_LABELS: Record<string, string> = {
   soins: 'Soins',
   yoga: 'Yoga',
@@ -158,9 +158,10 @@ if (activePage !== 'home' && PAGE_LABELS[activePage]) {
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImage} />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Polices auto-hébergées (déclarées dans global.css). Préchargement des
+       deux fontes critiques pour le LCP : titres Tenor Sans + corps Inter. -->
+  <link rel="preload" href="/fonts/tenor-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

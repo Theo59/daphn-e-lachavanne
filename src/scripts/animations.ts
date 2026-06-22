@@ -1,4 +1,4 @@
-// Animations — scroll reveal, hero entrance, parallax, progress bar, custom cursor
+// Animations - scroll reveal, hero entrance, parallax, progress bar
 
 // ============================================================
 // SCROLL REVEAL
@@ -23,6 +23,8 @@ function initScrollReveal() {
     '.cta-band__content > *',
     '.grid-label-content > *',
     'section > .container > p',
+    '.prose-aside',
+    '.prose-body > p',
     'section > .container > .grid-2 > *',
     '.photo-grid-soins > *',
     '.photo-grid-4 > *',
@@ -190,51 +192,6 @@ function initPageSweep() {
 }
 
 // ============================================================
-// CUSTOM CURSOR
-// ============================================================
-function initCustomCursor() {
-  if (window.matchMedia('(hover: none)').matches) return;
-
-  const cursor = document.createElement('div');
-  cursor.className = 'custom-cursor';
-  document.body.appendChild(cursor);
-
-  const dot = document.createElement('div');
-  dot.className = 'custom-cursor__dot';
-  document.body.appendChild(dot);
-
-  let mouseX = 0, mouseY = 0, dotX = 0, dotY = 0;
-
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-  });
-
-  function animateDot() {
-    dotX += (mouseX - dotX) * 0.12;
-    dotY += (mouseY - dotY) * 0.12;
-    dot.style.transform = `translate(${dotX}px, ${dotY}px)`;
-    requestAnimationFrame(animateDot);
-  }
-  animateDot();
-
-  const hoverSel = 'a, button, .practice-card, .forfait, .soin-row, .nav__link';
-  document.addEventListener('mouseover', e => {
-    if ((e.target as Element).closest(hoverSel)) {
-      cursor.classList.add('custom-cursor--hover');
-      dot.classList.add('custom-cursor__dot--hover');
-    }
-  });
-  document.addEventListener('mouseout', e => {
-    if ((e.target as Element).closest(hoverSel)) {
-      cursor.classList.remove('custom-cursor--hover');
-      dot.classList.remove('custom-cursor__dot--hover');
-    }
-  });
-}
-
-// ============================================================
 // INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -243,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavScroll();
     initParallax();
     initProgressBar();
-    initCustomCursor();
     setTimeout(initScrollReveal, 60);
   });
 
