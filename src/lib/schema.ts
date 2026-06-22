@@ -32,25 +32,31 @@ export function serviceLd(opts: {
   const url = `${SITE}${opts.path}`;
   const offers = opts.offers.map((o) => {
     const price = parseEuro(o.price);
-    const offer: Record<string, unknown> = {
+    if (price === null) {
+      // « Sur devis » : pas de prix public → on n'émet pas priceCurrency (évite l'erreur
+      // Google « Offer sans price »). On garde l'offre nommée et décrite.
+      return {
+        '@type': 'Offer',
+        name: o.name,
+        description: [o.description, 'Sur devis'].filter(Boolean).join(' · '),
+        url: 'https://www.planity.com/daphne-lachavanne-75007-paris',
+      };
+    }
+    return {
       '@type': 'Offer',
       name: o.name,
       ...(o.description ? { description: o.description } : {}),
+      price: String(price),
       priceCurrency: 'EUR',
       availability: 'https://schema.org/InStock',
       url: 'https://www.planity.com/daphne-lachavanne-75007-paris',
     };
-    if (price !== null) {
-      offer.price = String(price);
-    } else {
-      offer.description = [o.description, 'Sur devis'].filter(Boolean).join(' · ');
-    }
-    return offer;
   });
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `${url}#service`,
     name: opts.name,
     serviceType: opts.serviceType,
     description: opts.description,

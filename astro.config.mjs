@@ -9,5 +9,13 @@ export default defineConfig({
   // URLs sans slash final (/soins, pas /soins/) — cohérent avec la nav et les balises canonical.
   trailingSlash: 'never',
   build: { format: 'file' },
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // Signal de fraîcheur (valorisé par les crawlers IA) : date de build par URL.
+      serialize(item) {
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
+    }),
+  ],
 });

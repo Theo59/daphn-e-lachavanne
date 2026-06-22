@@ -46,9 +46,9 @@ const structuredData = {
         'Praticienne bien-être à Paris 7e : drainage lymphatique méthode Renata França, soins, yoga, breathwork et pilates, en cabinet privé sur rendez-vous.',
       url: base,
       image: `${base}/og-image.jpg`,
-      logo: `${base}/favicon.png`,
+      logo: `${base}/media/logo-noir.png`,
       email: 'hello@daphnelachavanne.com',
-      priceRange: '90–780 €',
+      priceRange: '60–780 €',
       currenciesAccepted: 'EUR',
       address: {
         '@type': 'PostalAddress',
@@ -58,6 +58,8 @@ const structuredData = {
         addressRegion: 'Île-de-France',
         addressCountry: 'FR',
       },
+      // Coordonnées exactes du 3 Rue Valadon (géocodage officiel BAN, data.gouv.fr).
+      geo: { '@type': 'GeoCoordinates', latitude: 48.857303, longitude: 2.305538 },
       areaServed: { '@type': 'City', name: 'Paris' },
       openingHoursSpecification: [
         { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Monday', opens: '15:00', closes: '22:30' },
@@ -89,7 +91,7 @@ const structuredData = {
       jobTitle: 'Praticienne bien-être',
       worksFor: { '@id': `${base}/#business` },
       url: `${base}/about`,
-      image: `${base}/og-image.jpg`,
+      image: `${base}/media/photo-1.jpg`,
       knowsAbout: ['Drainage lymphatique', 'Méthode Renata França', 'Yoga', 'Breathwork', 'Pilates', 'Reiki'],
       hasCredential: [
         { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Méthode Renata França — drainage lymphatique', dateCreated: '2013' },
@@ -108,6 +110,25 @@ const structuredData = {
     },
   ],
 };
+
+// Fil d'Ariane (BreadcrumbList) pour les pages internes — aide la compréhension de la hiérarchie.
+const PAGE_LABELS: Record<string, string> = {
+  soins: 'Soins',
+  yoga: 'Yoga',
+  breathwork: 'Breathwork',
+  pilates: 'Pilates',
+  about: 'À propos',
+  contact: 'Contact',
+};
+if (activePage !== 'home' && PAGE_LABELS[activePage]) {
+  structuredData['@graph'].push({
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: base },
+      { '@type': 'ListItem', position: 2, name: PAGE_LABELS[activePage], item: canonical },
+    ],
+  } as any);
+}
 ---
 
 <!doctype html>
