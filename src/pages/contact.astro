@@ -1,9 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Sym from '../components/Sym.astro';
+import Prose from '../components/Prose.astro';
+import Faq from '../components/Faq.astro';
+
+const intro = `Pour prendre rendez-vous, deux chemins coexistent. La réservation en ligne se fait sur Planity, où les disponibilités s'affichent en direct : vous choisissez votre soin, un créneau, et vous confirmez en quelques minutes. Pour une demande plus précise — un forfait, un cercle de souffle, un duo de Pilates — un message à hello@daphnelachavanne.com suffit à amorcer l'échange.
+
+Le cabinet se situe au 3 rue Valadon, 75007 Paris, sur la rive gauche, dans le 7e arrondissement. C'est un lieu privé, reçu uniquement sur rendez-vous, pensé pour la confidentialité et la qualité de présence. Daphné Lachavanne y reçoit en séances individuelles, ainsi qu'en duo ou en cercle fermé selon la pratique.
+
+Vous pouvez prendre rendez-vous pour un drainage lymphatique méthode Renata França (1h, 150 €), le Soin Signature qui réunit drainage, breathwork et travail énergétique (2h, 280 €), le Miracle Face (40 min, 90 €) ou le Combo Détox (1h30, 200 €). Côté mouvement, le yoga et le Pilates se réservent selon les mêmes modalités : cours particuliers au cabinet, à 90 € l'heure pour le yoga comme pour le breathwork.
+
+Avant chaque suivi, un court échange permet de comprendre votre demande et d'ajuster la séance à votre moment. Certifiée méthode Renata França depuis 2013, Daphné a fondé en 2025 L'Art de la Circulation. Les retours des personnes reçues sont rassemblés sur Planity, où le cabinet est noté 5,0 / 5.`;
+
+const faqs = [
+  { q: 'Comment prendre rendez-vous avec Daphné Lachavanne ?', a: 'Deux possibilités : la réservation en ligne sur Planity (planity.com/daphne-lachavanne-75007-paris), où les créneaux disponibles s\'affichent en direct, ou un message à hello@daphnelachavanne.com pour une demande particulière.' },
+  { q: 'Où se trouve le cabinet ?', a: 'Au 3 rue Valadon, 75007 Paris, dans le 7e arrondissement, sur la rive gauche. C\'est un cabinet privé, accessible uniquement sur rendez-vous.' },
+  { q: 'Quels sont les horaires du cabinet ?', a: 'Le cabinet est ouvert le lundi de 15h à 22h30, du mardi au samedi de 8h à 22h30, et fermé le dimanche. Les séances se font uniquement sur rendez-vous.' },
+  { q: 'Combien coûte un drainage lymphatique méthode Renata França ?', a: '150 € pour une séance d\'une heure. Le Soin Signature (drainage, breathwork et énergétique, 2h) est à 280 €. Un Forfait Découverte de 3 drainages, valable 3 mois, est proposé à 420 €.' },
+  { q: 'Puis-je réserver un cours de yoga ou de Pilates à Paris 7e ?', a: 'Oui, en cours particuliers au cabinet. Le yoga est à 90 € l\'heure (forfait 5 séances valable 3 mois, 400 €). Le Pilates se pratique en privé ou en duo, sur devis.' },
+  { q: 'Proposez-vous des séances de breathwork en groupe ?', a: 'Oui. Un cercle de souffle en groupe fermé de 4 à 6 personnes dure 2h, à 60 € par personne. La séance individuelle d\'une heure est à 90 €, au cabinet.' },
+];
 ---
 
-<Layout activePage="contact" title="Contact — Daphné Lachavanne" description="Réserver une séance au cabinet, Paris 7e. Soins, yoga, breathwork, pilates.">
+<Layout activePage="contact" title="Contact & réservation — Daphné Lachavanne, Paris 7e" description="Réservez votre soin ou cours au cabinet de Daphné Lachavanne, 3 rue Valadon, Paris 7e. Drainage Renata França dès 150 €, sur Planity ou par email.">
 
   <div class="page-header container" style="position:relative;overflow:hidden">
     <span class="t-label">— Réservation</span>
@@ -18,28 +37,32 @@ import Sym from '../components/Sym.astro';
 
         <div>
           <h2 class="t-label" style="margin-bottom:28px">(  Un message  )</h2>
-          <form class="form-group" action="#" method="post">
+          <form class="form-group" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact?ok=1">
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden aria-hidden="true">
+              <label>Ne pas remplir si vous êtes humain : <input name="bot-field" /></label>
+            </p>
             <div class="form-row">
               <div class="form-field">
-                <label class="form-field__label">Prénom</label>
-                <input type="text" name="prenom" placeholder="Marie" autocomplete="given-name" />
+                <label class="form-field__label" for="f-prenom">Prénom</label>
+                <input id="f-prenom" type="text" name="prenom" placeholder="Marie" autocomplete="given-name" required />
               </div>
               <div class="form-field">
-                <label class="form-field__label">Nom</label>
-                <input type="text" name="nom" placeholder="Dupont" autocomplete="family-name" />
+                <label class="form-field__label" for="f-nom">Nom</label>
+                <input id="f-nom" type="text" name="nom" placeholder="Dupont" autocomplete="family-name" />
               </div>
             </div>
             <div class="form-field">
-              <label class="form-field__label">Email</label>
-              <input type="email" name="email" placeholder="vous@email.com" autocomplete="email" />
+              <label class="form-field__label" for="f-email">Email</label>
+              <input id="f-email" type="email" name="email" placeholder="vous@email.com" autocomplete="email" required />
             </div>
             <div class="form-field">
-              <label class="form-field__label">Soin souhaité</label>
-              <input type="text" name="pratique" placeholder="Soin Signature · Drainage · Miracle Face…" />
+              <label class="form-field__label" for="f-pratique">Soin souhaité</label>
+              <input id="f-pratique" type="text" name="pratique" placeholder="Soin Signature · Drainage · Miracle Face…" />
             </div>
             <div class="form-field">
-              <label class="form-field__label">Votre message</label>
-              <textarea name="message" rows="4" placeholder="Dites-moi où vous en êtes, ce que vous cherchez…"></textarea>
+              <label class="form-field__label" for="f-message">Votre message</label>
+              <textarea id="f-message" name="message" rows="4" placeholder="Dites-moi où vous en êtes, ce que vous cherchez…"></textarea>
             </div>
             <div>
               <button type="submit" class="btn btn--dark">Envoyer →</button>
@@ -105,5 +128,9 @@ import Sym from '../components/Sym.astro';
       </div>
     </div>
   </section>
+
+  <Prose text={intro} label="Réserver une séance à Paris 7e" />
+
+  <Faq items={faqs} />
 
 </Layout>

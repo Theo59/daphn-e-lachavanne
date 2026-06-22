@@ -59,6 +59,15 @@ const structuredData = {
         addressCountry: 'FR',
       },
       areaServed: { '@type': 'City', name: 'Paris' },
+      openingHoursSpecification: [
+        { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Monday', opens: '15:00', closes: '22:30' },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+          opens: '08:00',
+          closes: '22:30',
+        },
+      ],
       hasMap: 'https://maps.google.com/?q=3+Rue+Valadon+75007+Paris',
       sameAs: ['https://www.planity.com/daphne-lachavanne-75007-paris'],
       founder: { '@id': `${base}/#daphne` },
