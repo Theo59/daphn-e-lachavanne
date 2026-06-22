@@ -1,16 +1,40 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Sym from '../components/Sym.astro';
+import Prose from '../components/Prose.astro';
+import Faq from '../components/Faq.astro';
 
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
+
+const intro = `Daphné Lachavanne est praticienne bien-être à Paris 7e, sur la rive gauche. Son cabinet, au 3 rue Valadon dans le 75007, est un espace confidentiel qui se visite uniquement sur rendez-vous. On y vient pour ralentir, écouter son corps et le remettre en mouvement, dans une attention rare au geste comme au silence.
+
+Certifiée méthode Renata França depuis 2013, Daphné a réuni en 2025 son savoir-faire sous un même nom : L'Art de la Circulation. Une approche holistique qui relie le mouvement, le souffle et le travail énergétique, pensée pour libérer les trois corps — physique, mental et émotionnel — sans jamais promettre autre chose qu'un mieux-être.
+
+Quatre pratiques se répondent au cabinet. Les soins, d'abord, avec le drainage lymphatique méthode Renata França (1h, 150 €), le Soin Signature qui mêle drainage, breathwork et énergétique (2h, 280 €), le Miracle Face, drainage du visage et du crâne (40 min, 90 €) et le Combo Détox corps et visage (1h30, 200 €). Des forfaits prolongent le suivi sur la saison. Le breathwork ensuite — cohérence cardiaque à cinq respirations par minute, souffle holotropique, pranayama avancé — en séance individuelle (1h, 90 €) ou en cercle fermé de quatre à six personnes (2h, 60 € par personne). Le yoga enfin, en cours particuliers (vinyasa, hatha, yin), et le Pilates au sol, en privé ou en duo, pour un alignement et un renforcement profonds.
+
+Centre bien-être holistique à taille humaine, ce studio de la rive gauche associe soins de drainage et yoga dans un même lieu, pour le corps et l'esprit. Réservation en ligne sur Planity, ou par e-mail à hello@daphnelachavanne.com.`;
+
+const faqs = [
+  { q: 'Où se trouve le cabinet de Daphné Lachavanne ?', a: 'Au 3 rue Valadon, 75007 Paris, sur la rive gauche, dans le 7e arrondissement. C\'est un cabinet privé qui se visite uniquement sur rendez-vous.' },
+  { q: 'Comment prendre rendez-vous ?', a: 'La réservation se fait en ligne sur Planity (planity.com/daphne-lachavanne-75007-paris) ou par e-mail à hello@daphnelachavanne.com. Le cabinet reçoit sur rendez-vous.' },
+  { q: 'Quelles pratiques propose Daphné Lachavanne ?', a: 'Quatre pratiques au même endroit : les soins (drainage lymphatique méthode Renata França, Soin Signature, Miracle Face, Combo Détox), le breathwork, le yoga et le Pilates.' },
+  { q: 'Combien coûte un soin ?', a: 'Le drainage lymphatique Renata França est à 150 € (1h), le Soin Signature à 280 € (2h), le Miracle Face à 90 € (40 min) et le Combo Détox à 200 € (1h30). Des forfaits existent, comme le Forfait Découverte de 3 drainages à 420 €.' },
+  { q: 'Le yoga et le Pilates se pratiquent-ils en cours collectif ?', a: 'Non. Le yoga (vinyasa, hatha, yin) se donne en cours particuliers individuels au cabinet. Le Pilates, lui, se pratique en cours particulier, en privé ou en duo. Le cours de yoga d\'1h est à 90 € ; le Pilates est proposé sur devis.' },
+  { q: "Qu'est-ce que L'Art de la Circulation ?", a: "C'est l'approche créée par Daphné Lachavanne en 2025, qui unit le mouvement, le souffle et le travail énergétique pour aider le corps à mieux circuler, dans une démarche de bien-être." },
+];
 ---
 
-<Layout activePage="home" darkNav={true}>
+<Layout
+  activePage="home"
+  darkNav={true}
+  title="Daphné Lachavanne, praticienne bien-être Paris 7e"
+  description="Praticienne bien-être à Paris 7e : soins drainage Renata França, breathwork, yoga et pilates, 3 rue Valadon. Drainage 1h à 150 €. Réservez en ligne."
+>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero__bg">
-      <img src="/media/photo-2.jpg" alt="Daphné Lachavanne" style="filter:contrast(1.1) brightness(0.72)" loading="eager" />
+      <img src="/media/photo-2.jpg" alt="Daphné Lachavanne, praticienne bien-être — soins, breathwork, yoga et pilates à Paris 7e" style="filter:contrast(1.1) brightness(0.72)" loading="eager" fetchpriority="high" decoding="async" />
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
@@ -170,6 +194,10 @@ const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
       </div>
     </div>
   </section>
+
+  <Prose text={intro} label="Bien-être, soins & mouvement à Paris 7e" />
+
+  <Faq items={faqs} />
 
   <!-- CTA -->
   <section class="section" style="padding-top:0">
