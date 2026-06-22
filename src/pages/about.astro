@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Prose from '../components/Prose.astro';
+import Faq from '../components/Faq.astro';
 
 const timeline = [
   ['2013', 'Certification méthode Renata França', 'Paris'],
@@ -9,9 +11,26 @@ const timeline = [
   ['2023', 'Collaboration sportive · Nike', 'Paris'],
   ['2025', "Création de L'Art de la Circulation", 'Paris'],
 ];
+
+const intro = `Daphné Lachavanne est une praticienne bien-être installée à Paris 7e, au 3 Rue Valadon, dans un cabinet privé accessible uniquement sur rendez-vous. Son chemin prend une direction décisive en 2013, année de sa certification à la méthode Renata França. Devenue praticienne certifiée Renata França à Paris, elle fait du drainage lymphatique un véritable langage, attentif au rythme, au souffle et aux tissus.
+
+Le parcours de cette praticienne bien-être à Paris 7e s'est ensuite enrichi au fil des années : une formation de yoga 200h en Inde en 2017, le breathwork holotropique à Amsterdam en 2019, puis le Reiki et le magnétisme à Paris en 2022. En 2023, une collaboration sportive avec Nike prolonge ce dialogue entre performance et récupération. En 2025, elle réunit l'ensemble de cette approche sous un même nom : L'Art de la Circulation.
+
+Praticienne de drainage lymphatique formée à Paris, professeur de yoga et de breathwork à Paris 7e, elle conçoit chaque rendez-vous sur mesure. Le Drainage Lymphatique méthode Renata França dure 1h (150 €) ; le Soin Signature, qui associe drainage, breathwork et travail énergétique, dure 2h (280 €). Les cours particuliers de yoga (vinyasa, hatha, yin) et les séances individuelles de breathwork se déroulent au cabinet, à 90 € l'heure. Elle accompagne aussi sur la durée, à travers des forfaits pensés sur plusieurs mois.
+
+Les réservations se font en ligne via Planity ou par e-mail à hello@daphnelachavanne.com. Avant chaque suivi, un échange permet de comprendre votre demande et d'ajuster la pratique au plus juste.`;
+
+const faqs = [
+  { q: 'Daphné Lachavanne est-elle certifiée à la méthode Renata França ?', a: 'Oui. Daphné est praticienne certifiée méthode Renata França depuis 2013, formée à Paris. C\'est le socle de sa pratique du drainage lymphatique.' },
+  { q: 'Où se trouve le cabinet de Daphné Lachavanne ?', a: 'Au 3 Rue Valadon, 75007 Paris, dans le 7e arrondissement. C\'est un espace privé, accessible uniquement sur rendez-vous.' },
+  { q: 'Quel est le parcours de Daphné Lachavanne ?', a: "Formation yoga 200h en Inde (2017), breathwork holotropique à Amsterdam (2019), Reiki et magnétisme à Paris (2022), collaboration avec Nike (2023), puis création de L'Art de la Circulation en 2025." },
+  { q: 'Daphné donne-t-elle des cours de yoga et de breathwork ?', a: 'Oui, en cours particuliers au cabinet de Paris 7e. Le yoga (vinyasa, hatha, yin) et le breathwork individuel sont à 90 € l\'heure ; un cercle de souffle de 4 à 6 personnes (2h) est à 60 € par personne.' },
+  { q: 'Quels soins propose Daphné Lachavanne ?', a: "Le Drainage Lymphatique Renata França (1h, 150 €), le Soin Signature (2h, 280 €), le Miracle Face (40 min, 90 €) et le Combo Détox (1h30, 200 €), complétés par des forfaits valables plusieurs mois." },
+  { q: 'Comment prendre rendez-vous avec Daphné Lachavanne ?', a: 'En ligne sur Planity ou par e-mail à hello@daphnelachavanne.com. Les séances se déroulent sur rendez-vous, au cabinet de Paris 7e.' },
+];
 ---
 
-<Layout activePage="about" title="À propos — Daphné Lachavanne" description="Praticienne certifiée méthode Renata França. Paris, depuis 2013.">
+<Layout activePage="about" title="À propos — Daphné Lachavanne, bien-être Paris 7e" description="Daphné Lachavanne, praticienne certifiée méthode Renata França depuis 2013, vous reçoit à Paris 7e. Drainage lymphatique dès 150 €. Prenez rendez-vous.">
 
   <!-- EN-TÊTE PORTRAIT -->
   <div class="page-header">
@@ -28,7 +47,7 @@ const timeline = [
           </p>
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <img src="/media/photo-1.jpg" alt="Daphné Lachavanne" style="filter:contrast(1.05) brightness(0.9)" loading="eager" />
+          <img src="/media/photo-1.jpg" alt="Portrait de Daphné Lachavanne, praticienne bien-être certifiée méthode Renata França à Paris 7e" style="filter:contrast(1.05) brightness(0.9)" loading="eager" />
         </div>
       </div>
     </div>
@@ -72,16 +91,16 @@ const timeline = [
   <section class="section--sm" style="padding-left:0;padding-right:0">
     <div class="photo-grid-4">
       <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-        <img src="/media/photo-1.jpg" alt="Daphné" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
+        <img src="/media/photo-1.jpg" alt="Daphné Lachavanne au cabinet, soins de drainage Paris 7e" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
       </div>
       <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-        <img src="/media/6.jpg" alt="Daphné" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
+        <img src="/media/6.jpg" alt="Daphné Lachavanne, cabinet 3 rue Valadon, Paris 7e" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
       </div>
       <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-        <img src="/media/9.jpg" alt="Daphné" style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+        <img src="/media/9.jpg" alt="Daphné Lachavanne, pratique du yoga à Paris" style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
       </div>
       <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-        <img src="/media/photo-3.jpg" alt="Daphné" style="filter:contrast(1.1) brightness(0.82)" loading="lazy" />
+        <img src="/media/photo-3.jpg" alt="Daphné Lachavanne, séance de breathwork à Paris 7e" style="filter:contrast(1.1) brightness(0.82)" loading="lazy" />
       </div>
     </div>
   </section>
@@ -100,5 +119,9 @@ const timeline = [
       <p class="t-label" style="margin-top:28px">— D.L.</p>
     </div>
   </section>
+
+  <Prose text={intro} label="Daphné Lachavanne, praticienne bien-être à Paris 7e" />
+
+  <Faq items={faqs} />
 
 </Layout>

@@ -1,0 +1,32 @@
+---
+/**
+ * Bloc de prose éditoriale — texte riche, crawlable (SEO/GEO).
+ * `text` : paragraphes séparés par une ligne vide.
+ */
+interface Props {
+  text: string;
+  label?: string;
+  flush?: boolean; // true = pas de padding section (utilisé dans une section existante)
+}
+const { text, label, flush = false } = Astro.props;
+const paragraphs = text.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
+---
+
+<section class={flush ? 'prose-block' : 'section prose-block'}>
+  <div class="container">
+    {label && <h2 class="t-label" style="margin-bottom:28px">( {label} )</h2>}
+    {paragraphs.map((p) => <p>{p}</p>)}
+  </div>
+</section>
+
+<style>
+  .prose-block p {
+    max-width: 70ch;
+    color: var(--ink);
+    opacity: 0.82;
+    line-height: 1.9;
+    font-size: 16px;
+    margin: 0 0 1.3em;
+  }
+  .prose-block p:last-child { margin-bottom: 0; }
+</style>

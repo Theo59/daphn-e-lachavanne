@@ -9,15 +9,126 @@ interface Props {
   activePage?: string;
   darkNav?: boolean;
   noFooter?: boolean;
+  /** Image de partage social (chemin absolu sous /). 1200×630 recommandé. */
+  image?: string;
 }
 
 const {
-  title = 'Daphné Lachavanne — Yoga · Breathwork · Pilates · Soins',
-  description = 'Praticienne en yoga, breathwork, pilates et soins à Genève. Au Loft.',
+  title = 'Daphné Lachavanne — Yoga · Breathwork · Pilates · Soins à Paris 7e',
+  description = 'Praticienne bien-être à Paris 7e : drainage lymphatique Renata França, yoga, breathwork et pilates. Cabinet 3 Rue Valadon, sur rendez-vous.',
   activePage = 'home',
   darkNav = false,
   noFooter = false,
+  image = '/og-image.jpg',
 } = Astro.props;
+
+// URL canonique de la page courante, dérivée de `site` (astro.config.mjs).
+// Normalise les URLs en `build.format: 'file'` (/soins.html → /soins, /index.html → /).
+const cleanPath = Astro.url.pathname.replace(/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '');
+const canonical = new URL(cleanPath || '/', Astro.site).href.replace(/\/$/, '') || Astro.site?.href;
+const ogImage = new URL(image, Astro.site).href;
+const siteName = 'Daphné Lachavanne · L’Art de la Circulation';
+
+// Base sans slash final pour les @id de données structurées.
+const base = (Astro.site?.href ?? 'https://daphnelachavanne.netlify.app/').replace(/\/$/, '');
+
+// JSON-LD global (GEO/AEO) : entreprise locale + praticienne + site.
+// Volontairement SANS aggregateRating/téléphone/horaires (non vérifiables → risque de pénalité).
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['LocalBusiness', 'HealthAndBeautyBusiness'],
+      '@id': `${base}/#business`,
+      name: 'Daphné Lachavanne — L’Art de la Circulation',
+      alternateName: 'Daphné Lachavanne',
+      description:
+        'Praticienne bien-être à Paris 7e : drainage lymphatique méthode Renata França, soins, yoga, breathwork et pilates, en cabinet privé sur rendez-vous.',
+      url: base,
+      image: `${base}/og-image.jpg`,
+      logo: `${base}/media/logo-noir.png`,
+      email: 'hello@daphnelachavanne.com',
+      priceRange: '60–780 €',
+      currenciesAccepted: 'EUR',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '3 Rue Valadon',
+        postalCode: '75007',
+        addressLocality: 'Paris',
+        addressRegion: 'Île-de-France',
+        addressCountry: 'FR',
+      },
+      // Coordonnées exactes du 3 Rue Valadon (géocodage officiel BAN, data.gouv.fr).
+      geo: { '@type': 'GeoCoordinates', latitude: 48.857303, longitude: 2.305538 },
+      areaServed: { '@type': 'City', name: 'Paris' },
+      openingHoursSpecification: [
+        { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Monday', opens: '15:00', closes: '22:30' },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+          opens: '08:00',
+          closes: '22:30',
+        },
+      ],
+      hasMap: 'https://maps.google.com/?q=3+Rue+Valadon+75007+Paris',
+      sameAs: ['https://www.planity.com/daphne-lachavanne-75007-paris'],
+      founder: { '@id': `${base}/#daphne` },
+      employee: { '@id': `${base}/#daphne` },
+      knowsAbout: [
+        'Drainage lymphatique',
+        'Méthode Renata França',
+        'Yoga',
+        'Breathwork',
+        'Cohérence cardiaque',
+        'Pilates',
+        'Soin énergétique',
+      ],
+    },
+    {
+      '@type': 'Person',
+      '@id': `${base}/#daphne`,
+      name: 'Daphné Lachavanne',
+      jobTitle: 'Praticienne bien-être',
+      worksFor: { '@id': `${base}/#business` },
+      url: `${base}/about`,
+      image: `${base}/media/photo-1.jpg`,
+      knowsAbout: ['Drainage lymphatique', 'Méthode Renata França', 'Yoga', 'Breathwork', 'Pilates', 'Reiki'],
+      hasCredential: [
+        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Méthode Renata França — drainage lymphatique', dateCreated: '2013' },
+        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Formation yoga 200h', dateCreated: '2017' },
+        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Breathwork holotropique', dateCreated: '2019' },
+        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Reiki & magnétisme', dateCreated: '2022' },
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${base}/#website`,
+      url: base,
+      name: 'Daphné Lachavanne',
+      inLanguage: 'fr-FR',
+      publisher: { '@id': `${base}/#business` },
+    },
+  ],
+};
+
+// Fil d'Ariane (BreadcrumbList) pour les pages internes — aide la compréhension de la hiérarchie.
+const PAGE_LABELS: Record<string, string> = {
+  soins: 'Soins',
+  yoga: 'Yoga',
+  breathwork: 'Breathwork',
+  pilates: 'Pilates',
+  about: 'À propos',
+  contact: 'Contact',
+};
+if (activePage !== 'home' && PAGE_LABELS[activePage]) {
+  structuredData['@graph'].push({
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: base },
+      { '@type': 'ListItem', position: 2, name: PAGE_LABELS[activePage], item: canonical },
+    ],
+  } as any);
+}
 ---
 
 <!doctype html>
@@ -27,11 +138,35 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Données structurées globales : entreprise locale + praticienne -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 </head>
 <body>
   <Nav active={activePage} dark={darkNav} />
