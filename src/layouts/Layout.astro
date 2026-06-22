@@ -28,6 +28,77 @@ const cleanPath = Astro.url.pathname.replace(/index\.html$/, '').replace(/\.html
 const canonical = new URL(cleanPath || '/', Astro.site).href.replace(/\/$/, '') || Astro.site?.href;
 const ogImage = new URL(image, Astro.site).href;
 const siteName = 'Daphné Lachavanne · L’Art de la Circulation';
+
+// Base sans slash final pour les @id de données structurées.
+const base = (Astro.site?.href ?? 'https://daphnelachavanne.netlify.app/').replace(/\/$/, '');
+
+// JSON-LD global (GEO/AEO) : entreprise locale + praticienne + site.
+// Volontairement SANS aggregateRating/téléphone/horaires (non vérifiables → risque de pénalité).
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['LocalBusiness', 'HealthAndBeautyBusiness'],
+      '@id': `${base}/#business`,
+      name: 'Daphné Lachavanne — L’Art de la Circulation',
+      alternateName: 'Daphné Lachavanne',
+      description:
+        'Praticienne bien-être à Paris 7e : drainage lymphatique méthode Renata França, soins, yoga, breathwork et pilates, en cabinet privé sur rendez-vous.',
+      url: base,
+      image: `${base}/og-image.jpg`,
+      logo: `${base}/favicon.png`,
+      email: 'hello@daphnelachavanne.com',
+      priceRange: '90–780 €',
+      currenciesAccepted: 'EUR',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '3 Rue Valadon',
+        postalCode: '75007',
+        addressLocality: 'Paris',
+        addressRegion: 'Île-de-France',
+        addressCountry: 'FR',
+      },
+      areaServed: { '@type': 'City', name: 'Paris' },
+      hasMap: 'https://maps.google.com/?q=3+Rue+Valadon+75007+Paris',
+      sameAs: ['https://www.planity.com/daphne-lachavanne-75007-paris'],
+      founder: { '@id': `${base}/#daphne` },
+      employee: { '@id': `${base}/#daphne` },
+      knowsAbout: [
+        'Drainage lymphatique',
+        'Méthode Renata França',
+        'Yoga',
+        'Breathwork',
+        'Cohérence cardiaque',
+        'Pilates',
+        'Soin énergétique',
+      ],
+    },
+    {
+      '@type': 'Person',
+      '@id': `${base}/#daphne`,
+      name: 'Daphné Lachavanne',
+      jobTitle: 'Praticienne bien-être',
+      worksFor: { '@id': `${base}/#business` },
+      url: `${base}/about`,
+      image: `${base}/og-image.jpg`,
+      knowsAbout: ['Drainage lymphatique', 'Méthode Renata França', 'Yoga', 'Breathwork', 'Pilates', 'Reiki'],
+      hasCredential: [
+        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Méthode Renata França — drainage lymphatique', dateCreated: '2013' },
+        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Formation yoga 200h', dateCreated: '2017' },
+        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Breathwork holotropique', dateCreated: '2019' },
+        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Reiki & magnétisme', dateCreated: '2022' },
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${base}/#website`,
+      url: base,
+      name: 'Daphné Lachavanne',
+      inLanguage: 'fr-FR',
+      publisher: { '@id': `${base}/#business` },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -63,6 +134,9 @@ const siteName = 'Daphné Lachavanne · L’Art de la Circulation';
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Données structurées globales : entreprise locale + praticienne -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 </head>
 <body>
   <Nav active={activePage} dark={darkNav} />
