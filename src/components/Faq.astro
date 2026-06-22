@@ -1,0 +1,65 @@
+---
+/**
+ * Section FAQ accessible (accordéon natif <details>, sans JS) + données structurées FAQPage.
+ * Sert l'AEO (People Also Ask, snippets) et le GEO (réponses factuelles citables).
+ */
+interface Props {
+  items: { q: string; a: string }[];
+  title?: string;
+  dark?: boolean;
+}
+const { items, title = 'Questions fréquentes', dark = false } = Astro.props;
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
+};
+---
+
+<section class={`section faq${dark ? ' section--dark' : ''}`}>
+  <div class="container">
+    <h2 class="t-label">( {title} )</h2>
+    <div class="faq__list">
+      {
+        items.map((it) => (
+          <details class="faq__item">
+            <summary class="faq__q">{it.q}</summary>
+            <div class="faq__a"><p>{it.a}</p></div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+<style>
+  .faq__list { border-top: 1px solid var(--rule); margin-top: 32px; }
+  .faq__item { border-bottom: 1px solid var(--rule); }
+  .faq__q {
+    font-family: 'Tenor Sans', serif;
+    font-size: clamp(17px, 2vw, 21px);
+    color: var(--ink);
+    padding: 24px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+  }
+  .faq__q::-webkit-details-marker { display: none; }
+  .faq__q::after { content: '+'; color: var(--orange); font-size: 24px; line-height: 1; transition: transform 0.2s; }
+  details[open] .faq__q::after { content: '–'; }
+  .faq__a { padding: 0 0 26px; max-width: 72ch; }
+  .faq__a p { color: var(--muted); line-height: 1.85; font-size: 15px; margin: 0; }
+  .section--dark .faq__list, .section--dark .faq__item { border-color: rgba(255,255,255,0.14); }
+  .section--dark .faq__q { color: #fff; }
+  .section--dark .faq__a p { color: rgba(255,255,255,0.7); }
+</style>
