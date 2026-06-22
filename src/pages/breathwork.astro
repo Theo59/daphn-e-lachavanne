@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Prose from '../components/Prose.astro';
+import Faq from '../components/Faq.astro';
+import { serviceLd } from '../lib/schema.ts';
 
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
@@ -13,9 +16,35 @@ const tarifs = [
   { title: 'Séance individuelle', detail: '1h · au cabinet',       price: '90 €' },
   { title: 'Cercle de souffle',   detail: '4–6 personnes · 2h',    price: '60 €/pers.' },
 ];
+
+const serviceSchema = serviceLd({
+  name: 'Séances de breathwork à Paris 7e',
+  serviceType: 'Breathwork / respiration consciente',
+  description:
+    'Séances de breathwork à Paris 7e : cohérence cardiaque, respiration holotropique et pranayama avancé, en individuel ou en cercle de souffle.',
+  path: '/breathwork',
+  offers: tarifs.map((t) => ({ name: t.title, price: t.price, description: t.detail })),
+});
+
+const intro = `Le breathwork, c'est l'art d'habiter sa respiration. Au cabinet de Daphné Lachavanne, au 3 rue Valadon dans le 7e arrondissement de Paris, chaque séance commence par une écoute : selon ce que vous traversez, on choisit ensemble la pratique. Une séance de breathwork à Paris 7e se déroule dans un espace privé, sur rendez-vous, loin de l'agitation de la ville.
+
+Trois chemins se dessinent. La cohérence cardiaque d'abord — cinq respirations par minute, un rythme qui aligne le cœur et apaise le système nerveux. C'est l'exercice de respiration pour la gestion du stress le plus accessible, celui qui se glisse ensuite dans le quotidien. La respiration holotropique ensuite, un souffle ample et continu pour traverser, libérer, parfois pleurer, toujours en sécurité. Daphné s'est formée à cette pratique à Amsterdam en 2019. Le pranayama avancé enfin, avec ses techniques de rétention, de Tummo et de méthode Wim Hof, pour la vitalité profonde.
+
+Le breathwork individuel à Paris 7e dure une heure et se pratique à 90 €. Pour celles et ceux qui préfèrent l'élan du groupe, le cercle de respiration breathwork accueille quatre à six personnes pendant deux heures, à 60 € par personne — un cercle fermé, intime, où le souffle de chacun soutient celui des autres.
+
+Cet atelier de respiration consciente s'inscrit dans la démarche de Daphné Lachavanne, praticienne bien-être et créatrice de « L'Art de la Circulation ». Ici, on ne promet pas de guérir : on propose de circuler — de l'inspire à l'expire, du tendu vers le posé. La réservation se fait en ligne via Planity, ou par e-mail à hello@daphnelachavanne.com.`;
+
+const faqs = [
+  { q: "C'est quoi une séance de breathwork, concrètement ?", a: "C'est un temps guidé où l'on travaille la respiration consciente. Au cabinet du 7e, on choisit ensemble entre cohérence cardiaque, respiration holotropique ou pranayama avancé selon ce que vous traversez. La séance individuelle dure 1h (90 €)." },
+  { q: 'La cohérence cardiaque aide-t-elle vraiment contre le stress ?', a: "La cohérence cardiaque repose sur un rythme de cinq respirations par minute. Le rythme cardiaque s'aligne et le système nerveux s'apaise. C'est un exercice de respiration simple pour la gestion du stress, que l'on peut ensuite reprendre seul au quotidien." },
+  { q: 'La respiration holotropique, est-ce sans risque ?', a: "Le souffle holotropique est ample et continu, pratiqué toujours dans un cadre sécurisé et accompagné. Daphné s'est formée à cette approche à Amsterdam en 2019. Il s'agit d'un accompagnement bien-être, sans promesse médicale ni thérapeutique." },
+  { q: 'Comment fonctionne le cercle de souffle ?', a: 'Le cercle de respiration breathwork réunit 4 à 6 personnes pendant 2h, en cercle fermé, à 60 € par personne. C\'est un format collectif et intime où le souffle de chacun soutient celui du groupe.' },
+  { q: 'Où et comment réserver à Paris 7e ?', a: 'Le cabinet se trouve au 3 rue Valadon, 75007 Paris, en privé et sur rendez-vous uniquement. La réservation se fait en ligne via Planity, ou par e-mail à hello@daphnelachavanne.com.' },
+  { q: "Faut-il de l'expérience pour faire du breathwork ?", a: "Non. La séance s'ajuste à chacun, du tout premier souffle conscient aux techniques avancées comme le Tummo ou la méthode Wim Hof. On commence là où vous en êtes, en individuel ou en cercle." },
+];
 ---
 
-<Layout activePage="breathwork" title="Breathwork — Daphné Lachavanne" description="Respiration consciente, cohérence cardiaque, holotropique. Paris 7e.">
+<Layout activePage="breathwork" title="Séance breathwork Paris 7e — cohérence cardiaque" description="Séances de breathwork à Paris 7e : cohérence cardiaque, holotropique et pranayama. En individuel (1h, 90 €) ou en cercle. Réservez votre séance en ligne.">
 
   <div class="page-header" style="position:relative;overflow:hidden">
     <div class="container" style="position:relative">
@@ -36,10 +65,10 @@ const tarifs = [
     <div class="container">
       <div class="grid-3">
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <img src="/media/photo-2.jpg" alt="Breathwork" style="filter:contrast(1.1) brightness(0.82)" loading="lazy" />
+          <img src="/media/photo-2.jpg" alt="Séance de breathwork et respiration consciente, cabinet de Daphné Lachavanne à Paris 7e" style="filter:contrast(1.1) brightness(0.82)" loading="lazy" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <img src="/media/photo-3.jpg" alt="Breathwork" style="filter:contrast(1.1) brightness(0.82)" loading="lazy" />
+          <img src="/media/photo-3.jpg" alt="Respiration holotropique guidée, cabinet bien-être Paris rive gauche" style="filter:contrast(1.1) brightness(0.82)" loading="lazy" />
         </div>
         <div style="position:relative;aspect-ratio:3/4;width:100%;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
           <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>
@@ -112,5 +141,11 @@ const tarifs = [
       </div>
     </div>
   </section>
+
+  <Prose text={intro} label="Le breathwork à Paris 7e" />
+
+  <Faq items={faqs} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
 </Layout>

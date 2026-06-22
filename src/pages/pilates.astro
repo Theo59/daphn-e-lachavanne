@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Prose from '../components/Prose.astro';
+import Faq from '../components/Faq.astro';
+import { serviceLd } from '../lib/schema.ts';
 
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
@@ -13,9 +16,35 @@ const tarifs = [
   { title: 'Cours particulier', detail: '1h · au cabinet',   price: 'Sur devis' },
   { title: 'Duo',               detail: '1h · 2 personnes',  price: 'Sur devis' },
 ];
+
+const serviceSchema = serviceLd({
+  name: 'Cours de Pilates particulier à Paris 7e',
+  serviceType: 'Cours de Pilates',
+  description:
+    'Cours particuliers de Pilates au sol et petit matériel à Paris 7e, en privé ou en duo, au cabinet de Daphné Lachavanne, sur rendez-vous.',
+  path: '/pilates',
+  offers: tarifs.map((t) => ({ name: t.title, price: t.price, description: t.detail })),
+});
+
+const intro = `Le Pilates de Daphné Lachavanne se pratique en cours particulier, dans le calme du cabinet de la rue Valadon, à Paris 7e. Pas de salle bondée ni de rythme imposé : une heure d'attention entière, pensée pour votre corps, votre niveau et votre journée. Le travail se fait au sol, sur tapis, avec du petit matériel choisi selon ce que demande la séance.
+
+Trois principes guident chaque mouvement : l'alignement, pour retrouver l'axe et la verticale avant tout effort ; la fluidité, faite d'enchaînements lents et précis ; le renforcement profond, qui sollicite les muscles posturaux sans jamais brusquer. C'est cette précision qui rend la méthode précieuse pour accompagner la posture et relâcher les tensions du dos liées aux longues heures assises — un travail de bien-être, jamais un soin médical.
+
+Les cours particuliers de Pilates à Paris 7e s'adressent autant aux débutants qu'aux pratiquants confirmés : la séance s'ajuste geste après geste, avec une correction millimétrique impossible en cours collectif. Le Pilates individuel peut aussi se partager en duo, à deux personnes, dans le même esprit d'écoute. La pratique reste un Pilates au sol — matwork — et non sur machine Reformer : le corps, le souffle et le petit matériel suffisent à construire une force durable.
+
+Professeure privée sur la rive gauche, Daphné reçoit uniquement sur rendez-vous, au 3 rue Valadon, 75007 Paris. Le tarif des cours particuliers et des duos est établi sur devis ; la réservation se fait en ligne via Planity ou par e-mail à hello@daphnelachavanne.com. Le Pilates s'inscrit dans « L'Art de la Circulation », son approche du mouvement, du souffle et du soin.`;
+
+const faqs = [
+  { q: 'Le Pilates est-il adapté aux débutants ?', a: "Oui. Le cours particulier de Pilates à Paris 7e s'ajuste geste par geste à votre niveau : les débutants bénéficient de la même attention et de corrections individuelles, impossibles en cours collectif." },
+  { q: 'Proposez-vous des cours de Pilates sur Reformer ?', a: 'Non. La pratique est un Pilates au sol (matwork) avec petit matériel, sans machine Reformer. Le corps, le souffle et les accessoires suffisent à un renforcement profond et durable.' },
+  { q: 'Le Pilates peut-il aider ma posture et les tensions du dos ?', a: "Le travail d'alignement et de renforcement profond accompagne la posture et aide à relâcher les tensions du dos liées à la position assise. Il s'agit d'une démarche de bien-être à Paris 7e, et non d'un soin médical." },
+  { q: 'Proposez-vous des cours de Pilates à domicile à Paris 7 ?', a: 'Les séances se déroulent au cabinet, au 3 rue Valadon, 75007 Paris, sur rendez-vous uniquement. Il n\'y a pas de cours à domicile : tout le matériel et le calme nécessaires sont réunis sur place, sur la rive gauche.' },
+  { q: 'Peut-on suivre un cours de Pilates à deux ?', a: "Oui. La formule duo accueille deux personnes pour une heure, dans le même esprit d'écoute que le cours individuel. Le tarif est établi sur devis." },
+  { q: 'Combien coûte un cours particulier de Pilates et comment réserver ?', a: 'Les cours particuliers comme les duos sont proposés sur devis. La réservation se fait en ligne via Planity ou par e-mail à hello@daphnelachavanne.com.' },
+];
 ---
 
-<Layout activePage="pilates" title="Pilates — Daphné Lachavanne" description="Cours de pilates au sol et matériel. Paris 7e.">
+<Layout activePage="pilates" title="Pilates particulier Paris 7e | Daphné Lachavanne" description="Cours particuliers de Pilates au sol et petit matériel, en privé ou en duo, au cabinet de Paris 7e (3 rue Valadon). Tarif sur devis, sur rendez-vous.">
 
   <div class="page-header" style="position:relative;overflow:hidden">
     <div class="container" style="position:relative">
@@ -36,10 +65,10 @@ const tarifs = [
     <div class="container">
       <div class="grid-3">
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <img src="/media/12.jpg" alt="Pilates" style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+          <img src="/media/12.jpg" alt="Cours particulier de Pilates au sol, cabinet de Daphné Lachavanne à Paris 7e" style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <img src="/media/11.jpg" alt="Pilates" style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+          <img src="/media/11.jpg" alt="Travail d'alignement et de renforcement en Pilates, Paris rive gauche" style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
         </div>
         <div style="position:relative;aspect-ratio:3/4;width:100%;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
           <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>
@@ -112,5 +141,11 @@ const tarifs = [
       </div>
     </div>
   </section>
+
+  <Prose text={intro} label="Le Pilates en cours particulier à Paris 7e" />
+
+  <Faq items={faqs} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
 </Layout>
