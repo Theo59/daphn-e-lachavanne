@@ -56,6 +56,44 @@ p { line-height: 1.75; }
 }
 @media (max-width: 900px) { .container { padding: 0 1.5rem; } }
 
+/* ---- Accessibilité : focus clavier ---- */
+/* Anneau visible uniquement au clavier (pas au clic souris) — exigence a11y.
+   Indispensable ici car le curseur personnalisé masque le pointeur système. */
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+/* Sur fonds sombres / hero, on éclaircit l'orange pour garder le contraste. */
+.nav--hero a:focus-visible,
+.hero a:focus-visible,
+.section--dark a:focus-visible,
+.mobile-menu a:focus-visible,
+.cta-band a:focus-visible,
+.btn--white:focus-visible,
+.btn--outline-white:focus-visible { outline-color: #ff9347; }
+
+/* ---- Skip to content ---- */
+.skip-link {
+  position: absolute;
+  top: -64px;
+  left: 16px;
+  z-index: 1000;
+  font-family: 'Tenor Sans', serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: var(--ink);
+  padding: 12px 22px;
+  border-radius: 999px;
+  transition: top 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.skip-link:focus-visible { top: 16px; outline-offset: 2px; }
+/* Cible du skip-link : conteneur non interactif, pas d'anneau autour de tout le contenu. */
+main:focus { outline: none; }
+
 /* ============================================================
    NAVIGATION
    ============================================================ */
