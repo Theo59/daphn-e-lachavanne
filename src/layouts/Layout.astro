@@ -9,15 +9,25 @@ interface Props {
   activePage?: string;
   darkNav?: boolean;
   noFooter?: boolean;
+  /** Image de partage social (chemin absolu sous /). 1200×630 recommandé. */
+  image?: string;
 }
 
 const {
-  title = 'Daphné Lachavanne — Yoga · Breathwork · Pilates · Soins',
-  description = 'Praticienne en yoga, breathwork, pilates et soins à Genève. Au Loft.',
+  title = 'Daphné Lachavanne — Yoga · Breathwork · Pilates · Soins à Paris 7e',
+  description = 'Praticienne bien-être à Paris 7e : drainage lymphatique Renata França, yoga, breathwork et pilates. Cabinet 3 Rue Valadon, sur rendez-vous.',
   activePage = 'home',
   darkNav = false,
   noFooter = false,
+  image = '/og-image.jpg',
 } = Astro.props;
+
+// URL canonique de la page courante, dérivée de `site` (astro.config.mjs).
+// Normalise les URLs en `build.format: 'file'` (/soins.html → /soins, /index.html → /).
+const cleanPath = Astro.url.pathname.replace(/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '');
+const canonical = new URL(cleanPath || '/', Astro.site).href.replace(/\/$/, '') || Astro.site?.href;
+const ogImage = new URL(image, Astro.site).href;
+const siteName = 'Daphné Lachavanne · L’Art de la Circulation';
 ---
 
 <!doctype html>
@@ -27,11 +37,32 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 <body>
   <Nav active={activePage} dark={darkNav} />
