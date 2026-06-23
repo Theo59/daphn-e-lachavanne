@@ -6,8 +6,10 @@
  * Images (jpg/png) → version compressée + WebP + AVIF, redimensionnées au max.
  * Vidéos (mov/mp4) → mp4 (H.264) + webm (VP9) « web-ready » + poster JPEG (via ffmpeg).
  *
- * Non destructif : les originaux ne sont jamais modifiés. Tout est écrit dans
- * `public/media/web/` en miroir de l'arborescence source.
+ * Non destructif : les sources (`media-src/`, hors déploiement) ne sont jamais
+ * modifiées. Les versions web sont écrites dans `public/media/web/` (servies),
+ * en miroir de l'arborescence source. Seul `public/media/web/` part en prod ;
+ * les originaux lourds restent dans le dépôt sans alourdir le build.
  *
  * Usage :
  *   npm run media                    # optimise tout (images + vidéos)
@@ -27,8 +29,8 @@ import sharp from 'sharp';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
-const SRC_DIR = join(ROOT, 'public', 'media');
-const OUT_DIR = join(SRC_DIR, 'web');
+const SRC_DIR = join(ROOT, 'media-src'); // originaux (hors déploiement)
+const OUT_DIR = join(ROOT, 'public', 'media', 'web'); // versions web (servies)
 
 // ── Options CLI ────────────────────────────────────────────────────────────
 const args = process.argv.slice(2);
@@ -106,6 +108,12 @@ async function hasFfmpeg() {
 
 const stats = { imgIn: 0, imgOut: 0, vidIn: 0, vidOut: 0, processed: 0, skipped: 0 };
 
+// Garde anti-collision : deux sources de même nom mais d'extension différente
+// (ex logo-noir.jpg + logo-noir.png) produiraient le même .webp/.avif et
+// s'écraseraient silencieusement — corrompant l'alpha, etc. On trace le 1ᵉʳ
+// propriétaire de chaque sortie et on refuse l'écrasement par une autre source.
+const claimed = new Map(); // outPath → source relPath
+
 // ── Images ─────────────────────────────────────────────────────────────────
 async function optimizeImage(src, relPath, srcBytes) {
   const base = relPath.slice(0, -extname(relPath).length);
@@ -124,6 +132,12 @@ async function optimizeImage(src, relPath, srcBytes) {
 
   for (const { suffix, fmt } of targets) {
     const outPath = join(OUT_DIR, base + suffix);
+    const owner = claimed.get(outPath);
+    if (owner && owner !== relPath) {
+      console.warn(`  ⚠️  collision : ${base + suffix} déjà généré depuis « ${owner} » — « ${relPath} » ignoré (renomme l'une des deux sources)`);
+      continue;
+    }
+    claimed.set(outPath, relPath);
     if (await upToDate(src, outPath)) {
       try { smallest = Math.min(smallest, (await stat(outPath)).size); } catch {}
       continue;

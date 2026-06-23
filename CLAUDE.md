@@ -81,6 +81,35 @@ site/
 - Responsive : breakpoint principal à 900px, secondaire à 560px
 - `--pad: clamp(24px, 4vw, 56px)` gère le padding horizontal
 
+## Médias — optimisation web
+
+Deux dossiers, séparation source / servi :
+
+- **`media-src/`** (racine, **hors déploiement**) : les originaux lourds (sources). Modifiés à la main, jamais servis.
+- **`public/media/web/`** (servi, **commité**) : les versions optimisées générées. **Seul ce dossier part en prod.**
+
+### Régénérer après ajout/modif d'un média
+
+```bash
+npm run media            # media-src/ → public/media/web/ (AVIF + WebP + repli, max 2000px)
+npm run media -- --dry   # aperçu sans écrire
+```
+
+Le script `scripts/optimize-media.mjs` (sharp + ffmpeg) produit par image 3 variantes
+(`.avif`, `.webp`, format d'origine compressé), et par vidéo un `.mp4` + `.webm` + poster.
+Il saute ce qui est déjà à jour (`--force` pour tout refaire). Ajouter un original dans
+`media-src/`, relancer `npm run media`, commiter `public/media/web/`.
+
+### Afficher un média
+
+- **Image** : `<Picture src="/media/photo-1.jpg" alt="…" />` (composant `src/components/Picture.astro`).
+  On passe le chemin **d'origine** `/media/…` ; `Picture` sert automatiquement la meilleure
+  variante (`<picture>` AVIF → WebP → repli) depuis `/media/web/`. Tous les autres attributs
+  (`style`, `loading`, `fetchpriority`, `aria-*`…) sont transmis à la `<img>`. `display:contents`
+  → mise en page inchangée. **Ne jamais référencer `/media/web/…` à la main** dans le markup.
+- **Fond CSS** : `background:url('/media/web/fond-3.webp')` (pointe directement vers la variante WebP servie).
+- Données structurées / og:image (`Layout.astro`) : pointent vers `/media/web/…` (formats jpg/png pour les crawlers).
+
 ## i18n — Bilingue FR / EN
 
 Site bilingue : **FR à la racine** (`/`, `/soins`…), **EN sous `/en`** (`/en`, `/en/soins`…), via l'i18n natif d'Astro (`astro.config.mjs` → bloc `i18n`, `prefixDefaultLocale: false`).
