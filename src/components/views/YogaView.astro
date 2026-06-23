@@ -6,10 +6,10 @@
  * monter cette vue avec la bonne langue.
  */
 import Layout from '../../layouts/Layout.astro';
+import Picture from '../Picture.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
-import { yoga } from '../../i18n/yoga';
-import { common } from '../../i18n/common';
+import { getPageContent, getSettings } from '../../lib/sanity/content';
 import { localizePath } from '../../i18n/utils';
 import { HTML_LANG, type Lang } from '../../i18n/config';
 import { serviceLd } from '../../lib/schema.ts';
@@ -18,8 +18,8 @@ interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
-const t = yoga[lang];
-const c = common[lang];
+const t = await getPageContent('yoga', lang);
+const c = await getSettings(lang);
 
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
@@ -61,13 +61,13 @@ const serviceSchema = serviceLd({
     <div class="container">
       <div class="grid-3">
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <img src="/media/9.jpg" alt={t.photos.alt1} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+          <Picture src="/media/9.jpg" alt={t.photos.alt1} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <img src="/media/10.jpg" alt={t.photos.alt2} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+          <Picture src="/media/10.jpg" alt={t.photos.alt2} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <img src="/media/11.jpg" alt={t.photos.alt3} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+          <Picture src="/media/11.jpg" alt={t.photos.alt3} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
         </div>
       </div>
     </div>
@@ -89,12 +89,12 @@ const serviceSchema = serviceLd({
   </section>
 
   <div class="service-icon-section" style="position:relative;overflow:hidden;margin-top:40px">
-    <div style="position:absolute;inset:0;background:url('/media/fond-3.png') center/cover;opacity:0.5"></div>
+    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover;opacity:0.5"></div>
     <div class="service-icon-grid service-icon-grid--3 service-icon-grid--sep" style="position:relative">
       {t.principles.map((pr) => (
         <div class="service-icon-card">
           <div class="service-icon-card__icon">
-            <img src={PRINCIPLE_ICONS[pr.key]} alt={pr.title} />
+            <Picture src={PRINCIPLE_ICONS[pr.key]} alt={pr.title} />
           </div>
           <div class="service-icon-card__meta">
             <h4 class="service-icon-card__name">{pr.title}</h4>
@@ -106,7 +106,7 @@ const serviceSchema = serviceLd({
   </div>
 
   <section class="section" style="position:relative;overflow:hidden;color:#fff;background:#e8612a">
-    <div style="position:absolute;inset:0;background:url('/media/fond-2.png') center/cover;mix-blend-mode:multiply;opacity:0.85"></div>
+    <div style="position:absolute;inset:0;background:url('/media/web/fond-2.webp') center/cover;mix-blend-mode:multiply;opacity:0.85"></div>
     <div style="position:absolute;inset:0;background:rgba(13,10,31,0.55)"></div>
     <div class="container" style="position:relative">
       <div class="grid-label-content">

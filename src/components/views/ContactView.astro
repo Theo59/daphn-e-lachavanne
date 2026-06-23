@@ -6,10 +6,10 @@
  * honeypot) ; seule l'action est localisée pour le retour ?ok=1.
  */
 import Layout from '../../layouts/Layout.astro';
+import Picture from '../Picture.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
-import { contact } from '../../i18n/contact';
-import { common } from '../../i18n/common';
+import { getPageContent, getSettings } from '../../lib/sanity/content';
 import { localizePath } from '../../i18n/utils';
 import type { Lang } from '../../i18n/config';
 
@@ -17,8 +17,8 @@ interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
-const t = contact[lang];
-const c = common[lang];
+const t = await getPageContent('contact', lang);
+const c = await getSettings(lang);
 
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 ---
@@ -81,7 +81,7 @@ const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
           <h2 class="t-label" style="margin-bottom:28px">{t.booking.label}</h2>
 
           <div style="position:relative;border-radius:6px;overflow:hidden;min-height:220px;margin-bottom:36px">
-            <img src="/media/fond-2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+            <Picture src="/media/fond-2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
             <div style="position:absolute;inset:0;background:rgba(13,10,31,0.3)"></div>
             <div style="position:relative;padding:32px;color:#fff">
               <span style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;opacity:0.85">{t.booking.eyebrow}</span>

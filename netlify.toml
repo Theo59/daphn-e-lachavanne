@@ -7,6 +7,13 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Studio Sanity (SPA client-side) : toutes les sous-routes /admin/* servent la page /admin.
+# Le site public reste statique ; seul ce rewrite est nécessaire (pas d'adaptateur serveur).
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin"
+  status = 200
+
 # Cache long terme pour les assets Astro (hachés)
 [[headers]]
   for = "/_astro/*"

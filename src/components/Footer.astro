@@ -1,10 +1,10 @@
 ---
 import Logo from './Logo.astro';
-import { common } from '../i18n/common';
+import { getSettings } from '../lib/sanity/content';
 import { getLangFromUrl, localizePath } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
-const c = common[lang];
+const c = await getSettings(lang);
 const links = c.nav.links as Record<string, string>;
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 ---

@@ -1,18 +1,18 @@
 ---
 /**
  * Vue partagée des mentions légales. Rendue pour `/mentions-legales` (FR) et
- * `/en/mentions-legales` (EN). Tout le texte vient de src/i18n/legal.ts.
- * Les routes ne font que monter cette vue avec la bonne langue.
+ * `/en/mentions-legales` (EN). Le contenu vient de Sanity au build (getPageContent),
+ * avec fallback sur src/i18n/legal.ts. Les routes ne font que monter cette vue avec la bonne langue.
  */
 import Layout from '../../layouts/Layout.astro';
-import { legal } from '../../i18n/legal';
+import { getPageContent } from '../../lib/sanity/content';
 import type { Lang } from '../../i18n/config';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
-const t = legal[lang];
+const t = await getPageContent('legal', lang);
 ---
 
 <Layout

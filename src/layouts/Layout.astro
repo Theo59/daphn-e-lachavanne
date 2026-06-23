@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { common } from '../i18n/common';
+import { getSettings } from '../lib/sanity/content';
 import { OG_LOCALE, HTML_LANG, DEFAULT_LOCALE } from '../i18n/config';
 import { getLangFromUrl, getAlternates } from '../i18n/utils';
 
@@ -18,7 +18,7 @@ interface Props {
 
 // Langue dérivée de l'URL (/en/... → 'en', sinon 'fr').
 const lang = getLangFromUrl(Astro.url);
-const c = common[lang];
+const c = await getSettings(lang);
 
 const {
   title = c.siteName,
@@ -59,7 +59,7 @@ const structuredData = {
       description: c.schema.businessDescription,
       url: base,
       image: `${base}/og-image.jpg`,
-      logo: `${base}/media/logo-noir.png`,
+      logo: `${base}/media/web/logo-noir.png`,
       email: 'hello@daphnelachavanne.com',
       priceRange: '60-780 €',
       currenciesAccepted: 'EUR',
@@ -104,7 +104,7 @@ const structuredData = {
       jobTitle: c.schema.personJobTitle,
       worksFor: { '@id': `${base}/#business` },
       url: `${base}/about`,
-      image: `${base}/media/photo-1.jpg`,
+      image: `${base}/media/web/photo-1.jpg`,
       knowsAbout: ['Drainage lymphatique', 'Méthode Renata França', 'Yoga', 'Breathwork', 'Pilates', 'Reiki'],
       hasCredential: [
         { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Méthode Renata França, drainage lymphatique', dateCreated: '2013' },

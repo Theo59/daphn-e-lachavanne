@@ -1,16 +1,15 @@
 ---
 /**
  * Vue partagée de la page d'accueil. Rendue à la fois pour `/` (FR) et `/en` (EN).
- * Tout le texte vient du dictionnaire src/i18n/home.ts (+ common.ts).
- * Les routes (src/pages/index.astro, src/pages/en/index.astro) ne font que
- * monter cette vue avec la bonne langue.
+ * Le contenu vient de Sanity au build (getPageContent/getSettings), avec fallback
+ * sur les dicos src/i18n/*.ts. Les routes ne font que monter cette vue avec la bonne langue.
  */
 import Layout from '../../layouts/Layout.astro';
 import Sym from '../Sym.astro';
+import Picture from '../Picture.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
-import { home } from '../../i18n/home';
-import { common } from '../../i18n/common';
+import { getPageContent, getSettings } from '../../lib/sanity/content';
 import { localizePath } from '../../i18n/utils';
 import type { Lang } from '../../i18n/config';
 
@@ -18,8 +17,8 @@ interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
-const t = home[lang];
-const c = common[lang];
+const t = await getPageContent('home', lang);
+const c = await getSettings(lang);
 
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
@@ -42,7 +41,7 @@ const PRACTICE_ICONS: Record<string, string> = {
   <!-- HERO -->
   <section class="hero">
     <div class="hero__bg">
-      <img src="/media/photo-2.jpg" alt={t.hero.imgAlt} style="filter:contrast(1.1) brightness(0.72)" loading="eager" fetchpriority="high" decoding="async" />
+      <Picture src="/media/photo-2.jpg" alt={t.hero.imgAlt} style="filter:contrast(1.1) brightness(0.72)" loading="eager" fetchpriority="high" decoding="async" />
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
@@ -64,7 +63,7 @@ const PRACTICE_ICONS: Record<string, string> = {
   <!-- BIENVENUE -->
   <section class="section" style="position:relative;overflow:hidden">
     <div style="position:absolute;right:-120px;top:-80px;width:500px;opacity:0.12;pointer-events:none;transform:rotate(-15deg)">
-      <img src="/media/fond-formes.png" alt="" style="width:100%;display:block" />
+      <Picture src="/media/fond-formes.png" alt="" style="width:100%;display:block" />
     </div>
     <div class="container" style="position:relative">
       <div class="grid-2" style="align-items:center">
@@ -85,7 +84,7 @@ const PRACTICE_ICONS: Record<string, string> = {
 
   <!-- PRATIQUES - icon grid -->
   <section class="service-icon-section" style="position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background:url('/media/fond-3.png') center/cover"></div>
+    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover"></div>
     <div class="container" style="position:relative;padding-top:56px;padding-bottom:40px;border-bottom:1px solid rgba(13,10,31,0.1)">
       <div style="display:flex;justify-content:space-between;align-items:baseline">
         <h3 class="t-label" style="font-size:12px">{t.practices.label}</h3>
@@ -98,7 +97,7 @@ const PRACTICE_ICONS: Record<string, string> = {
       {t.practices.items.map((item) => (
         <a href={localizePath(`/${item.key}`, lang)} class="service-icon-card">
           <div class="service-icon-card__icon">
-            <img src={PRACTICE_ICONS[item.key]} alt={item.name} />
+            <Picture src={PRACTICE_ICONS[item.key]} alt={item.name} />
           </div>
           <div class="service-icon-card__meta">
             <h4 class="service-icon-card__name">{item.name}</h4>
@@ -111,7 +110,7 @@ const PRACTICE_ICONS: Record<string, string> = {
 
   <!-- MON CABINET -->
   <section class="section section--dark" style="position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background:url('/media/fond-2.png') center/cover #d4561f"></div>
+    <div style="position:absolute;inset:0;background:url('/media/web/fond-2.webp') center/cover #d4561f"></div>
     <div style="position:absolute;inset:0;background:rgba(13,10,31,0.5)"></div>
     <div class="container" style="position:relative">
       <div class="grid-2" style="align-items:center">
@@ -124,7 +123,7 @@ const PRACTICE_ICONS: Record<string, string> = {
           <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:28px">{c.cta.book}</a>
         </div>
         <div class="photo-wrap" style="aspect-ratio:16/10;border-radius:2px">
-          <img src="/media/photo-1.jpg" alt={t.cabinet.imgAlt} loading="lazy" decoding="async" style="filter:contrast(1.05) brightness(0.96)" />
+          <Picture src="/media/photo-1.jpg" alt={t.cabinet.imgAlt} loading="lazy" decoding="async" style="filter:contrast(1.05) brightness(0.96)" />
           <span style="position:absolute;bottom:14px;left:16px;z-index:1;color:#fff;font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-shadow:0 1px 12px rgba(13,10,31,0.6)">{t.cabinet.caption}</span>
         </div>
       </div>
@@ -134,7 +133,7 @@ const PRACTICE_ICONS: Record<string, string> = {
   <!-- TÉMOIGNAGES -->
   <section class="section" style="position:relative;overflow:hidden;padding-top:calc(7rem + 24px);padding-bottom:calc(7rem + 24px)">
     <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:600px;height:600px;opacity:0.07;pointer-events:none">
-      <img src="/media/cercle-trace.png" alt="" style="width:100%;height:100%;object-fit:contain" />
+      <Picture src="/media/cercle-trace.png" alt="" style="width:100%;height:100%;object-fit:contain" />
     </div>
     <div class="container" style="position:relative">
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:44px">
@@ -144,7 +143,7 @@ const PRACTICE_ICONS: Record<string, string> = {
       <div class="grid-3">
         {t.testimonials.items.map((item) => (
           <figure class="testimonial">
-            <img src="/media/cercle-trace.png" alt="" aria-hidden="true" style="width:32px;height:32px;object-fit:contain;mix-blend-mode:multiply" />
+            <Picture src="/media/cercle-trace.png" alt="" aria-hidden="true" style="width:32px;height:32px;object-fit:contain;mix-blend-mode:multiply" />
             <blockquote>« {item.quote} »</blockquote>
             <figcaption>{item.author}</figcaption>
           </figure>
@@ -161,7 +160,7 @@ const PRACTICE_ICONS: Record<string, string> = {
   <section class="section" style="padding-top:0">
     <div class="container">
       <div class="cta-band" style="background:#e8612a">
-        <div style="position:absolute;inset:0;background:url('/media/fond-2.png') center/cover;mix-blend-mode:multiply;opacity:0.85"></div>
+        <div style="position:absolute;inset:0;background:url('/media/web/fond-2.webp') center/cover;mix-blend-mode:multiply;opacity:0.85"></div>
         <div style="position:absolute;inset:0;background:rgba(13,10,31,0.18)"></div>
         <div class="cta-band__content">
           <h3 class="cta-band__title">{t.ctaBand.titleLine1}<br />{t.ctaBand.titleLine2}</h3>

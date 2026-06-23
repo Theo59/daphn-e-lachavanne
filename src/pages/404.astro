@@ -1,12 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Sym from '../components/Sym.astro';
-import { legal } from '../i18n/legal';
+import { getPageContent } from '../lib/sanity/content';
 
 // En statique Astro ne sert qu'un seul /404.html (pas de /en/404).
 // On rend donc la page bilingue : FR puis l'équivalent EN.
-const fr = legal.fr.notFound;
-const en = legal.en.notFound;
+const legalFr = await getPageContent('legal', 'fr');
+const legalEn = await getPageContent('legal', 'en');
+const fr = legalFr.notFound;
+const en = legalEn.notFound;
 
 // Liens de navigation : libellé FR + EN, vers les chemins FR canoniques.
 const navLinks = fr.links.map((l, i) => ({
