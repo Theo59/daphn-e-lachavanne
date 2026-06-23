@@ -1,15 +1,17 @@
 ---
 /**
- * Vue partagée de la page d'accueil. Rendue à la fois pour `/` (FR) et `/en` (EN).
- * Le contenu vient de Sanity au build (getPageContent/getSettings), avec fallback
- * sur les dicos src/i18n/*.ts. Les routes ne font que monter cette vue avec la bonne langue.
+ * Vue partagée de la page d'accueil (`/` FR + `/en` EN).
+ * Texte ET images viennent de Sanity au build (getPageContent/getSettings) ; les
+ * images sont servies par le CDN Sanity via <SanityImage>/urlFor. Les visuels de
+ * marque (fonds, décor) viennent du groupe `brand` des réglages.
  */
 import Layout from '../../layouts/Layout.astro';
 import Sym from '../Sym.astro';
-import Picture from '../Picture.astro';
+import SanityImage from '../SanityImage.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { urlFor, fileUrl, hasImage } from '../../lib/sanity/image';
 import { localizePath } from '../../i18n/utils';
 import type { Lang } from '../../i18n/config';
 
@@ -22,13 +24,17 @@ const c = await getSettings(lang);
 
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
-// Icônes des cartes « pratiques », par clé (données structurelles, identiques FR/EN).
-const PRACTICE_ICONS: Record<string, string> = {
-  soins: '/media/design-sans-titre-34.png',
-  breathwork: '/media/illustration_select_21.png',
-  yoga: '/media/illustration_select_30.png',
-  pilates: '/media/illustration_select_38.png',
-};
+// Images (champs Sanity, hors typage des dicos texte).
+const heroImage = (t.hero as any).image;
+const heroVideoUrl = fileUrl((t.hero as any).video?.asset?._ref);
+const cabinetImage = (t.cabinet as any).image;
+const brand = (c as any).brand ?? {};
+
+// URL CDN pour les fonds CSS (vide si l'image n'est pas définie).
+const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
+const gradient1 = bg(brand.gradient1);
+const gradient2 = bg(brand.gradient2);
+const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : undefined;
 ---
 
 <Layout
@@ -41,7 +47,13 @@ const PRACTICE_ICONS: Record<string, string> = {
   <!-- HERO -->
   <section class="hero">
     <div class="hero__bg">
-      <Picture src="/media/photo-2.jpg" alt={t.hero.imgAlt} style="filter:contrast(1.1) brightness(0.72)" loading="eager" fetchpriority="high" decoding="async" />
+      {heroVideoUrl ? (
+        <video autoplay muted loop playsinline poster={heroPoster} style="width:100%;height:100%;object-fit:cover;filter:contrast(1.1) brightness(0.72)">
+          <source src={heroVideoUrl} type="video/mp4" />
+        </video>
+      ) : (
+        <SanityImage image={heroImage} alt={t.hero.imgAlt} widths={[768, 1280, 1920]} sizes="100vw" style="filter:contrast(1.1) brightness(0.72)" loading="eager" fetchpriority="high" decoding="async" />
+      )}
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
@@ -63,7 +75,7 @@ const PRACTICE_ICONS: Record<string, string> = {
   <!-- BIENVENUE -->
   <section class="section" style="position:relative;overflow:hidden">
     <div style="position:absolute;right:-120px;top:-80px;width:500px;opacity:0.12;pointer-events:none;transform:rotate(-15deg)">
-      <Picture src="/media/fond-formes.png" alt="" style="width:100%;display:block" />
+      <SanityImage image={brand.shapes} alt="" width={500} style="width:100%;display:block" />
     </div>
     <div class="container" style="position:relative">
       <div class="grid-2" style="align-items:center">
@@ -84,7 +96,7 @@ const PRACTICE_ICONS: Record<string, string> = {
 
   <!-- PRATIQUES - icon grid -->
   <section class="service-icon-section" style="position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover"></div>
+    <div style={`position:absolute;inset:0;background:url('${gradient2}') center/cover`}></div>
     <div class="container" style="position:relative;padding-top:56px;padding-bottom:40px;border-bottom:1px solid rgba(13,10,31,0.1)">
       <div style="display:flex;justify-content:space-between;align-items:baseline">
         <h3 class="t-label" style="font-size:12px">{t.practices.label}</h3>
@@ -97,7 +109,7 @@ const PRACTICE_ICONS: Record<string, string> = {
       {t.practices.items.map((item) => (
         <a href={localizePath(`/${item.key}`, lang)} class="service-icon-card">
           <div class="service-icon-card__icon">
-            <Picture src={PRACTICE_ICONS[item.key]} alt={item.name} />
+            <SanityImage image={(item as any).icon} alt={item.name} width={240} />
           </div>
           <div class="service-icon-card__meta">
             <h4 class="service-icon-card__name">{item.name}</h4>
@@ -110,7 +122,7 @@ const PRACTICE_ICONS: Record<string, string> = {
 
   <!-- MON CABINET -->
   <section class="section section--dark" style="position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background:url('/media/web/fond-2.webp') center/cover #d4561f"></div>
+    <div style={`position:absolute;inset:0;background:url('${gradient1}') center/cover #d4561f`}></div>
     <div style="position:absolute;inset:0;background:rgba(13,10,31,0.5)"></div>
     <div class="container" style="position:relative">
       <div class="grid-2" style="align-items:center">
@@ -123,7 +135,7 @@ const PRACTICE_ICONS: Record<string, string> = {
           <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:28px">{c.cta.book}</a>
         </div>
         <div class="photo-wrap" style="aspect-ratio:16/10;border-radius:2px">
-          <Picture src="/media/photo-1.jpg" alt={t.cabinet.imgAlt} loading="lazy" decoding="async" style="filter:contrast(1.05) brightness(0.96)" />
+          <SanityImage image={cabinetImage} alt={t.cabinet.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="lazy" decoding="async" style="filter:contrast(1.05) brightness(0.96)" />
           <span style="position:absolute;bottom:14px;left:16px;z-index:1;color:#fff;font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-shadow:0 1px 12px rgba(13,10,31,0.6)">{t.cabinet.caption}</span>
         </div>
       </div>
@@ -133,7 +145,7 @@ const PRACTICE_ICONS: Record<string, string> = {
   <!-- TÉMOIGNAGES -->
   <section class="section" style="position:relative;overflow:hidden;padding-top:calc(7rem + 24px);padding-bottom:calc(7rem + 24px)">
     <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:600px;height:600px;opacity:0.07;pointer-events:none">
-      <Picture src="/media/cercle-trace.png" alt="" style="width:100%;height:100%;object-fit:contain" />
+      <SanityImage image={brand.circle} alt="" width={600} style="width:100%;height:100%;object-fit:contain" />
     </div>
     <div class="container" style="position:relative">
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:44px">
@@ -143,7 +155,7 @@ const PRACTICE_ICONS: Record<string, string> = {
       <div class="grid-3">
         {t.testimonials.items.map((item) => (
           <figure class="testimonial">
-            <Picture src="/media/cercle-trace.png" alt="" aria-hidden="true" style="width:32px;height:32px;object-fit:contain;mix-blend-mode:multiply" />
+            <SanityImage image={brand.circle} alt="" aria-hidden="true" width={64} style="width:32px;height:32px;object-fit:contain;mix-blend-mode:multiply" />
             <blockquote>« {item.quote} »</blockquote>
             <figcaption>{item.author}</figcaption>
           </figure>
@@ -160,7 +172,7 @@ const PRACTICE_ICONS: Record<string, string> = {
   <section class="section" style="padding-top:0">
     <div class="container">
       <div class="cta-band" style="background:#e8612a">
-        <div style="position:absolute;inset:0;background:url('/media/web/fond-2.webp') center/cover;mix-blend-mode:multiply;opacity:0.85"></div>
+        <div style={`position:absolute;inset:0;background:url('${gradient1}') center/cover;mix-blend-mode:multiply;opacity:0.85`}></div>
         <div style="position:absolute;inset:0;background:rgba(13,10,31,0.18)"></div>
         <div class="cta-band__content">
           <h3 class="cta-band__title">{t.ctaBand.titleLine1}<br />{t.ctaBand.titleLine2}</h3>

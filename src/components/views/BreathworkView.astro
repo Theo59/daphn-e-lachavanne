@@ -7,9 +7,10 @@
  */
 import Layout from '../../layouts/Layout.astro';
 import Prose from '../Prose.astro';
-import Picture from '../Picture.astro';
+import SanityImage from '../SanityImage.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { urlFor, hasImage } from '../../lib/sanity/image';
 import { localizePath } from '../../i18n/utils';
 import { serviceLd } from '../../lib/schema.ts';
 import { HTML_LANG, type Lang } from '../../i18n/config';
@@ -23,12 +24,10 @@ const c = await getSettings(lang);
 
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
-// Icônes des cartes « principes », par clé (données structurelles, identiques FR/EN).
-const PRINCIPLE_ICONS: Record<string, string> = {
-  coherence: '/media/illustration_select_21.png',
-  holotropic: '/media/illustration_select_21.png',
-  pranayama: '/media/design-sans-titre-34.png',
-};
+// Visuels de marque (réglages) + URL CDN pour les fonds CSS.
+const brand = (c as any).brand ?? {};
+const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
+const gradient2 = bg(brand.gradient2);
 
 const serviceSchema = serviceLd({
   name: t.schema.name,
@@ -61,10 +60,10 @@ const serviceSchema = serviceLd({
     <div class="container">
       <div class="grid-3">
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <Picture src="/media/photo-2.jpg" alt={t.gallery.photo1Alt} style="filter:contrast(1.1) brightness(0.82)" loading="lazy" />
+          <SanityImage image={(t.gallery as any).photo1} alt={t.gallery.photo1Alt} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" style="filter:contrast(1.1) brightness(0.82)" loading="lazy" decoding="async" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <Picture src="/media/photo-3.jpg" alt={t.gallery.photo2Alt} style="filter:contrast(1.1) brightness(0.82)" loading="lazy" />
+          <SanityImage image={(t.gallery as any).photo2} alt={t.gallery.photo2Alt} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" style="filter:contrast(1.1) brightness(0.82)" loading="lazy" decoding="async" />
         </div>
         <div style="position:relative;aspect-ratio:3/4;width:100%;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
           <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>
@@ -93,12 +92,12 @@ const serviceSchema = serviceLd({
   </section>
 
   <div class="service-icon-section" style="position:relative;overflow:hidden;margin-top:40px">
-    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover;opacity:0.5"></div>
+    <div style={`position:absolute;inset:0;background:url('${gradient2}') center/cover;opacity:0.5`}></div>
     <div class="service-icon-grid service-icon-grid--3 service-icon-grid--sep" style="position:relative">
       {t.principles.map((pr) => (
         <div class="service-icon-card">
           <div class="service-icon-card__icon">
-            <Picture src={PRINCIPLE_ICONS[pr.key]} alt={pr.title} />
+            <SanityImage image={(pr as any).icon} alt={pr.title} width={240} />
           </div>
           <div class="service-icon-card__meta">
             <h4 class="service-icon-card__name">{pr.title}</h4>
@@ -110,7 +109,7 @@ const serviceSchema = serviceLd({
   </div>
 
   <section class="section" style="position:relative;overflow:hidden;color:#fff">
-    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover #16066e"></div>
+    <div style={`position:absolute;inset:0;background:url('${gradient2}') center/cover #16066e`}></div>
     <div style="position:absolute;inset:0;background:rgba(13,10,31,0.55)"></div>
     <div class="container" style="position:relative">
       <div class="grid-label-content">

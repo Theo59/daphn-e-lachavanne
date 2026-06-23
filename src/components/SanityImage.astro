@@ -1,0 +1,42 @@
+---
+/**
+ * <SanityImage> — rend une <img> servie par le CDN Sanity (format auto avif/webp).
+ * Remplace l'ancien <Picture> local. On lui passe l'objet image Sanity (`image`) +
+ * l'`alt` (qui vit dans les dicos texte) ; tous les autres attributs (`style`, `class`,
+ * `loading`, `fetchpriority`, `decoding`, `aria-*`…) sont transmis tels quels à la <img>.
+ *
+ * - `widths` → génère un `srcset` multi-largeurs (responsive). `sizes` accompagne.
+ * - `width` (seul) → une seule URL à cette largeur (icônes, petites images).
+ * - Si `image` absent → ne rend rien (pas de markup cassé).
+ */
+import { urlFor, hasImage } from '../lib/sanity/image';
+
+interface Props {
+  image: unknown;
+  alt?: string;
+  width?: number;
+  widths?: number[];
+  sizes?: string;
+  [key: string]: unknown;
+}
+
+const { image, alt = '', width, widths, sizes, ...rest } = Astro.props;
+
+const ok = hasImage(image);
+const base = ok ? urlFor(image as any) : null;
+
+let src: string | undefined;
+let srcset: string | undefined;
+if (base) {
+  if (widths && widths.length) {
+    srcset = widths.map((w) => `${base.width(w).url()} ${w}w`).join(', ');
+    src = base.width(widths[widths.length - 1]).url();
+  } else {
+    src = base.width(width ?? 1200).url();
+  }
+}
+---
+
+{src && (
+  <img src={src} srcset={srcset} sizes={srcset ? (sizes ?? '100vw') : undefined} alt={alt} {...rest} />
+)}

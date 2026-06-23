@@ -6,10 +6,11 @@
  * monter cette vue avec la bonne langue.
  */
 import Layout from '../../layouts/Layout.astro';
-import Picture from '../Picture.astro';
+import SanityImage from '../SanityImage.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { urlFor, hasImage } from '../../lib/sanity/image';
 import { localizePath } from '../../i18n/utils';
 import { HTML_LANG, type Lang } from '../../i18n/config';
 import { serviceLd } from '../../lib/schema.ts';
@@ -23,12 +24,11 @@ const c = await getSettings(lang);
 
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
-// Icônes des principes, par clé (données structurelles, identiques FR/EN).
-const PRINCIPLE_ICONS: Record<string, string> = {
-  pranayama: '/media/illustration_select_21.png',
-  posture: '/media/illustration_select_30.png',
-  meditation: '/media/illustration_select_38.png',
-};
+// Visuels de marque (fonds CSS) depuis le groupe `brand` des réglages.
+const brand = (c as any).brand ?? {};
+const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
+const gradient1 = bg(brand.gradient1);
+const gradient2 = bg(brand.gradient2);
 
 const serviceSchema = serviceLd({
   name: t.schema.name,
@@ -61,13 +61,13 @@ const serviceSchema = serviceLd({
     <div class="container">
       <div class="grid-3">
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <Picture src="/media/9.jpg" alt={t.photos.alt1} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+          <SanityImage image={(t.photos as any).image1} alt={t.photos.alt1} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" style="filter:grayscale(1) contrast(0.95)" loading="lazy" decoding="async" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <Picture src="/media/10.jpg" alt={t.photos.alt2} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+          <SanityImage image={(t.photos as any).image2} alt={t.photos.alt2} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" style="filter:grayscale(1) contrast(0.95)" loading="lazy" decoding="async" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <Picture src="/media/11.jpg" alt={t.photos.alt3} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+          <SanityImage image={(t.photos as any).image3} alt={t.photos.alt3} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" style="filter:grayscale(1) contrast(0.95)" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
@@ -89,12 +89,12 @@ const serviceSchema = serviceLd({
   </section>
 
   <div class="service-icon-section" style="position:relative;overflow:hidden;margin-top:40px">
-    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover;opacity:0.5"></div>
+    <div style={`position:absolute;inset:0;background:url('${gradient2}') center/cover;opacity:0.5`}></div>
     <div class="service-icon-grid service-icon-grid--3 service-icon-grid--sep" style="position:relative">
       {t.principles.map((pr) => (
         <div class="service-icon-card">
           <div class="service-icon-card__icon">
-            <Picture src={PRINCIPLE_ICONS[pr.key]} alt={pr.title} />
+            <SanityImage image={(pr as any).icon} alt={pr.title} width={240} />
           </div>
           <div class="service-icon-card__meta">
             <h4 class="service-icon-card__name">{pr.title}</h4>
@@ -106,7 +106,7 @@ const serviceSchema = serviceLd({
   </div>
 
   <section class="section" style="position:relative;overflow:hidden;color:#fff;background:#e8612a">
-    <div style="position:absolute;inset:0;background:url('/media/web/fond-2.webp') center/cover;mix-blend-mode:multiply;opacity:0.85"></div>
+    <div style={`position:absolute;inset:0;background:url('${gradient1}') center/cover;mix-blend-mode:multiply;opacity:0.85`}></div>
     <div style="position:absolute;inset:0;background:rgba(13,10,31,0.55)"></div>
     <div class="container" style="position:relative">
       <div class="grid-label-content">

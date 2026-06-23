@@ -36,6 +36,8 @@ export default defineType({
         defineField({ name: 'sub', title: 'Sous-titre', type: 'text', rows: 2 }),
         defineField({ name: 'footer', type: 'string' }),
         defineField({ name: 'imgAlt', title: 'Texte alternatif image', type: 'string' }),
+        defineField({ name: 'image', title: 'Image de fond', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'video', title: 'Vidéo de fond (mp4, optionnel)', type: 'file', options: { accept: 'video/mp4' } }),
       ],
     }),
 
@@ -72,6 +74,7 @@ export default defineType({
                 defineField({ name: 'key', title: 'Clé (soins/breathwork/yoga/pilates)', type: 'string' }),
                 defineField({ name: 'name', type: 'string' }),
                 defineField({ name: 'desc', type: 'string' }),
+                defineField({ name: 'icon', title: 'Icône', type: 'image', options: { hotspot: true } }),
               ],
               preview: { select: { title: 'name', subtitle: 'key' } },
             }),
@@ -92,6 +95,7 @@ export default defineType({
         defineField({ name: 'body', type: 'text', rows: 3 }),
         defineField({ name: 'caption', type: 'string' }),
         defineField({ name: 'imgAlt', type: 'string' }),
+        defineField({ name: 'image', title: 'Photo du cabinet', type: 'image', options: { hotspot: true } }),
       ],
     }),
 

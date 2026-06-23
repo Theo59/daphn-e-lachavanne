@@ -1,20 +1,28 @@
 ---
-import Picture from './Picture.astro';
+import SanityImage from './SanityImage.astro';
+import { getSettings } from '../lib/sanity/content';
+import { getLangFromUrl } from '../i18n/utils';
+
 interface Props {
   size?: number;
   mark?: boolean;
   class?: string;
 }
 const { size = 22, mark = true, class: cls = '' } = Astro.props;
+
+// Le logo (sombre) vient des « Visuels de marque » Sanity ; recoloré en CSS (noir / blanc en hero).
+const c = await getSettings(getLangFromUrl(Astro.url));
+const logo = (c as any).brand?.logo;
 ---
 
 <span class={`logo ${cls}`} style={`font-size:${size}px;gap:${size * 0.5}px`}>
-  {mark && (
-    <Picture
-      src="/media/logo-noir.png"
+  {mark && logo && (
+    <SanityImage
+      image={logo}
       alt=""
       aria-hidden="true"
       class="logo-mark"
+      width={160}
       style={`height:${size * 1.4}px;width:auto`}
     />
   )}

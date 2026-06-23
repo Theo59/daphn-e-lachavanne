@@ -81,34 +81,26 @@ site/
 - Responsive : breakpoint principal à 900px, secondaire à 560px
 - `--pad: clamp(24px, 4vw, 56px)` gère le padding horizontal
 
-## Médias — optimisation web
+## Médias — dans Sanity (CDN)
 
-Deux dossiers, séparation source / servi :
+**Toutes les images vivent dans Sanity** (CDN, optim auto avif/webp à la volée, uploadables par la cliente dans `/admin`). Plus de pipeline d'optim local. `media-src/` ne sert plus que d'archive locale des originaux (gitignoré pour les vidéos lourdes).
 
-- **`media-src/`** (racine, **hors déploiement**) : les originaux lourds (sources). Modifiés à la main, jamais servis.
-- **`public/media/web/`** (servi, **commité**) : les versions optimisées générées. **Seul ce dossier part en prod.**
+### Afficher une image
 
-### Régénérer après ajout/modif d'un média
+- **Composant** : `<SanityImage image={objetImageSanity} alt={texte} width={…} | widths={[…]} sizes="…" style/loading/… />` (`src/components/SanityImage.astro`). Rend une `<img>` servie par le CDN ; ne rend rien si l'image est absente. L'**alt vient du dico texte** (`src/i18n/*.ts`).
+- **Helper** : `urlFor(img).width(w).url()` et `fileUrl(ref)` (`src/lib/sanity/image.ts`).
+- **Fond CSS** : `style={\`background:url('${urlFor(brand.gradient1).width(1600).url()}')\`}`.
+- **Visuels de marque partagés** (logo, fonds dégradés, décor, portrait) : groupe `brand` des réglages → `const brand = (c as any).brand` puis `brand.logo`/`gradient1`/`circle`/… (édités une fois dans Réglages, réutilisés partout).
+- **Vidéo** : champ `file` (mp4) ; URL via `fileUrl(t.…video?.asset?._ref)` rendue en `<video>`.
+- Données structurées / `Layout.astro` : `logo`/`image` (person) dérivés de `brand.logo`/`brand.portrait` ; `og-image.jpg`, favicon restent locaux (assets techniques).
 
-```bash
-npm run media            # media-src/ → public/media/web/ (AVIF + WebP + repli, max 2000px)
-npm run media -- --dry   # aperçu sans écrire
-```
+### Champs image dans Sanity
 
-Le script `scripts/optimize-media.mjs` (sharp + ffmpeg) produit par image 3 variantes
-(`.avif`, `.webp`, format d'origine compressé), et par vidéo un `.mp4` + `.webm` + poster.
-Il saute ce qui est déjà à jour (`--force` pour tout refaire). Ajouter un original dans
-`media-src/`, relancer `npm run media`, commiter `public/media/web/`.
+Les schémas (`src/sanity/schemaTypes/*.ts`) portent des champs `type:'image'` (`options:{hotspot:true}`) miroir des emplacements. `deepFill` (`content.ts`) laisse passer ces champs (hors typage des dicos texte → accès castés `(t.x as any).image` dans les vues).
 
-### Afficher un média
+### Importer / re-référencer des images (one-shot)
 
-- **Image** : `<Picture src="/media/photo-1.jpg" alt="…" />` (composant `src/components/Picture.astro`).
-  On passe le chemin **d'origine** `/media/…` ; `Picture` sert automatiquement la meilleure
-  variante (`<picture>` AVIF → WebP → repli) depuis `/media/web/`. Tous les autres attributs
-  (`style`, `loading`, `fetchpriority`, `aria-*`…) sont transmis à la `<img>`. `display:contents`
-  → mise en page inchangée. **Ne jamais référencer `/media/web/…` à la main** dans le markup.
-- **Fond CSS** : `background:url('/media/web/fond-3.webp')` (pointe directement vers la variante WebP servie).
-- Données structurées / og:image (`Layout.astro`) : pointent vers `/media/web/…` (formats jpg/png pour les crawlers).
+`scripts/migrate-media.ts` (`npm run sanity:migrate-media`, token requis) uploade les fichiers de `media-src/` et les référence dans les docs (idempotent, dédoublonné par hash). Sert au seed initial ; ensuite la cliente change les images directement dans `/admin`.
 
 ## i18n — Bilingue FR / EN
 

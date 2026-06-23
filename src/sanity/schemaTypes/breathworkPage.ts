@@ -44,7 +44,9 @@ export default defineType({
       options: { collapsible: true },
       fields: [
         defineField({ name: 'photo1Alt', title: 'Texte alternatif photo 1', type: 'string' }),
+        defineField({ name: 'photo1', title: 'Photo 1', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'photo2Alt', title: 'Texte alternatif photo 2', type: 'string' }),
+        defineField({ name: 'photo2', title: 'Photo 2', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'videoBadge', type: 'string' }),
         defineField({ name: 'videoLabel', type: 'string' }),
       ],
@@ -72,6 +74,7 @@ export default defineType({
             defineField({ name: 'key', title: 'Clé (coherence/holotropic/pranayama)', type: 'string' }),
             defineField({ name: 'title', title: 'Titre', type: 'string' }),
             defineField({ name: 'text', type: 'text', rows: 3 }),
+            defineField({ name: 'icon', title: 'Icône', type: 'image', options: { hotspot: true } }),
           ],
           preview: { select: { title: 'title', subtitle: 'key' } },
         }),

@@ -49,6 +49,13 @@ function deepFill<T>(local: T, remote: any): T {
     for (const key of Object.keys(local as object)) {
       out[key] = deepFill((local as any)[key], remote?.[key]);
     }
+    // Champs présents UNIQUEMENT côté Sanity (ex: images, vidéo) → on les laisse passer
+    // (hors champs système _id/_type/_rev…). Les dicos texte ne les connaissent pas.
+    if (remote && typeof remote === 'object') {
+      for (const key of Object.keys(remote)) {
+        if (!(key in out) && !key.startsWith('_')) out[key] = remote[key];
+      }
+    }
     return out as T;
   }
   // primitive : la valeur CMS l'emporte sauf si vide
@@ -59,8 +66,8 @@ function deepFill<T>(local: T, remote: any): T {
 export function getPageContent<K extends PageKey>(
   page: K,
   lang: Lang,
-): Promise<(typeof DICTS)[K]['fr']> {
-  const local = DICTS[page][lang] as (typeof DICTS)[K]['fr'];
+): Promise<(typeof DICTS)[K]['fr'] & Record<string, any>> {
+  const local = DICTS[page][lang] as (typeof DICTS)[K]['fr'] & Record<string, any>;
   return memo(`${page}:${lang}`, async () => {
     if (!sanityClient) return local;
     try {
@@ -74,8 +81,8 @@ export function getPageContent<K extends PageKey>(
 }
 
 /** Réglages communs (nav, footer, CTA, JSON-LD) dans la langue voulue. */
-export function getSettings(lang: Lang): Promise<(typeof common)['fr']> {
-  const local = common[lang];
+export function getSettings(lang: Lang): Promise<(typeof common)['fr'] & Record<string, any>> {
+  const local = common[lang] as (typeof common)['fr'] & Record<string, any>;
   return memo(`settings:${lang}`, async () => {
     if (!sanityClient) return local;
     try {

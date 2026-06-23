@@ -43,7 +43,9 @@ export default defineType({
       options: { collapsible: true },
       fields: [
         defineField({ name: 'alt1', title: 'Texte alternatif image 1', type: 'string' }),
+        defineField({ name: 'image1', title: 'Image 1', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'alt2', title: 'Texte alternatif image 2', type: 'string' }),
+        defineField({ name: 'image2', title: 'Image 2', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'videoBadge', type: 'string' }),
         defineField({ name: 'videoCaption', type: 'string' }),
       ],
@@ -71,6 +73,7 @@ export default defineType({
             defineField({ name: 'key', title: 'Clé (alignement/fluidite/renforcement)', type: 'string' }),
             defineField({ name: 'title', type: 'string' }),
             defineField({ name: 'text', type: 'text', rows: 2 }),
+            defineField({ name: 'icon', title: 'Icône', type: 'image', options: { hotspot: true } }),
           ],
           preview: { select: { title: 'title', subtitle: 'key' } },
         }),

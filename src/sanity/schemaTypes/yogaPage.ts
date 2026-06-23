@@ -39,12 +39,15 @@ export default defineType({
 
     defineField({
       name: 'photos',
-      title: 'Photos (textes alternatifs)',
+      title: 'Photos',
       type: 'object',
-      options: { collapsible: true, collapsed: true },
+      options: { collapsible: true },
       fields: [
+        defineField({ name: 'image1', title: 'Photo 1', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'alt1', title: 'Alt photo 1', type: 'string' }),
+        defineField({ name: 'image2', title: 'Photo 2', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'alt2', title: 'Alt photo 2', type: 'string' }),
+        defineField({ name: 'image3', title: 'Photo 3', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'alt3', title: 'Alt photo 3', type: 'string' }),
       ],
     }),
@@ -71,6 +74,7 @@ export default defineType({
             defineField({ name: 'key', title: 'Clé (pranayama/posture/meditation)', type: 'string' }),
             defineField({ name: 'title', title: 'Titre', type: 'string' }),
             defineField({ name: 'text', title: 'Texte', type: 'text', rows: 3 }),
+            defineField({ name: 'icon', title: 'Icône', type: 'image', options: { hotspot: true } }),
           ],
           preview: { select: { title: 'title', subtitle: 'key' } },
         }),

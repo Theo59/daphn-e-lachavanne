@@ -5,10 +5,11 @@
  * avec fallback sur src/i18n/about.ts. Les routes ne font que monter cette vue avec la bonne langue.
  */
 import Layout from '../../layouts/Layout.astro';
-import Picture from '../Picture.astro';
+import SanityImage from '../SanityImage.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { urlFor, hasImage } from '../../lib/sanity/image';
 import type { Lang } from '../../i18n/config';
 
 interface Props {
@@ -18,12 +19,21 @@ const { lang } = Astro.props;
 const t = await getPageContent('about', lang);
 const c = await getSettings(lang);
 
-// Sources des images de la bande photo (données structurelles, identiques FR/EN).
+// Images (champs Sanity, hors typage des dicos texte).
+const headerImage = (t.header as any).image;
+const photos = t.photos as any;
+const brand = (c as any).brand ?? {};
+
+// URL CDN pour les fonds CSS (vide si l'image n'est pas définie).
+const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
+const gradient2 = bg(brand.gradient2);
+
+// Bande photo : image Sanity + alt (dico) + filtre CSS (donnée structurelle, identique FR/EN).
 const STRIP_PHOTOS = [
-  { src: '/media/photo-1.jpg', alt: t.photos.alt1, style: 'filter:contrast(1.05) brightness(0.9)' },
-  { src: '/media/6.jpg', alt: t.photos.alt2, style: 'filter:contrast(1.05) brightness(0.9)' },
-  { src: '/media/9.jpg', alt: t.photos.alt3, style: 'filter:grayscale(1) contrast(0.95)' },
-  { src: '/media/photo-3.jpg', alt: t.photos.alt4, style: 'filter:contrast(1.1) brightness(0.82)' },
+  { image: photos.image1, alt: t.photos.alt1, style: 'filter:contrast(1.05) brightness(0.9)' },
+  { image: photos.image2, alt: t.photos.alt2, style: 'filter:contrast(1.05) brightness(0.9)' },
+  { image: photos.image3, alt: t.photos.alt3, style: 'filter:grayscale(1) contrast(0.95)' },
+  { image: photos.image4, alt: t.photos.alt4, style: 'filter:contrast(1.1) brightness(0.82)' },
 ];
 ---
 
@@ -41,7 +51,7 @@ const STRIP_PHOTOS = [
           <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;font-weight:300;margin-top:32px;color:rgba(13,10,31,0.75)" set:html={t.header.subtitleHtml} />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <Picture src="/media/photo-1.jpg" alt={t.header.imgAlt} style="filter:contrast(1.05) brightness(0.9)" loading="eager" />
+          <SanityImage image={headerImage} alt={t.header.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" style="filter:contrast(1.05) brightness(0.9)" loading="eager" />
         </div>
       </div>
     </div>
@@ -86,7 +96,7 @@ const STRIP_PHOTOS = [
     <div class="photo-grid-4">
       {STRIP_PHOTOS.map((photo) => (
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <Picture src={photo.src} alt={photo.alt} style={photo.style} loading="lazy" />
+          <SanityImage image={photo.image} alt={photo.alt} widths={[480, 768]} sizes="(max-width:900px) 50vw, 25vw" style={photo.style} loading="lazy" decoding="async" />
         </div>
       ))}
     </div>
@@ -94,9 +104,9 @@ const STRIP_PHOTOS = [
 
   <!-- CITATION -->
   <section class="section" style="position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover;opacity:0.35"></div>
+    <div style={`position:absolute;inset:0;background:url('${gradient2}') center/cover;opacity:0.35`}></div>
     <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:70vw;max-width:700px;opacity:0.12;pointer-events:none">
-      <Picture src="/media/cercle-trace.png" alt="" style="width:100%;display:block" />
+      <SanityImage image={brand.circle} alt="" width={700} style="width:100%;display:block" />
     </div>
     <div class="container" style="position:relative;text-align:center">
       <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,4vw,52px);line-height:1.25;font-weight:300;max-width:900px;margin:0 auto" set:html={t.quote.textHtml} />

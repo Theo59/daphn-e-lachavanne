@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import { getSettings } from '../lib/sanity/content';
 import { OG_LOCALE, HTML_LANG, DEFAULT_LOCALE } from '../i18n/config';
 import { getLangFromUrl, getAlternates } from '../i18n/utils';
+import { urlFor, hasImage } from '../lib/sanity/image';
 
 interface Props {
   title?: string;
@@ -46,6 +47,11 @@ const xDefaultHref = alternates.find((a) => a.lang === DEFAULT_LOCALE)?.href;
 // Base sans slash final pour les @id de données structurées.
 const base = (Astro.site?.href ?? 'https://daphnelachavanne.netlify.app/').replace(/\/$/, '');
 
+// Logo + portrait (JSON-LD) depuis les visuels de marque Sanity ; og-image reste local.
+const brand = (c as any).brand ?? {};
+const logoUrl = hasImage(brand.logo) ? urlFor(brand.logo).width(600).url() : `${base}/og-image.jpg`;
+const portraitUrl = hasImage(brand.portrait) ? urlFor(brand.portrait).width(800).url() : `${base}/og-image.jpg`;
+
 // JSON-LD global (GEO/AEO) : entreprise locale + praticienne + site.
 // Volontairement SANS aggregateRating/téléphone (non vérifiables → risque de pénalité).
 const structuredData = {
@@ -59,7 +65,7 @@ const structuredData = {
       description: c.schema.businessDescription,
       url: base,
       image: `${base}/og-image.jpg`,
-      logo: `${base}/media/web/logo-noir.png`,
+      logo: logoUrl,
       email: 'hello@daphnelachavanne.com',
       priceRange: '60-780 €',
       currenciesAccepted: 'EUR',
@@ -104,7 +110,7 @@ const structuredData = {
       jobTitle: c.schema.personJobTitle,
       worksFor: { '@id': `${base}/#business` },
       url: `${base}/about`,
-      image: `${base}/media/web/photo-1.jpg`,
+      image: portraitUrl,
       knowsAbout: ['Drainage lymphatique', 'Méthode Renata França', 'Yoga', 'Breathwork', 'Pilates', 'Reiki'],
       hasCredential: [
         { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Méthode Renata França, drainage lymphatique', dateCreated: '2013' },

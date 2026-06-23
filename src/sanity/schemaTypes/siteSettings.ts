@@ -10,6 +10,24 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({ name: 'language', type: 'string', readOnly: true, hidden: true }),
+
+    defineField({
+      name: 'brand',
+      title: 'Visuels de marque (partagés)',
+      description: 'Logo, fonds et décors réutilisés sur tout le site.',
+      type: 'object',
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({ name: 'logo', title: 'Logo (sombre)', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'logoWhite', title: 'Logo (blanc)', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'portrait', title: 'Portrait (partage social / données structurées)', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'gradient1', title: 'Fond dégradé 1', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'gradient2', title: 'Fond dégradé 2', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'circle', title: 'Cercle tracé (décor)', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'shapes', title: 'Formes (décor)', type: 'image', options: { hotspot: true } }),
+      ],
+    }),
+
     defineField({ name: 'skipLink', title: 'Lien d’évitement', type: 'string' }),
     defineField({ name: 'siteName', title: 'Nom du site', type: 'string' }),
 

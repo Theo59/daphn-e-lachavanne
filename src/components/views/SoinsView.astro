@@ -7,10 +7,11 @@
  */
 import Layout from '../../layouts/Layout.astro';
 import Sym from '../Sym.astro';
-import Picture from '../Picture.astro';
+import SanityImage from '../SanityImage.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { urlFor, hasImage } from '../../lib/sanity/image';
 import { localizePath } from '../../i18n/utils';
 import { serviceLd } from '../../lib/schema.ts';
 import { HTML_LANG, type Lang } from '../../i18n/config';
@@ -24,20 +25,11 @@ const c = await getSettings(lang);
 
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
-// Icônes des cartes « soins », par clé (données structurelles, identiques FR/EN).
-const TREATMENT_ICONS: Record<string, string> = {
-  signature: '/media/design-sans-titre-34.png',
-  drainage: '/media/illustration_select_30.png',
-  miracleFace: '/media/illustration_select_38.png',
-  comboDetox: '/media/illustration_select_21.png',
-};
-
-// Fonds des forfaits, par clé (données structurelles, identiques FR/EN).
-const PACKAGE_FONDS: Record<string, string> = {
-  decouverte: 'fond-2',
-  suiviSaison: 'fond-2',
-  intensif: 'fond-2',
-};
+// Visuels de marque (fonds partagés) + helper d'URL CDN pour les fonds CSS.
+const brand = (c as any).brand ?? {};
+const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
+const gradient1 = bg(brand.gradient1); // ex-fond-2
+const gradient2 = bg(brand.gradient2); // ex-fond-3
 
 const serviceSchema = serviceLd({
   name: t.schema.name,
@@ -82,15 +74,15 @@ const serviceSchema = serviceLd({
       <div class="photo-grid-soins">
         <div class="photo-grid-soins__col">
           <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
-            <Picture src="/media/photo-1.jpg" alt={t.photo.alt1} style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
+            <SanityImage image={(t.photo as any).image1} alt={t.photo.alt1} widths={[480, 768]} sizes="(max-width:900px) 100vw, 50vw" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" decoding="async" />
           </div>
           <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
-            <Picture src="/media/photo-trace.png" alt={t.photo.alt2} style="filter:contrast(1.02) brightness(0.95)" loading="lazy" />
+            <SanityImage image={(t.photo as any).image2} alt={t.photo.alt2} widths={[480, 768]} sizes="(max-width:900px) 100vw, 50vw" style="filter:contrast(1.02) brightness(0.95)" loading="lazy" decoding="async" />
           </div>
         </div>
         <div class="photo-grid-soins__col">
           <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
-            <Picture src="/media/6.jpg" alt={t.photo.alt3} style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
+            <SanityImage image={(t.photo as any).image3} alt={t.photo.alt3} widths={[480, 768]} sizes="(max-width:900px) 100vw, 50vw" style="filter:contrast(1.05) brightness(0.9)" loading="lazy" decoding="async" />
           </div>
           <div style="position:relative;aspect-ratio:4/5;width:100%;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
             <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>
@@ -103,7 +95,7 @@ const serviceSchema = serviceLd({
 
   <!-- CATALOGUE - icon grid + soin-rows -->
   <section class="service-icon-section" style="position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover;opacity:0.55"></div>
+    <div style={`position:absolute;inset:0;background:url('${gradient2}') center/cover;opacity:0.55`}></div>
     <div style="position:relative">
       <div class="container" style="padding-top:56px;padding-bottom:40px;border-bottom:1px solid rgba(13,10,31,0.1)">
         <div style="display:flex;justify-content:space-between;align-items:baseline">
@@ -115,7 +107,7 @@ const serviceSchema = serviceLd({
         {t.soins.map((s) => (
           <div class="service-icon-card">
             <div class="service-icon-card__icon">
-              <Picture src={TREATMENT_ICONS[s.key]} alt={s.name} />
+              <SanityImage image={(s as any).icon} alt={s.name} width={240} />
             </div>
             <div class="service-icon-card__meta">
               <h4 class="service-icon-card__name">{s.name}</h4>
@@ -150,7 +142,7 @@ const serviceSchema = serviceLd({
       <div class="grid-3">
         {t.packages.map((p) => (
           <div class="forfait" style="background:#e8612a">
-            <div style={`position:absolute;inset:0;background:url('/media/web/${PACKAGE_FONDS[p.key]}.webp') center/cover;mix-blend-mode:multiply;opacity:0.85`}></div>
+            <div style={`position:absolute;inset:0;background:url('${gradient1}') center/cover;mix-blend-mode:multiply;opacity:0.85`}></div>
             <div style="position:absolute;inset:0;background:rgba(13,10,31,0.2)"></div>
             <div class="forfait__content">
               <div>

@@ -41,14 +41,17 @@ export default defineType({
 
     defineField({
       name: 'photo',
-      title: 'Photos (textes alternatifs)',
+      title: 'Photos',
       type: 'object',
-      options: { collapsible: true, collapsed: true },
+      options: { collapsible: true },
       fields: [
         defineField({ name: 'oilTexture', title: 'Légende texture huile', type: 'string' }),
         defineField({ name: 'alt1', title: 'Texte alternatif 1', type: 'string' }),
         defineField({ name: 'alt2', title: 'Texte alternatif 2', type: 'string' }),
         defineField({ name: 'alt3', title: 'Texte alternatif 3', type: 'string' }),
+        defineField({ name: 'image1', title: 'Photo 1', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'image2', title: 'Photo 2', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'image3', title: 'Photo 3', type: 'image', options: { hotspot: true } }),
       ],
     }),
 
@@ -77,6 +80,7 @@ export default defineType({
             defineField({ name: 'sub', title: 'Sous-titre', type: 'string' }),
             defineField({ name: 'price', title: 'Prix', type: 'string' }),
             defineField({ name: 'text', title: 'Description', type: 'text', rows: 3 }),
+            defineField({ name: 'icon', title: 'Icône', type: 'image', options: { hotspot: true } }),
           ],
           preview: { select: { title: 'name', subtitle: 'sub' } },
         }),
