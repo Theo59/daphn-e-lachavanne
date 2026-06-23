@@ -1,11 +1,15 @@
 [build]
-  # Build, puis retrait du déploiement des médias lourds NON utilisés par le site
-  # (originaux conservés dans le repo ; évite d'expédier ~200 Mo et l'expo publique du PDF charte).
-  command = "npm run build && rm -f dist/media/TRANSE_RETOUCHE.mov dist/media/yoga-childpose.jpg dist/media/yoga-bow.jpg dist/media/charte-daphne-lachavanne.pdf dist/media/fond-1.png dist/media/logo_noir.eps"
+  # Les originaux lourds vivent dans media-src/ (hors public/ → non déployés) ;
+  # seules les variantes optimisées public/media/web/ partent en prod.
+  command = "npm run build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22"
+  # PUBLIC_SANITY_PROJECT_ID / _DATASET sont des identifiants PUBLICS (présents par
+  # design dans le bundle client du Studio) — pas des secrets. On les exclut du
+  # scanner de secrets Netlify, sinon le build échoue (« Exposed secrets detected »).
+  SECRETS_SCAN_OMIT_KEYS = "PUBLIC_SANITY_PROJECT_ID,PUBLIC_SANITY_DATASET"
 
 # Studio Sanity (SPA client-side) : toutes les sous-routes /admin/* servent la page /admin.
 # Le site public reste statique ; seul ce rewrite est nécessaire (pas d'adaptateur serveur).
