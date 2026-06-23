@@ -1,0 +1,147 @@
+---
+/**
+ * Vue partagée de la page Breathwork. Rendue pour /breathwork (FR) et /en/breathwork (EN).
+ * Tout le texte vient de src/i18n/breathwork.ts (+ common.ts).
+ * Les routes (src/pages/breathwork.astro, src/pages/en/breathwork.astro) ne font que
+ * monter cette vue avec la bonne langue.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Prose from '../Prose.astro';
+import Picture from '../Picture.astro';
+import Faq from '../Faq.astro';
+import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { localizePath } from '../../i18n/utils';
+import { serviceLd } from '../../lib/schema.ts';
+import { HTML_LANG, type Lang } from '../../i18n/config';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = await getPageContent('breathwork', lang);
+const c = await getSettings(lang);
+
+const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
+
+// Icônes des cartes « principes », par clé (données structurelles, identiques FR/EN).
+const PRINCIPLE_ICONS: Record<string, string> = {
+  coherence: '/media/illustration_select_21.png',
+  holotropic: '/media/illustration_select_21.png',
+  pranayama: '/media/design-sans-titre-34.png',
+};
+
+const serviceSchema = serviceLd({
+  name: t.schema.name,
+  serviceType: t.schema.serviceType,
+  description: t.schema.description,
+  path: localizePath('/breathwork', lang),
+  inLanguage: HTML_LANG[lang],
+  offers: t.tarifs.map((tf) => ({ name: tf.title, price: tf.price, description: tf.detail })),
+});
+---
+
+<Layout activePage="breathwork" title={t.meta.title} description={t.meta.description}>
+
+  <div class="page-header" style="position:relative;overflow:hidden">
+    <div class="container" style="position:relative">
+      <span class="t-label">{t.header.label}</span>
+      <h1>{t.header.title}<em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">.</em></h1>
+      <div class="grid-2" style="margin-top:44px">
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.5vw,32px);line-height:1.35;font-weight:300;margin:0">
+          {t.header.quote}
+        </p>
+        <p style="font-size:16px;line-height:1.85;color:rgba(13,10,31,0.55)">
+          {t.header.sub}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section--sm">
+    <div class="container">
+      <div class="grid-3">
+        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+          <Picture src="/media/photo-2.jpg" alt={t.gallery.photo1Alt} style="filter:contrast(1.1) brightness(0.82)" loading="lazy" />
+        </div>
+        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+          <Picture src="/media/photo-3.jpg" alt={t.gallery.photo2Alt} style="filter:contrast(1.1) brightness(0.82)" loading="lazy" />
+        </div>
+        <div style="position:relative;aspect-ratio:3/4;width:100%;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
+          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>
+          <div style="position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.85);font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff7100;box-shadow:0 0 8px #ff7100"></span>{t.gallery.videoBadge}
+          </div>
+          <span style="color:rgba(255,255,255,0.7);font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase">{t.gallery.videoLabel}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom:0">
+    <div class="container">
+      <div class="grid-label-content">
+        <div>
+          <h2 class="t-label" style="margin-bottom:24px">{t.approach.label}</h2>
+        </div>
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-style:italic;font-weight:300;line-height:1.15;margin:0">
+            {t.approach.title}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="service-icon-section" style="position:relative;overflow:hidden;margin-top:40px">
+    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover;opacity:0.5"></div>
+    <div class="service-icon-grid service-icon-grid--3 service-icon-grid--sep" style="position:relative">
+      {t.principles.map((pr) => (
+        <div class="service-icon-card">
+          <div class="service-icon-card__icon">
+            <Picture src={PRINCIPLE_ICONS[pr.key]} alt={pr.title} />
+          </div>
+          <div class="service-icon-card__meta">
+            <h4 class="service-icon-card__name">{pr.title}</h4>
+            <p class="service-icon-card__desc">{pr.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <section class="section" style="position:relative;overflow:hidden;color:#fff">
+    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover #16066e"></div>
+    <div style="position:absolute;inset:0;background:rgba(13,10,31,0.55)"></div>
+    <div class="container" style="position:relative">
+      <div class="grid-label-content">
+        <div>
+          <span style="font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;opacity:0.65">{t.pricing.label}</span>
+          <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(40px,5vw,56px);line-height:1;margin:20px 0 16px;font-weight:400" set:html={t.pricing.titleHtml} />
+          <p style="font-size:14px;line-height:1.8;opacity:0.65;max-width:260px">{t.pricing.text}</p>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:24px">{t.pricing.book}</a>
+        </div>
+        <div>
+          {t.tarifs.map((tf) => (
+            <div class="tarif-row">
+              <div>
+                <h4 class="tarif-row__title">{tf.title}</h4>
+                <p class="tarif-row__detail">{tf.detail}</p>
+              </div>
+              <div class="tarif-row__right">
+                <span class="tarif-row__price">{tf.price}</span>
+                <a href={PLANITY} target="_blank" rel="noopener" style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.65);border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px">{t.pricing.book}</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Prose text={t.prose.text} label={t.prose.label} />
+
+  <Faq items={t.faqs} title={c.faqTitle} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+</Layout>

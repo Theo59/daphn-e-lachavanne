@@ -1,5 +1,8 @@
 ---
 import Logo from './Logo.astro';
+import { getSettings } from '../lib/sanity/content';
+import { LOCALES, LANG_LABELS, LANG_NAMES } from '../i18n/config';
+import { getLangFromUrl, getAlternates, localizePath } from '../i18n/utils';
 
 interface Props {
   active?: string;
@@ -8,53 +11,83 @@ interface Props {
 
 const { active = 'home', dark = false } = Astro.props;
 
-const items: [string, string, string][] = [
-  ['/', 'home', 'Accueil'],
-  ['/soins', 'soins', 'Soins'],
-  ['/yoga', 'yoga', 'Yoga'],
-  ['/breathwork', 'breathwork', 'Breathwork'],
-  ['/pilates', 'pilates', 'Pilates'],
-  ['/about', 'about', 'À propos'],
-  ['/contact', 'contact', 'Réserver'],
+const lang = getLangFromUrl(Astro.url);
+const c = await getSettings(lang);
+
+// [chemin canonique FR, clé de page] — la clé sert au libellé + à l'état actif.
+const routes: [string, string][] = [
+  ['/', 'home'],
+  ['/soins', 'soins'],
+  ['/yoga', 'yoga'],
+  ['/breathwork', 'breathwork'],
+  ['/pilates', 'pilates'],
+  ['/about', 'about'],
+  ['/contact', 'contact'],
 ];
+const links = c.nav.links as Record<string, string>;
+const items = routes.map(([path, key]) => ({
+  href: localizePath(path, lang),
+  key,
+  label: links[key],
+}));
+
+// Sélecteur de langue : chemin équivalent dans chaque langue.
+const alternates = getAlternates(Astro.url);
+const ctaHref = localizePath('/contact', lang);
 ---
 
-<nav class:list={['nav', dark ? 'nav--hero' : 'nav--light']} id="main-nav" aria-label="Navigation principale">
-  <a href="/" class="nav__logo" aria-label="Accueil">
+<nav class:list={['nav', dark ? 'nav--hero' : 'nav--light']} id="main-nav" aria-label={c.nav.ariaLabel}>
+  <a href={localizePath('/', lang)} class="nav__logo" aria-label={c.nav.logoAria}>
     <Logo size={16} />
   </a>
 
   <ul class="nav__links" role="list">
-    {items.map(([href, key, label]) => (
+    {items.map((item) => (
       <li>
         <a
-          href={href}
-          class:list={['nav__link', active === key && 'nav__link--active']}
+          href={item.href}
+          class:list={['nav__link', active === item.key && 'nav__link--active']}
         >
-          {label}
+          {item.label}
         </a>
       </li>
     ))}
   </ul>
 
-  <a href="/contact" class="nav__cta">Réserver</a>
+  <div class="nav__actions">
+    <div class="nav__lang" role="group" aria-label={c.nav.langAria}>
+      {alternates.map((alt) => (
+        alt.lang === lang
+          ? <span class="nav__lang-item nav__lang-item--active" aria-current="true">{LANG_LABELS[alt.lang]}</span>
+          : <a class="nav__lang-item" href={alt.path} hreflang={alt.htmlLang} aria-label={LANG_NAMES[alt.lang]}>{LANG_LABELS[alt.lang]}</a>
+      ))}
+    </div>
+    <a href={ctaHref} class="nav__cta">{c.nav.cta}</a>
+  </div>
 
-  <button class="nav__hamburger" id="hamburger-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+  <button class="nav__hamburger" id="hamburger-btn" aria-label={c.nav.menuOpen} aria-expanded="false" aria-controls="mobile-menu">
     <span></span><span></span>
   </button>
 </nav>
 
 <!-- Mobile menu -->
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation" aria-hidden="true">
-  <button class="mobile-menu__close" id="mobile-close" aria-label="Fermer le menu">✕</button>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label={c.nav.menuAria} aria-hidden="true">
+  <button class="mobile-menu__close" id="mobile-close" aria-label={c.nav.menuClose}>✕</button>
   <nav>
     <ul class="mobile-menu__list" role="list">
-      {items.map(([href, , label]) => (
+      {items.map((item) => (
         <li>
-          <a href={href} class="mobile-menu__link">{label}</a>
+          <a href={item.href} class="mobile-menu__link">{item.label}</a>
         </li>
       ))}
     </ul>
+    <div class="mobile-menu__lang" role="group" aria-label={c.nav.langAria}>
+      {alternates.map((alt) => (
+        alt.lang === lang
+          ? <span class="mobile-menu__lang-item mobile-menu__lang-item--active" aria-current="true">{LANG_NAMES[alt.lang]}</span>
+          : <a class="mobile-menu__lang-item" href={alt.path} hreflang={alt.htmlLang}>{LANG_NAMES[alt.lang]}</a>
+      ))}
+    </div>
   </nav>
 </div>
 

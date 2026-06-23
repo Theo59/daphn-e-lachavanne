@@ -1,0 +1,178 @@
+---
+/**
+ * Vue partagée de la page Soins. Rendue à la fois pour `/soins` (FR) et `/en/soins` (EN).
+ * Tout le texte vient du dictionnaire src/i18n/soins.ts (+ common.ts).
+ * Les routes (src/pages/soins.astro, src/pages/en/soins.astro) ne font que
+ * monter cette vue avec la bonne langue.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Sym from '../Sym.astro';
+import Picture from '../Picture.astro';
+import Prose from '../Prose.astro';
+import Faq from '../Faq.astro';
+import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { localizePath } from '../../i18n/utils';
+import { serviceLd } from '../../lib/schema.ts';
+import { HTML_LANG, type Lang } from '../../i18n/config';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = await getPageContent('soins', lang);
+const c = await getSettings(lang);
+
+const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
+
+// Icônes des cartes « soins », par clé (données structurelles, identiques FR/EN).
+const TREATMENT_ICONS: Record<string, string> = {
+  signature: '/media/design-sans-titre-34.png',
+  drainage: '/media/illustration_select_30.png',
+  miracleFace: '/media/illustration_select_38.png',
+  comboDetox: '/media/illustration_select_21.png',
+};
+
+// Fonds des forfaits, par clé (données structurelles, identiques FR/EN).
+const PACKAGE_FONDS: Record<string, string> = {
+  decouverte: 'fond-2',
+  suiviSaison: 'fond-2',
+  intensif: 'fond-2',
+};
+
+const serviceSchema = serviceLd({
+  name: t.schema.name,
+  serviceType: t.schema.serviceType,
+  description: t.schema.description,
+  path: localizePath('/soins', lang),
+  inLanguage: HTML_LANG[lang],
+  offers: [
+    ...t.soins.map((s) => ({ name: s.name, price: s.price, description: s.sub })),
+    ...t.packages.map((p) => ({ name: `${t.schema.packagePrefix} ${p.name}`, price: p.price, description: p.detail })),
+  ],
+});
+---
+
+<Layout activePage="soins" title={t.meta.title} description={t.meta.description}>
+
+  <div class="page-header" style="position:relative;overflow:hidden">
+    <div class="container" style="position:relative">
+      <span class="t-label">{t.header.label}</span>
+      <h1>{t.header.h1}</h1>
+      <div class="grid-2" style="margin-top:48px">
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.5vw,32px);line-height:1.35;font-weight:300;margin:0">
+          {t.header.quote}
+        </p>
+        <div>
+          <p style="font-size:16px;line-height:1.85;color:rgba(13,10,31,0.55)">
+            {t.header.intro}
+          </p>
+          <div style="margin-top:20px;display:flex;align-items:center;gap:16px">
+            <span class="t-label">{t.header.methodLabel}</span>
+            <span style="width:28px;height:1px;background:rgba(13,10,31,0.4);display:inline-block"></span>
+            <span class="t-label">{t.header.sinceLabel}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTOS - 2 colonnes x 2 photos -->
+  <section class="section--sm">
+    <div class="container">
+      <div class="photo-grid-soins">
+        <div class="photo-grid-soins__col">
+          <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
+            <Picture src="/media/photo-1.jpg" alt={t.photo.alt1} style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
+          </div>
+          <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
+            <Picture src="/media/photo-trace.png" alt={t.photo.alt2} style="filter:contrast(1.02) brightness(0.95)" loading="lazy" />
+          </div>
+        </div>
+        <div class="photo-grid-soins__col">
+          <div class="photo-wrap" style="aspect-ratio:4/5;width:100%">
+            <Picture src="/media/6.jpg" alt={t.photo.alt3} style="filter:contrast(1.05) brightness(0.9)" loading="lazy" />
+          </div>
+          <div style="position:relative;aspect-ratio:4/5;width:100%;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
+            <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>
+            <span style="color:rgba(255,255,255,0.7);font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase">{t.photo.oilTexture}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOGUE - icon grid + soin-rows -->
+  <section class="service-icon-section" style="position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover;opacity:0.55"></div>
+    <div style="position:relative">
+      <div class="container" style="padding-top:56px;padding-bottom:40px;border-bottom:1px solid rgba(13,10,31,0.1)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <h2 class="t-label">{t.catalogue.label}</h2>
+          <span style="font-size:13px;color:rgba(13,10,31,0.55)">{t.catalogue.all}</span>
+        </div>
+      </div>
+      <div class="service-icon-grid service-icon-grid--sep">
+        {t.soins.map((s) => (
+          <div class="service-icon-card">
+            <div class="service-icon-card__icon">
+              <Picture src={TREATMENT_ICONS[s.key]} alt={s.name} />
+            </div>
+            <div class="service-icon-card__meta">
+              <h4 class="service-icon-card__name">{s.name}</h4>
+              <p class="service-icon-card__sub">{s.sub}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="container" style="padding-top:0;padding-bottom:0">
+        {t.soins.map((s, i) => (
+          <article class="soin-row">
+            <span class="soin-row__num">0{i + 1}</span>
+            <div>
+              <h3 class="soin-row__name">{s.name}</h3>
+              <p class="soin-row__sub">{s.sub}</p>
+            </div>
+            <p class="soin-row__text">{s.text}</p>
+            <div class="soin-row__price">
+              <span class="soin-row__price-val">{s.price}</span>
+              <a href={PLANITY} target="_blank" rel="noopener" class="link-arrow" style="font-size:10px">{t.catalogue.reserve}</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FORFAITS -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <h3 class="t-label" style="margin-top:56px;margin-bottom:32px">{t.packagesLabel}</h3>
+      <div class="grid-3">
+        {t.packages.map((p) => (
+          <div class="forfait" style="background:#e8612a">
+            <div style={`position:absolute;inset:0;background:url('/media/web/${PACKAGE_FONDS[p.key]}.webp') center/cover;mix-blend-mode:multiply;opacity:0.85`}></div>
+            <div style="position:absolute;inset:0;background:rgba(13,10,31,0.2)"></div>
+            <div class="forfait__content">
+              <div>
+                <span class="forfait__save">{p.save}</span>
+                <h4 class="forfait__name">{p.name}</h4>
+                <p class="forfait__detail">{p.detail}</p>
+              </div>
+              <div class="forfait__bottom">
+                <span class="forfait__price">{p.price}</span>
+                <Sym kind="arrow" size={20} color="#fff" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Prose text={t.prose.text} label={t.prose.label} />
+
+  <Faq items={t.faqs} title={c.faqTitle} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+</Layout>

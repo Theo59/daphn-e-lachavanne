@@ -2,6 +2,9 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { getSettings } from '../lib/sanity/content';
+import { OG_LOCALE, HTML_LANG, DEFAULT_LOCALE } from '../i18n/config';
+import { getLangFromUrl, getAlternates } from '../i18n/utils';
 
 interface Props {
   title?: string;
@@ -13,9 +16,13 @@ interface Props {
   image?: string;
 }
 
+// Langue dérivée de l'URL (/en/... → 'en', sinon 'fr').
+const lang = getLangFromUrl(Astro.url);
+const c = await getSettings(lang);
+
 const {
-  title = 'Daphné Lachavanne | Yoga, Breathwork, Pilates & Soins à Paris 7e',
-  description = 'Praticienne bien-être à Paris 7e : drainage lymphatique Renata França, yoga, breathwork et pilates. Cabinet 3 Rue Valadon, sur rendez-vous.',
+  title = c.siteName,
+  description = c.schema.businessDescription,
   activePage = 'home',
   darkNav = false,
   noFooter = false,
@@ -27,13 +34,20 @@ const {
 const cleanPath = Astro.url.pathname.replace(/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '');
 const canonical = new URL(cleanPath || '/', Astro.site).href.replace(/\/$/, '') || Astro.site?.href;
 const ogImage = new URL(image, Astro.site).href;
-const siteName = 'Daphné Lachavanne · L’Art de la Circulation';
+const siteName = c.siteName;
+
+// Liens alternés (hreflang) : chaque langue + x-default (= FR par défaut).
+const alternates = getAlternates(Astro.url).map((alt) => ({
+  ...alt,
+  href: new URL(alt.path, Astro.site).href.replace(/\/$/, '') || Astro.site?.href,
+}));
+const xDefaultHref = alternates.find((a) => a.lang === DEFAULT_LOCALE)?.href;
 
 // Base sans slash final pour les @id de données structurées.
 const base = (Astro.site?.href ?? 'https://daphnelachavanne.netlify.app/').replace(/\/$/, '');
 
 // JSON-LD global (GEO/AEO) : entreprise locale + praticienne + site.
-// Volontairement SANS aggregateRating/téléphone/horaires (non vérifiables → risque de pénalité).
+// Volontairement SANS aggregateRating/téléphone (non vérifiables → risque de pénalité).
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -42,11 +56,10 @@ const structuredData = {
       '@id': `${base}/#business`,
       name: 'Daphné Lachavanne · L’Art de la Circulation',
       alternateName: 'Daphné Lachavanne',
-      description:
-        'Praticienne bien-être à Paris 7e : drainage lymphatique méthode Renata França, soins, yoga, breathwork et pilates, en cabinet privé sur rendez-vous.',
+      description: c.schema.businessDescription,
       url: base,
       image: `${base}/og-image.jpg`,
-      logo: `${base}/media/logo-noir.png`,
+      logo: `${base}/media/web/logo-noir.png`,
       email: 'hello@daphnelachavanne.com',
       priceRange: '60-780 €',
       currenciesAccepted: 'EUR',
@@ -88,10 +101,10 @@ const structuredData = {
       '@type': 'Person',
       '@id': `${base}/#daphne`,
       name: 'Daphné Lachavanne',
-      jobTitle: 'Praticienne bien-être',
+      jobTitle: c.schema.personJobTitle,
       worksFor: { '@id': `${base}/#business` },
       url: `${base}/about`,
-      image: `${base}/media/photo-1.jpg`,
+      image: `${base}/media/web/photo-1.jpg`,
       knowsAbout: ['Drainage lymphatique', 'Méthode Renata França', 'Yoga', 'Breathwork', 'Pilates', 'Reiki'],
       hasCredential: [
         { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Méthode Renata França, drainage lymphatique', dateCreated: '2013' },
@@ -105,34 +118,27 @@ const structuredData = {
       '@id': `${base}/#website`,
       url: base,
       name: 'Daphné Lachavanne',
-      inLanguage: 'fr-FR',
+      inLanguage: HTML_LANG[lang],
       publisher: { '@id': `${base}/#business` },
     },
   ],
 };
 
-// Fil d'Ariane (BreadcrumbList) pour les pages internes, aide la compréhension de la hiérarchie.
-const PAGE_LABELS: Record<string, string> = {
-  soins: 'Soins',
-  yoga: 'Yoga',
-  breathwork: 'Breathwork',
-  pilates: 'Pilates',
-  about: 'À propos',
-  contact: 'Contact',
-};
-if (activePage !== 'home' && PAGE_LABELS[activePage]) {
+// Fil d'Ariane (BreadcrumbList) pour les pages internes, libellés localisés.
+const navLinks = c.nav.links as Record<string, string>;
+if (activePage !== 'home' && navLinks[activePage]) {
   structuredData['@graph'].push({
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: base },
-      { '@type': 'ListItem', position: 2, name: PAGE_LABELS[activePage], item: canonical },
+      { '@type': 'ListItem', position: 1, name: c.breadcrumbHome, item: lang === DEFAULT_LOCALE ? base : `${base}/${lang}` },
+      { '@type': 'ListItem', position: 2, name: navLinks[activePage], item: canonical },
     ],
   } as any);
 }
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={HTML_LANG[lang]}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -141,10 +147,16 @@ if (activePage !== 'home' && PAGE_LABELS[activePage]) {
   <link rel="canonical" href={canonical} />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
+  <!-- Versions linguistiques alternées (hreflang) -->
+  {alternates.map((alt) => (
+    <link rel="alternate" hreflang={alt.htmlLang} href={alt.href} />
+  ))}
+  <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content={siteName} />
-  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale" content={OG_LOCALE[lang]} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />
@@ -170,7 +182,7 @@ if (activePage !== 'home' && PAGE_LABELS[activePage]) {
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 </head>
 <body>
-  <a href="#content" class="skip-link">Aller au contenu</a>
+  <a href="#content" class="skip-link">{c.skipLink}</a>
   <Nav active={activePage} dark={darkNav} />
   <main id="content" tabindex="-1">
     <slot />

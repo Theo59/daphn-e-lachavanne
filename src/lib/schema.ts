@@ -26,19 +26,21 @@ export function serviceLd(opts: {
   name: string;
   serviceType: string;
   description: string;
-  path: string; // ex: '/soins'
+  path: string; // ex: '/soins' ou '/en/soins'
   offers: OfferInput[];
+  inLanguage?: string; // BCP-47, ex: 'fr-FR' / 'en-US'
 }) {
   const url = `${SITE}${opts.path}`;
   const offers = opts.offers.map((o) => {
     const price = parseEuro(o.price);
     if (price === null) {
       // « Sur devis » : pas de prix public → on n'émet pas priceCurrency (évite l'erreur
-      // Google « Offer sans price »). On garde l'offre nommée et décrite.
+      // Google « Offer sans price »). On garde l'offre nommée et décrite. Le libellé
+      // « sur devis » vient de o.price (déjà localisé : 'Sur devis' / 'On request').
       return {
         '@type': 'Offer',
         name: o.name,
-        description: [o.description, 'Sur devis'].filter(Boolean).join(' · '),
+        description: [o.description, o.price].filter(Boolean).join(' · '),
         url: 'https://www.planity.com/daphne-lachavanne-75007-paris',
       };
     }
@@ -61,6 +63,7 @@ export function serviceLd(opts: {
     serviceType: opts.serviceType,
     description: opts.description,
     url,
+    ...(opts.inLanguage ? { inLanguage: opts.inLanguage } : {}),
     provider: { '@id': BUSINESS_ID },
     areaServed: { '@type': 'City', name: 'Paris' },
     availableChannel: {

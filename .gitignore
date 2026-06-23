@@ -17,9 +17,11 @@ pnpm-debug.log*
 .env
 .env.production
 
-# Vidéos lourdes (>100Mo, limite GitHub)
+# Vidéos lourdes (>100Mo, limite GitHub) — restent en local, jamais committées
 public/media/*.mov
 public/media/*.mp4
+media-src/*.mov
+media-src/*.mp4
 
 # Claude Code local settings
 .claude/settings.local.json

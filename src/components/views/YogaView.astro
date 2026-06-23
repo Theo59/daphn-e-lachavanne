@@ -1,0 +1,143 @@
+---
+/**
+ * Vue partagée de la page Yoga. Rendue à la fois pour `/yoga` (FR) et `/en/yoga` (EN).
+ * Tout le texte vient du dictionnaire src/i18n/yoga.ts (+ common.ts).
+ * Les routes (src/pages/yoga.astro, src/pages/en/yoga.astro) ne font que
+ * monter cette vue avec la bonne langue.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Picture from '../Picture.astro';
+import Prose from '../Prose.astro';
+import Faq from '../Faq.astro';
+import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { localizePath } from '../../i18n/utils';
+import { HTML_LANG, type Lang } from '../../i18n/config';
+import { serviceLd } from '../../lib/schema.ts';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = await getPageContent('yoga', lang);
+const c = await getSettings(lang);
+
+const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
+
+// Icônes des principes, par clé (données structurelles, identiques FR/EN).
+const PRINCIPLE_ICONS: Record<string, string> = {
+  pranayama: '/media/illustration_select_21.png',
+  posture: '/media/illustration_select_30.png',
+  meditation: '/media/illustration_select_38.png',
+};
+
+const serviceSchema = serviceLd({
+  name: t.schema.name,
+  serviceType: t.schema.serviceType,
+  description: t.schema.description,
+  path: localizePath('/yoga', lang),
+  inLanguage: HTML_LANG[lang],
+  offers: t.tarif.rows.map((r) => ({ name: r.title, price: r.price, description: r.detail })),
+});
+---
+
+<Layout activePage="yoga" title={t.meta.title} description={t.meta.description}>
+
+  <div class="page-header" style="position:relative;overflow:hidden">
+    <div class="container" style="position:relative">
+      <span class="t-label">{t.header.label}</span>
+      <h1>{t.header.h1}<em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">.</em></h1>
+      <div class="grid-2" style="margin-top:44px">
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.5vw,32px);line-height:1.35;font-weight:300;margin:0">
+          {t.header.quote}
+        </p>
+        <p style="font-size:16px;line-height:1.85;color:rgba(13,10,31,0.55)">
+          {t.header.sub}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section--sm">
+    <div class="container">
+      <div class="grid-3">
+        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+          <Picture src="/media/9.jpg" alt={t.photos.alt1} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+        </div>
+        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+          <Picture src="/media/10.jpg" alt={t.photos.alt2} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+        </div>
+        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+          <Picture src="/media/11.jpg" alt={t.photos.alt3} style="filter:grayscale(1) contrast(0.95)" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom:0">
+    <div class="container">
+      <div class="grid-label-content">
+        <div>
+          <h2 class="t-label" style="margin-bottom:24px">{t.approche.label}</h2>
+        </div>
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-style:italic;font-weight:300;line-height:1.15;margin:0">
+            {t.approche.title}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="service-icon-section" style="position:relative;overflow:hidden;margin-top:40px">
+    <div style="position:absolute;inset:0;background:url('/media/web/fond-3.webp') center/cover;opacity:0.5"></div>
+    <div class="service-icon-grid service-icon-grid--3 service-icon-grid--sep" style="position:relative">
+      {t.principles.map((pr) => (
+        <div class="service-icon-card">
+          <div class="service-icon-card__icon">
+            <Picture src={PRINCIPLE_ICONS[pr.key]} alt={pr.title} />
+          </div>
+          <div class="service-icon-card__meta">
+            <h4 class="service-icon-card__name">{pr.title}</h4>
+            <p class="service-icon-card__desc">{pr.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <section class="section" style="position:relative;overflow:hidden;color:#fff;background:#e8612a">
+    <div style="position:absolute;inset:0;background:url('/media/web/fond-2.webp') center/cover;mix-blend-mode:multiply;opacity:0.85"></div>
+    <div style="position:absolute;inset:0;background:rgba(13,10,31,0.55)"></div>
+    <div class="container" style="position:relative">
+      <div class="grid-label-content">
+        <div>
+          <span style="font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;opacity:0.65">{t.tarif.label}</span>
+          <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(40px,5vw,56px);line-height:1;margin:20px 0 16px;font-weight:400">{t.tarif.titleLine1}<br />{t.tarif.titleLine2}</h3>
+          <p style="font-size:14px;line-height:1.8;opacity:0.65;max-width:260px">{t.tarif.body}</p>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:24px">{t.tarif.reserve}</a>
+        </div>
+        <div>
+          {t.tarif.rows.map((r) => (
+            <div class="tarif-row">
+              <div>
+                <h4 class="tarif-row__title">{r.title}</h4>
+                <p class="tarif-row__detail">{r.detail}</p>
+              </div>
+              <div class="tarif-row__right">
+                <span class="tarif-row__price">{r.price}</span>
+                <a href={PLANITY} target="_blank" rel="noopener" style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.65);border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px">{t.tarif.reserve}</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Prose text={t.prose.text} label={t.prose.label} />
+
+  <Faq items={t.faqs} title={c.faqTitle} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+</Layout>

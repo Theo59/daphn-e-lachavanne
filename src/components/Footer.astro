@@ -1,43 +1,48 @@
 ---
 import Logo from './Logo.astro';
+import { getSettings } from '../lib/sanity/content';
+import { getLangFromUrl, localizePath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const c = await getSettings(lang);
+const links = c.nav.links as Record<string, string>;
+const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 ---
 
 <footer>
   <div class="footer">
     <div>
       <Logo size={15} />
-      <p style="margin-top:18px;line-height:1.7;color:rgba(13,10,31,0.55);max-width:260px;font-size:13px">
-        Soins, drainage lymphatique,<br />yoga &amp; breathwork. Paris 7e.
-      </p>
+      <p style="margin-top:18px;line-height:1.7;color:rgba(13,10,31,0.55);max-width:260px;font-size:13px" set:html={c.footer.tagline} />
     </div>
     <div>
-      <span class="footer__col-title">Pratiques</span>
+      <span class="footer__col-title">{c.footer.colPractices}</span>
       <div class="footer__links">
-        <a href="/soins">Soins</a>
-        <a href="/breathwork">Breathwork</a>
-        <a href="/yoga">Yoga</a>
-        <a href="/pilates">Pilates</a>
+        <a href={localizePath('/soins', lang)}>{links.soins}</a>
+        <a href={localizePath('/breathwork', lang)}>{links.breathwork}</a>
+        <a href={localizePath('/yoga', lang)}>{links.yoga}</a>
+        <a href={localizePath('/pilates', lang)}>{links.pilates}</a>
       </div>
     </div>
     <div>
-      <span class="footer__col-title">Cabinet</span>
+      <span class="footer__col-title">{c.footer.colCabinet}</span>
       <div style="display:flex;flex-direction:column;gap:8px;color:rgba(13,10,31,0.55);line-height:1.7;font-size:13px">
         <span>3 Rue Valadon<br />75007 Paris</span>
-        <a href="https://maps.google.com/?q=3+Rue+Valadon+75007+Paris" target="_blank" rel="noopener" style="color:#0d0a1f;text-decoration:none">Itinéraire →</a>
+        <a href="https://maps.google.com/?q=3+Rue+Valadon+75007+Paris" target="_blank" rel="noopener" style="color:#0d0a1f;text-decoration:none">{c.footer.itinerary}</a>
       </div>
     </div>
     <div>
-      <span class="footer__col-title">Suivre</span>
+      <span class="footer__col-title">{c.footer.colFollow}</span>
       <div class="footer__links">
         <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
-        <a href="/contact">Newsletter</a>
-        <a href="https://www.planity.com/daphne-lachavanne-75007-paris" target="_blank" rel="noopener">Planity</a>
+        <a href={localizePath('/contact', lang)}>{c.footer.newsletter}</a>
+        <a href={PLANITY} target="_blank" rel="noopener">Planity</a>
       </div>
     </div>
   </div>
   <div style="display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:0 var(--pad) 28px;font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.15em;color:rgba(13,10,31,0.35)">
-    <span>© 2026 Daphné Lachavanne</span>
+    <span>{c.footer.rights}</span>
     <span aria-hidden="true">·</span>
-    <a href="/mentions-legales" style="color:inherit;text-decoration:none">Mentions légales</a>
+    <a href={localizePath('/mentions-legales', lang)} style="color:inherit;text-decoration:none">{c.footer.legal}</a>
   </div>
 </footer>
