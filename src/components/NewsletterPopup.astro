@@ -1,0 +1,214 @@
+---
+/**
+ * Popup d'inscription à la newsletter (sur toutes les pages via Layout).
+ * Ouverte par tout élément `[data-newsletter-open]` (ex. lien Newsletter du footer).
+ * Soumet prénom / nom / e-mail à la Netlify Function `/.netlify/functions/newsletter`
+ * (qui parle à l'API Brevo côté serveur — la clé API n'est jamais dans le navigateur).
+ * Textes : dico commun (c.newsletter), bilingue.
+ */
+import { getSettings } from '../lib/sanity/content';
+import { getLangFromUrl, localizePath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const c = await getSettings(lang);
+const n = c.newsletter;
+const legalHref = localizePath('/mentions-legales', lang);
+---
+
+<div class="nl" id="newsletter-popup" role="dialog" aria-modal="true" aria-label={n.ariaLabel} aria-hidden="true">
+  <div class="nl__backdrop" data-newsletter-close></div>
+
+  <div class="nl__card">
+    <button class="nl__close" type="button" data-newsletter-close aria-label={n.close}>✕</button>
+
+    <div id="newsletter-form-wrap">
+      <h2 class="nl__title">{n.title}</h2>
+      <p class="nl__text">{n.text}</p>
+
+      <form id="newsletter-form" class="form-group">
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-field__label" for="nl-prenom">{n.firstName}</label>
+            <input id="nl-prenom" name="prenom" type="text" placeholder={n.firstNamePlaceholder} autocomplete="given-name" required />
+          </div>
+          <div class="form-field">
+            <label class="form-field__label" for="nl-nom">{n.lastName}</label>
+            <input id="nl-nom" name="nom" type="text" placeholder={n.lastNamePlaceholder} autocomplete="family-name" required />
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-field__label" for="nl-email">{n.email}</label>
+          <input id="nl-email" name="email" type="email" placeholder={n.emailPlaceholder} autocomplete="email" required />
+        </div>
+
+        <label class="nl__consent">
+          <input type="checkbox" name="consent" required />
+          <span set:html={`${n.consent} <a href="${legalHref}">${c.footer.legal}</a>`}></span>
+        </label>
+
+        <button type="submit" class="btn btn--orange nl__submit">{n.submit}</button>
+        <p class="nl__error" id="newsletter-error" role="alert" hidden>{n.errorText}</p>
+      </form>
+    </div>
+
+    <div id="newsletter-success" hidden>
+      <p class="nl__title">{n.successTitle}</p>
+      <p class="nl__text">{n.successText}</p>
+      <button type="button" class="btn btn--orange" data-newsletter-close style="margin-top:20px">{n.close}</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .nl {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .nl.is-open { display: flex; }
+  .nl__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 10, 31, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    animation: nlFade 0.3s ease both;
+  }
+  .nl__card {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    max-height: calc(100vh - 48px);
+    overflow: auto;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 6px;
+    padding: 40px 32px 32px;
+    box-shadow: 0 24px 80px rgba(13, 10, 31, 0.35);
+    animation: nlIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .nl__close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--muted);
+    padding: 6px;
+    transition: color 0.2s;
+  }
+  .nl__close:hover { color: var(--ink); }
+  .nl__title {
+    font-family: 'Tenor Sans', serif;
+    font-size: clamp(22px, 3.5vw, 28px);
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+  .nl__text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin: 0 0 22px;
+    max-width: 38ch;
+  }
+  .nl__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 18px 0 22px;
+    cursor: pointer;
+  }
+  .nl__consent input { margin-top: 2px; flex-shrink: 0; accent-color: var(--orange); }
+  .nl__consent a { color: var(--ink); }
+  .nl__submit { width: 100%; justify-content: center; }
+  .nl__error {
+    color: #b4231a;
+    font-size: 13px;
+    margin: 14px 0 0;
+  }
+  @keyframes nlFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes nlIn { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .nl__card, .nl__backdrop { animation: none; }
+  }
+</style>
+
+<script define:vars={{ submittingLabel: n.submitting, submitLabel: n.submit }}>
+  const popup = document.getElementById('newsletter-popup');
+  if (popup) {
+    const form = document.getElementById('newsletter-form');
+    const errorEl = document.getElementById('newsletter-error');
+    const formWrap = document.getElementById('newsletter-form-wrap');
+    const successEl = document.getElementById('newsletter-success');
+
+    const open = () => {
+      popup.classList.add('is-open');
+      popup.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('menu-open');
+    };
+    const close = () => {
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('menu-open');
+    };
+
+    document.querySelectorAll('[data-newsletter-open]').forEach((el) =>
+      el.addEventListener('click', (e) => { e.preventDefault(); open(); }),
+    );
+    popup.querySelectorAll('[data-newsletter-close]').forEach((el) => el.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup.classList.contains('is-open')) close();
+    });
+
+    // Auto-affichage : à la première visite, puis rappel 30 jours après le dernier affichage.
+    // Plus jamais une fois inscrit·e. L'ouverture manuelle (footer) n'est pas concernée.
+    const SUB_KEY = 'nl_subscribed';
+    const SEEN_KEY = 'nl_seen_at';
+    const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+    try {
+      if (!localStorage.getItem(SUB_KEY)) {
+        const seen = Number(localStorage.getItem(SEEN_KEY) || 0);
+        if (!seen || Date.now() - seen > THIRTY_DAYS) {
+          setTimeout(() => {
+            open();
+            try { localStorage.setItem(SEEN_KEY, String(Date.now())); } catch (_) {}
+          }, 1200);
+        }
+      }
+    } catch (_) {}
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorEl.hidden = true;
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = submittingLabel;
+      try {
+        const res = await fetch('/.netlify/functions/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            prenom: form.prenom.value.trim(),
+            nom: form.nom.value.trim(),
+            email: form.email.value.trim(),
+          }),
+        });
+        if (!res.ok) throw new Error('request failed');
+        formWrap.hidden = true;
+        successEl.hidden = false;
+        try { localStorage.setItem('nl_subscribed', '1'); } catch (_) {}
+      } catch (_) {
+        errorEl.hidden = false;
+        btn.disabled = false;
+        btn.textContent = submitLabel;
+      }
+    });
+  }
+</script>
