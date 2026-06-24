@@ -25,6 +25,7 @@ const TRANSLATED_TYPES = [
   'aboutPage',
   'contactPage',
   'legalPage',
+  'prestationsPage',
 ];
 
 // Ces types sont des singletons (un doc FR + un doc EN, fixes) : on bloque la

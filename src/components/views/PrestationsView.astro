@@ -1,0 +1,132 @@
+---
+/**
+ * Vue Prestations / Tarifs (`/tarifs` FR + `/en/tarifs` EN). Liste à plat le catalogue
+ * (calqué sur Planity) : catégories → prestations. Contenu depuis Sanity (fallback dico).
+ */
+import Layout from '../../layouts/Layout.astro';
+import Sym from '../Sym.astro';
+import Faq from '../Faq.astro';
+import { getPageContent, getSettings } from '../../lib/sanity/content';
+import type { Lang } from '../../i18n/config';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = await getPageContent('prestations', lang);
+const c = await getSettings(lang);
+
+const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
+---
+
+<Layout activePage="prestations" title={t.meta.title} description={t.meta.description}>
+
+  <div class="page-header container">
+    <span class="t-label">{t.header.label}</span>
+    <h1>{t.header.h1}</h1>
+    <p style="font-size:16px;line-height:1.85;color:rgba(13,10,31,0.55);max-width:54ch;margin-top:24px">
+      {t.header.intro}
+    </p>
+  </div>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      {t.categories.map((cat) => (
+        <div class="presta-cat">
+          <h2 class="t-label presta-cat__title">{cat.title}</h2>
+          <div class="presta-list">
+            {cat.services.map((s) => (
+              <article class="presta">
+                <div class="presta__main">
+                  <h3 class="presta__name">{s.name}</h3>
+                  <p class="presta__desc">{s.description}</p>
+                  {s.note && <span class="presta__note">{s.note}</span>}
+                </div>
+                <div class="presta__meta">
+                  <span class="presta__dur">{s.duration}</span>
+                  <span class="presta__price">{s.price}</span>
+                  <a href={PLANITY} target="_blank" rel="noopener" class="link-arrow presta__cta">
+                    {t.reserve} <Sym kind="arrow" size={14} />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <div style="margin-top:48px">
+        <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--orange">
+          {c.cta.bookPlanity} <Sym kind="arrow" size={16} color="#fff" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={t.faqs} title={c.faqTitle} />
+
+</Layout>
+
+<style>
+  .presta-cat { margin-bottom: 8px; }
+  .presta-cat__title {
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--ink);
+    margin: 0 0 4px;
+  }
+  .presta {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px 40px;
+    align-items: start;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .presta__name {
+    font-family: 'Tenor Sans', serif;
+    font-size: clamp(18px, 2.2vw, 23px);
+    line-height: 1.25;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .presta__desc {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin: 0;
+    max-width: 60ch;
+  }
+  .presta__note {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: 'Tenor Sans', serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .presta__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .presta__dur {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+  .presta__price {
+    font-family: 'Tenor Sans', serif;
+    font-size: clamp(20px, 2.6vw, 26px);
+    color: var(--ink);
+  }
+  .presta__cta { font-size: 10px; margin-top: 6px; }
+
+  @media (max-width: 560px) {
+    .presta { grid-template-columns: 1fr; gap: 14px; }
+    .presta__meta { align-items: flex-start; text-align: left; }
+  }
+</style>

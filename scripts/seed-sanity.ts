@@ -19,6 +19,7 @@ import { pilates } from '../src/i18n/pilates';
 import { about } from '../src/i18n/about';
 import { contact } from '../src/i18n/contact';
 import { legal } from '../src/i18n/legal';
+import { prestations } from '../src/i18n/prestations';
 
 const projectId = process.env.PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.PUBLIC_SANITY_DATASET || 'production';
@@ -42,6 +43,7 @@ const MAP: { type: string; dict: { fr: unknown; en: unknown } }[] = [
   { type: 'aboutPage', dict: about },
   { type: 'contactPage', dict: contact },
   { type: 'legalPage', dict: legal },
+  { type: 'prestationsPage', dict: prestations },
 ];
 
 const LANGS = ['fr', 'en'] as const;
@@ -64,9 +66,18 @@ function withKeys(value: any): any {
 }
 
 async function run() {
+  // Filtre optionnel : `npm run sanity:seed -- prestationsPage` ne (re)crée que ce type.
+  // Sans argument : seed complet (⚠️ écrase tous les docs — à éviter si du contenu a été édité).
+  const only = process.argv.slice(2).filter(Boolean);
+  const targets = only.length ? MAP.filter((m) => only.includes(m.type)) : MAP;
+  if (!targets.length) {
+    console.error(`❌ Aucun type à seeder (filtre : ${only.join(', ') || '—'}).`);
+    process.exit(1);
+  }
+
   const tx = client.transaction();
 
-  for (const { type, dict } of MAP) {
+  for (const { type, dict } of targets) {
     for (const lang of LANGS) {
       tx.createOrReplace({
         _id: `${type}-${lang}`,
@@ -97,7 +108,7 @@ async function run() {
   }
 
   await tx.commit();
-  console.log(`✅ Seed terminé : ${MAP.length} types × ${LANGS.length} langues importés dans le dataset « ${dataset} ».`);
+  console.log(`✅ Seed terminé : ${targets.length} type(s) × ${LANGS.length} langues importés dans « ${dataset} » (${targets.map((t) => t.type).join(', ')}).`);
 }
 
 run().catch((err) => {

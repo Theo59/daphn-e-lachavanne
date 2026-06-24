@@ -13,6 +13,7 @@ const PAGES: [string, string][] = [
   ['pilatesPage', 'Pilates'],
   ['aboutPage', 'À propos'],
   ['contactPage', 'Contact'],
+  ['prestationsPage', 'Prestations & tarifs'],
   ['legalPage', 'Mentions légales / 404'],
 ];
 

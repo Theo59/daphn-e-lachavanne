@@ -19,9 +19,10 @@ import { pilates } from '../../i18n/pilates';
 import { about } from '../../i18n/about';
 import { contact } from '../../i18n/contact';
 import { legal } from '../../i18n/legal';
+import { prestations } from '../../i18n/prestations';
 import { common } from '../../i18n/common';
 
-const DICTS = { home, soins, yoga, breathwork, pilates, about, contact, legal } as const;
+const DICTS = { home, soins, yoga, breathwork, pilates, about, contact, legal, prestations } as const;
 
 // Mémoïsation par build : Layout + Nav + Footer + vue demandent le même contenu/réglages
 // sur une page → on ne fetch Sanity qu'une fois par (clé, langue). Cache de promesses

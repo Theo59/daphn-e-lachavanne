@@ -13,7 +13,7 @@ const fr = {
   meta: {
     title: 'Pilates particulier Paris 7e | Daphné Lachavanne',
     description:
-      'Cours particuliers de Pilates au sol et petit matériel, en privé ou en duo, au cabinet de Paris 7e (3 rue Valadon). Tarif sur devis, sur rendez-vous.',
+      'Cours particuliers de Pilates au sol et petit matériel, en privé ou en duo, au cabinet de Paris 7e (3 rue Valadon). 90 € l’heure (130 € en duo), sur rendez-vous.',
   },
 
   hero: {
@@ -49,8 +49,8 @@ const fr = {
     bookArrow: 'Réserver →',
     // `key` est stable ; title/detail/price sont traduisibles.
     rows: [
-      { key: 'particulier', title: 'Cours particulier', detail: '1h · au cabinet', price: 'Sur devis' },
-      { key: 'duo', title: 'Duo', detail: '1h · 2 personnes', price: 'Sur devis' },
+      { key: 'particulier', title: 'Cours particulier', detail: '1h · au cabinet', price: '90 €' },
+      { key: 'duo', title: 'Duo', detail: '1h · 2 personnes', price: '130 €' },
     ],
   },
 
@@ -62,7 +62,7 @@ Trois principes guident chaque mouvement : l'alignement, pour retrouver l'axe et
 
 Les cours particuliers de Pilates à Paris 7e s'adressent autant aux débutants qu'aux pratiquants confirmés : la séance s'ajuste geste après geste, avec une correction millimétrique impossible en cours collectif. Le Pilates individuel peut aussi se partager en duo, à deux personnes, dans le même esprit d'écoute. La pratique reste un Pilates au sol (matwork) et non sur machine Reformer : le corps, le souffle et le petit matériel suffisent à construire une force durable.
 
-Professeure privée sur la rive gauche, Daphné reçoit uniquement sur rendez-vous, au 3 rue Valadon, 75007 Paris. Le tarif des cours particuliers et des duos est établi sur devis ; la réservation se fait en ligne via Planity ou par e-mail à hello@daphnelachavanne.com. Le Pilates s'inscrit dans « L'Art de la Circulation », son approche du mouvement, du souffle et du soin.`,
+Professeure privée sur la rive gauche, Daphné reçoit uniquement sur rendez-vous, au 3 rue Valadon, 75007 Paris. Le cours particulier d’une heure est à 90 €, et le duo (deux personnes) à 130 € ; la réservation se fait en ligne via Planity ou par e-mail à hello@daphnelachavanne.com. Le Pilates s'inscrit dans « L'Art de la Circulation », son approche du mouvement, du souffle et du soin.`,
   },
 
   faqs: [
@@ -70,8 +70,8 @@ Professeure privée sur la rive gauche, Daphné reçoit uniquement sur rendez-vo
     { q: 'Proposez-vous des cours de Pilates sur Reformer ?', a: 'Non. La pratique est un Pilates au sol (matwork) avec petit matériel, sans machine Reformer. Le corps, le souffle et les accessoires suffisent à un renforcement profond et durable.' },
     { q: 'Le Pilates peut-il aider ma posture et les tensions du dos ?', a: "Le travail d'alignement et de renforcement profond accompagne la posture et aide à relâcher les tensions du dos liées à la position assise. Il s'agit d'une démarche de bien-être à Paris 7e, et non d'un soin médical." },
     { q: 'Proposez-vous des cours de Pilates à domicile à Paris 7 ?', a: 'Les séances se déroulent au cabinet, au 3 rue Valadon, 75007 Paris, sur rendez-vous uniquement. Il n\'y a pas de cours à domicile : tout le matériel et le calme nécessaires sont réunis sur place, sur la rive gauche.' },
-    { q: 'Peut-on suivre un cours de Pilates à deux ?', a: "Oui. La formule duo accueille deux personnes pour une heure, dans le même esprit d'écoute que le cours individuel. Le tarif est établi sur devis." },
-    { q: 'Combien coûte un cours particulier de Pilates et comment réserver ?', a: 'Les cours particuliers comme les duos sont proposés sur devis. La réservation se fait en ligne via Planity ou par e-mail à hello@daphnelachavanne.com.' },
+    { q: 'Peut-on suivre un cours de Pilates à deux ?', a: "Oui. La formule duo accueille deux personnes pour une heure, dans le même esprit d'écoute que le cours individuel. Le duo est à 130 € (90 € en individuel)." },
+    { q: 'Combien coûte un cours particulier de Pilates et comment réserver ?', a: 'Le cours particulier d’une heure est à 90 €, le duo (deux personnes) à 130 €. La réservation se fait en ligne via Planity ou par e-mail à hello@daphnelachavanne.com.' },
   ],
 
   // Données structurées (Service schema.org). path + inLanguage localisés dans la vue.
@@ -87,7 +87,7 @@ const en = {
   meta: {
     title: 'Private Pilates Paris 7th | Daphné Lachavanne',
     description:
-      'Private mat Pilates lessons with small equipment, one-to-one or in pairs, at the Paris 7th studio (3 rue Valadon). Price on request, by appointment.',
+      'Private mat Pilates lessons with small equipment, one-to-one or in pairs, at the Paris 7th studio (3 rue Valadon). €90 per hour (€130 in pairs), by appointment.',
   },
 
   hero: {
@@ -121,8 +121,8 @@ const en = {
     text: 'Individual sessions at the studio. Booking via Planity.',
     bookArrow: 'Book →',
     rows: [
-      { key: 'particulier', title: 'Private lesson', detail: '1 hr · in studio', price: 'On request' },
-      { key: 'duo', title: 'In pairs', detail: '1 hr · 2 people', price: 'On request' },
+      { key: 'particulier', title: 'Private lesson', detail: '1 hr · in studio', price: '€90' },
+      { key: 'duo', title: 'In pairs', detail: '1 hr · 2 people', price: '€130' },
     ],
   },
 
@@ -134,7 +134,7 @@ Three principles guide every movement: alignment, to recover the axis and the ve
 
 Private Pilates lessons in Paris 7th suit beginners and seasoned practitioners alike: the session adjusts gesture after gesture, with a precise correction impossible in a group class. Individual Pilates can also be shared in pairs, with two people, in the same spirit of attentiveness. The practice remains mat Pilates (matwork) rather than the Reformer machine: the body, the breath and small equipment are enough to build lasting strength.
 
-A private teacher on the Left Bank, Daphné receives by appointment only, at 3 rue Valadon, 75007 Paris. Private lessons and pair sessions are priced on request; booking is done online via Planity or by email at hello@daphnelachavanne.com. Pilates is part of L'Art de la Circulation, her approach to movement, breath and care.`,
+A private teacher on the Left Bank, Daphné receives by appointment only, at 3 rue Valadon, 75007 Paris. The one-hour private lesson is €90, and the pair session (two people) €130; booking is done online via Planity or by email at hello@daphnelachavanne.com. Pilates is part of L'Art de la Circulation, her approach to movement, breath and care.`,
   },
 
   faqs: [
@@ -142,8 +142,8 @@ A private teacher on the Left Bank, Daphné receives by appointment only, at 3 r
     { q: 'Do you offer Reformer Pilates lessons?', a: 'No. The practice is mat Pilates (matwork) with small equipment, without the Reformer machine. The body, the breath and the accessories are enough for deep, lasting strengthening.' },
     { q: 'Can Pilates help my posture and back tensions?', a: 'The work of alignment and deep strengthening supports posture and helps release the back tensions linked to sitting. It is a wellbeing practice in Paris 7th, not a medical treatment.' },
     { q: 'Do you offer Pilates lessons at home in Paris 7th?', a: 'Sessions take place at the studio, at 3 rue Valadon, 75007 Paris, by appointment only. There are no home lessons: all the equipment and the calm needed are gathered on site, on the Left Bank.' },
-    { q: 'Can a Pilates lesson be taken in pairs?', a: 'Yes. The pair format welcomes two people for an hour, in the same spirit of attentiveness as the individual lesson. The price is on request.' },
-    { q: 'How much does a private Pilates lesson cost and how do I book?', a: 'Both private lessons and pair sessions are offered on request. Booking is done online via Planity or by email at hello@daphnelachavanne.com.' },
+    { q: 'Can a Pilates lesson be taken in pairs?', a: 'Yes. The pair format welcomes two people for an hour, in the same spirit of attentiveness as the individual lesson. The pair session is €130 (€90 one-to-one).' },
+    { q: 'How much does a private Pilates lesson cost and how do I book?', a: 'The one-hour private lesson is €90, the pair session (two people) €130. Booking is done online via Planity or by email at hello@daphnelachavanne.com.' },
   ],
 
   schema: {

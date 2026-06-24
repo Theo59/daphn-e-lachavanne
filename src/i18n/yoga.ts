@@ -12,7 +12,7 @@ const fr = {
   meta: {
     title: 'Cours de yoga particulier Paris 7e | Daphné Lachavanne',
     description:
-      'Cours particuliers de yoga (vinyasa, hatha, yin) et pranayama à Paris 7e, rive gauche. 1h à 90 €, en cabinet privé sur rendez-vous. Réservez en ligne.',
+      'Cours particuliers de yoga (vinyasa, hatha, yin) et pranayama à Paris 7e, rive gauche. 1h à 90 € (130 € en duo), en cabinet privé sur rendez-vous. Réservez en ligne.',
   },
 
   header: {
@@ -48,6 +48,7 @@ const fr = {
     reserve: 'Réserver →',
     rows: [
       { title: 'Cours particulier', detail: '1h · au cabinet', price: '90 €' },
+      { title: 'Duo', detail: '1h · 2 personnes', price: '130 €' },
       { title: 'Forfait 5 séances', detail: 'valable 3 mois', price: '400 €' },
     ],
   },
@@ -60,13 +61,13 @@ Chaque séance repose sur trois piliers. Le pranayama d’abord : le souffle yog
 
 Ce format en cours particulier convient au yoga débutant comme à une pratique avancée. Rien n’est standardisé : le rythme, les transitions et les appuis se construisent autour de vous. C’est aussi un espace pour celles et ceux qui n’osent pas le cours collectif, ou qui cherchent un suivi régulier auprès d’un professeur de yoga privé à Paris.
 
-Les tarifs sont clairs : le cours particulier d’une heure est à 90 €, et le forfait de 5 séances, valable 3 mois, à 400 €. Les séances ont lieu au cabinet, uniquement sur rendez-vous. La réservation se fait en ligne via Planity, où la pratique est notée 5,0 / 5. Pour toute question préalable, l’échange peut commencer par e-mail à hello@daphnelachavanne.com.`,
+Les tarifs sont clairs : le cours particulier d’une heure est à 90 € (130 € en duo), et le forfait de 5 séances, valable 3 mois, à 400 €. Les séances ont lieu au cabinet, uniquement sur rendez-vous. La réservation se fait en ligne via Planity, où la pratique est notée 5,0 / 5. Pour toute question préalable, l’échange peut commencer par e-mail à hello@daphnelachavanne.com.`,
   },
 
   faqs: [
     { q: 'À qui s’adressent les cours de yoga ?', a: 'À tous. Comme il s’agit de cours particuliers, la séance s’adapte à votre corps, votre niveau et votre moment, yoga débutant comme pratique confirmée. Le style, vinyasa, hatha ou yin, est choisi avec vous.' },
     { q: 'Où ont lieu les cours ? Proposez-vous des cours à domicile ?', a: 'Les cours particuliers de yoga ont lieu au cabinet privé du 7e, au 3 rue Valadon, sur la rive gauche à Paris, uniquement sur rendez-vous.' },
-    { q: 'Combien coûte un cours et comment réserver ?', a: 'Le cours particulier d’une heure est à 90 €. Le forfait de 5 séances, valable 3 mois, est à 400 €. La réservation se fait en ligne sur Planity.' },
+    { q: 'Combien coûte un cours et comment réserver ?', a: 'Le cours particulier d’une heure est à 90 € (130 € en duo). Le forfait de 5 séances, valable 3 mois, est à 400 €. La réservation se fait en ligne sur Planity.' },
     { q: 'Que comprend une séance de yoga ?', a: 'Trois temps : le pranayama (souffle yogi en trois temps), la posture (asanas ajustées et accompagnées) et quelques minutes de méditation en pleine conscience pour intégrer la pratique.' },
     { q: 'Peut-on pratiquer le yoga enceinte ?', a: 'Le format individuel permet d’adapter la pratique à chaque étape de la vie. Pour une grossesse ou une situation particulière, un échange préalable par e-mail à hello@daphnelachavanne.com permet de préparer la séance ensemble.' },
     { q: 'Faut-il de l’expérience ou du matériel ?', a: 'Aucune expérience n’est requise. La pratique se construit autour de vous, au sol, à votre rythme, dans un cadre privé à Paris 7e.' },
@@ -84,7 +85,7 @@ const en = {
   meta: {
     title: 'Private yoga lessons Paris 7th | Daphné Lachavanne',
     description:
-      'Private yoga lessons (vinyasa, hatha, yin) and pranayama in Paris 7th, Left Bank. 1 hr, €90, in a private studio by appointment. Book online.',
+      'Private yoga lessons (vinyasa, hatha, yin) and pranayama in Paris 7th, Left Bank. 1 hr, €90 (€130 in pairs), in a private studio by appointment. Book online.',
   },
 
   header: {
@@ -119,6 +120,7 @@ const en = {
     reserve: 'Book →',
     rows: [
       { title: 'Private lesson', detail: '1 hr · at the studio', price: '€90' },
+      { title: 'In pairs', detail: '1 hr · 2 people', price: '€130' },
       { title: '5-session package', detail: 'valid 3 months', price: '€400' },
     ],
   },
@@ -131,13 +133,13 @@ Each session rests on three pillars. Pranayama first: the yogic breath in three 
 
 This private-lesson format suits beginner yoga as much as an advanced practice. Nothing is standardised: the pace, the transitions and the supports are built around you. It is also a space for those who do not dare join a group class, or who are looking for regular guidance from a private yoga teacher in Paris.
 
-The pricing is clear: the one-hour private lesson is €90, and the 5-session package, valid 3 months, is €400. Sessions take place at the studio, by appointment only. Booking is done online via Planity, where the practice is rated 5.0 / 5. For any question beforehand, the conversation can begin by email at hello@daphnelachavanne.com.`,
+The pricing is clear: the one-hour private lesson is €90 (€130 in pairs), and the 5-session package, valid 3 months, is €400. Sessions take place at the studio, by appointment only. Booking is done online via Planity, where the practice is rated 5.0 / 5. For any question beforehand, the conversation can begin by email at hello@daphnelachavanne.com.`,
   },
 
   faqs: [
     { q: 'Who are the yoga lessons for?', a: 'Everyone. As they are private lessons, the session adapts to your body, your level and your moment, from beginner yoga to experienced practice. The style — vinyasa, hatha or yin — is chosen with you.' },
     { q: 'Where do the lessons take place? Do you offer lessons at home?', a: 'Private yoga lessons take place at the private studio in the 7th, at 3 rue Valadon, on the Left Bank in Paris, by appointment only.' },
-    { q: 'How much does a lesson cost and how do I book?', a: 'The one-hour private lesson is €90. The 5-session package, valid 3 months, is €400. Booking is done online on Planity.' },
+    { q: 'How much does a lesson cost and how do I book?', a: 'The one-hour private lesson is €90 (€130 in pairs). The 5-session package, valid 3 months, is €400. Booking is done online on Planity.' },
     { q: 'What does a yoga session include?', a: 'Three movements: pranayama (yogic breath in three parts), posture (adjusted and guided asanas) and a few minutes of mindful meditation to integrate the practice.' },
     { q: 'Can you practise yoga while pregnant?', a: 'The one-to-one format makes it possible to adapt the practice to every stage of life. For a pregnancy or a particular situation, a prior exchange by email at hello@daphnelachavanne.com lets us prepare the session together.' },
     { q: 'Do you need experience or equipment?', a: 'No experience is required. The practice is built around you, on the mat, at your own pace, in a private setting in Paris 7th.' },

@@ -11,6 +11,7 @@ import pilatesPage from './pilatesPage';
 import aboutPage from './aboutPage';
 import contactPage from './contactPage';
 import legalPage from './legalPage';
+import prestationsPage from './prestationsPage';
 
 export const schemaTypes = [
   siteSettings,
@@ -22,4 +23,5 @@ export const schemaTypes = [
   aboutPage,
   contactPage,
   legalPage,
+  prestationsPage,
 ];
