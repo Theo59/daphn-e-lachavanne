@@ -78,7 +78,7 @@ Avant chaque suivi, un court échange permet de comprendre votre demande et d'aj
     { q: 'Où se trouve le cabinet ?', a: 'Au 3 rue Valadon, 75007 Paris, dans le 7e arrondissement, sur la rive gauche. C\'est un cabinet privé, accessible uniquement sur rendez-vous.' },
     { q: 'Quels sont les horaires du cabinet ?', a: 'Le cabinet est ouvert le lundi de 15h à 22h30, du mardi au samedi de 8h à 22h30, et fermé le dimanche. Les séances se font uniquement sur rendez-vous.' },
     { q: 'Combien coûte un drainage lymphatique méthode Renata França ?', a: '150 € pour une séance d\'une heure. Le Soin Signature (drainage, breathwork et énergétique, 2h) est à 280 €. Un Forfait Découverte de 3 drainages, valable 3 mois, est proposé à 420 €.' },
-    { q: 'Puis-je réserver un cours de yoga ou de Pilates à Paris 7e ?', a: 'Oui, en cours particuliers au cabinet. Le yoga est à 90 € l\'heure (forfait 5 séances valable 3 mois, 400 €). Le Pilates se pratique en privé ou en duo, sur devis.' },
+    { q: 'Puis-je réserver un cours de yoga ou de Pilates à Paris 7e ?', a: 'Oui, en cours particuliers au cabinet. Le yoga est à 90 € l\'heure (130 € en duo ; forfait 5 séances valable 3 mois, 400 €). Le Pilates est aussi à 90 € l’heure (130 € en duo).' },
     { q: 'Proposez-vous des séances de breathwork en groupe ?', a: 'Oui. Un cercle de souffle en groupe fermé de 4 à 6 personnes dure 2h, à 60 € par personne. La séance individuelle d\'une heure est à 90 €, au cabinet.' },
   ],
 };
@@ -153,7 +153,7 @@ Before every journey, a short conversation helps to understand your needs and tu
     { q: 'Where is the studio?', a: 'At 3 rue Valadon, 75007 Paris, in the 7th arrondissement, on the Left Bank. It is a private studio, accessible by appointment only.' },
     { q: 'What are the studio’s opening hours?', a: 'The studio is open Monday 3–10:30 pm, Tuesday to Saturday 8 am–10:30 pm, and closed on Sunday. Sessions are by appointment only.' },
     { q: 'How much does a Renata França lymphatic drainage cost?', a: '€150 for a one-hour session. The Signature Treatment (drainage, breathwork and energy work, 2 hrs) is €280. A Discovery package of 3 drainages, valid for 3 months, is offered at €420.' },
-    { q: 'Can I book a yoga or Pilates lesson in Paris 7th?', a: 'Yes, in private lessons at the studio. Yoga is €90 an hour (5-session package valid for 3 months, €400). Pilates is practised privately or in pairs, on request.' },
+    { q: 'Can I book a yoga or Pilates lesson in Paris 7th?', a: 'Yes, in private lessons at the studio. Yoga is €90 an hour (€130 in pairs; 5-session package valid for 3 months, €400). Pilates is also €90 an hour (€130 in pairs).' },
     { q: 'Do you offer breathwork sessions in a group?', a: 'Yes. A breath circle in a closed group of 4 to 6 people lasts 2 hrs, at €60 per person. The one-hour individual session is €90, at the studio.' },
   ],
 } satisfies typeof fr;

@@ -83,7 +83,7 @@ Centre bien-être holistique à taille humaine, ce studio de la rive gauche asso
     { q: 'Comment prendre rendez-vous ?', a: 'La réservation se fait en ligne sur Planity (planity.com/daphne-lachavanne-75007-paris) ou par e-mail à hello@daphnelachavanne.com. Le cabinet reçoit sur rendez-vous.' },
     { q: 'Quelles pratiques propose Daphné Lachavanne ?', a: 'Quatre pratiques au même endroit : les soins (drainage lymphatique méthode Renata França, Soin Signature, Miracle Face, Combo Détox), le breathwork, le yoga et le Pilates.' },
     { q: 'Combien coûte un soin ?', a: 'Le drainage lymphatique Renata França est à 150 € (1h), le Soin Signature à 280 € (2h), le Miracle Face à 90 € (40 min) et le Combo Détox à 200 € (1h30). Des forfaits existent, comme le Forfait Découverte de 3 drainages à 420 €.' },
-    { q: 'Le yoga et le Pilates se pratiquent-ils en cours collectif ?', a: 'Non. Le yoga (vinyasa, hatha, yin) se donne en cours particuliers individuels au cabinet. Le Pilates, lui, se pratique en cours particulier, en privé ou en duo. Le cours de yoga d’1h est à 90 € ; le Pilates est proposé sur devis.' },
+    { q: 'Le yoga et le Pilates se pratiquent-ils en cours collectif ?', a: 'Non. Le yoga (vinyasa, hatha, yin) se donne en cours particuliers individuels au cabinet. Le Pilates, lui, se pratique en cours particulier, en privé ou en duo. Le cours de yoga comme le Pilates sont à 90 € l’heure (130 € en duo).' },
     { q: 'Qu’est-ce que L’Art de la Circulation ?', a: 'C’est l’approche créée par Daphné Lachavanne en 2025, qui unit le mouvement, le souffle et le travail énergétique pour aider le corps à mieux circuler, dans une démarche de bien-être.' },
   ],
 
@@ -168,7 +168,7 @@ A human-scale holistic wellbeing centre, this Left Bank studio brings drainage t
     { q: 'How do I book an appointment?', a: 'Booking is done online on Planity (planity.com/daphne-lachavanne-75007-paris) or by email at hello@daphnelachavanne.com. The studio is by appointment only.' },
     { q: 'What practices does Daphné Lachavanne offer?', a: 'Four practices in one place: treatments (Renata França lymphatic drainage, Signature Treatment, Miracle Face, Detox Combo), breathwork, yoga and Pilates.' },
     { q: 'How much does a treatment cost?', a: 'Renata França lymphatic drainage is €150 (1 hr), the Signature Treatment €280 (2 hrs), the Miracle Face €90 (40 min) and the Detox Combo €200 (1 hr 30). Packages are available, such as the Discovery package of 3 drainages at €420.' },
-    { q: 'Are yoga and Pilates taught in group classes?', a: 'No. Yoga (vinyasa, hatha, yin) is taught in private one-to-one lessons at the studio. Pilates is taught privately too, one-to-one or in pairs. The 1-hour yoga lesson is €90; Pilates is on request.' },
+    { q: 'Are yoga and Pilates taught in group classes?', a: 'No. Yoga (vinyasa, hatha, yin) is taught in private one-to-one lessons at the studio. Pilates is taught privately too, one-to-one or in pairs. Both the 1-hour yoga and Pilates lessons are €90 (€130 in pairs).' },
     { q: 'What is L’Art de la Circulation?', a: 'It is the approach created by Daphné Lachavanne in 2025, uniting movement, breath and energy work to help the body circulate better, as part of a wellbeing practice.' },
   ],
 
