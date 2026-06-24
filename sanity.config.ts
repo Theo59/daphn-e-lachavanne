@@ -6,8 +6,10 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { documentInternationalization } from '@sanity/document-internationalization';
+import { EnvelopeIcon } from '@sanity/icons';
 import { schemaTypes } from './src/sanity/schemaTypes';
 import { structure } from './src/sanity/structure';
+import { NewsletterTool } from './src/sanity/tools/NewsletterTool';
 
 const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID || '';
 const dataset = import.meta.env.PUBLIC_SANITY_DATASET || 'production';
@@ -45,6 +47,11 @@ export default defineConfig({
       schemaTypes: TRANSLATED_TYPES,
     }),
     visionTool(),
+  ],
+  // Tools personnalisés du Studio (pages dans le menu) — ajoutés aux tools des plugins.
+  tools: (prev) => [
+    ...prev,
+    { name: 'newsletter', title: 'Newsletter', icon: EnvelopeIcon, component: NewsletterTool },
   ],
   document: {
     // Retire les types singletons du menu de création global (« + »).
