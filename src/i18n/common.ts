@@ -60,6 +60,26 @@ const fr = {
       'Praticienne bien-être à Paris 7e : drainage lymphatique méthode Renata França, soins, yoga, breathwork et pilates, en cabinet privé sur rendez-vous.',
     personJobTitle: 'Praticienne bien-être',
   },
+
+  // Popup d'inscription à la newsletter (composant NewsletterPopup).
+  newsletter: {
+    ariaLabel: 'Inscription à la newsletter',
+    title: '−10 % sur votre première séance',
+    text: 'Inscrivez-vous à la newsletter et recevez votre code de bienvenue par e-mail.',
+    firstName: 'Prénom',
+    firstNamePlaceholder: 'Marie',
+    lastName: 'Nom',
+    lastNamePlaceholder: 'Dupont',
+    email: 'Email',
+    emailPlaceholder: 'vous@email.com',
+    consent: 'J’accepte de recevoir la newsletter de Daphné Lachavanne.',
+    submit: 'Je m’inscris',
+    submitting: 'Inscription…',
+    successTitle: 'Bienvenue !',
+    successText: 'Vérifiez votre boîte mail : votre code de réduction vous attend.',
+    errorText: 'Une erreur est survenue. Merci de réessayer dans un instant.',
+    close: 'Fermer',
+  },
 };
 
 const en = {
@@ -110,6 +130,25 @@ const en = {
     businessDescription:
       'Wellbeing practitioner in Paris 7th: Renata França lymphatic drainage, treatments, yoga, breathwork and pilates, in a private studio by appointment.',
     personJobTitle: 'Wellbeing practitioner',
+  },
+
+  newsletter: {
+    ariaLabel: 'Newsletter signup',
+    title: '10% off your first session',
+    text: 'Sign up to the newsletter and get your welcome code by email.',
+    firstName: 'First name',
+    firstNamePlaceholder: 'Marie',
+    lastName: 'Last name',
+    lastNamePlaceholder: 'Dupont',
+    email: 'Email',
+    emailPlaceholder: 'you@email.com',
+    consent: 'I agree to receive Daphné Lachavanne’s newsletter.',
+    submit: 'Sign up',
+    submitting: 'Signing up…',
+    successTitle: 'Welcome!',
+    successText: 'Check your inbox: your discount code is waiting for you.',
+    errorText: 'Something went wrong. Please try again in a moment.',
+    close: 'Close',
   },
 } satisfies typeof fr;
 

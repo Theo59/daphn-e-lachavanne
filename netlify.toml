@@ -1,8 +1,12 @@
 [build]
-  # Les originaux lourds vivent dans media-src/ (hors public/ → non déployés) ;
-  # seules les variantes optimisées public/media/web/ partent en prod.
+  # Site statique Astro ; images servies par le CDN Sanity (rien de lourd dans public/).
   command = "npm run build"
   publish = "dist"
+
+# Fonctions serverless (ex. inscription newsletter → Brevo).
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [build.environment]
   NODE_VERSION = "22"
