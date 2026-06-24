@@ -15,6 +15,7 @@ export const TYPE_BY_PAGE = {
   about: 'aboutPage',
   contact: 'contactPage',
   legal: 'legalPage',
+  prestations: 'prestationsPage',
 } as const;
 
 export type PageKey = keyof typeof TYPE_BY_PAGE;
