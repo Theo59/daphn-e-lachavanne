@@ -31,11 +31,15 @@ const [lead, ...rest] = paragraphs;
 </section>
 
 <style>
-  /* Reprend la grille label/contenu du reste du site (1fr / 2fr, gap 80px). */
+  /* Section allégée : padding vertical réduit + typo compacte.
+     Le texte reste 100% visible et dans le DOM → valeur SEO/GEO intacte. */
+  .section.prose-block { padding-top: 4rem; padding-bottom: 4rem; }
+
+  /* Grille label/contenu (1fr / 2fr). */
   .prose-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 80px;
+    gap: 64px;
     align-items: start;
   }
   .prose-aside {
@@ -44,21 +48,21 @@ const [lead, ...rest] = paragraphs;
   }
   .prose-aside .t-label { margin: 0; }
 
-  .prose-body { max-width: 62ch; }
+  .prose-body { max-width: 62ch; overflow-wrap: break-word; }
 
   /* Paragraphe d'accroche : plus grand, encré, avec lettrine Cormorant. */
   .prose-lead {
-    font-size: clamp(19px, 2vw, 22px);
-    line-height: 1.6;
+    font-size: clamp(15px, 1.4vw, 17px);
+    line-height: 1.7;
     color: var(--ink);
-    margin: 0 0 1.4em;
+    margin: 0 0 1.1em;
   }
   .prose-lead::first-letter {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 400;
-    font-size: 3.4em;
-    line-height: 0.78;
+    font-size: 2.3em;
+    line-height: 0.82;
     float: left;
     padding: 0.06em 0.12em 0 0;
     color: var(--orange);
@@ -66,10 +70,10 @@ const [lead, ...rest] = paragraphs;
 
   /* Texte de fond : mesure courte, gris brand, rythme aéré. */
   .prose-body p:not(.prose-lead) {
-    font-size: 16px;
-    line-height: 1.85;
+    font-size: 14px;
+    line-height: 1.7;
     color: var(--muted);
-    margin: 0 0 1.2em;
+    margin: 0 0 0.9em;
   }
   .prose-body p:last-child { margin-bottom: 0; }
 

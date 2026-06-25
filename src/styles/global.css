@@ -249,7 +249,7 @@ a.nav__lang-item:hover { opacity: 1; }
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: #0d0a1f;
+  background: #16066e;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -339,10 +339,10 @@ body.menu-open { overflow: hidden; }
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(13,10,31,0.35) 0%,
+    rgba(22,6,110,0.30) 0%,
     transparent 35%,
     transparent 55%,
-    rgba(13,10,31,0.65) 100%
+    rgba(22,6,110,0.58) 100%
   );
 }
 
@@ -434,7 +434,7 @@ body.menu-open { overflow: hidden; }
 }
 
 .section--dark {
-  background: #0d0a1f;
+  background: #16066e;
   color: #fff;
 }
 .section--dark .t-muted  { color: rgba(255,255,255,0.6); }
@@ -754,7 +754,7 @@ a.service-icon-card:hover .service-icon-card__icon img { transform: scale(1.06);
   padding: 36px 32px;
   border-radius: 6px;
   overflow: hidden;
-  color: #fff;
+  color: var(--ink);
   min-height: 280px;
   display: flex;
   flex-direction: column;
@@ -825,6 +825,9 @@ a.service-icon-card:hover .service-icon-card__icon img { transform: scale(1.06);
   font-weight: 400;
 }
 .cta-band__text { font-size: 15px; line-height: 1.75; margin-top: 20px; opacity: 0.9; max-width: 460px; }
+/* Variante claire/aérée : fond pastel + texte foncé (au lieu d'un bloc de couleur vive). */
+.cta-band--light { color: var(--ink); border: 1px solid rgba(13,10,31,0.08); }
+.cta-band--light .cta-band__text { opacity: 0.65; }
 @media (max-width: 768px) { .cta-band { padding: 48px 28px; } }
 
 /* ============================================================
@@ -835,7 +838,7 @@ a.service-icon-card:hover .service-icon-card__icon img { transform: scale(1.06);
   justify-content: space-between;
   align-items: center;
   padding: 22px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.14);
+  border-bottom: 1px solid rgba(13,10,31,0.12);
   gap: 24px;
 }
 .tarif-row__title  { font-family: 'Tenor Sans', serif; font-size: 20px; margin: 0 0 4px; }
@@ -998,7 +1001,7 @@ hr.divider { border: none; border-top: 1px solid rgba(13,10,31,0.1); margin: 0; 
   position: fixed;
   inset: 0;
   z-index: 500;
-  background: #0d0a1f;
+  background: #16066e;
   pointer-events: none;
   clip-path: inset(0 100% 0 0);
 }

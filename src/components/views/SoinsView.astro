@@ -95,7 +95,7 @@ const serviceSchema = serviceLd({
 
   <!-- CATALOGUE - icon grid + soin-rows -->
   <section class="service-icon-section" style="position:relative;overflow:hidden">
-    <div style={`position:absolute;inset:0;background:url('${gradient2}') center/cover;opacity:0.55`}></div>
+    <div style={`position:absolute;inset:0;background:url('${gradient2}') center/cover`}></div>
     <div style="position:relative">
       <div class="container" style="padding-top:56px;padding-bottom:40px;border-bottom:1px solid rgba(13,10,31,0.1)">
         <div style="display:flex;justify-content:space-between;align-items:baseline">
@@ -142,8 +142,7 @@ const serviceSchema = serviceLd({
       <div class="grid-3">
         {t.packages.map((p) => (
           <div class="forfait" style="background:#e8612a">
-            <div style={`position:absolute;inset:0;background:url('${gradient1}') center/cover;mix-blend-mode:multiply;opacity:0.85`}></div>
-            <div style="position:absolute;inset:0;background:rgba(13,10,31,0.2)"></div>
+            <div style={`position:absolute;inset:0;background:url('${gradient1}') center/cover`}></div>
             <div class="forfait__content">
               <div>
                 <span class="forfait__save">{p.save}</span>
@@ -152,7 +151,7 @@ const serviceSchema = serviceLd({
               </div>
               <div class="forfait__bottom">
                 <span class="forfait__price">{p.price}</span>
-                <Sym kind="arrow" size={20} color="#fff" />
+                <Sym kind="arrow" size={20} color="#0d0a1f" />
               </div>
             </div>
           </div>
