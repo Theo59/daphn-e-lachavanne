@@ -50,8 +50,11 @@ export default defineType({
         defineField({ name: 'alt2', title: 'Texte alternatif 2', type: 'string' }),
         defineField({ name: 'alt3', title: 'Texte alternatif 3', type: 'string' }),
         defineField({ name: 'image1', title: 'Photo 1', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'image1Video', title: 'Vidéo 1 (mp4, optionnel — remplace la photo 1)', type: 'file', options: { accept: 'video/mp4' } }),
         defineField({ name: 'image2', title: 'Photo 2', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'image2Video', title: 'Vidéo 2 (mp4, optionnel — remplace la photo 2)', type: 'file', options: { accept: 'video/mp4' } }),
         defineField({ name: 'image3', title: 'Photo 3', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'image3Video', title: 'Vidéo 3 (mp4, optionnel — remplace la photo 3)', type: 'file', options: { accept: 'video/mp4' } }),
       ],
     }),
 

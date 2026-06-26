@@ -1,0 +1,62 @@
+---
+/**
+ * <MediaSlot> — affiche une VIDÉO (mp4 Sanity) si une vidéo est fournie, sinon l'IMAGE.
+ * Remplace <SanityImage> dans les blocs photo pour autoriser une vidéo par emplacement,
+ * éditable depuis Sanity (comme la vidéo du hero).
+ *
+ * - `video` : champ `file` Sanity (objet `{ asset:{ _ref } }`) ou un `_ref` string.
+ *   Absent / vide → on retombe simplement sur l'image (aucun markup cassé).
+ * - La vidéo est muette, en lecture auto + boucle (une « photo animée »), avec l'image en poster.
+ * - Mêmes props que <SanityImage> (image/alt/width/widths/sizes/style/loading…), transmises tel quel.
+ *
+ * Le champ vidéo arrive automatiquement dans la vue via deepFill() dès qu'il est ajouté au
+ * schéma Sanity — aucune plomberie supplémentaire côté contenu.
+ */
+import SanityImage from './SanityImage.astro';
+import { urlFor, fileUrl, hasImage } from '../lib/sanity/image';
+
+interface Props {
+  image?: unknown;
+  video?: unknown;
+  alt?: string;
+  width?: number;
+  widths?: number[];
+  sizes?: string;
+  style?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { image, video, alt = '', width, widths, sizes, style = '', class: className, ...rest } = Astro.props;
+
+// Réf de la vidéo : accepte l'objet `file` Sanity OU une string `_ref`.
+const videoRef = (video as any)?.asset?._ref ?? (typeof video === 'string' ? video : null);
+const videoSrc = fileUrl(videoRef);
+
+// Image en poster (affichée avant le chargement de la vidéo) si disponible.
+const posterW = widths && widths.length ? widths[widths.length - 1] : width ?? 1024;
+const poster = hasImage(image) ? urlFor(image as any).width(posterW).url() : undefined;
+
+// La vidéo couvre son conteneur, comme le fait `.photo-wrap img`.
+const videoStyle = ['width:100%', 'height:100%', 'object-fit:cover', 'display:block', style]
+  .filter(Boolean)
+  .join(';');
+---
+
+{videoSrc ? (
+  <video
+    class={className}
+    style={videoStyle}
+    poster={poster}
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    aria-label={alt || undefined}
+  >
+    <source src={videoSrc} type="video/mp4" />
+  </video>
+) : (
+  <SanityImage image={image} alt={alt} width={width} widths={widths} sizes={sizes} style={style} class={className} {...rest} />
+)}

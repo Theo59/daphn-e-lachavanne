@@ -6,6 +6,7 @@
  */
 import Layout from '../../layouts/Layout.astro';
 import SanityImage from '../SanityImage.astro';
+import MediaSlot from '../MediaSlot.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
@@ -31,10 +32,10 @@ const gradient2 = bg(brand.gradient2);
 
 // Bande photo : image Sanity + alt (dico). Plus de filtre CSS : images affichées telles qu'uploadées dans Sanity.
 const STRIP_PHOTOS = [
-  { image: photos.image1, alt: t.photos.alt1, style: '' },
-  { image: photos.image2, alt: t.photos.alt2, style: '' },
-  { image: photos.image3, alt: t.photos.alt3, style: '' },
-  { image: photos.image4, alt: t.photos.alt4, style: '' },
+  { image: photos.image1, alt: t.photos.alt1, style: '', video: photos.image1Video },
+  { image: photos.image2, alt: t.photos.alt2, style: '', video: photos.image2Video },
+  { image: photos.image3, alt: t.photos.alt3, style: '', video: photos.image3Video },
+  { image: photos.image4, alt: t.photos.alt4, style: '', video: photos.image4Video },
 ];
 ---
 
@@ -52,7 +53,7 @@ const STRIP_PHOTOS = [
           <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;font-weight:300;margin-top:32px;color:rgba(13,10,31,0.75)" set:html={richTextToInlineHtml(t.header.subtitleHtml)} />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <SanityImage image={headerImage} alt={t.header.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="eager" />
+          <MediaSlot image={headerImage} video={(t.header as any).video} alt={t.header.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="eager" />
         </div>
       </div>
     </div>
@@ -97,7 +98,7 @@ const STRIP_PHOTOS = [
     <div class="photo-grid-4">
       {STRIP_PHOTOS.map((photo) => (
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <SanityImage image={photo.image} alt={photo.alt} widths={[480, 768]} sizes="(max-width:900px) 50vw, 25vw" style={photo.style} loading="lazy" decoding="async" />
+          <MediaSlot image={photo.image} video={photo.video} alt={photo.alt} widths={[480, 768]} sizes="(max-width:900px) 50vw, 25vw" style={photo.style} loading="lazy" decoding="async" />
         </div>
       ))}
     </div>

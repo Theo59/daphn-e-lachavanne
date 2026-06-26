@@ -7,6 +7,7 @@
  */
 import Layout from '../../layouts/Layout.astro';
 import SanityImage from '../SanityImage.astro';
+import MediaSlot from '../MediaSlot.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
@@ -61,13 +62,13 @@ const serviceSchema = serviceLd({
     <div class="container">
       <div class="grid-3">
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <SanityImage image={(t.photos as any).image1} alt={t.photos.alt1} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
+          <MediaSlot image={(t.photos as any).image1} video={(t.photos as any).image1Video} alt={t.photos.alt1} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <SanityImage image={(t.photos as any).image2} alt={t.photos.alt2} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
+          <MediaSlot image={(t.photos as any).image2} video={(t.photos as any).image2Video} alt={t.photos.alt2} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <SanityImage image={(t.photos as any).image3} alt={t.photos.alt3} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
+          <MediaSlot image={(t.photos as any).image3} video={(t.photos as any).image3Video} alt={t.photos.alt3} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
