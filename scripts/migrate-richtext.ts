@@ -24,7 +24,9 @@ const client = createClient({ projectId, dataset, apiVersion: '2026-03-01', toke
 
 async function run() {
   const types = Array.from(new Set([...Object.keys(RICHTEXT_FIELDS), ...FAQ_TYPES]));
-  const docs: any[] = await client.fetch('*[_type in $types]', { types });
+  // Perspective `raw` : on traite AUSSI les brouillons (drafts.*), sinon le Studio
+  // afficherait leurs champs comme invalides tant qu'ils ne sont pas publiés.
+  const docs: any[] = await client.fetch('*[_type in $types]', { types }, { perspective: 'raw' });
 
   let changed = 0;
   for (const doc of docs) {
