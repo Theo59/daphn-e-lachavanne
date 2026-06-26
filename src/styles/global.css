@@ -371,7 +371,7 @@ body.menu-open { overflow: hidden; }
 .hero__title {
   font-family: 'Tenor Sans', serif;
   font-size: clamp(60px, 9.5vw, 132px);
-  line-height: 0.95;
+  line-height: 1.02;
   letter-spacing: -0.01em;
   font-weight: 400;
   margin: 0;
@@ -421,14 +421,14 @@ body.menu-open { overflow: hidden; }
 }
 
 .page-header {
-  padding: 9rem var(--pad) 3.5rem;
+  padding: 6.5rem var(--pad) 3.5rem;
 }
 .page-header h1 {
   font-family: 'Tenor Sans', serif;
   font-size: clamp(72px, 13vw, 200px);
-  line-height: 0.9;
+  line-height: 1.0;
   font-weight: 400;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   margin-top: 28px;
 }
 @media (max-width: 900px) {
@@ -676,6 +676,27 @@ a.service-icon-card:hover .service-icon-card__icon img { transform: scale(1.06);
   font-style: italic;
   font-family: 'Cormorant Garamond', serif;
 }
+
+/* Noms de disciplines mis en avant (section "Quatre disciplines" de l'accueil) */
+.service-icon-grid--lead .service-icon-card__name {
+  font-size: clamp(16px, 1.6vw, 19px);
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+/* Avis : piste défilable horizontale (carrousel CSS pur, sans JS) */
+.reviews-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 1fr);
+  gap: 32px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.reviews-track > .testimonial { scroll-snap-align: start; min-width: 0; }
 
 @media (max-width: 900px) {
   .service-icon-grid    { grid-template-columns: 1fr 1fr; }
