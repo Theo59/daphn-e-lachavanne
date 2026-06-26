@@ -58,6 +58,13 @@ p { line-height: 1.75; }
 
   --pad:   clamp(24px, 4vw, 56px);
   --max-w: 1340px;
+
+  /* Rythme vertical — source unique de l'espacement des sections (cf. .section).
+     Surchargé en mobile dans le @media ci-dessous. */
+  --section-y:     7rem;  /* padding vertical standard d'une section */
+  --section-y-top: 9rem;  /* 1re section / en-tête de page */
+  --section-y-sm:  4rem;  /* variante compacte (galeries) */
+  --flow-gap:      48px;  /* écart entre le label d'une section et sa grille de contenu */
 }
 
 /* ---- Typography helpers ---- */
@@ -409,15 +416,18 @@ body.menu-open { overflow: hidden; }
 /* ============================================================
    SECTIONS
    ============================================================ */
-.section        { padding: 7rem var(--pad); }
-.section--top   { padding-top: 9rem; }
-.section--sm    { padding: 4rem var(--pad); }
+.section        { padding: var(--section-y) var(--pad); }
+.section--top   { padding-top: var(--section-y-top); }
+.section--sm    { padding: var(--section-y-sm) var(--pad); }
 .section--flush { padding-left: 0; padding-right: 0; }
 
 @media (max-width: 900px) {
-  .section      { padding: 4rem 1.5rem; }
-  .section--top { padding-top: 6rem; }
-  .section--sm  { padding: 2.5rem 1.5rem; }
+  :root {
+    --section-y:     4rem;
+    --section-y-top: 6rem;
+    --section-y-sm:  2.5rem;
+  }
+  .section, .section--sm { padding-left: 1.5rem; padding-right: 1.5rem; }
 }
 
 .page-header {
