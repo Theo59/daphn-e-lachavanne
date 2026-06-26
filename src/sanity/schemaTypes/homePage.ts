@@ -101,6 +101,20 @@ export default defineType({
     }),
 
     defineField({
+      name: 'gallery',
+      title: 'Galerie « en vrac » (accueil) — plusieurs petites photos',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'image', title: 'Photo', type: 'image', options: { hotspot: true } }),
+          defineField({ name: 'alt', title: 'Texte alternatif', type: 'string' }),
+        ],
+        preview: { select: { media: 'image', title: 'alt' } },
+      }],
+    }),
+
+    defineField({
       name: 'testimonials',
       title: 'Témoignages',
       type: 'object',
