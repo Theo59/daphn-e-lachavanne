@@ -57,6 +57,8 @@ const fr = {
       'Le cabinet de Daphné Lachavanne, 3 rue Valadon à Paris 7e, espace de soin confidentiel sur la rive gauche',
   },
 
+  galleryLabel: '(  En images  )',
+
   testimonials: {
     label: '(  Avis  )',
     rating: '5,0 / 5 · Planity',
@@ -141,6 +143,8 @@ const en = {
     imgAlt:
       'Daphné Lachavanne’s studio, 3 rue Valadon in Paris 7th, a private treatment space on the Left Bank',
   },
+
+  galleryLabel: '(  In pictures  )',
 
   testimonials: {
     label: '(  Reviews  )',
