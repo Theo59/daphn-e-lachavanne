@@ -165,8 +165,6 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
     </div>
   </section>
 
-  <Prose text={t.prose.text} label={t.prose.label} />
-
   <Faq items={t.faqs} title={c.faqTitle} />
 
   <!-- CTA -->
@@ -184,5 +182,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
       </div>
     </div>
   </section>
+
+  <Prose text={t.prose.text} label={t.prose.label} />
 
 </Layout>

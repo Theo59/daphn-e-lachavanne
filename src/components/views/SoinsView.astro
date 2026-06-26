@@ -161,10 +161,10 @@ const serviceSchema = serviceLd({
     </div>
   </section>
 
-  <Prose text={t.prose.text} label={t.prose.label} />
-
   <Faq items={t.faqs} title={c.faqTitle} />
 
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+  <Prose text={t.prose.text} label={t.prose.label} />
 
 </Layout>
