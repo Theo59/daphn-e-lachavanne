@@ -68,7 +68,7 @@ const fr = {
 
 Le parcours de cette praticienne bien-être à Paris 7e s’est ensuite enrichi au fil des années : une formation de yoga 200h en Inde en 2017, le breathwork holotropique à Amsterdam en 2019, puis le Reiki et le magnétisme à Paris en 2022. En 2023, une collaboration sportive avec Nike prolonge ce dialogue entre performance et récupération. En 2025, elle réunit l’ensemble de cette approche sous un même nom : L’Art de la Circulation.
 
-Praticienne de drainage lymphatique formée à Paris, professeur de yoga et de breathwork à Paris 7e, elle conçoit chaque rendez-vous sur mesure. Le Drainage Lymphatique méthode Renata França dure 1h (150 €) ; le Soin Signature, qui associe drainage, breathwork et travail énergétique, dure 2h (280 €). Les cours particuliers de yoga (vinyasa, hatha, yin) et les séances individuelles de breathwork se déroulent au cabinet, à 90 € l’heure. Elle accompagne aussi sur la durée, à travers des forfaits pensés sur plusieurs mois.
+Praticienne de drainage lymphatique formée à Paris, professeur de yoga et de breathwork à Paris 7e, elle conçoit chaque rendez-vous sur mesure. Le Drainage Lymphatique méthode Renata França dure 1h (150 €) ; le Soin Signature, qui associe drainage, breathwork et travail énergétique, dure 2h (300 €). Les cours particuliers de yoga (vinyasa, hatha, yin) et les séances individuelles de breathwork se déroulent au cabinet, à 90 € l’heure. Elle accompagne aussi sur la durée, à travers des packs Soin Signature dégressifs.
 
 Les réservations se font en ligne via Planity ou par e-mail à hello@daphnelachavanne.com. Avant chaque suivi, un échange permet de comprendre votre demande et d’ajuster la pratique au plus juste.`,
   },
@@ -78,7 +78,7 @@ Les réservations se font en ligne via Planity ou par e-mail à hello@daphnelach
     { q: 'Où se trouve le cabinet de Daphné Lachavanne ?', a: 'Au 3 Rue Valadon, 75007 Paris, dans le 7e arrondissement. C’est un espace privé, accessible uniquement sur rendez-vous.' },
     { q: 'Quel est le parcours de Daphné Lachavanne ?', a: 'Formation yoga 200h en Inde (2017), breathwork holotropique à Amsterdam (2019), Reiki et magnétisme à Paris (2022), collaboration avec Nike (2023), puis création de L’Art de la Circulation en 2025.' },
     { q: 'Daphné donne-t-elle des cours de yoga et de breathwork ?', a: 'Oui, en cours particuliers au cabinet de Paris 7e. Le yoga (vinyasa, hatha, yin) et le breathwork individuel sont à 90 € l’heure ; un cercle de souffle de 4 à 6 personnes (2h) est à 60 € par personne.' },
-    { q: 'Quels soins propose Daphné Lachavanne ?', a: 'Le Drainage Lymphatique Renata França (1h, 150 €), le Soin Signature (2h, 280 €), le Miracle Face (40 min, 90 €) et le Combo Détox (1h30, 200 €), complétés par des forfaits valables plusieurs mois.' },
+    { q: 'Quels soins propose Daphné Lachavanne ?', a: 'Le Drainage Lymphatique Renata França (1h, 150 €), le Soin Signature (2h, 300 €), le Miracle Face (40 min, 90 €) et le Combo Détox (1h30, 200 €), complétés par des packs Soin Signature dégressifs.' },
     { q: 'Comment prendre rendez-vous avec Daphné Lachavanne ?', a: 'En ligne sur Planity ou par e-mail à hello@daphnelachavanne.com. Les séances se déroulent sur rendez-vous, au cabinet de Paris 7e.' },
   ],
 };
@@ -139,7 +139,7 @@ const en = {
 
 The journey of this Paris 7th wellbeing practitioner has since deepened over the years: a 200-hour yoga training in India in 2017, holotropic breathwork in Amsterdam in 2019, then Reiki and magnetism in Paris in 2022. In 2023, a sports collaboration with Nike extended this dialogue between performance and recovery. In 2025, she brought this whole approach together under a single name: L’Art de la Circulation.
 
-A lymphatic drainage practitioner trained in Paris, a yoga and breathwork teacher in Paris 7th, she designs every appointment to measure. The Renata França lymphatic drainage lasts 1 hr (€150); the Signature Treatment, which combines drainage, breathwork and energy work, lasts 2 hrs (€280). Private yoga lessons (vinyasa, hatha, yin) and one-to-one breathwork sessions take place at the studio, at €90 per hour. She also offers longer-term support through packages designed over several months.
+A lymphatic drainage practitioner trained in Paris, a yoga and breathwork teacher in Paris 7th, she designs every appointment to measure. The Renata França lymphatic drainage lasts 1 hr (€150); the Signature Treatment, which combines drainage, breathwork and energy work, lasts 2 hrs (€300). Private yoga lessons (vinyasa, hatha, yin) and one-to-one breathwork sessions take place at the studio, at €90 per hour. She also offers longer-term support through tiered Signature Treatment packs.
 
 Bookings are made online via Planity or by email at hello@daphnelachavanne.com. Before every journey, a conversation helps to understand your needs and tune the practice precisely.`,
   },
@@ -149,7 +149,7 @@ Bookings are made online via Planity or by email at hello@daphnelachavanne.com. 
     { q: 'Where is Daphné Lachavanne’s studio?', a: 'At 3 Rue Valadon, 75007 Paris, in the 7th arrondissement. It is a private space, open by appointment only.' },
     { q: 'What is Daphné Lachavanne’s background?', a: 'A 200-hour yoga training in India (2017), holotropic breathwork in Amsterdam (2019), Reiki and magnetism in Paris (2022), a collaboration with Nike (2023), then the creation of L’Art de la Circulation in 2025.' },
     { q: 'Does Daphné teach yoga and breathwork lessons?', a: 'Yes, in private lessons at the Paris 7th studio. Yoga (vinyasa, hatha, yin) and one-to-one breathwork are €90 per hour; a breath circle of 4 to 6 people (2 hrs) is €60 per person.' },
-    { q: 'What treatments does Daphné Lachavanne offer?', a: 'Renata França lymphatic drainage (1 hr, €150), the Signature Treatment (2 hrs, €280), the Miracle Face (40 min, €90) and the Detox Combo (1 hr 30, €200), rounded out by packages valid for several months.' },
+    { q: 'What treatments does Daphné Lachavanne offer?', a: 'Renata França lymphatic drainage (1 hr, €150), the Signature Treatment (2 hrs, €300), the Miracle Face (40 min, €90) and the Detox Combo (1 hr 30, €200), rounded out by tiered Signature Treatment packs.' },
     { q: 'How do I book an appointment with Daphné Lachavanne?', a: 'Online on Planity or by email at hello@daphnelachavanne.com. Sessions are by appointment, at the Paris 7th studio.' },
   ],
 } satisfies typeof fr;

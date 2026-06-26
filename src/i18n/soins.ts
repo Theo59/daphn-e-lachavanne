@@ -45,7 +45,7 @@ const fr = {
       key: 'signature',
       name: 'Soin Signature',
       sub: 'Drainage + breathwork + énergétique · 2h',
-      price: '280 €',
+      price: '300 €',
       text: 'Le soin le plus complet. Drainage lymphatique Renata França, respiration guidée et travail sur les centres énergétiques. Pour libérer les trois corps en une seule séance.',
     },
     {
@@ -71,13 +71,13 @@ const fr = {
     },
   ],
 
-  packagesLabel: '(  Forfaits  )',
+  packagesLabel: '(  Packs  )',
 
-  // Ordre = ordre d'affichage. `key` mappe le fond (vue).
+  // Packs Soin Signature (séances de 2h). Tarif séance seule : 300 €.
   packages: [
-    { key: 'decouverte', name: 'Découverte', detail: '3 Drainages Lymphatiques · valable 3 mois', price: '420 €', save: '−30 €' },
-    { key: 'suiviSaison', name: 'Suivi Saison', detail: '5 soins au choix · valable 6 mois', price: '680 €', save: '−70 €' },
-    { key: 'intensif', name: 'Intensif', detail: '3 Soins Signature · valable 2 mois', price: '780 €', save: '−60 €' },
+    { key: 'pack3', name: 'Pack 3 séances', detail: 'Soin Signature · 2h · soit 270 € la séance', price: '810 €', save: '−90 €' },
+    { key: 'pack5', name: 'Pack 5 séances', detail: 'Soin Signature · 2h · soit 250 € la séance', price: '1 250 €', save: '−250 €' },
+    { key: 'pack10', name: 'Pack 10 séances', detail: 'Soin Signature · 2h · soit 230 € la séance', price: '2 300 €', save: '−700 €' },
   ],
 
   prose: {
@@ -86,16 +86,16 @@ const fr = {
 
 Le Drainage Lymphatique (1h, 150 €) accompagne les jambes lourdes comme les impressions de gonflement : il soulage, affine la silhouette et apaise. Sur le ventre, ce massage drainant aide à dégonfler et à retrouver de la légèreté.
 
-Pour le visage, le Miracle Face (40 min, 90 €) draine le visage et le crâne, détend les traits, redessine l’ovale et ravive l’éclat. Le Combo Détox (1h30, 200 €) réunit corps et visage en une seule séance, idéal en préparation d’un événement. Le Soin Signature (2h, 280 €) prolonge le geste par le breathwork et le travail énergétique, l’expérience la plus complète de L’Art de la Circulation, le concept né en 2025.
+Pour le visage, le Miracle Face (40 min, 90 €) draine le visage et le crâne, détend les traits, redessine l’ovale et ravive l’éclat. Le Combo Détox (1h30, 200 €) réunit corps et visage en une seule séance, idéal en préparation d’un événement. Le Soin Signature (2h, 300 €) prolonge le geste par le breathwork et le travail énergétique, l’expérience la plus complète de L’Art de la Circulation, le concept né en 2025.
 
-Pour celles et ceux qui inscrivent le soin dans la durée, trois forfaits ponctuent les saisons : Découverte (3 Drainages Lymphatiques, 420 €, valable 3 mois), Suivi Saison (5 soins au choix, 680 €, valable 6 mois) et Intensif (3 Soins Signature, 780 €, valable 2 mois). Chaque rendez-vous se réserve en ligne sur Planity, où le cabinet affiche une note de 5,0 / 5. Une praticienne, une méthode, un lieu, pour que le corps se souvienne.`,
+Pour celles et ceux qui inscrivent le soin dans la durée, le Soin Signature se décline en packs dégressifs : 3 séances à 810 € (270 € la séance), 5 séances à 1 250 € (250 € la séance) ou 10 séances à 2 300 € (230 € la séance), au lieu de 300 € la séance. Chaque rendez-vous se réserve en ligne sur Planity, où le cabinet affiche une note de 5,0 / 5. Une praticienne, une méthode, un lieu, pour que le corps se souvienne.`,
   },
 
   faqs: [
     { q: 'Le drainage lymphatique aide-t-il vraiment pour les jambes lourdes ?', a: 'Le Drainage Lymphatique méthode Renata França (1h, 150 €) relance la circulation par des mouvements rythmiques et précis. Il allège la sensation de jambes lourdes et de gonflement. C’est un soin de bien-être, sans visée médicale.' },
-    { q: 'Combien coûte une séance de drainage lymphatique à Paris 7e ?', a: 'Le Drainage Lymphatique seul est à 150 € (1h). Le Miracle Face est à 90 € (40 min), le Combo Détox corps + visage à 200 € (1h30) et le Soin Signature à 280 € (2h). Des forfaits débutent à 420 € pour 3 drainages.' },
+    { q: 'Combien coûte une séance de drainage lymphatique à Paris 7e ?', a: 'Le Drainage Lymphatique seul est à 150 € (1h). Le Miracle Face est à 90 € (40 min), le Combo Détox corps + visage à 200 € (1h30) et le Soin Signature à 300 € (2h). Le Soin Signature se prend aussi en packs : 3 séances à 810 € (270 € la séance), jusqu’à 230 € la séance pour 10 séances.' },
     { q: 'C’est quoi le Miracle Face ?', a: 'Le Miracle Face (40 min, 90 €) est un drainage du visage et du crâne. Il détend les traits, élimine les tensions et ravive l’éclat. Il se pratique en soin express ou en complément d’un drainage corps.' },
-    { q: 'Quelle est la différence entre le Soin Signature et un drainage simple ?', a: 'Le Drainage Lymphatique (1h, 150 €) se concentre sur la circulation. Le Soin Signature (2h, 280 €) ajoute le breathwork et le travail énergétique au drainage Renata França : l’expérience la plus complète de L’Art de la Circulation.' },
+    { q: 'Quelle est la différence entre le Soin Signature et un drainage simple ?', a: 'Le Drainage Lymphatique (1h, 150 €) se concentre sur la circulation. Le Soin Signature (2h, 300 €) ajoute le breathwork et le travail énergétique au drainage Renata França : l’expérience la plus complète de L’Art de la Circulation.' },
     { q: 'Où se trouve le cabinet et comment réserver ?', a: 'Le cabinet est au 3 Rue Valadon, 75007 Paris, sur la rive gauche, dans le 7e arrondissement. L’espace est privé et sur rendez-vous. La réservation se fait en ligne sur Planity, ou par e-mail à hello@daphnelachavanne.com.' },
   ],
 
@@ -105,7 +105,7 @@ Pour celles et ceux qui inscrivent le soin dans la durée, trois forfaits ponctu
     serviceType: 'Drainage lymphatique',
     description:
       'Soins de drainage lymphatique méthode Renata França à Paris 7e : Drainage Lymphatique, Soin Signature, Miracle Face, Combo Détox et forfaits.',
-    packagePrefix: 'Forfait',
+    packagePrefix: 'Soin Signature —',
   },
 };
 
@@ -145,7 +145,7 @@ const en = {
       key: 'signature',
       name: 'Signature Treatment',
       sub: 'Drainage + breathwork + energy work · 2 hrs',
-      price: '€280',
+      price: '€300',
       text: 'The most complete treatment. Renata França lymphatic drainage, guided breathing and work on the energy centres. To free the three bodies in a single session.',
     },
     {
@@ -171,12 +171,12 @@ const en = {
     },
   ],
 
-  packagesLabel: '(  Packages  )',
+  packagesLabel: '(  Packs  )',
 
   packages: [
-    { key: 'decouverte', name: 'Discovery', detail: '3 Lymphatic Drainages · valid 3 months', price: '€420', save: '−€30' },
-    { key: 'suiviSaison', name: 'Season Follow-up', detail: '5 treatments of your choice · valid 6 months', price: '€680', save: '−€70' },
-    { key: 'intensif', name: 'Intensive', detail: '3 Signature Treatments · valid 2 months', price: '€780', save: '−€60' },
+    { key: 'pack3', name: '3-session Pack', detail: 'Signature Treatment · 2 hrs · €270 per session', price: '€810', save: '−€90' },
+    { key: 'pack5', name: '5-session Pack', detail: 'Signature Treatment · 2 hrs · €250 per session', price: '€1,250', save: '−€250' },
+    { key: 'pack10', name: '10-session Pack', detail: 'Signature Treatment · 2 hrs · €230 per session', price: '€2,300', save: '−€700' },
   ],
 
   prose: {
@@ -185,16 +185,16 @@ const en = {
 
 The Lymphatic Drainage (1 hr, €150) eases heavy legs and feelings of swelling: it relieves, refines the silhouette and soothes. On the stomach, this draining massage helps reduce bloating and regain lightness.
 
-For the face, the Miracle Face (40 min, €90) drains the face and scalp, relaxes the features, redraws the contour and revives radiance. The Detox Combo (1 hr 30, €200) brings body and face together in a single session, ideal in preparation for an event. The Signature Treatment (2 hrs, €280) extends the gesture with breathwork and energy work, the most complete experience of L’Art de la Circulation, the concept born in 2025.
+For the face, the Miracle Face (40 min, €90) drains the face and scalp, relaxes the features, redraws the contour and revives radiance. The Detox Combo (1 hr 30, €200) brings body and face together in a single session, ideal in preparation for an event. The Signature Treatment (2 hrs, €300) extends the gesture with breathwork and energy work, the most complete experience of L’Art de la Circulation, the concept born in 2025.
 
-For those who make treatment part of a longer journey, three packages punctuate the seasons: Discovery (3 Lymphatic Drainages, €420, valid 3 months), Season Follow-up (5 treatments of your choice, €680, valid 6 months) and Intensive (3 Signature Treatments, €780, valid 2 months). Each appointment is booked online on Planity, where the studio holds a rating of 5.0 / 5. One practitioner, one method, one place, so the body remembers.`,
+For those who make treatment part of a longer journey, the Signature Treatment comes in tiered packs: 3 sessions at €810 (€270 each), 5 sessions at €1,250 (€250 each) or 10 sessions at €2,300 (€230 each), instead of €300 per session. Each appointment is booked online on Planity, where the studio holds a rating of 5.0 / 5. One practitioner, one method, one place, so the body remembers.`,
   },
 
   faqs: [
     { q: 'Does lymphatic drainage really help with heavy legs?', a: 'Renata França lymphatic drainage (1 hr, €150) revives circulation through rhythmic, precise movements. It eases the sensation of heavy, swollen legs. It is a wellbeing treatment, with no medical purpose.' },
-    { q: 'How much does a lymphatic drainage session cost in Paris 7th?', a: 'The Lymphatic Drainage alone is €150 (1 hr). The Miracle Face is €90 (40 min), the body + face Detox Combo €200 (1 hr 30) and the Signature Treatment €280 (2 hrs). Packages start at €420 for 3 drainages.' },
+    { q: 'How much does a lymphatic drainage session cost in Paris 7th?', a: 'The Lymphatic Drainage alone is €150 (1 hr). The Miracle Face is €90 (40 min), the body + face Detox Combo €200 (1 hr 30) and the Signature Treatment €300 (2 hrs). The Signature Treatment also comes in packs: 3 sessions at €810 (€270 each), down to €230 per session for 10 sessions.' },
     { q: 'What is the Miracle Face?', a: 'The Miracle Face (40 min, €90) is a drainage of the face and scalp. It relaxes the features, eases tension and revives radiance. It is offered as an express treatment or alongside a body drainage.' },
-    { q: 'What is the difference between the Signature Treatment and a simple drainage?', a: 'The Lymphatic Drainage (1 hr, €150) focuses on circulation. The Signature Treatment (2 hrs, €280) adds breathwork and energy work to the Renata França drainage: the most complete experience of L’Art de la Circulation.' },
+    { q: 'What is the difference between the Signature Treatment and a simple drainage?', a: 'The Lymphatic Drainage (1 hr, €150) focuses on circulation. The Signature Treatment (2 hrs, €300) adds breathwork and energy work to the Renata França drainage: the most complete experience of L’Art de la Circulation.' },
     { q: 'Where is the studio and how do I book?', a: 'The studio is at 3 Rue Valadon, 75007 Paris, on the Left Bank, in the 7th arrondissement. The space is private and by appointment. Booking is done online on Planity, or by email at hello@daphnelachavanne.com.' },
   ],
 
@@ -203,7 +203,7 @@ For those who make treatment part of a longer journey, three packages punctuate 
     serviceType: 'Lymphatic drainage',
     description:
       'Renata França lymphatic drainage treatments in Paris 7th: Lymphatic Drainage, Signature Treatment, Miracle Face, Detox Combo and packages.',
-    packagePrefix: 'Package',
+    packagePrefix: 'Signature Treatment —',
   },
 } satisfies typeof fr;
 

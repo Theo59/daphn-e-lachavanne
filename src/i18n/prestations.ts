@@ -9,7 +9,7 @@ const fr = {
   meta: {
     title: 'Prestations & tarifs | Daphné Lachavanne, Paris 7e',
     description:
-      'Tarifs des soins de Daphné Lachavanne à Paris 7e : drainage lymphatique Renata França (150 €), Soin Signature (280 €), Miracle Face, Combo Détox, yoga & pilates. Sur rendez-vous.',
+      'Tarifs des soins de Daphné Lachavanne à Paris 7e : drainage lymphatique Renata França (150 €), Soin Signature (300 €), Miracle Face, Combo Détox, yoga & pilates. Sur rendez-vous.',
   },
 
   header: {
@@ -28,7 +28,7 @@ const fr = {
         {
           name: 'Soin Signature',
           duration: '2h',
-          price: '280 €',
+          price: '300 €',
           description:
             'Le soin le plus complet : drainage lymphatique Renata França, breathwork guidé et travail énergétique (Reiki & magnétisme). Pour libérer les trois corps — physique, mental, émotionnel — en une seule séance.',
           note: '',
@@ -73,6 +73,32 @@ const fr = {
         },
       ],
     },
+    {
+      title: 'Packs · Soin Signature',
+      services: [
+        {
+          name: 'Pack 3 séances',
+          duration: '3 × 2h',
+          price: '810 €',
+          description: 'Trois Soins Signature (2h), soit 270 € la séance au lieu de 300 €.',
+          note: '−90 €',
+        },
+        {
+          name: 'Pack 5 séances',
+          duration: '5 × 2h',
+          price: '1 250 €',
+          description: 'Cinq Soins Signature (2h), soit 250 € la séance au lieu de 300 €.',
+          note: '−250 €',
+        },
+        {
+          name: 'Pack 10 séances',
+          duration: '10 × 2h',
+          price: '2 300 €',
+          description: 'Dix Soins Signature (2h), soit 230 € la séance au lieu de 300 €.',
+          note: '−700 €',
+        },
+      ],
+    },
   ],
 
   faqs: [
@@ -85,7 +111,7 @@ const en = {
   meta: {
     title: 'Treatments & rates | Daphné Lachavanne, Paris 7th',
     description:
-      'Daphné Lachavanne’s rates in Paris 7th: Renata França lymphatic drainage (€150), Signature Treatment (€280), Miracle Face, Detox Combo, yoga & pilates. By appointment.',
+      'Daphné Lachavanne’s rates in Paris 7th: Renata França lymphatic drainage (€150), Signature Treatment (€300), Miracle Face, Detox Combo, yoga & pilates. By appointment.',
   },
 
   header: {
@@ -104,7 +130,7 @@ const en = {
         {
           name: 'Signature Treatment',
           duration: '2 hrs',
-          price: '€280',
+          price: '€300',
           description:
             'The most complete treatment: Renata França lymphatic drainage, guided breathwork and energy work (Reiki & magnetism). To free the three bodies — physical, mental, emotional — in a single session.',
           note: '',
@@ -146,6 +172,32 @@ const en = {
           price: '€90',
           description: 'Private mat Pilates lesson, in French or English, for deep alignment and strengthening.',
           note: '+€40 in pairs',
+        },
+      ],
+    },
+    {
+      title: 'Packs · Signature Treatment',
+      services: [
+        {
+          name: '3-session Pack',
+          duration: '3 × 2 hrs',
+          price: '€810',
+          description: 'Three Signature Treatments (2 hrs), i.e. €270 per session instead of €300.',
+          note: '−€90',
+        },
+        {
+          name: '5-session Pack',
+          duration: '5 × 2 hrs',
+          price: '€1,250',
+          description: 'Five Signature Treatments (2 hrs), i.e. €250 per session instead of €300.',
+          note: '−€250',
+        },
+        {
+          name: '10-session Pack',
+          duration: '10 × 2 hrs',
+          price: '€2,300',
+          description: 'Ten Signature Treatments (2 hrs), i.e. €230 per session instead of €300.',
+          note: '−€700',
         },
       ],
     },

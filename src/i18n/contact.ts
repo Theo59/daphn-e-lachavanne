@@ -68,7 +68,7 @@ const fr = {
 
 Le cabinet se situe au 3 rue Valadon, 75007 Paris, sur la rive gauche, dans le 7e arrondissement. C'est un lieu privé, reçu uniquement sur rendez-vous, pensé pour la confidentialité et la qualité de présence. Daphné Lachavanne y reçoit en séances individuelles, ainsi qu'en duo ou en cercle fermé selon la pratique.
 
-Vous pouvez prendre rendez-vous pour un drainage lymphatique méthode Renata França (1h, 150 €), le Soin Signature qui réunit drainage, breathwork et travail énergétique (2h, 280 €), le Miracle Face (40 min, 90 €) ou le Combo Détox (1h30, 200 €). Côté mouvement, le yoga et le Pilates se réservent selon les mêmes modalités : cours particuliers au cabinet, à 90 € l'heure pour le yoga comme pour le breathwork.
+Vous pouvez prendre rendez-vous pour un drainage lymphatique méthode Renata França (1h, 150 €), le Soin Signature qui réunit drainage, breathwork et travail énergétique (2h, 300 €), le Miracle Face (40 min, 90 €) ou le Combo Détox (1h30, 200 €). Côté mouvement, le yoga et le Pilates se réservent selon les mêmes modalités : cours particuliers au cabinet, à 90 € l'heure pour le yoga comme pour le breathwork.
 
 Avant chaque suivi, un court échange permet de comprendre votre demande et d'ajuster la séance à votre moment. Certifiée méthode Renata França depuis 2013, Daphné a fondé en 2025 L'Art de la Circulation. Les retours des personnes reçues sont rassemblés sur Planity, où le cabinet est noté 5,0 / 5.`,
   },
@@ -77,7 +77,7 @@ Avant chaque suivi, un court échange permet de comprendre votre demande et d'aj
     { q: 'Comment prendre rendez-vous avec Daphné Lachavanne ?', a: 'Deux possibilités : la réservation en ligne sur Planity (planity.com/daphne-lachavanne-75007-paris), où les créneaux disponibles s\'affichent en direct, ou un message à hello@daphnelachavanne.com pour une demande particulière.' },
     { q: 'Où se trouve le cabinet ?', a: 'Au 3 rue Valadon, 75007 Paris, dans le 7e arrondissement, sur la rive gauche. C\'est un cabinet privé, accessible uniquement sur rendez-vous.' },
     { q: 'Quels sont les horaires du cabinet ?', a: 'Le cabinet est ouvert le lundi de 15h à 22h30, du mardi au samedi de 8h à 22h30, et fermé le dimanche. Les séances se font uniquement sur rendez-vous.' },
-    { q: 'Combien coûte un drainage lymphatique méthode Renata França ?', a: '150 € pour une séance d\'une heure. Le Soin Signature (drainage, breathwork et énergétique, 2h) est à 280 €. Un Forfait Découverte de 3 drainages, valable 3 mois, est proposé à 420 €.' },
+    { q: 'Combien coûte un drainage lymphatique méthode Renata França ?', a: '150 € pour une séance d\'une heure. Le Soin Signature (drainage, breathwork et énergétique, 2h) est à 300 €. Le Soin Signature existe aussi en packs : 3 séances à 810 € (270 € la séance), jusqu’à 230 € la séance pour 10 séances.' },
     { q: 'Puis-je réserver un cours de yoga ou de Pilates à Paris 7e ?', a: 'Oui, en cours particuliers au cabinet. Le yoga est à 90 € l\'heure (130 € en duo ; forfait 5 séances valable 3 mois, 400 €). Le Pilates est aussi à 90 € l’heure (130 € en duo).' },
     { q: 'Proposez-vous des séances de breathwork en groupe ?', a: 'Oui. Un cercle de souffle en groupe fermé de 4 à 6 personnes dure 2h, à 60 € par personne. La séance individuelle d\'une heure est à 90 €, au cabinet.' },
   ],
@@ -143,7 +143,7 @@ const en = {
 
 The studio is at 3 rue Valadon, 75007 Paris, on the Left Bank, in the 7th arrondissement. It is a private space, by appointment only, designed for confidentiality and quality of presence. Daphné Lachavanne welcomes you here in individual sessions, as well as in pairs or in a closed circle depending on the practice.
 
-You can book a Renata França lymphatic drainage (1 hr, €150), the Signature Treatment that brings together drainage, breathwork and energy work (2 hrs, €280), the Miracle Face (40 min, €90) or the Detox Combo (1 hr 30, €200). On the movement side, yoga and Pilates are booked the same way: private lessons at the studio, at €90 an hour for yoga as for breathwork.
+You can book a Renata França lymphatic drainage (1 hr, €150), the Signature Treatment that brings together drainage, breathwork and energy work (2 hrs, €300), the Miracle Face (40 min, €90) or the Detox Combo (1 hr 30, €200). On the movement side, yoga and Pilates are booked the same way: private lessons at the studio, at €90 an hour for yoga as for breathwork.
 
 Before every journey, a short conversation helps to understand your needs and tune the session to your moment. Certified in the Renata França method since 2013, Daphné founded L'Art de la Circulation in 2025. Feedback from the people she has welcomed is gathered on Planity, where the studio is rated 5.0 / 5.`,
   },
@@ -152,7 +152,7 @@ Before every journey, a short conversation helps to understand your needs and tu
     { q: 'How do I book an appointment with Daphné Lachavanne?', a: 'Two options: online booking on Planity (planity.com/daphne-lachavanne-75007-paris), where available slots appear in real time, or a message to hello@daphnelachavanne.com for a specific request.' },
     { q: 'Where is the studio?', a: 'At 3 rue Valadon, 75007 Paris, in the 7th arrondissement, on the Left Bank. It is a private studio, accessible by appointment only.' },
     { q: 'What are the studio’s opening hours?', a: 'The studio is open Monday 3–10:30 pm, Tuesday to Saturday 8 am–10:30 pm, and closed on Sunday. Sessions are by appointment only.' },
-    { q: 'How much does a Renata França lymphatic drainage cost?', a: '€150 for a one-hour session. The Signature Treatment (drainage, breathwork and energy work, 2 hrs) is €280. A Discovery package of 3 drainages, valid for 3 months, is offered at €420.' },
+    { q: 'How much does a Renata França lymphatic drainage cost?', a: '€150 for a one-hour session. The Signature Treatment (drainage, breathwork and energy work, 2 hrs) is €300. The Signature Treatment also comes in packs: 3 sessions at €810 (€270 each), down to €230 per session for 10 sessions.' },
     { q: 'Can I book a yoga or Pilates lesson in Paris 7th?', a: 'Yes, in private lessons at the studio. Yoga is €90 an hour (€130 in pairs; 5-session package valid for 3 months, €400). Pilates is also €90 an hour (€130 in pairs).' },
     { q: 'Do you offer breathwork sessions in a group?', a: 'Yes. A breath circle in a closed group of 4 to 6 people lasts 2 hrs, at €60 per person. The one-hour individual session is €90, at the studio.' },
   ],

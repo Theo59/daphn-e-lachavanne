@@ -48,11 +48,11 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   <section class="hero">
     <div class="hero__bg">
       {heroVideoUrl ? (
-        <video autoplay muted loop playsinline poster={heroPoster} style="width:100%;height:100%;object-fit:cover;filter:contrast(1.08) brightness(0.82)">
+        <video autoplay muted loop playsinline poster={heroPoster} style="width:100%;height:100%;object-fit:cover">
           <source src={heroVideoUrl} type="video/mp4" />
         </video>
       ) : (
-        <SanityImage image={heroImage} alt={t.hero.imgAlt} widths={[768, 1280, 1920]} sizes="100vw" style="filter:contrast(1.08) brightness(0.82)" loading="eager" fetchpriority="high" decoding="async" />
+        <SanityImage image={heroImage} alt={t.hero.imgAlt} widths={[768, 1280, 1920]} sizes="100vw" loading="eager" fetchpriority="high" decoding="async" />
       )}
     </div>
     <div class="hero__overlay"></div>
@@ -134,7 +134,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
           <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline" style="margin-top:28px">{c.cta.book}</a>
         </div>
         <div class="photo-wrap" style="aspect-ratio:16/10;border-radius:2px">
-          <SanityImage image={cabinetImage} alt={t.cabinet.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="lazy" decoding="async" style="filter:contrast(1.05) brightness(0.96)" />
+          <SanityImage image={cabinetImage} alt={t.cabinet.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="lazy" decoding="async" />
           <span style="position:absolute;bottom:14px;left:16px;z-index:1;color:#fff;font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-shadow:0 1px 12px rgba(13,10,31,0.6)">{t.cabinet.caption}</span>
         </div>
       </div>

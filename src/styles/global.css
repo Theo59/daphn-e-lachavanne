@@ -355,6 +355,9 @@ body.menu-open { overflow: hidden; }
   max-width: 1100px;
 }
 
+/* Lisibilité du texte hero sur la vidéo : ombre portée sur le TEXTE (aucun filtre sur le média Sanity). */
+.hero__label, .hero__title, .hero__sub { text-shadow: 0 1px 26px rgba(13,10,31,0.4); }
+
 .hero__label {
   font-family: 'Tenor Sans', serif;
   font-size: 10px;

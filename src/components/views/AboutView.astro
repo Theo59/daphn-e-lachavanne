@@ -28,12 +28,12 @@ const brand = (c as any).brand ?? {};
 const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
 const gradient2 = bg(brand.gradient2);
 
-// Bande photo : image Sanity + alt (dico) + filtre CSS (donnée structurelle, identique FR/EN).
+// Bande photo : image Sanity + alt (dico). Plus de filtre CSS : images affichées telles qu'uploadées dans Sanity.
 const STRIP_PHOTOS = [
-  { image: photos.image1, alt: t.photos.alt1, style: 'filter:contrast(1.05) brightness(0.9)' },
-  { image: photos.image2, alt: t.photos.alt2, style: 'filter:contrast(1.05) brightness(0.9)' },
-  { image: photos.image3, alt: t.photos.alt3, style: 'filter:grayscale(1) contrast(0.95)' },
-  { image: photos.image4, alt: t.photos.alt4, style: 'filter:contrast(1.1) brightness(0.82)' },
+  { image: photos.image1, alt: t.photos.alt1, style: '' },
+  { image: photos.image2, alt: t.photos.alt2, style: '' },
+  { image: photos.image3, alt: t.photos.alt3, style: '' },
+  { image: photos.image4, alt: t.photos.alt4, style: '' },
 ];
 ---
 
@@ -51,7 +51,7 @@ const STRIP_PHOTOS = [
           <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;font-weight:300;margin-top:32px;color:rgba(13,10,31,0.75)" set:html={t.header.subtitleHtml} />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <SanityImage image={headerImage} alt={t.header.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" style="filter:contrast(1.05) brightness(0.9)" loading="eager" />
+          <SanityImage image={headerImage} alt={t.header.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="eager" />
         </div>
       </div>
     </div>
