@@ -36,8 +36,8 @@ const fr = {
   },
 
   practices: {
-    label: '(  Pratiques  )',
-    caption: 'Quatre disciplines, une même attention au corps.',
+    label: 'Quatre disciplines',
+    caption: 'Du soin au mouvement, une même attention au corps.',
     // L'ordre suit l'affichage ; `key` mappe la route (localisée dans la vue).
     items: [
       { key: 'soins', name: 'Soins', desc: 'Drainage lymphatique, massage holistique, soin énergétique.' },
@@ -58,7 +58,7 @@ const fr = {
   },
 
   testimonials: {
-    label: '(  Mots reçus  )',
+    label: '(  Avis  )',
     rating: '5,0 / 5 · Planity',
     items: [
       { quote: 'Une expérience transformatrice. Daphné a une façon unique d’écouter le corps, son drainage est une révélation.', author: 'L.M. · drainage lymphatique' },
@@ -122,8 +122,8 @@ const en = {
   },
 
   practices: {
-    label: '(  Practices  )',
-    caption: 'Four disciplines, one same attention to the body.',
+    label: 'Four disciplines',
+    caption: 'From treatment to movement, one same attention to the body.',
     items: [
       { key: 'soins', name: 'Treatments', desc: 'Lymphatic drainage, holistic massage, energy treatment.' },
       { key: 'breathwork', name: 'Breathwork', desc: 'Conscious breathing. Release, recentre, regenerate.' },
@@ -143,7 +143,7 @@ const en = {
   },
 
   testimonials: {
-    label: '(  Kind words  )',
+    label: '(  Reviews  )',
     rating: '5.0 / 5 · Planity',
     items: [
       { quote: 'A transformative experience. Daphné has a unique way of listening to the body — her drainage is a revelation.', author: 'L.M. · lymphatic drainage' },
