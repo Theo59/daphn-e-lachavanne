@@ -96,6 +96,7 @@ export default defineType({
         defineField({ name: 'caption', type: 'string' }),
         defineField({ name: 'imgAlt', type: 'string' }),
         defineField({ name: 'image', title: 'Photo du cabinet', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'video', title: 'Vidéo du cabinet (mp4, optionnel — remplace la photo)', type: 'file', options: { accept: 'video/mp4' } }),
       ],
     }),
 
