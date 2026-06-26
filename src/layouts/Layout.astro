@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import NewsletterPopup from '../components/NewsletterPopup.astro';
+import AnnouncementBar from '../components/AnnouncementBar.astro';
 import { getSettings } from '../lib/sanity/content';
 import { OG_LOCALE, HTML_LANG, DEFAULT_LOCALE } from '../i18n/config';
 import { getLangFromUrl, getAlternates } from '../i18n/utils';
@@ -190,6 +191,7 @@ if (activePage !== 'home' && navLinks[activePage]) {
 </head>
 <body>
   <a href="#content" class="skip-link">{c.skipLink}</a>
+  <AnnouncementBar a={(c as any).announcement} />
   <Nav active={activePage} dark={darkNav} />
   <main id="content" tabindex="-1">
     <slot />
