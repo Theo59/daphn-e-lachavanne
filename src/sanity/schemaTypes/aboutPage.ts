@@ -36,6 +36,7 @@ export default defineType({
         defineField({ name: 'subtitleHtml', title: 'Sous-titre', type: 'richText' }),
         defineField({ name: 'imgAlt', title: 'Texte alternatif image', type: 'string' }),
         defineField({ name: 'image', title: 'Portrait', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'video', title: 'Vidéo portrait (mp4, optionnel — remplace l’image)', type: 'file', options: { accept: 'video/mp4' } }),
       ],
     }),
 
@@ -86,12 +87,16 @@ export default defineType({
       fields: [
         defineField({ name: 'image1', title: 'Photo 1', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'alt1', title: 'Alt photo 1', type: 'string' }),
+        defineField({ name: 'image1Video', title: 'Vidéo 1 (mp4, optionnel — remplace la photo 1)', type: 'file', options: { accept: 'video/mp4' } }),
         defineField({ name: 'image2', title: 'Photo 2', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'alt2', title: 'Alt photo 2', type: 'string' }),
+        defineField({ name: 'image2Video', title: 'Vidéo 2 (mp4, optionnel — remplace la photo 2)', type: 'file', options: { accept: 'video/mp4' } }),
         defineField({ name: 'image3', title: 'Photo 3', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'alt3', title: 'Alt photo 3', type: 'string' }),
+        defineField({ name: 'image3Video', title: 'Vidéo 3 (mp4, optionnel — remplace la photo 3)', type: 'file', options: { accept: 'video/mp4' } }),
         defineField({ name: 'image4', title: 'Photo 4', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'alt4', title: 'Alt photo 4', type: 'string' }),
+        defineField({ name: 'image4Video', title: 'Vidéo 4 (mp4, optionnel — remplace la photo 4)', type: 'file', options: { accept: 'video/mp4' } }),
       ],
     }),
 
