@@ -1,0 +1,152 @@
+---
+/**
+ * <AnnouncementBar> — bandeau d'annonce fixe en haut du site (reprise de cours,
+ * événement, offre…). Contenu édité dans Sanity (Réglages → Bandeau d'annonce),
+ * avec fallback dico (src/i18n/common.ts → `announcement`).
+ *
+ * Règles (cf. cadrage) :
+ * - Visible UNIQUEMENT si `message` est rempli (pas d'interrupteur). Par langue.
+ * - Fermable (✕) ; mémorisé en sessionStorage → reste fermé pour la session, revient
+ *   à la prochaine visite. La clé dépend du contenu → une NOUVELLE annonce réapparaît.
+ * - Couleur au choix (bleu profond / orange) via le champ `variant`.
+ * - Lien optionnel : externe (https://…) → nouvel onglet ; interne (/tarifs) → même onglet.
+ *
+ * Le décalage de la nav fixe et du contenu se fait via la variable CSS `--banner-h`
+ * (cf. global.css : `body:has(.announce)`), donc aucun saut de mise en page.
+ */
+interface Props {
+  a?: Record<string, any>;
+}
+const { a = {} } = Astro.props;
+
+const message = String(a?.message ?? '').trim();
+const visible = message.length > 0;
+
+const variant = a?.variant === 'orange' ? 'orange' : 'blue';
+const linkLabel = String(a?.linkLabel ?? '').trim();
+const linkUrl = String(a?.linkUrl ?? '').trim();
+const hasLink = !!(linkLabel && linkUrl);
+const external = /^https?:\/\//i.test(linkUrl);
+const closeLabel = String(a?.close ?? 'Fermer');
+const regionLabel = String(a?.label ?? 'Annonce');
+
+// Clé stable dérivée du contenu (djb2 → base36). Sert à mémoriser la fermeture :
+// si la cliente change le message, la clé change → le bandeau réapparaît.
+function hashKey(s: string): string {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+  return h.toString(36);
+}
+const key = hashKey([message, linkLabel, linkUrl, variant].join('|'));
+---
+
+{visible && (
+  <Fragment>
+    <aside class={`announce announce--${variant}`} role="region" aria-label={regionLabel} data-key={key}>
+      <p class="announce__msg">
+        {message}
+        {hasLink && (
+          <a
+            class="announce__link"
+            href={linkUrl}
+            {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
+            {linkLabel}
+          </a>
+        )}
+      </p>
+      <button class="announce__close" type="button" aria-label={closeLabel}>✕</button>
+    </aside>
+
+    <script is:inline>
+      (function () {
+        var el = document.querySelector('.announce');
+        if (!el) return;
+        var key = el.getAttribute('data-key');
+        try {
+          if (sessionStorage.getItem('announce-dismissed') === key) {
+            el.remove(); // fermé pendant cette session → on retire avant le rendu (pas de saut)
+            return;
+          }
+        } catch (e) {}
+        var btn = el.querySelector('.announce__close');
+        if (btn)
+          btn.addEventListener('click', function () {
+            try {
+              sessionStorage.setItem('announce-dismissed', key);
+            } catch (e) {}
+            el.remove();
+          });
+      })();
+    </script>
+  </Fragment>
+)}
+
+<style>
+  .announce {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 120; /* au-dessus de la nav (z-index 100) */
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 8px 48px; /* marge droite pour la croix */
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.35;
+    text-align: center;
+  }
+  .announce--blue {
+    background: var(--blue);
+    color: #fff;
+  }
+  .announce--orange {
+    background: var(--orange);
+    color: #fff;
+  }
+  .announce__msg {
+    margin: 0;
+  }
+  .announce__link {
+    margin-left: 8px;
+    color: inherit;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    white-space: nowrap;
+  }
+  /* Lien en orange sur le bandeau bleu pour le faire ressortir. */
+  .announce--blue .announce__link {
+    color: var(--orange);
+  }
+  .announce__close {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    background: none;
+    border: 0;
+    color: inherit;
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 8px;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+  }
+  .announce__close:hover,
+  .announce__close:focus-visible {
+    opacity: 1;
+  }
+  @media (max-width: 560px) {
+    .announce {
+      font-size: 12px;
+      padding: 8px 40px;
+    }
+  }
+</style>

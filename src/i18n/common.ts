@@ -81,6 +81,17 @@ const fr = {
     errorText: 'Une erreur est survenue. Merci de réessayer dans un instant.',
     close: 'Fermer',
   },
+
+  // Bandeau d'annonce en haut du site (composant AnnouncementBar).
+  // `message` vide = bandeau masqué. `label`/`close` = a11y (non éditables en Studio).
+  announcement: {
+    label: 'Annonce',
+    message: '',
+    linkLabel: '',
+    linkUrl: '',
+    variant: 'blue',
+    close: 'Fermer l’annonce',
+  },
 };
 
 const en = {
@@ -151,6 +162,15 @@ const en = {
     successText: 'Check your inbox: your discount code is waiting for you.',
     errorText: 'Something went wrong. Please try again in a moment.',
     close: 'Close',
+  },
+
+  announcement: {
+    label: 'Announcement',
+    message: '',
+    linkLabel: '',
+    linkUrl: '',
+    variant: 'blue',
+    close: 'Dismiss announcement',
   },
 } satisfies typeof fr;
 

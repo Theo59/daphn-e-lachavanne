@@ -58,7 +58,16 @@ p { line-height: 1.75; }
 
   --pad:   clamp(24px, 4vw, 56px);
   --max-w: 1340px;
+
+  /* Hauteur du bandeau d'annonce (0 = pas de bandeau). Décale nav + contenu.
+     Renseignée par `body:has(.announce)` quand le bandeau est présent. */
+  --banner-h: 0px;
 }
+
+/* Bandeau d'annonce présent → on réserve sa hauteur en haut de page. */
+body:has(.announce) { --banner-h: 44px; }
+@media (max-width: 560px) { body:has(.announce) { --banner-h: 60px; } }
+body { padding-top: var(--banner-h); }
 
 /* ---- Typography helpers ---- */
 .t-tenor  { font-family: 'Tenor Sans', serif; }
@@ -118,7 +127,7 @@ main:focus { outline: none; }
    ============================================================ */
 .nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: var(--banner-h); left: 0; right: 0;
   z-index: 100;
   height: 68px;
   display: flex;

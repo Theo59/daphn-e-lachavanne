@@ -92,6 +92,45 @@ export default defineType({
     defineField({ name: 'faqTitle', title: 'Titre section FAQ', type: 'string' }),
 
     defineField({
+      name: 'announcement',
+      title: 'Bandeau d’annonce',
+      description:
+        'Bandeau affiché tout en haut du site (reprise des cours, événement, offre…). Laissez le message vide pour ne rien afficher. À renseigner en FR et en EN.',
+      type: 'object',
+      options: { collapsible: true },
+      fields: [
+        defineField({
+          name: 'message',
+          title: 'Message',
+          description: 'Texte court, sur une ligne. Vide = bandeau masqué.',
+          type: 'string',
+        }),
+        defineField({ name: 'linkLabel', title: 'Libellé du lien (optionnel)', type: 'string' }),
+        defineField({
+          name: 'linkUrl',
+          title: 'URL du lien (optionnel)',
+          description: 'Lien externe (https://…, ouvre un nouvel onglet) ou interne (/tarifs).',
+          type: 'url',
+          validation: (Rule) =>
+            Rule.uri({ allowRelative: true, scheme: ['http', 'https', 'mailto', 'tel'] }),
+        }),
+        defineField({
+          name: 'variant',
+          title: 'Couleur',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Bleu profond', value: 'blue' },
+              { title: 'Orange', value: 'orange' },
+            ],
+            layout: 'radio',
+          },
+          initialValue: 'blue',
+        }),
+      ],
+    }),
+
+    defineField({
       name: 'schema',
       title: 'Données structurées (JSON-LD)',
       type: 'object',
