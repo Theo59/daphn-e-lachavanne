@@ -28,6 +28,7 @@ const fr = {
     photo1Alt:
       'Séance de breathwork et respiration consciente, cabinet de Daphné Lachavanne à Paris 7e',
     photo2Alt: 'Respiration holotropique guidée, cabinet bien-être Paris rive gauche',
+    photo3Alt: 'Cercle de souffle — respiration consciente en groupe, cabinet de Daphné Lachavanne à Paris 7e',
     videoBadge: 'vidéo',
     videoLabel: 'Cercle de souffle',
   },
@@ -134,6 +135,7 @@ const en = {
     photo1Alt:
       "Breathwork and conscious breathing session, Daphné Lachavanne's studio in Paris 7th",
     photo2Alt: 'Guided holotropic breathing, wellbeing studio on the Paris Left Bank',
+    photo3Alt: 'Breath circle — conscious group breathing, Daphné Lachavanne’s studio in Paris 7th',
     videoBadge: 'video',
     videoLabel: 'Breath circle',
   },
