@@ -6,6 +6,7 @@
  */
 import Layout from '../../layouts/Layout.astro';
 import { getPageContent } from '../../lib/sanity/content';
+import { richTextToInlineHtml } from '../../lib/sanity/richText';
 import type { Lang } from '../../i18n/config';
 
 interface Props {
@@ -50,7 +51,7 @@ const t = await getPageContent('legal', lang);
 
       <div>
         <h2 class="t-label" style="margin-bottom:16px">( {t.dataLabel} )</h2>
-        <p style="font-size:15px;line-height:1.85;color:var(--ink)" set:html={t.dataBodyHtml} />
+        <p style="font-size:15px;line-height:1.85;color:var(--ink)" set:html={richTextToInlineHtml(t.dataBodyHtml)} />
       </div>
     </div>
   </section>

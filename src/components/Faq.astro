@@ -3,8 +3,9 @@
  * Section FAQ accessible (accordéon natif <details>, sans JS) + données structurées FAQPage.
  * Sert l'AEO (People Also Ask, snippets) et le GEO (réponses factuelles citables).
  */
+import { richTextToInlineHtml, richTextToPlain } from '../lib/sanity/richText';
 interface Props {
-  items: { q: string; a: string }[];
+  items: { q: string; a: unknown }[]; // a : texte enrichi (Sanity) ou chaîne (fallback dico)
   title?: string;
   dark?: boolean;
 }
@@ -16,7 +17,8 @@ const faqLd = {
   mainEntity: items.map((it) => ({
     '@type': 'Question',
     name: it.q,
-    acceptedAnswer: { '@type': 'Answer', text: it.a },
+    // JSON-LD : texte brut (sans balise) pour le FAQPage.
+    acceptedAnswer: { '@type': 'Answer', text: richTextToPlain(it.a) },
   })),
 };
 ---
@@ -29,7 +31,7 @@ const faqLd = {
         items.map((it) => (
           <details class="faq__item">
             <summary class="faq__q">{it.q}</summary>
-            <div class="faq__a"><p>{it.a}</p></div>
+            <div class="faq__a"><p set:html={richTextToInlineHtml(it.a, { escapeFallback: true })} /></div>
           </details>
         ))
       }

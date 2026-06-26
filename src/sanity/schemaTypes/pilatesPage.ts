@@ -87,7 +87,7 @@ export default defineType({
       options: { collapsible: true },
       fields: [
         defineField({ name: 'label', type: 'string' }),
-        defineField({ name: 'titleHtml', title: 'Titre (HTML <br> autorisé)', type: 'text', rows: 2 }),
+        defineField({ name: 'titleHtml', title: 'Titre', type: 'richText' }),
         defineField({ name: 'text', type: 'text', rows: 2 }),
         defineField({ name: 'bookArrow', title: 'Libellé bouton réserver', type: 'string' }),
         defineField({
@@ -117,7 +117,7 @@ export default defineType({
       options: { collapsible: true },
       fields: [
         defineField({ name: 'label', type: 'string' }),
-        defineField({ name: 'text', title: 'Texte (paragraphes séparés par une ligne vide)', type: 'text', rows: 12 }),
+        defineField({ name: 'text', title: 'Texte', type: 'richText' }),
       ],
     }),
 
@@ -130,7 +130,7 @@ export default defineType({
           type: 'object',
           fields: [
             defineField({ name: 'q', title: 'Question', type: 'string' }),
-            defineField({ name: 'a', title: 'Réponse', type: 'text', rows: 3 }),
+            defineField({ name: 'a', title: 'Réponse', type: 'richText' }),
           ],
           preview: { select: { title: 'q' } },
         }),

@@ -12,6 +12,7 @@ import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
 import { urlFor, fileUrl, hasImage } from '../../lib/sanity/image';
+import { richTextToInlineHtml } from '../../lib/sanity/richText';
 import { localizePath } from '../../i18n/utils';
 import type { Lang } from '../../i18n/config';
 
@@ -81,10 +82,10 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
       <div class="grid-2" style="align-items:center">
         <div>
           <span class="t-label">{t.welcome.label}</span>
-          <h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(32px,4vw,56px);line-height:1.1;font-weight:300;margin-top:20px" set:html={t.welcome.quote} />
+          <h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(32px,4vw,56px);line-height:1.1;font-weight:300;margin-top:20px" set:html={richTextToInlineHtml(t.welcome.quote)} />
         </div>
         <div>
-          <p style="font-size:17px;line-height:1.85;color:#0d0a1f" set:html={t.welcome.body1Html} />
+          <p style="font-size:17px;line-height:1.85;color:#0d0a1f" set:html={richTextToInlineHtml(t.welcome.body1Html)} />
           <p style="font-size:17px;line-height:1.85;color:rgba(13,10,31,0.55);margin-top:16px">{t.welcome.body2}</p>
           <a href={localizePath('/about', lang)} class="link-arrow" style="margin-top:36px">
             {t.welcome.link} <Sym kind="arrow" size={18} />

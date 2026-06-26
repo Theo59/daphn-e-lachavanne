@@ -11,11 +11,13 @@
     "preview": "astro preview",
     "astro": "astro",
     "sanity:seed": "node --env-file=.env --import tsx scripts/seed-sanity.ts",
-    "sanity:migrate-media": "node --env-file=.env --import tsx scripts/migrate-media.ts"
+    "sanity:migrate-media": "node --env-file=.env --import tsx scripts/migrate-media.ts",
+    "sanity:migrate-richtext": "node --env-file=.env --import tsx scripts/migrate-richtext.ts"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.0",
     "@astrojs/sitemap": "^3.7.3",
+    "@portabletext/to-html": "^5.0.2",
     "@sanity/astro": "^3.4.1",
     "@sanity/client": "^7.23.0",
     "@sanity/document-internationalization": "^6.2.9",

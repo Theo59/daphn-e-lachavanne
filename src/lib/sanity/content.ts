@@ -59,6 +59,9 @@ function deepFill<T>(local: T, remote: any): T {
     }
     return out as T;
   }
+  // Champ passé en texte enrichi (Portable Text) : dico = string, Sanity = tableau de blocs.
+  // La valeur CMS l'emporte si elle a du contenu, sinon on garde le fallback dico.
+  if (Array.isArray(remote)) return (remote.length ? remote : local) as T;
   // primitive : la valeur CMS l'emporte sauf si vide
   return remote === '' || remote == null ? local : (remote as T);
 }

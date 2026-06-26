@@ -33,7 +33,7 @@ export default defineType({
         defineField({ name: 'label', type: 'string' }),
         defineField({ name: 'titleLine1', title: 'Titre — ligne 1', type: 'string' }),
         defineField({ name: 'titleLine2', title: 'Titre — ligne 2 (italique)', type: 'string' }),
-        defineField({ name: 'subtitleHtml', title: 'Sous-titre (HTML <br> autorisé)', type: 'text', rows: 2 }),
+        defineField({ name: 'subtitleHtml', title: 'Sous-titre', type: 'richText' }),
         defineField({ name: 'imgAlt', title: 'Texte alternatif image', type: 'string' }),
         defineField({ name: 'image', title: 'Portrait', type: 'image', options: { hotspot: true } }),
       ],
@@ -101,7 +101,7 @@ export default defineType({
       type: 'object',
       options: { collapsible: true },
       fields: [
-        defineField({ name: 'textHtml', title: 'Texte (HTML <br> autorisé)', type: 'text', rows: 3 }),
+        defineField({ name: 'textHtml', title: 'Texte', type: 'richText' }),
         defineField({ name: 'author', title: 'Auteur', type: 'string' }),
       ],
     }),
@@ -113,7 +113,7 @@ export default defineType({
       options: { collapsible: true },
       fields: [
         defineField({ name: 'label', type: 'string' }),
-        defineField({ name: 'text', title: 'Texte (paragraphes séparés par une ligne vide)', type: 'text', rows: 12 }),
+        defineField({ name: 'text', title: 'Texte', type: 'richText' }),
       ],
     }),
 
@@ -126,7 +126,7 @@ export default defineType({
           type: 'object',
           fields: [
             defineField({ name: 'q', title: 'Question', type: 'string' }),
-            defineField({ name: 'a', title: 'Réponse', type: 'text', rows: 3 }),
+            defineField({ name: 'a', title: 'Réponse', type: 'richText' }),
           ],
           preview: { select: { title: 'q' } },
         }),
