@@ -67,12 +67,15 @@ const serviceSchema = serviceLd({
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
           <MediaSlot image={(t.gallery as any).photo2} video={(t.gallery as any).photo2Video} alt={t.gallery.photo2Alt} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
-        <div style="position:relative;aspect-ratio:3/4;width:100%;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
-          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay"></div>
-          <div style="position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.85);font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">
-            <span style="width:6px;height:6px;border-radius:50%;background:#ff7100;box-shadow:0 0 8px #ff7100"></span>{t.gallery.videoBadge}
-          </div>
-          <span style="color:rgba(255,255,255,0.7);font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase">{t.gallery.videoLabel}</span>
+        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%;background:linear-gradient(135deg,#2a2520 0%,#4a4238 50%,#1a1612 100%)">
+          <MediaSlot image={(t.gallery as any).photo3} video={(t.gallery as any).photo3Video} alt={t.gallery.photo3Alt} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,10,31,0.55),transparent 45%);pointer-events:none"></div>
+          {(t.gallery as any).photo3Video && (
+            <div style="position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.85);font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">
+              <span style="width:6px;height:6px;border-radius:50%;background:#ff7100;box-shadow:0 0 8px #ff7100"></span>{t.gallery.videoBadge}
+            </div>
+          )}
+          <span style="position:absolute;left:14px;bottom:14px;color:rgba(255,255,255,0.85);font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase">{t.gallery.videoLabel}</span>
         </div>
       </div>
     </div>

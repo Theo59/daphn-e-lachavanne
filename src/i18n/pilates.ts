@@ -26,6 +26,7 @@ const fr = {
   gallery: {
     alt1: 'Cours particulier de Pilates au sol, cabinet de Daphné Lachavanne à Paris 7e',
     alt2: "Travail d'alignement et de renforcement en Pilates, Paris rive gauche",
+    alt3: 'Séance de Pilates au sol, cabinet de Daphné Lachavanne à Paris 7e',
     videoBadge: 'vidéo',
     videoCaption: 'Pilates · séance',
   },
@@ -100,6 +101,7 @@ const en = {
   gallery: {
     alt1: 'Private mat Pilates lesson, Daphné Lachavanne’s studio in Paris 7th',
     alt2: 'Alignment and strengthening work in Pilates, Paris Left Bank',
+    alt3: 'Mat Pilates session, Daphné Lachavanne’s studio in Paris 7th',
     videoBadge: 'video',
     videoCaption: 'Pilates · session',
   },
