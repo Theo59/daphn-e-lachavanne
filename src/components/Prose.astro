@@ -1,18 +1,21 @@
 ---
 /**
  * Bloc de prose éditoriale, texte riche et crawlable (SEO/GEO).
- * `text` : paragraphes séparés par une ligne vide.
+ * `text` : texte enrichi (Portable Text Sanity) ou chaîne fallback du dico
+ * (paragraphes séparés par une ligne vide). Chaque bloc/paragraphe → un <p>.
  * Mise en page éditoriale : label en colonne latérale, paragraphe d'accroche
  * mis en avant + lettrine, reste du texte en colonne lisible (~62ch).
  * Tout le texte reste dans le DOM (aucune coupe), pour ne pas régresser le SEO.
  */
+import { richTextToParagraphs } from '../lib/sanity/richText';
 interface Props {
-  text: string;
+  text: unknown; // string (fallback dico) | Portable Text (Sanity)
   label?: string;
   flush?: boolean; // true = pas de padding section (utilisé dans une section existante)
 }
 const { text, label, flush = false } = Astro.props;
-const paragraphs = text.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
+// 1 bloc = 1 paragraphe ; italique/gras/lien préservés en HTML inline.
+const paragraphs = richTextToParagraphs(text);
 const [lead, ...rest] = paragraphs;
 ---
 
@@ -23,8 +26,8 @@ const [lead, ...rest] = paragraphs;
         {label && <h2 class="t-label">( {label} )</h2>}
       </aside>
       <div class="prose-body">
-        {lead && <p class="prose-lead">{lead}</p>}
-        {rest.map((p) => <p>{p}</p>)}
+        {lead && <p class="prose-lead" set:html={lead} />}
+        {rest.map((p) => <p set:html={p} />)}
       </div>
     </div>
   </div>

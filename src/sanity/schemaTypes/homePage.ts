@@ -48,8 +48,8 @@ export default defineType({
       options: { collapsible: true },
       fields: [
         defineField({ name: 'label', type: 'string' }),
-        defineField({ name: 'quote', title: 'Citation (HTML <br> autorisé)', type: 'text', rows: 3 }),
-        defineField({ name: 'body1Html', title: 'Paragraphe 1 (HTML <em> autorisé)', type: 'text', rows: 3 }),
+        defineField({ name: 'quote', title: 'Citation', type: 'richText' }),
+        defineField({ name: 'body1Html', title: 'Paragraphe 1', type: 'richText' }),
         defineField({ name: 'body2', title: 'Paragraphe 2', type: 'text', rows: 3 }),
         defineField({ name: 'link', title: 'Libellé du lien', type: 'string' }),
       ],
@@ -131,7 +131,7 @@ export default defineType({
       options: { collapsible: true },
       fields: [
         defineField({ name: 'label', type: 'string' }),
-        defineField({ name: 'text', title: 'Texte (paragraphes séparés par une ligne vide)', type: 'text', rows: 12 }),
+        defineField({ name: 'text', title: 'Texte', type: 'richText' }),
       ],
     }),
 
@@ -144,7 +144,7 @@ export default defineType({
           type: 'object',
           fields: [
             defineField({ name: 'q', title: 'Question', type: 'string' }),
-            defineField({ name: 'a', title: 'Réponse', type: 'text', rows: 3 }),
+            defineField({ name: 'a', title: 'Réponse', type: 'richText' }),
           ],
           preview: { select: { title: 'q' } },
         }),

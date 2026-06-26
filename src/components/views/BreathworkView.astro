@@ -11,6 +11,7 @@ import SanityImage from '../SanityImage.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
 import { urlFor, hasImage } from '../../lib/sanity/image';
+import { richTextToInlineHtml } from '../../lib/sanity/richText';
 import { localizePath } from '../../i18n/utils';
 import { serviceLd } from '../../lib/schema.ts';
 import { HTML_LANG, type Lang } from '../../i18n/config';
@@ -114,7 +115,7 @@ const serviceSchema = serviceLd({
       <div class="grid-label-content">
         <div>
           <span style="font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;opacity:0.65">{t.pricing.label}</span>
-          <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(40px,5vw,56px);line-height:1;margin:20px 0 16px;font-weight:400" set:html={t.pricing.titleHtml} />
+          <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(40px,5vw,56px);line-height:1;margin:20px 0 16px;font-weight:400" set:html={richTextToInlineHtml(t.pricing.titleHtml)} />
           <p style="font-size:14px;line-height:1.8;opacity:0.65;max-width:260px">{t.pricing.text}</p>
           <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline" style="margin-top:24px">{t.pricing.book}</a>
         </div>

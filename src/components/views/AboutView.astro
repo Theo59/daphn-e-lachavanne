@@ -10,6 +10,7 @@ import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
 import { urlFor, hasImage } from '../../lib/sanity/image';
+import { richTextToInlineHtml } from '../../lib/sanity/richText';
 import type { Lang } from '../../i18n/config';
 
 interface Props {
@@ -48,7 +49,7 @@ const STRIP_PHOTOS = [
           <h1 style="font-size:clamp(64px,9vw,132px);margin-top:24px">
             {t.header.titleLine1}<br /><em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">{t.header.titleLine2}</em>
           </h1>
-          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;font-weight:300;margin-top:32px;color:rgba(13,10,31,0.75)" set:html={t.header.subtitleHtml} />
+          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;font-weight:300;margin-top:32px;color:rgba(13,10,31,0.75)" set:html={richTextToInlineHtml(t.header.subtitleHtml)} />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
           <SanityImage image={headerImage} alt={t.header.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="eager" />
@@ -109,7 +110,7 @@ const STRIP_PHOTOS = [
       <SanityImage image={brand.circle} alt="" width={700} style="width:100%;display:block" />
     </div>
     <div class="container" style="position:relative;text-align:center">
-      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,4vw,52px);line-height:1.25;font-weight:300;max-width:900px;margin:0 auto" set:html={t.quote.textHtml} />
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,4vw,52px);line-height:1.25;font-weight:300;max-width:900px;margin:0 auto" set:html={richTextToInlineHtml(t.quote.textHtml)} />
       <p class="t-label" style="margin-top:28px">{t.quote.author}</p>
     </div>
   </section>

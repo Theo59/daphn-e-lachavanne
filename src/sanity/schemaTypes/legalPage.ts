@@ -64,9 +64,8 @@ export default defineType({
     defineField({ name: 'dataLabel', title: 'Données personnelles — label', type: 'string' }),
     defineField({
       name: 'dataBodyHtml',
-      title: 'Données personnelles — texte (HTML <a> autorisé)',
-      type: 'text',
-      rows: 5,
+      title: 'Données personnelles — texte',
+      type: 'richText',
     }),
 
     defineField({

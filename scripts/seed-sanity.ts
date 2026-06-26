@@ -9,6 +9,7 @@
  */
 import { createClient } from '@sanity/client';
 import { randomUUID } from 'node:crypto';
+import { convertRichTextFields } from './lib/portable';
 
 import { common } from '../src/i18n/common';
 import { home } from '../src/i18n/home';
@@ -79,11 +80,14 @@ async function run() {
 
   for (const { type, dict } of targets) {
     for (const lang of LANGS) {
+      // Les champs texte enrichi (richText) sont des chaînes dans les dicos i18n :
+      // on les convertit en Portable Text (sur une copie) pour rester valides en Studio.
+      const data = convertRichTextFields(type, structuredClone((dict as any)[lang]));
       tx.createOrReplace({
         _id: `${type}-${lang}`,
         _type: type,
         language: lang,
-        ...withKeys((dict as any)[lang]),
+        ...withKeys(data),
       });
     }
     // Métadonnée de traduction (lie FR↔EN dans le Studio) — format v5 du plugin
