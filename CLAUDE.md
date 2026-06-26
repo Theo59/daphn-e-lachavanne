@@ -2,6 +2,16 @@
 
 Site de praticienne bien-être (yoga, breathwork, pilates, soins) basée à Genève au Loft.
 
+## Git — flux de travail (obligatoire)
+
+⚠️ Plusieurs personnes travaillent sur ce repo **en parallèle**. Pour ne jamais se marcher dessus ni perdre de travail :
+
+- **Avant toute modification** : regarder l'arbre git (`git fetch`, puis `git status` / `git log`).
+  - Si la branche locale est **en retard** sur `origin/main` → se **rebase** sur `main` à jour avant de commencer.
+  - Sinon → **tirer une branche depuis `main` à jour** pour la modif : `git checkout main && git pull && git checkout -b <slug>`. **Jamais de travail directement sur `main`.**
+- **Avant de merger ou d'ouvrir une PR** : re-`git fetch` et re-vérifier l'arbre ; si `main` a avancé entre-temps, se **rebase** dessus avant la PR / le merge (intègre le travail des autres, évite les conflits).
+- **Jamais de `git push` direct sur `main`** : toujours branche + PR ; le merge (et le déploiement Netlify) se fait côté client.
+
 ## Lancer le projet
 
 ```bash
