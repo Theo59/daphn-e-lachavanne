@@ -1,6 +1,16 @@
 # Daphné Lachavanne — Site web
 
-Site de praticienne bien-être (yoga, breathwork, pilates, soins) basée à Genève au Loft.
+Site de praticienne bien-être (yoga, breathwork, pilates, soins) basée à Paris (7e arrondissement — cabinet 3 rue Valadon).
+
+## Git — flux de travail (obligatoire)
+
+⚠️ Plusieurs personnes travaillent sur ce repo **en parallèle**. Pour ne jamais se marcher dessus ni perdre de travail :
+
+- **Avant toute modification** : regarder l'arbre git (`git fetch`, puis `git status` / `git log`).
+  - Si la branche locale est **en retard** sur `origin/main` → se **rebase** sur `main` à jour avant de commencer.
+  - Sinon → **tirer une branche depuis `main` à jour** pour la modif : `git checkout main && git pull && git checkout -b <slug>`. **Jamais de travail directement sur `main`.**
+- **Avant de merger ou d'ouvrir une PR** : re-`git fetch` et re-vérifier l'arbre ; si `main` a avancé entre-temps, se **rebase** dessus avant la PR / le merge (intègre le travail des autres, évite les conflits).
+- **Jamais de `git push` direct sur `main`** : toujours branche + PR ; le merge (et le déploiement Netlify) se fait côté client.
 
 ## Lancer le projet
 
@@ -18,43 +28,35 @@ npm run dev
 ## Structure
 
 ```
-site/
-  src/
-    layouts/
-      Layout.astro        # Shell HTML, importe Nav + Footer, props: activePage, darkNav
-    components/
-      Logo.astro           # SVG logo mark + wordmark
-      GradientBlob.astro   # Dégradé animé SVG (prop: variant)
-      Sym.astro            # Icônes SVG (prop: kind)
-      Photo.astro          # Image B&W (grayscale filter)
-      PhotoSlot.astro      # Placeholder sombre (prop: kind=photo|video)
-      Nav.astro            # Nav responsive (desktop + mobile menu)
-      Footer.astro         # Footer 4 colonnes
-    styles/
-      global.css           # CSS variables brand, reset, fonts (Google Fonts)
-    pages/
-      index.astro          # Homepage
-      soins.astro          # Soins
-      yoga.astro           # Yoga
-      breathwork.astro     # Breathwork
-      pilates.astro        # Pilates
-      about.astro          # À propos
-      contact.astro        # Contact
-  public/
-    media/                 # Photos et médias servis statiquement
+src/
+  layouts/Layout.astro       # Shell HTML (Nav + Footer) ; <html lang>, hreflang, JSON-LD ; props activePage/darkNav
+  components/
+    SanityImage.astro        # <img> servie par le CDN Sanity (image éditable dans /admin)
+    Nav.astro · Footer.astro · Faq.astro · Prose.astro · Sym.astro · Logo.astro · NewsletterPopup.astro
+    views/<Page>View.astro   # LE markup partagé de chaque page (cf. section i18n)
+  styles/global.css          # tokens de marque, reset, polices auto-hébergées (woff2)
+  i18n/                      # tous les textes FR/EN (cf. section i18n)
+  sanity/ · lib/sanity/      # schémas du Studio (/admin) + couche contenu (deepFill + fallback dico)
+  pages/                     # coquilles FR (racine) + EN (sous /en) qui montent les views/
+public/
+  media/ · fonts/            # assets statiques (favicon, og-image, polices woff2)
 ```
 
-## 7 pages
+Composants **legacy non utilisés** (vestiges d'avant Sanity) : `Photo.astro`, `PhotoSlot.astro`, `GradientBlob.astro`.
+
+## Pages
 
 | Route | Titre | Description |
 |-------|-------|-------------|
-| / | Homepage | Hero plein écran, manifeste, pratiques, Loft, témoignages, CTA |
+| / | Homepage | Hero plein écran, manifeste, pratiques, cabinet, témoignages, CTA |
 | /soins | Soins | Catalogue, durées, tarifs, forfaits |
 | /yoga | Yoga | Pranayama, posture, méditation, planning |
 | /breathwork | Breathwork | Cohérence, holotropique, tummo, cercles |
 | /pilates | Pilates | Alignement, fluidité, mat & matériel |
 | /about | À propos | Portrait, manifeste, parcours |
-| /contact | Contact | Booking, formulaire, plan Loft |
+| /contact | Contact | Booking, formulaire, accès au cabinet (Paris 7e) |
+| /tarifs | Prestations & tarifs | Catalogue complet (calque Planity), packs Soin Signature |
+| /mentions-legales | Mentions légales | Éditeur, hébergement, données |
 
 ## Brand tokens (`src/styles/global.css`)
 
@@ -77,7 +79,7 @@ site/
 
 - Chaque page importe ses composants en frontmatter `---`
 - CSS scopé via `<style>` dans chaque `.astro` (pas de fuite entre composants)
-- Les photos réelles : `<Photo src="/media/..." />` · les placeholders : `<PhotoSlot />`
+- Les images viennent de Sanity : `<SanityImage image={…} alt={…} />` (CDN, éditable dans `/admin` ; cf. section « Médias »)
 - Responsive : breakpoint principal à 900px, secondaire à 560px
 - `--pad: clamp(24px, 4vw, 56px)` gère le padding horizontal
 
