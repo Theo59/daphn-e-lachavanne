@@ -9,7 +9,8 @@ Site de praticienne bien-être (yoga, breathwork, pilates, soins) basée à Pari
 - **Avant toute modification** : regarder l'arbre git (`git fetch`, puis `git status` / `git log`).
   - Si la branche locale est **en retard** sur `origin/main` → se **rebase** sur `main` à jour avant de commencer.
   - Sinon → **tirer une branche depuis `main` à jour** pour la modif : `git checkout main && git pull && git checkout -b <slug>`. **Jamais de travail directement sur `main`.**
-- **Avant de merger ou d'ouvrir une PR** : re-`git fetch` et re-vérifier l'arbre ; si `main` a avancé entre-temps, se **rebase** dessus avant la PR / le merge (intègre le travail des autres, évite les conflits).
+- **Avant d'ouvrir une PR** : re-`git fetch`, rebase la branche sur `main` à jour si besoin.
+- **Avant de merger une PR** : **TOUJOURS rebase d'abord la branche à merger sur `main` à jour** — `git fetch` puis, sur la branche, `git rebase origin/main` (résoudre les conflits en local, `git push --force-with-lease`), **puis** merger. Objectif : merge propre et linéaire, conflits détectés en local, jamais de merge-commit issu d'une base périmée.
 - **Jamais de `git push` direct sur `main`** : toujours branche + PR ; le merge (et le déploiement Netlify) se fait côté client.
 
 ## Lancer le projet
