@@ -10,7 +10,7 @@ import SanityImage from '../SanityImage.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
-import { urlFor, hasImage } from '../../lib/sanity/image';
+import { PLANITY } from '../../lib/views';
 import { localizePath } from '../../i18n/utils';
 import type { Lang } from '../../i18n/config';
 
@@ -21,7 +21,6 @@ const { lang } = Astro.props;
 const t = await getPageContent('contact', lang);
 const c = await getSettings(lang);
 
-const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
 // Visuels de marque partagés (fonds, décor) — groupe `brand` des réglages.
 const brand = c.brand ?? {};

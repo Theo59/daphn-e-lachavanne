@@ -10,7 +10,7 @@ import MediaSlot from '../MediaSlot.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
-import { urlFor, hasImage } from '../../lib/sanity/image';
+import { bg } from '../../lib/views';
 import { richTextToInlineHtml } from '../../lib/sanity/richText';
 import type { Lang } from '../../i18n/config';
 
@@ -27,7 +27,6 @@ const photos = t.photos;
 const brand = c.brand ?? {};
 
 // URL CDN pour les fonds CSS (vide si l'image n'est pas définie).
-const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
 const gradient2 = bg(brand.gradient2);
 
 // Bande photo : image Sanity + alt (dico). Plus de filtre CSS : images affichées telles qu'uploadées dans Sanity.

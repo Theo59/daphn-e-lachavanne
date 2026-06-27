@@ -7,6 +7,7 @@ import Layout from '../../layouts/Layout.astro';
 import Sym from '../Sym.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { PLANITY } from '../../lib/views';
 import type { Lang } from '../../i18n/config';
 
 interface Props {
@@ -15,8 +16,6 @@ interface Props {
 const { lang } = Astro.props;
 const t = await getPageContent('prestations', lang);
 const c = await getSettings(lang);
-
-const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 ---
 
 <Layout activePage="prestations" title={t.meta.title} description={t.meta.description}>

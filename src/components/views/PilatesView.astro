@@ -11,7 +11,7 @@ import MediaSlot from '../MediaSlot.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
-import { urlFor, hasImage } from '../../lib/sanity/image';
+import { PLANITY, bg } from '../../lib/views';
 import { richTextToInlineHtml } from '../../lib/sanity/richText';
 import { localizePath } from '../../i18n/utils';
 import { HTML_LANG, type Lang } from '../../i18n/config';
@@ -24,11 +24,8 @@ const { lang } = Astro.props;
 const t = await getPageContent('pilates', lang);
 const c = await getSettings(lang);
 
-const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
-// Visuels de marque (fonds CSS) depuis le groupe `brand` des réglages.
 const brand = c.brand ?? {};
-const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
 const gradient1 = bg(brand.gradient1);
 const gradient2 = bg(brand.gradient2);
 

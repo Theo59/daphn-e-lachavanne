@@ -12,7 +12,7 @@ import MediaSlot from '../MediaSlot.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
-import { urlFor, hasImage } from '../../lib/sanity/image';
+import { PLANITY, bg } from '../../lib/views';
 import { localizePath } from '../../i18n/utils';
 import { serviceLd } from '../../lib/schema.ts';
 import { HTML_LANG, type Lang } from '../../i18n/config';
@@ -24,11 +24,8 @@ const { lang } = Astro.props;
 const t = await getPageContent('soins', lang);
 const c = await getSettings(lang);
 
-const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
-// Visuels de marque (fonds partagés) + helper d'URL CDN pour les fonds CSS.
 const brand = c.brand ?? {};
-const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
 const gradient1 = bg(brand.gradient1); // ex-fond-2
 const gradient2 = bg(brand.gradient2); // ex-fond-3
 
