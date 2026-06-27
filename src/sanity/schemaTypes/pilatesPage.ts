@@ -4,6 +4,7 @@
  * Le champ `language` est géré par le plugin document-internationalization.
  */
 import { defineType, defineField, defineArrayMember } from 'sanity';
+import { bgColorField } from './_fields';
 
 export default defineType({
   name: 'pilatesPage',
@@ -95,6 +96,7 @@ export default defineType({
         defineField({ name: 'titleHtml', title: 'Titre', type: 'richText' }),
         defineField({ name: 'text', type: 'text', rows: 2 }),
         defineField({ name: 'bookArrow', title: 'Libellé bouton réserver', type: 'string' }),
+        bgColorField(),
         defineField({
           name: 'rows',
           title: 'Lignes de tarif',

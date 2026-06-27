@@ -5,6 +5,7 @@
  * Le champ `language` est géré par le plugin document-internationalization.
  */
 import { defineType, defineField, defineArrayMember } from 'sanity';
+import { bgColorField } from './_fields';
 
 export default defineType({
   name: 'contactPage',
@@ -70,6 +71,7 @@ export default defineType({
         defineField({ name: 'eyebrow', type: 'string' }),
         defineField({ name: 'title', type: 'string' }),
         defineField({ name: 'text', type: 'text', rows: 3 }),
+        bgColorField(),
       ],
     }),
 

@@ -5,6 +5,7 @@
  * Le champ `language` est géré par le plugin document-internationalization.
  */
 import { defineType, defineField, defineArrayMember } from 'sanity';
+import { bgColorField } from './_fields';
 
 export default defineType({
   name: 'breathworkPage',
@@ -96,6 +97,7 @@ export default defineType({
         defineField({ name: 'titleHtml', title: 'Titre', type: 'richText' }),
         defineField({ name: 'text', type: 'text', rows: 3 }),
         defineField({ name: 'book', title: 'Libellé du bouton', type: 'string' }),
+        bgColorField(),
       ],
     }),
 

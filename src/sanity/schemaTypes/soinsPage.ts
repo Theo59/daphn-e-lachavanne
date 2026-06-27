@@ -5,6 +5,7 @@
  * le plugin document-internationalization.
  */
 import { defineType, defineField, defineArrayMember } from 'sanity';
+import { bgColorField } from './_fields';
 
 export default defineType({
   name: 'soinsPage',
@@ -91,6 +92,7 @@ export default defineType({
     }),
 
     defineField({ name: 'packagesLabel', title: 'Libellé section forfaits', type: 'string' }),
+    bgColorField({ name: 'packagesBgColor', initialValue: 'orange' }),
 
     defineField({
       name: 'packages',
