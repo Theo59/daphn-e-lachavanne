@@ -169,22 +169,65 @@ const brand = (c as any).brand ?? {};
 </script>
 
 <script>
-  // Carte du cabinet : Leaflet + tuiles CARTO Positron (minimal, clair) + marqueur orange.
+  // Carte du cabinet : Leaflet + tuiles CARTO Positron (minimal, clair).
+  // Arrêts de transport à proximité mis en évidence en orange (données OpenStreetMap, figées).
   import L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
 
-  const coords: [number, number] = [48.857303, 2.305538];
+  const CABINET: [number, number] = [48.857303, 2.305538];
+  const METRO: { n: string; s: string; c: [number, number] }[] = [
+    { n: 'École Militaire', s: 'Métro 8', c: [48.8546647, 2.3060728] },
+    { n: 'La Tour-Maubourg', s: 'Métro 8', c: [48.8575602, 2.3103234] },
+  ];
+  const BUS: { n: string; c: [number, number] }[] = [
+    { n: 'Bosquet - Grenelle', c: [48.8567350, 2.3043968] },
+    { n: 'Bosquet - Saint-Dominique', c: [48.8584313, 2.3035608] },
+    { n: 'Champ de Mars - La Bourdonnais', c: [48.8565257, 2.3020405] },
+    { n: 'Invalides - La Tour-Maubourg', c: [48.8568059, 2.3093976] },
+    { n: 'Rue Cler', c: [48.8556204, 2.3073399] },
+    { n: 'Saint-Pierre du Gros Caillou', c: [48.8578051, 2.3062945] },
+    { n: 'École Militaire', c: [48.8548656, 2.3055095] },
+  ];
+
   const el = document.getElementById('cabinet-map');
   if (el) {
-    const map = L.map(el, { scrollWheelZoom: false }).setView(coords, 16);
+    const map = L.map(el, { scrollWheelZoom: false });
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
       subdomains: 'abcd',
       maxZoom: 20,
     }).addTo(map);
-    // Halo + point (couleur de marque).
-    L.circleMarker(coords, { radius: 20, weight: 0, fillColor: '#ff7100', fillOpacity: 0.16 }).addTo(map);
-    L.circleMarker(coords, { radius: 8, weight: 2, color: '#fff', fillColor: '#ff7100', fillOpacity: 1 }).addTo(map);
+
+    // Bus : petits points orange.
+    BUS.forEach((b) => {
+      L.circleMarker(b.c, { radius: 5, weight: 1.5, color: '#fff', fillColor: '#ff7100', fillOpacity: 0.9 })
+        .addTo(map)
+        .bindTooltip(`Bus · ${b.n}`, { direction: 'top' });
+    });
+
+    // Métro : badge « M » orange (mis en évidence).
+    const metroIcon = L.divIcon({
+      className: '',
+      html:
+        '<div style="width:26px;height:26px;border-radius:50%;background:#ff7100;color:#fff;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;font-family:\'Tenor Sans\',serif;font-size:14px;line-height:1">M</div>',
+      iconSize: [26, 26],
+      iconAnchor: [13, 13],
+    });
+    METRO.forEach((m) => {
+      L.marker(m.c, { icon: metroIcon })
+        .addTo(map)
+        .bindTooltip(`${m.n} · ${m.s}`, { direction: 'top' });
+    });
+
+    // Cabinet : point bleu + halo orange (le plus visible, distinct des arrêts).
+    L.circleMarker(CABINET, { radius: 22, weight: 0, fillColor: '#ff7100', fillOpacity: 0.16 }).addTo(map);
+    L.circleMarker(CABINET, { radius: 9, weight: 3, color: '#fff', fillColor: '#16066e', fillOpacity: 1 })
+      .addTo(map)
+      .bindTooltip('Le cabinet · 3 Rue Valadon', { direction: 'top' });
+
+    // Cadrage auto : cabinet + tous les arrêts.
+    const all: [number, number][] = [CABINET, ...METRO.map((m) => m.c), ...BUS.map((b) => b.c)];
+    map.fitBounds(all, { padding: [34, 34], maxZoom: 16 });
   }
 </script>
