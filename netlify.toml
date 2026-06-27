@@ -42,3 +42,5 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # HSTS (hygiène). Sans 'preload' (engagement quasi-irréversible avant soumission à hstspreload.org).
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"

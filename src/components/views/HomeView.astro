@@ -73,7 +73,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   <!-- BIENVENUE -->
   <section class="section welcome">
     <div class="welcome__decor">
-      <SanityImage image={brand.shapes} alt="" width={500} class="welcome__decor-img" />
+      <SanityImage image={brand.shapes} alt="" widths={[500, 1000]} sizes="500px" class="welcome__decor-img" />
     </div>
     <div class="container rel">
       <div class="grid-2 row-center">
