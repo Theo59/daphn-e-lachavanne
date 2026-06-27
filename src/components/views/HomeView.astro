@@ -97,6 +97,9 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
 
   <!-- PRATIQUES - icon grid -->
   <section class="service-icon-section" style="position:relative;overflow:hidden">
+    <div style="position:absolute;right:-80px;top:-50px;width:300px;opacity:0.08;pointer-events:none;transform:rotate(22deg)" aria-hidden="true">
+      <SanityImage image={brand.shapes} alt="" width={360} style="width:100%;display:block" />
+    </div>
 
     <div class="container" style="position:relative;padding-top:64px;padding-bottom:40px">
       <h2 style="font-family:'Tenor Sans',serif;font-size:clamp(30px,4vw,46px);line-height:1.05;font-weight:400;margin:0;color:var(--ink)">{t.practices.label}</h2>

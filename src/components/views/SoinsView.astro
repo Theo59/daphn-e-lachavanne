@@ -48,6 +48,9 @@ const serviceSchema = serviceLd({
 <Layout activePage="soins" title={t.meta.title} description={t.meta.description}>
 
   <div class="page-header" style="position:relative;overflow:hidden">
+    <div style="position:absolute;right:-90px;top:-70px;width:360px;opacity:0.1;pointer-events:none;transform:rotate(16deg)" aria-hidden="true">
+      <SanityImage image={brand.shapes} alt="" width={420} style="width:100%;display:block" />
+    </div>
     <div class="container" style="position:relative">
       <span class="t-label">{t.header.label}</span>
       <h1>{t.header.h1}</h1>
