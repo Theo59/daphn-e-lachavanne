@@ -94,9 +94,6 @@ export default defineType({
         defineField({ name: 'image3', title: 'Photo 3', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'alt3', title: 'Alt photo 3', type: 'string' }),
         defineField({ name: 'image3Video', title: 'Vidéo 3 (mp4, optionnel — remplace la photo 3)', type: 'file', options: { accept: 'video/mp4' } }),
-        defineField({ name: 'image4', title: 'Photo 4', type: 'image', options: { hotspot: true } }),
-        defineField({ name: 'alt4', title: 'Alt photo 4', type: 'string' }),
-        defineField({ name: 'image4Video', title: 'Vidéo 4 (mp4, optionnel — remplace la photo 4)', type: 'file', options: { accept: 'video/mp4' } }),
       ],
     }),
 

@@ -53,7 +53,6 @@ const fr = {
     alt1: 'Daphné Lachavanne au cabinet, soins de drainage Paris 7e',
     alt2: 'Daphné Lachavanne, cabinet 3 rue Valadon, Paris 7e',
     alt3: 'Daphné Lachavanne, pratique du yoga à Paris',
-    alt4: 'Daphné Lachavanne, séance de breathwork à Paris 7e',
   },
 
   quote: {
@@ -124,7 +123,6 @@ const en = {
     alt1: 'Daphné Lachavanne at the studio, drainage treatments Paris 7th',
     alt2: 'Daphné Lachavanne, studio 3 rue Valadon, Paris 7th',
     alt3: 'Daphné Lachavanne practising yoga in Paris',
-    alt4: 'Daphné Lachavanne, breathwork session in Paris 7th',
   },
 
   quote: {

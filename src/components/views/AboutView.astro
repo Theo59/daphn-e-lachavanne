@@ -35,7 +35,6 @@ const STRIP_PHOTOS = [
   { image: photos.image1, alt: t.photos.alt1, style: '', video: photos.image1Video },
   { image: photos.image2, alt: t.photos.alt2, style: '', video: photos.image2Video },
   { image: photos.image3, alt: t.photos.alt3, style: '', video: photos.image3Video },
-  { image: photos.image4, alt: t.photos.alt4, style: '', video: photos.image4Video },
 ];
 ---
 
@@ -93,14 +92,16 @@ const STRIP_PHOTOS = [
     </div>
   </section>
 
-  <!-- PHOTOS STRIP -->
-  <section class="section--sm" style="padding-left:0;padding-right:0">
-    <div class="photo-grid-4">
-      {STRIP_PHOTOS.map((photo) => (
-        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <MediaSlot image={photo.image} video={photo.video} alt={photo.alt} widths={[480, 768]} sizes="(max-width:900px) 50vw, 25vw" style={photo.style} loading="lazy" decoding="async" />
-        </div>
-      ))}
+  <!-- PHOTOS -->
+  <section class="section--sm">
+    <div class="container">
+      <div class="grid-3">
+        {STRIP_PHOTOS.map((photo) => (
+          <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+            <MediaSlot image={photo.image} video={photo.video} alt={photo.alt} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" style={photo.style} loading="lazy" decoding="async" />
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
