@@ -4,9 +4,9 @@
  * `/en/contact` (EN). Tout le texte vient de src/i18n/contact.ts (+ common.ts).
  * Le formulaire Netlify reste un endpoint unique (name="contact", form-name,
  * honeypot) ; seule l'action est localisée pour le retour ?ok=1.
+ * Styles : classes scopées (<style>) ; fond du bloc réservation dynamique → inline.
  */
 import Layout from '../../layouts/Layout.astro';
-import SanityImage from '../SanityImage.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
@@ -20,27 +20,23 @@ interface Props {
 const { lang } = Astro.props;
 const t = await getPageContent('contact', lang);
 const c = await getSettings(lang);
-
-
-// Visuels de marque partagés (fonds, décor) — groupe `brand` des réglages.
-const brand = c.brand ?? {};
 ---
 
 <Layout activePage="contact" title={t.meta.title} description={t.meta.description}>
 
-  <div class="page-header container" style="position:relative;overflow:hidden">
+  <div class="page-header container rel-clip">
     <span class="t-label">{t.header.label}</span>
     <h1>
-      {t.header.titleLine1}<br /><em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">{t.header.titleLine2}</em>
+      {t.header.titleLine1}<br /><em class="t-corm">{t.header.titleLine2}</em>
     </h1>
   </div>
 
-  <section class="section" style="padding-top:0">
+  <section class="section pt0">
     <div class="container">
       <div class="grid-2">
 
         <div>
-          <h2 class="t-label" style="margin-bottom:28px">{t.form.label}</h2>
+          <h2 class="t-label col-label">{t.form.label}</h2>
 
           <div id="contact-success" class="form-success" hidden role="status">
             <p class="form-success__title">{t.form.successTitle}</p>
@@ -81,25 +77,25 @@ const brand = c.brand ?? {};
         </div>
 
         <div>
-          <h2 class="t-label" style="margin-bottom:28px">{t.booking.label}</h2>
+          <h2 class="t-label col-label">{t.booking.label}</h2>
 
-          <div style={`position:relative;border-radius:6px;overflow:hidden;min-height:220px;margin-bottom:36px;background:var(--${t.booking.bgColor === 'orange' ? 'orange' : 'blue'})`}>
-            <div style="position:relative;padding:32px;color:#fff">
-              <span style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;opacity:0.85">{t.booking.eyebrow}</span>
-              <h3 style="font-family:'Tenor Sans',serif;font-size:34px;line-height:1;margin:10px 0 14px;font-weight:400">{t.booking.title}</h3>
-              <p style="font-size:14px;line-height:1.85;opacity:0.92;margin:0;max-width:340px">{t.booking.text}</p>
-              <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:22px">
+          <div class="booking" style={`background:var(--${t.booking.bgColor === 'orange' ? 'orange' : 'blue'})`}>
+            <div class="booking__inner">
+              <span class="booking__eyebrow">{t.booking.eyebrow}</span>
+              <h3 class="booking__title">{t.booking.title}</h3>
+              <p class="booking__text">{t.booking.text}</p>
+              <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white booking__cta">
                 {c.cta.bookPlanity} →
               </a>
             </div>
           </div>
 
-          <h2 class="t-label" style="margin-bottom:20px">{t.cabinet.label}</h2>
-          <address style="font-style:normal">
-            <p style="font-family:'Tenor Sans',serif;font-size:22px;line-height:1.4;margin:0 0 14px;font-weight:400">
+          <h2 class="t-label col-label--tight">{t.cabinet.label}</h2>
+          <address class="address">
+            <p class="address__name">
               {t.cabinet.addressLine1}<br />{t.cabinet.addressLine2}
             </p>
-            <p style="font-size:13.5px;line-height:1.85;color:var(--muted);margin:0">
+            <p class="address__detail">
               {t.cabinet.email}<br /><br />
               {t.cabinet.hours1}<br />
               {t.cabinet.hours2}<br />
@@ -112,13 +108,13 @@ const brand = c.brand ?? {};
     </div>
   </section>
 
-  <section class="section--sm" style="padding-top:0">
+  <section class="section--sm pt0">
     <div class="container">
       <div class="map-placeholder">
-        <div id="cabinet-map" style="position:absolute;inset:0" role="img" aria-label={t.map.label + ' — ' + t.map.address}></div>
-        <div style="position:absolute;z-index:1000;bottom:20px;left:20px;background:#fff;padding:12px 18px;border-radius:4px;box-shadow:0 4px 20px rgba(0,0,0,0.08)">
-          <span class="t-label" style="display:block;margin-bottom:4px">{t.map.label}</span>
-          <span style="font-family:'Tenor Sans',serif;font-size:15px">{t.map.address}</span>
+        <div id="cabinet-map" class="map__canvas" role="img" aria-label={t.map.label + ' — ' + t.map.address}></div>
+        <div class="map__card">
+          <span class="t-label map__card-label">{t.map.label}</span>
+          <span class="map__card-addr">{t.map.address}</span>
         </div>
       </div>
     </div>
@@ -131,6 +127,37 @@ const brand = c.brand ?? {};
 </Layout>
 
 <style>
+  .rel-clip { position: relative; overflow: hidden; }
+  .pt0 { padding-top: 0; }
+  .col-label { margin-bottom: 28px; }
+  .col-label--tight { margin-bottom: 20px; }
+
+  /* Bloc réservation (fond dynamique → inline) */
+  .booking { position: relative; border-radius: 6px; overflow: hidden; min-height: 220px; margin-bottom: 36px; }
+  .booking__inner { position: relative; padding: 32px; color: #fff; }
+  .booking__eyebrow {
+    font-family: 'Tenor Sans', serif; font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; opacity: 0.85;
+  }
+  .booking__title { font-family: 'Tenor Sans', serif; font-size: 34px; line-height: 1; margin: 10px 0 14px; font-weight: 400; }
+  .booking__text { font-size: 14px; line-height: 1.85; opacity: 0.92; margin: 0; max-width: 340px; }
+  .booking__cta { margin-top: 22px; }
+
+  /* Adresse */
+  .address { font-style: normal; }
+  .address__name { font-family: 'Tenor Sans', serif; font-size: 22px; line-height: 1.4; margin: 0 0 14px; font-weight: 400; }
+  .address__detail { font-size: 13.5px; line-height: 1.85; color: var(--muted); margin: 0; }
+
+  /* Carte */
+  .map__canvas { position: absolute; inset: 0; }
+  .map__card {
+    position: absolute; z-index: 1000; bottom: 20px; left: 20px; background: #fff;
+    padding: 12px 18px; border-radius: 4px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  .map__card-label { display: block; margin-bottom: 4px; }
+  .map__card-addr { font-family: 'Tenor Sans', serif; font-size: 15px; }
+
+  /* Confirmation d'envoi du formulaire */
   .form-success {
     border-left: 2px solid var(--orange);
     background: rgba(255,113,0,0.06);
