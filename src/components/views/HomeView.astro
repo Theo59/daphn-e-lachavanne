@@ -85,8 +85,8 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
           <h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(32px,4vw,56px);line-height:1.1;font-weight:300;margin-top:20px" set:html={richTextToInlineHtml(t.welcome.quote)} />
         </div>
         <div>
-          <p style="font-size:17px;line-height:1.85;color:#0d0a1f" set:html={richTextToInlineHtml(t.welcome.body1Html)} />
-          <p style="font-size:17px;line-height:1.85;color:rgba(13,10,31,0.55);margin-top:16px">{t.welcome.body2}</p>
+          <p style="font-size:17px;line-height:1.85;color:var(--ink)" set:html={richTextToInlineHtml(t.welcome.body1Html)} />
+          <p style="font-size:17px;line-height:1.85;color:var(--muted);margin-top:16px">{t.welcome.body2}</p>
           <a href={localizePath('/about', lang)} class="link-arrow" style="margin-top:36px">
             {t.welcome.link} <Sym kind="arrow" size={18} />
           </a>
@@ -161,7 +161,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
     <div class="container" style="position:relative">
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:44px">
         <h3 class="t-label" style="white-space:nowrap">{t.testimonials.label}</h3>
-        <span style="font-family:'Tenor Sans',serif;font-size:12px;letter-spacing:0.14em;color:#0d0a1f;font-weight:700;white-space:nowrap">{t.testimonials.rating}</span>
+        <span style="font-family:'Tenor Sans',serif;font-size:12px;letter-spacing:0.14em;color:var(--ink);font-weight:700;white-space:nowrap">{t.testimonials.rating}</span>
       </div>
       <div class="reviews-track">
         {t.testimonials.items.map((item) => (

@@ -104,9 +104,10 @@ const key = hashKey([message, linkLabel, linkUrl, variant].join('|'));
     background: var(--blue);
     color: #fff;
   }
+  /* Texte encre sur orange (~7:1) : le blanc sur orange échoue WCAG AA (2.76:1). */
   .announce--orange {
     background: var(--orange);
-    color: #fff;
+    color: var(--ink);
   }
   .announce__msg {
     margin: 0;
@@ -125,17 +126,20 @@ const key = hashKey([message, linkLabel, linkUrl, variant].join('|'));
   }
   .announce__close {
     position: absolute;
-    right: 12px;
+    right: 4px;
     top: 50%;
     transform: translateY(-50%);
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
     background: none;
     border: 0;
     color: inherit;
     font-size: 13px;
     line-height: 1;
     cursor: pointer;
-    padding: 8px;
     opacity: 0.75;
     transition: opacity 0.2s;
   }
