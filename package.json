@@ -14,7 +14,8 @@
     "sanity:migrate-media": "node --env-file=.env --import tsx scripts/migrate-media.ts",
     "sanity:migrate-richtext": "node --env-file=.env --import tsx scripts/migrate-richtext.ts",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.0",
