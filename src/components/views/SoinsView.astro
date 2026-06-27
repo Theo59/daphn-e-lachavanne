@@ -2,8 +2,7 @@
 /**
  * Vue partagée de la page Soins. Rendue à la fois pour `/soins` (FR) et `/en/soins` (EN).
  * Tout le texte vient du dictionnaire src/i18n/soins.ts (+ common.ts).
- * Les routes (src/pages/soins.astro, src/pages/en/soins.astro) ne font que
- * monter cette vue avec la bonne langue.
+ * Styles : classes scopées (<style>) ; fond des forfaits dynamique → inline.
  */
 import Layout from '../../layouts/Layout.astro';
 import Sym from '../Sym.astro';
@@ -12,7 +11,7 @@ import MediaSlot from '../MediaSlot.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
-import { PLANITY, bg } from '../../lib/views';
+import { PLANITY } from '../../lib/views';
 import { localizePath } from '../../i18n/utils';
 import { serviceLd } from '../../lib/schema.ts';
 import { HTML_LANG, type Lang } from '../../i18n/config';
@@ -23,11 +22,6 @@ interface Props {
 const { lang } = Astro.props;
 const t = await getPageContent('soins', lang);
 const c = await getSettings(lang);
-
-
-const brand = c.brand ?? {};
-const gradient1 = bg(brand.gradient1); // ex-fond-2
-const gradient2 = bg(brand.gradient2); // ex-fond-3
 
 const serviceSchema = serviceLd({
   name: t.schema.name,
@@ -44,21 +38,17 @@ const serviceSchema = serviceLd({
 
 <Layout activePage="soins" title={t.meta.title} description={t.meta.description}>
 
-  <div class="page-header" style="position:relative;overflow:hidden">
-    <div class="container" style="position:relative">
+  <div class="page-header rel-clip">
+    <div class="container rel">
       <span class="t-label">{t.header.label}</span>
       <h1>{t.header.h1}</h1>
-      <div class="grid-2" style="margin-top:48px">
-        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.5vw,32px);line-height:1.35;font-weight:300;margin:0">
-          {t.header.quote}
-        </p>
+      <div class="grid-2 header__grid">
+        <p class="header__quote">{t.header.quote}</p>
         <div>
-          <p style="font-size:16px;line-height:1.85;color:var(--muted)">
-            {t.header.intro}
-          </p>
-          <div style="margin-top:20px;display:flex;align-items:center;gap:16px">
+          <p class="header__intro">{t.header.intro}</p>
+          <div class="header__method">
             <span class="t-label">{t.header.methodLabel}</span>
-            <span style="width:28px;height:1px;background:rgba(13,10,31,0.4);display:inline-block"></span>
+            <span class="header__rule"></span>
             <span class="t-label">{t.header.sinceLabel}</span>
           </div>
         </div>
@@ -70,13 +60,13 @@ const serviceSchema = serviceLd({
   <section class="section--sm">
     <div class="container">
       <div class="grid-3">
-        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+        <div class="photo-wrap photo-portrait">
           <MediaSlot image={t.photo.image1} video={t.photo.image1Video} alt={t.photo.alt1} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
-        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+        <div class="photo-wrap photo-portrait">
           <MediaSlot image={t.photo.image2} video={t.photo.image2Video} alt={t.photo.alt2} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
-        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+        <div class="photo-wrap photo-portrait">
           <MediaSlot image={t.photo.image3} video={t.photo.image3Video} alt={t.photo.alt3} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
       </div>
@@ -84,12 +74,12 @@ const serviceSchema = serviceLd({
   </section>
 
   <!-- CATALOGUE - icon grid + soin-rows -->
-  <section class="service-icon-section" style="position:relative;overflow:hidden">
-    <div style="position:relative">
-      <div class="container" style="padding-top:56px;padding-bottom:40px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline">
+  <section class="service-icon-section rel-clip">
+    <div class="rel">
+      <div class="container catalogue__head">
+        <div class="catalogue__bar">
           <h2 class="t-label">{t.catalogue.label}</h2>
-          <span style="font-size:13px;color:var(--muted)">{t.catalogue.all}</span>
+          <span class="catalogue__all">{t.catalogue.all}</span>
         </div>
       </div>
       <div class="service-icon-grid">
@@ -105,7 +95,7 @@ const serviceSchema = serviceLd({
           </div>
         ))}
       </div>
-      <div class="container" style="padding-top:0;padding-bottom:0">
+      <div class="container catalogue__rows">
         {t.soins.map((s, i) => (
           <article class="soin-row">
             <span class="soin-row__num">0{i + 1}</span>
@@ -116,7 +106,7 @@ const serviceSchema = serviceLd({
             <p class="soin-row__text">{s.text}</p>
             <div class="soin-row__price">
               <span class="soin-row__price-val">{s.price}</span>
-              <a href={PLANITY} target="_blank" rel="noopener" class="link-arrow" style="font-size:10px">{t.catalogue.reserve}</a>
+              <a href={PLANITY} target="_blank" rel="noopener" class="link-arrow reserve-sm">{t.catalogue.reserve}</a>
             </div>
           </article>
         ))}
@@ -125,9 +115,9 @@ const serviceSchema = serviceLd({
   </section>
 
   <!-- FORFAITS -->
-  <section class="section" style="padding-top:0">
+  <section class="section pt0">
     <div class="container">
-      <h3 class="t-label" style="margin-top:56px;margin-bottom:32px">{t.packagesLabel}</h3>
+      <h3 class="t-label packages__label">{t.packagesLabel}</h3>
       <div class="grid-3">
         {t.packages.map((p) => (
           <div class="forfait" style={`background:var(--${t.packagesBgColor === 'blue' ? 'blue' : 'orange'})`}>
@@ -155,3 +145,30 @@ const serviceSchema = serviceLd({
   <Prose text={t.prose.text} label={t.prose.label} />
 
 </Layout>
+
+<style>
+  .rel { position: relative; }
+  .rel-clip { position: relative; overflow: hidden; }
+  .pt0 { padding-top: 0; }
+  .photo-portrait { aspect-ratio: 3 / 4; width: 100%; }
+
+  /* En-tête */
+  .header__grid { margin-top: 48px; }
+  .header__quote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(22px, 2.5vw, 32px); line-height: 1.35; font-weight: 300; margin: 0;
+  }
+  .header__intro { font-size: 16px; line-height: 1.85; color: var(--muted); }
+  .header__method { margin-top: 20px; display: flex; align-items: center; gap: 16px; }
+  .header__rule { width: 28px; height: 1px; background: rgba(13, 10, 31, 0.4); display: inline-block; }
+
+  /* Catalogue */
+  .catalogue__head { padding-top: 56px; padding-bottom: 40px; }
+  .catalogue__bar { display: flex; justify-content: space-between; align-items: baseline; }
+  .catalogue__all { font-size: 13px; color: var(--muted); }
+  .catalogue__rows { padding-top: 0; padding-bottom: 0; }
+  .reserve-sm { font-size: 10px; }
+
+  /* Forfaits (fond dynamique → inline) */
+  .packages__label { margin-top: 56px; margin-bottom: 32px; }
+</style>
