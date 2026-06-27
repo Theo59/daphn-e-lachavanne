@@ -11,6 +11,10 @@ import type { Lang } from '../../i18n/config';
 import { DEFAULT_LOCALE } from '../../i18n/config';
 import { sanityClient } from './client';
 import { QUERIES, type PageKey } from './queries';
+import type {
+  HomePage, SoinsPage, YogaPage, BreathworkPage, PilatesPage,
+  AboutPage, ContactPage, LegalPage, PrestationsPage, SiteSettings,
+} from '../../../sanity.types';
 
 import { home } from '../../i18n/home';
 import { soins } from '../../i18n/soins';
@@ -24,6 +28,19 @@ import { prestations } from '../../i18n/prestations';
 import { common } from '../../i18n/common';
 
 const DICTS = { home, soins, yoga, breathwork, pilates, about, contact, legal, prestations } as const;
+
+// Type document Sanity (généré par TypeGen) par clé de page. Porte les champs
+// éditables ABSENTS des dicos texte (images, vidéos, Portable Text…).
+type SanityDocByPage = {
+  home: HomePage; soins: SoinsPage; yoga: YogaPage; breathwork: BreathworkPage;
+  pilates: PilatesPage; about: AboutPage; contact: ContactPage; legal: LegalPage;
+  prestations: PrestationsPage;
+};
+
+// Contenu d'une page = forme du dico (texte garanti) + champs Sanity générés
+// (images/vidéos/etc.). Les vues accèdent ainsi aux champs médias sans `as any`.
+export type PageContent<K extends PageKey> = (typeof DICTS)[K]['fr'] & SanityDocByPage[K];
+export type Settings = (typeof common)['fr'] & SiteSettings;
 
 // Mémoïsation par build : Layout + Nav + Footer + vue demandent le même contenu/réglages
 // sur une page → on ne fetch Sanity qu'une fois par (clé, langue). Cache de promesses
@@ -68,16 +85,13 @@ function deepFill<T>(local: T, remote: any): T {
 }
 
 /** Contenu d'une page dans la langue voulue (Sanity → dico). */
-export function getPageContent<K extends PageKey>(
-  page: K,
-  lang: Lang,
-): Promise<(typeof DICTS)[K]['fr'] & Record<string, any>> {
-  const local = DICTS[page][lang] as (typeof DICTS)[K]['fr'] & Record<string, any>;
+export function getPageContent<K extends PageKey>(page: K, lang: Lang): Promise<PageContent<K>> {
+  const local = DICTS[page][lang] as unknown as PageContent<K>;
   return memo(`${page}:${lang}`, async () => {
     if (!sanityClient) return local;
     try {
       const doc = await sanityClient.fetch(QUERIES[page], { lang });
-      return doc ? deepFill(local, doc) : local;
+      return doc ? (deepFill(local, doc) as PageContent<K>) : local;
     } catch (err) {
       console.warn(`[sanity] fetch ${page}/${lang} échoué → fallback dico`, err);
       return local;
@@ -86,13 +100,13 @@ export function getPageContent<K extends PageKey>(
 }
 
 /** Réglages communs (nav, footer, CTA, JSON-LD) dans la langue voulue. */
-export function getSettings(lang: Lang): Promise<(typeof common)['fr'] & Record<string, any>> {
-  const local = common[lang] as (typeof common)['fr'] & Record<string, any>;
+export function getSettings(lang: Lang): Promise<Settings> {
+  const local = common[lang] as unknown as Settings;
   return memo(`settings:${lang}`, async () => {
     if (!sanityClient) return local;
     try {
       const doc = await sanityClient.fetch(QUERIES.settings, { lang });
-      return doc ? deepFill(local, doc) : local;
+      return doc ? (deepFill(local, doc) as Settings) : local;
     } catch (err) {
       console.warn(`[sanity] fetch settings/${lang} échoué → fallback dico`, err);
       return local;
