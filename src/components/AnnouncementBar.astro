@@ -63,19 +63,29 @@ const key = hashKey([message, linkLabel, linkUrl, variant].join('|'));
         var el = document.querySelector('.announce');
         if (!el) return;
         var key = el.getAttribute('data-key');
+        // Cale la VRAIE hauteur du bandeau (multi-lignes sur mobile) dans --banner-h
+        // → la nav et le décalage du contenu collent exactement, sans recouvrement.
+        var setH = function () { document.body.style.setProperty('--banner-h', el.offsetHeight + 'px'); };
+        var clearH = function () { document.body.style.removeProperty('--banner-h'); };
         try {
           if (sessionStorage.getItem('announce-dismissed') === key) {
             el.remove(); // fermé pendant cette session → on retire avant le rendu (pas de saut)
             return;
           }
         } catch (e) {}
+        setH();
+        var ro;
+        if (window.ResizeObserver) { ro = new ResizeObserver(setH); ro.observe(el); }
+        else { window.addEventListener('resize', setH); }
         var btn = el.querySelector('.announce__close');
         if (btn)
           btn.addEventListener('click', function () {
             try {
               sessionStorage.setItem('announce-dismissed', key);
             } catch (e) {}
+            if (ro) ro.disconnect();
             el.remove();
+            clearH();
           });
       })();
     </script>
