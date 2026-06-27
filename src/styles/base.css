@@ -1,0 +1,105 @@
+/* ============================================================
+   Base : reset, tokens de marque, helpers typo, container, a11y.
+   Importé en tête de global.css.
+   ============================================================ */
+
+/* ---- Reset & base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #0d0a1f;
+  background: #f7f4ee;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+h1, h2, h3, h4, h5, h6 { font-weight: 400; line-height: 1; }
+p { line-height: 1.85; }
+
+/* ---- Tokens ---- */
+:root {
+  --orange: #ff7100;
+  --blue:   #16066e;
+  --ink:    #0d0a1f;
+  --paper:  #f7f4ee;
+  --muted:  rgba(13,10,31,0.55);
+  --rule:   rgba(13,10,31,0.12);
+
+  --font-display: 'Tenor Sans', serif;
+  --font-accent:  'Cormorant Garamond', serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  --pad:   clamp(24px, 4vw, 56px);
+  --max-w: 1340px;
+
+  /* Hauteur du bandeau d'annonce (0 = pas de bandeau). Décale nav + contenu.
+     Renseignée par `body:has(.announce)` quand le bandeau est présent. */
+  --banner-h: 0px;
+}
+
+/* Bandeau d'annonce présent → on réserve sa hauteur en haut de page. */
+body:has(.announce) { --banner-h: 44px; }
+@media (max-width: 560px) { body:has(.announce) { --banner-h: 60px; } }
+body { padding-top: var(--banner-h); }
+
+/* ---- Typography helpers ---- */
+.t-tenor  { font-family: 'Tenor Sans', serif; }
+.t-corm   { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; }
+.t-label  { font-family: 'Tenor Sans', serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(13,10,31,0.55); }
+.t-muted  { color: rgba(13,10,31,0.55); }
+.label    { font-family: 'Tenor Sans', serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
+
+/* ---- Container ---- */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+@media (max-width: 900px) { .container { padding: 0 1.5rem; } }
+
+/* ---- Accessibilité : focus clavier ---- */
+/* Anneau visible uniquement au clavier (pas au clic souris), exigence a11y.
+   Indispensable ici car le curseur personnalisé masque le pointeur système. */
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+/* Sur fonds sombres / hero, on éclaircit l'orange pour garder le contraste. */
+.nav--hero a:focus-visible,
+.hero a:focus-visible,
+.section--dark a:focus-visible,
+.mobile-menu a:focus-visible,
+.cta-band a:focus-visible,
+.btn--white:focus-visible,
+.btn--outline-white:focus-visible { outline-color: #ff9347; }
+
+/* ---- Skip to content ---- */
+.skip-link {
+  position: absolute;
+  top: -64px;
+  left: 16px;
+  z-index: 1000;
+  font-family: 'Tenor Sans', serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: var(--ink);
+  padding: 12px 22px;
+  border-radius: 999px;
+  transition: top 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.skip-link:focus-visible { top: 16px; outline-offset: 2px; }
+/* Cible du skip-link : conteneur non interactif, pas d'anneau autour de tout le contenu. */
+main:focus { outline: none; }
