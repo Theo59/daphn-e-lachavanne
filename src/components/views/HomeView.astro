@@ -98,7 +98,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
 
   <!-- PRATIQUES - icon grid -->
   <section class="service-icon-section" style="position:relative;overflow:hidden">
-    <div style={`position:absolute;inset:0;background:url('${gradient2}') center/cover`}></div>
+
     <div class="container" style="position:relative;padding-top:64px;padding-bottom:40px">
       <h2 style="font-family:'Tenor Sans',serif;font-size:clamp(30px,4vw,46px);line-height:1.05;font-weight:400;margin:0;color:var(--ink)">{t.practices.label}</h2>
       <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2vw,24px);color:rgba(13,10,31,0.6);margin:14px 0 0;max-width:460px">{t.practices.caption}</p>
@@ -119,17 +119,16 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   </section>
 
   <!-- MON CABINET -->
-  <section class="section" style="position:relative;overflow:hidden">
-    <div style={`position:absolute;inset:0;background:url('${gradient1}') center/cover`}></div>
+  <section class="section section--dark" style="position:relative;overflow:hidden">
     <div class="container" style="position:relative">
       <div class="grid-2" style="align-items:center">
         <div>
-          <span class="t-label" style="color:rgba(13,10,31,0.55)">{t.cabinet.label}</span>
+          <span class="t-label">{t.cabinet.label}</span>
           <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(56px,7vw,88px);line-height:1.02;margin:20px 0 24px;font-weight:400">
             {t.cabinet.titleLine1}<br />{t.cabinet.titleLine2}
           </h3>
           <p style="font-size:17px;line-height:1.85;opacity:0.85;max-width:440px">{t.cabinet.body}</p>
-          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline" style="margin-top:28px">{c.cta.book}</a>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:28px">{c.cta.book}</a>
         </div>
         <div class="photo-wrap" style="aspect-ratio:16/10;border-radius:2px">
           <MediaSlot image={cabinetImage} video={(t.cabinet as any).video} alt={t.cabinet.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="lazy" decoding="async" />
@@ -182,12 +181,12 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   <!-- CTA -->
   <section class="section" style="padding-top:0">
     <div class="container">
-      <div class="cta-band cta-band--light" style="background:#f4efe7">
-        <div style={`position:absolute;inset:0;background:url('${gradient1}') center/cover`}></div>
+      <div class="cta-band" style="background:#16066e">
+
         <div class="cta-band__content">
           <h3 class="cta-band__title">{t.ctaBand.titleLine1}<br />{t.ctaBand.titleLine2}</h3>
           <p class="cta-band__text">{t.ctaBand.text}</p>
-          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--dark" style="margin-top:32px">
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--white" style="margin-top:32px">
             {c.cta.bookPlanity} <Sym kind="arrow" size={16} />
           </a>
         </div>
