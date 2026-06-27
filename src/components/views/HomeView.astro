@@ -13,6 +13,7 @@ import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
 import { urlFor, fileUrl, hasImage } from '../../lib/sanity/image';
+import { PLANITY, bg } from '../../lib/views';
 import { richTextToInlineHtml } from '../../lib/sanity/richText';
 import { localizePath } from '../../i18n/utils';
 import type { Lang } from '../../i18n/config';
@@ -24,16 +25,12 @@ const { lang } = Astro.props;
 const t = await getPageContent('home', lang);
 const c = await getSettings(lang);
 
-const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
-
 // Images (champs Sanity, hors typage des dicos texte).
 const heroImage = t.hero.image;
 const heroVideoUrl = fileUrl(t.hero.video?.asset?._ref);
 const cabinetImage = t.cabinet.image;
 const brand = c.brand ?? {};
 
-// URL CDN pour les fonds CSS (vide si l'image n'est pas définie).
-const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
 const gradient1 = bg(brand.gradient1);
 const gradient2 = bg(brand.gradient2);
 const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : undefined;
