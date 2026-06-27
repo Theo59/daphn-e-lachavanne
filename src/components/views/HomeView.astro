@@ -27,10 +27,10 @@ const c = await getSettings(lang);
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
 // Images (champs Sanity, hors typage des dicos texte).
-const heroImage = (t.hero as any).image;
-const heroVideoUrl = fileUrl((t.hero as any).video?.asset?._ref);
-const cabinetImage = (t.cabinet as any).image;
-const brand = (c as any).brand ?? {};
+const heroImage = t.hero.image;
+const heroVideoUrl = fileUrl(t.hero.video?.asset?._ref);
+const cabinetImage = t.cabinet.image;
+const brand = c.brand ?? {};
 
 // URL CDN pour les fonds CSS (vide si l'image n'est pas définie).
 const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
@@ -106,7 +106,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
       {t.practices.items.map((item) => (
         <a href={localizePath(`/${item.key}`, lang)} class="service-icon-card">
           <div class="service-icon-card__icon">
-            <SanityImage image={(item as any).icon} alt={item.name} width={240} />
+            <SanityImage image={(item as { icon?: unknown }).icon} alt={item.name} width={240} />
           </div>
           <div class="service-icon-card__meta">
             <h4 class="service-icon-card__name">{item.name}</h4>
@@ -118,7 +118,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   </section>
 
   <!-- MON CABINET -->
-  <section class="section section--dark" style={`position:relative;overflow:hidden;background:var(--${(t.cabinet as any).bgColor === 'orange' ? 'orange' : 'blue'})`}>
+  <section class="section section--dark" style={`position:relative;overflow:hidden;background:var(--${t.cabinet.bgColor === 'orange' ? 'orange' : 'blue'})`}>
     <div class="container" style="position:relative">
       <div class="grid-2" style="align-items:center">
         <div>
@@ -130,7 +130,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
           <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:28px">{c.cta.book}</a>
         </div>
         <div class="photo-wrap" style="aspect-ratio:16/10;border-radius:2px">
-          <MediaSlot image={cabinetImage} video={(t.cabinet as any).video} alt={t.cabinet.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="lazy" decoding="async" />
+          <MediaSlot image={cabinetImage} video={t.cabinet.video} alt={t.cabinet.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="lazy" decoding="async" />
           <span style="position:absolute;bottom:14px;left:16px;z-index:1;color:#fff;font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-shadow:0 1px 12px rgba(13,10,31,0.6)">{t.cabinet.caption}</span>
         </div>
       </div>
@@ -138,12 +138,12 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   </section>
 
   <!-- VIGNETTES EN VRAC -->
-  {(t as any).gallery?.length > 0 && (
+  {(t.gallery?.length ?? 0) > 0 && (
     <section class="section--sm">
       <div class="container">
         <span class="t-label" style="display:block;margin-bottom:28px">{t.galleryLabel}</span>
         <div class="photo-vrac">
-          {(t as any).gallery.map((g) => (
+          {t.gallery?.map((g) => (
             <div class="photo-vrac__item">
               <SanityImage image={g.image} alt={g.alt ?? ''} width={500} />
             </div>
@@ -180,7 +180,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   <!-- CTA -->
   <section class="section" style="padding-top:0">
     <div class="container">
-      <div class="cta-band" style={`background:var(--${(t.ctaBand as any).bgColor === 'orange' ? 'orange' : 'blue'})`}>
+      <div class="cta-band" style={`background:var(--${t.ctaBand.bgColor === 'orange' ? 'orange' : 'blue'})`}>
 
         <div class="cta-band__content">
           <h3 class="cta-band__title">{t.ctaBand.titleLine1}<br />{t.ctaBand.titleLine2}</h3>
