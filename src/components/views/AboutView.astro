@@ -63,14 +63,14 @@ const STRIP_PHOTOS = [
     <div class="container">
       <div class="grid-label-content">
         <h2 class="t-label">{t.story.label}</h2>
-        <div style="font-size:17px;line-height:1.85;color:#0d0a1f;max-width:640px">
+        <div style="font-size:17px;line-height:1.85;color:var(--ink);max-width:640px">
           <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.2vw,28px);line-height:1.4;font-weight:300;margin:0 0 24px">
             {t.story.lead}
           </p>
           <p style="margin:0 0 16px">
             {t.story.body1}
           </p>
-          <p style="color:rgba(13,10,31,0.55);margin:0">
+          <p style="color:var(--muted);margin:0">
             {t.story.body2}
           </p>
         </div>
@@ -81,7 +81,7 @@ const STRIP_PHOTOS = [
   <!-- PARCOURS -->
   <section class="section" style="padding-top:0">
     <div class="container">
-      <h3 class="t-label" style="padding-bottom:20px;border-bottom:1px solid #0d0a1f;margin-bottom:0">{t.timeline.label}</h3>
+      <h3 class="t-label" style="padding-bottom:20px;border-bottom:1px solid var(--ink);margin-bottom:0">{t.timeline.label}</h3>
       {t.timeline.items.map((row) => (
         <div class="timeline-row">
           <span class="timeline-row__year">{row.year}</span>

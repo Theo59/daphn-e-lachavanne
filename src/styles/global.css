@@ -224,6 +224,10 @@ main:focus { outline: none; }
   text-decoration: none;
   color: currentColor;
   opacity: 0.5;
+  /* Zone tactile ≥44px en hauteur (WCAG 2.5.8) sans changer le rendu visuel. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 2px 0;
   transition: opacity 0.2s;
 }
@@ -234,8 +238,13 @@ a.nav__lang-item:hover { opacity: 1; }
 .nav__hamburger {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
-  padding: 6px;
+  /* Zone tactile 44×44 (WCAG 2.5.8) ; -8px de marge pour compenser le padding visuel. */
+  width: 44px;
+  height: 44px;
+  margin-right: -8px;
 }
 .nav__hamburger span {
   display: block;
@@ -313,6 +322,10 @@ a.nav__lang-item:hover { opacity: 1; }
 .mobile-menu__lang-item {
   text-decoration: none;
   color: rgba(255,255,255,0.5);
+  /* Zone tactile ≥44px (WCAG 2.5.8). */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   transition: color 0.2s;
 }
 .mobile-menu__lang-item--active { color: #fff; }
