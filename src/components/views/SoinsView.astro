@@ -95,7 +95,7 @@ const serviceSchema = serviceLd({
           <span style="font-size:13px;color:rgba(13,10,31,0.55)">{t.catalogue.all}</span>
         </div>
       </div>
-      <div class="service-icon-grid service-icon-grid--sep">
+      <div class="service-icon-grid">
         {t.soins.map((s) => (
           <div class="service-icon-card">
             <div class="service-icon-card__icon">
@@ -133,7 +133,7 @@ const serviceSchema = serviceLd({
       <h3 class="t-label" style="margin-top:56px;margin-bottom:32px">{t.packagesLabel}</h3>
       <div class="grid-3">
         {t.packages.map((p) => (
-          <div class="forfait" style="background:#ff7100">
+          <div class="forfait" style="background:var(--orange)">
             <div class="forfait__content">
               <div>
                 <span class="forfait__save">{p.save}</span>
