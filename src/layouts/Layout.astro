@@ -4,7 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import NewsletterPopup from '../components/NewsletterPopup.astro';
 import AnnouncementBar from '../components/AnnouncementBar.astro';
-import { getSettings } from '../lib/sanity/content';
+import { getSettings, getBrandColors } from '../lib/sanity/content';
 import { OG_LOCALE, HTML_LANG, DEFAULT_LOCALE } from '../i18n/config';
 import { getLangFromUrl, getAlternates } from '../i18n/utils';
 import { urlFor, hasImage } from '../lib/sanity/image';
@@ -22,6 +22,8 @@ interface Props {
 // Langue dérivée de l'URL (/en/... → 'en', sinon 'fr').
 const lang = getLangFromUrl(Astro.url);
 const c = await getSettings(lang);
+// Couleurs de marque éditables dans Sanity → surchargent --blue/--orange de :root.
+const brandColors = await getBrandColors();
 
 const {
   title = c.siteName,
@@ -146,7 +148,7 @@ if (activePage !== 'home' && navLinks[activePage]) {
 ---
 
 <!doctype html>
-<html lang={HTML_LANG[lang]}>
+<html lang={HTML_LANG[lang]} style={`--blue:${brandColors.blue};--orange:${brandColors.orange}`}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
