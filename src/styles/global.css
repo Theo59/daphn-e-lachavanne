@@ -41,7 +41,7 @@ img { display: block; max-width: 100%; }
 a { color: inherit; }
 button { cursor: pointer; font-family: inherit; border: none; background: none; }
 h1, h2, h3, h4, h5, h6 { font-weight: 400; line-height: 1; }
-p { line-height: 1.75; }
+p { line-height: 1.85; }
 
 /* ---- Tokens ---- */
 :root {
@@ -784,7 +784,7 @@ a.service-icon-card:hover .service-icon-card__icon img { transform: scale(1.06);
 .soin-row__num   { font-family: 'Tenor Sans', serif; font-size: 13px; color: rgba(13,10,31,0.45); padding-top: 8px; }
 .soin-row__name  { font-family: 'Tenor Sans', serif; font-size: clamp(24px, 2.5vw, 36px); font-weight: 400; margin: 0 0 10px; }
 .soin-row__sub   { font-family: 'Tenor Sans', serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(13,10,31,0.5); }
-.soin-row__text  { font-size: 15px; line-height: 1.7; color: #0d0a1f; margin: 6px 0 0; }
+.soin-row__text  { font-size: 15px; line-height: 1.85; color: #0d0a1f; margin: 6px 0 0; }
 .soin-row__price { text-align: right; }
 .soin-row__price-val { font-family: 'Tenor Sans', serif; font-size: 22px; display: block; margin-bottom: 12px; }
 
@@ -872,7 +872,7 @@ a.service-icon-card:hover .service-icon-card__icon img { transform: scale(1.06);
   margin: 0;
   font-weight: 400;
 }
-.cta-band__text { font-size: 15px; line-height: 1.75; margin-top: 20px; opacity: 0.9; max-width: 460px; }
+.cta-band__text { font-size: 15px; line-height: 1.85; margin-top: 20px; opacity: 0.9; max-width: 460px; }
 /* Variante claire/aérée : fond pastel + texte foncé (au lieu d'un bloc de couleur vive). */
 .cta-band--light { color: var(--ink); border: 1px solid rgba(13,10,31,0.08); }
 .cta-band--light .cta-band__text { opacity: 0.65; }
