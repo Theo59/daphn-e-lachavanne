@@ -8,6 +8,7 @@
  * champs vides côté CMS sans danger, champs système Sanity ignorés.
  */
 import type { Lang } from '../../i18n/config';
+import { DEFAULT_LOCALE } from '../../i18n/config';
 import { sanityClient } from './client';
 import { QUERIES, type PageKey } from './queries';
 
@@ -95,6 +96,35 @@ export function getSettings(lang: Lang): Promise<(typeof common)['fr'] & Record<
     } catch (err) {
       console.warn(`[sanity] fetch settings/${lang} échoué → fallback dico`, err);
       return local;
+    }
+  });
+}
+
+// Couleurs de marque (bleu/orange) éditables dans Sanity (Réglages → Couleurs).
+const COLOR_DEFAULTS = { blue: '#16066e', orange: '#ff7100' } as const;
+const HEX = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
+const okHex = (v: unknown, fallback: string) =>
+  typeof v === 'string' && HEX.test(v.trim()) ? v.trim() : fallback;
+
+/**
+ * Couleurs de marque éditables dans `/admin` (Réglages → Couleurs de la marque).
+ * Lues sur le document de la langue par défaut (source unique, indépendant de la
+ * langue de la page), puis injectées en `:root` par le Layout. Fallback sur la
+ * charte si absent/invalide.
+ */
+export function getBrandColors(): Promise<{ blue: string; orange: string }> {
+  return memo('brandColors', async () => {
+    if (!sanityClient) return { ...COLOR_DEFAULTS };
+    try {
+      const doc = await sanityClient.fetch(
+        '*[_type == "siteSettings" && language == $lang][0]{colors}',
+        { lang: DEFAULT_LOCALE },
+      );
+      const c = doc?.colors ?? {};
+      return { blue: okHex(c.blue, COLOR_DEFAULTS.blue), orange: okHex(c.orange, COLOR_DEFAULTS.orange) };
+    } catch (err) {
+      console.warn('[sanity] fetch couleurs échoué → charte par défaut', err);
+      return { ...COLOR_DEFAULTS };
     }
   });
 }

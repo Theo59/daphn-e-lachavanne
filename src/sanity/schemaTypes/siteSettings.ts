@@ -28,6 +28,35 @@ export default defineType({
       ],
     }),
 
+    defineField({
+      name: 'colors',
+      title: 'Couleurs de la marque',
+      description:
+        'Bleu et orange utilisés partout sur le site (fonds des blocs, accents). Code hexadécimal, ex. #16066e. À renseigner ici — appliqué à tout le site.',
+      type: 'object',
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({
+          name: 'blue',
+          title: 'Bleu profond',
+          description: 'Fond des blocs « feature », menu mobile, bandeau « Réservez »… Ex. #16066e',
+          type: 'string',
+          initialValue: '#16066e',
+          validation: (Rule) =>
+            Rule.regex(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/).error('Code hexadécimal, ex. #16066e'),
+        }),
+        defineField({
+          name: 'orange',
+          title: 'Orange (accent)',
+          description: 'Accent principal, cartes forfait, liens… Ex. #ff7100',
+          type: 'string',
+          initialValue: '#ff7100',
+          validation: (Rule) =>
+            Rule.regex(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/).error('Code hexadécimal, ex. #ff7100'),
+        }),
+      ],
+    }),
+
     defineField({ name: 'skipLink', title: 'Lien d’évitement', type: 'string' }),
     defineField({ name: 'siteName', title: 'Nom du site', type: 'string' }),
 
