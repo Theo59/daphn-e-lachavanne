@@ -23,12 +23,10 @@ const c = await getSettings(lang);
   <div class="page-header container">
     <span class="t-label">{t.header.label}</span>
     <h1>{t.header.h1}</h1>
-    <p style="font-size:16px;line-height:1.85;color:var(--muted);max-width:54ch;margin-top:24px">
-      {t.header.intro}
-    </p>
+    <p class="header__intro">{t.header.intro}</p>
   </div>
 
-  <section class="section" style="padding-top:0">
+  <section class="section pt0">
     <div class="container">
       {t.categories.map((cat) => (
         <div class="presta-cat">
@@ -54,7 +52,7 @@ const c = await getSettings(lang);
         </div>
       ))}
 
-      <div style="margin-top:48px">
+      <div class="actions">
         <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--orange">
           {c.cta.bookPlanity} <Sym kind="arrow" size={16} color="#fff" />
         </a>
@@ -67,6 +65,10 @@ const c = await getSettings(lang);
 </Layout>
 
 <style>
+  .pt0 { padding-top: 0; }
+  .header__intro { font-size: 16px; line-height: 1.85; color: var(--muted); max-width: 54ch; margin-top: 24px; }
+  .actions { margin-top: 48px; }
+
   .presta-cat { margin-bottom: 8px; }
   .presta-cat__title {
     padding-bottom: 18px;
