@@ -90,7 +90,6 @@ const serviceSchema = serviceLd({
   </section>
 
   <div class="service-icon-section" style="position:relative;overflow:hidden;margin-top:40px">
-    <div style={`position:absolute;inset:0;background:url('${gradient2}') center/cover`}></div>
     <div class="service-icon-grid service-icon-grid--3 service-icon-grid--sep" style="position:relative">
       {t.principles.map((pr) => (
         <div class="service-icon-card">
@@ -106,15 +105,14 @@ const serviceSchema = serviceLd({
     </div>
   </div>
 
-  <section class="section" style="position:relative;overflow:hidden">
-    <div style={`position:absolute;inset:0;background:url('${gradient1}') center/cover`}></div>
+  <section class="section section--dark" style="position:relative;overflow:hidden">
     <div class="container" style="position:relative">
       <div class="grid-label-content">
         <div>
           <span style="font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;opacity:0.65">{t.tarif.label}</span>
           <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(40px,5vw,56px);line-height:1;margin:20px 0 16px;font-weight:400">{t.tarif.titleLine1}<br />{t.tarif.titleLine2}</h3>
           <p style="font-size:14px;line-height:1.8;opacity:0.65;max-width:260px">{t.tarif.body}</p>
-          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline" style="margin-top:24px">{t.tarif.reserve}</a>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:24px">{t.tarif.reserve}</a>
         </div>
         <div>
           {t.tarif.rows.map((r) => (
@@ -125,7 +123,7 @@ const serviceSchema = serviceLd({
               </div>
               <div class="tarif-row__right">
                 <span class="tarif-row__price">{r.price}</span>
-                <a href={PLANITY} target="_blank" rel="noopener" style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:rgba(13,10,31,0.6);border-bottom:1px solid rgba(13,10,31,0.22);padding-bottom:2px">{t.tarif.reserve}</a>
+                <a href={PLANITY} target="_blank" rel="noopener" style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.7);border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px">{t.tarif.reserve}</a>
               </div>
             </div>
           ))}
