@@ -4,6 +4,9 @@
  * Texte ET images viennent de Sanity au build (getPageContent/getSettings) ; les
  * images sont servies par le CDN Sanity via <SanityImage>/urlFor. Les visuels de
  * marque (fonds, décor) viennent du groupe `brand` des réglages.
+ *
+ * Styles : classes scopées (bloc <style> ci-dessous) ; seuls les styles DYNAMIQUES
+ * (couleur de fond pilotée par Sanity) restent inline.
  */
 import Layout from '../../layouts/Layout.astro';
 import Sym from '../Sym.astro';
@@ -13,7 +16,7 @@ import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
 import { urlFor, fileUrl, hasImage } from '../../lib/sanity/image';
-import { PLANITY, bg } from '../../lib/views';
+import { PLANITY } from '../../lib/views';
 import { richTextToInlineHtml } from '../../lib/sanity/richText';
 import { localizePath } from '../../i18n/utils';
 import type { Lang } from '../../i18n/config';
@@ -30,9 +33,6 @@ const heroImage = t.hero.image;
 const heroVideoUrl = fileUrl(t.hero.video?.asset?._ref);
 const cabinetImage = t.cabinet.image;
 const brand = c.brand ?? {};
-
-const gradient1 = bg(brand.gradient1);
-const gradient2 = bg(brand.gradient2);
 const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : undefined;
 ---
 
@@ -47,7 +47,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   <section class="hero">
     <div class="hero__bg">
       {heroVideoUrl ? (
-        <video autoplay muted loop playsinline poster={heroPoster} style="width:100%;height:100%;object-fit:cover">
+        <video autoplay muted loop playsinline poster={heroPoster} class="hero__video">
           <source src={heroVideoUrl} type="video/mp4" />
         </video>
       ) : (
@@ -56,12 +56,12 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
     </div>
     <div class="hero__content">
       <span class="hero__label">{t.hero.label}</span>
-      <h1 class="hero__title" style="margin-bottom:2.5rem">
+      <h1 class="hero__title hero__title--mb">
         {t.hero.titleLine1}<br />
-        <em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">{t.hero.titleLine2}</em>
+        <em class="t-corm">{t.hero.titleLine2}</em>
       </h1>
       <p class="hero__sub">{t.hero.sub}</p>
-      <div style="margin-top:36px">
+      <div class="hero__actions">
         <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white">{c.cta.book}</a>
       </div>
     </div>
@@ -71,20 +71,20 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   </section>
 
   <!-- BIENVENUE -->
-  <section class="section" style="position:relative;overflow:hidden">
-    <div style="position:absolute;right:-120px;top:-80px;width:500px;opacity:0.12;pointer-events:none;transform:rotate(-15deg)">
-      <SanityImage image={brand.shapes} alt="" width={500} style="width:100%;display:block" />
+  <section class="section welcome">
+    <div class="welcome__decor">
+      <SanityImage image={brand.shapes} alt="" width={500} class="welcome__decor-img" />
     </div>
-    <div class="container" style="position:relative">
-      <div class="grid-2" style="align-items:center">
+    <div class="container rel">
+      <div class="grid-2 row-center">
         <div>
           <span class="t-label">{t.welcome.label}</span>
-          <h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(32px,4vw,56px);line-height:1.1;font-weight:300;margin-top:20px" set:html={richTextToInlineHtml(t.welcome.quote)} />
+          <h2 class="welcome__quote" set:html={richTextToInlineHtml(t.welcome.quote)} />
         </div>
         <div>
-          <p style="font-size:17px;line-height:1.85;color:var(--ink)" set:html={richTextToInlineHtml(t.welcome.body1Html)} />
-          <p style="font-size:17px;line-height:1.85;color:var(--muted);margin-top:16px">{t.welcome.body2}</p>
-          <a href={localizePath('/about', lang)} class="link-arrow" style="margin-top:36px">
+          <p class="welcome__lead" set:html={richTextToInlineHtml(t.welcome.body1Html)} />
+          <p class="welcome__body">{t.welcome.body2}</p>
+          <a href={localizePath('/about', lang)} class="link-arrow welcome__link">
             {t.welcome.link} <Sym kind="arrow" size={18} />
           </a>
         </div>
@@ -93,13 +93,12 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   </section>
 
   <!-- PRATIQUES - icon grid -->
-  <section class="service-icon-section" style="position:relative;overflow:hidden">
-
-    <div class="container" style="position:relative;padding-top:64px;padding-bottom:40px">
-      <h2 style="font-family:'Tenor Sans',serif;font-size:clamp(30px,4vw,46px);line-height:1.05;font-weight:400;margin:0;color:var(--ink)">{t.practices.label}</h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2vw,24px);color:rgba(13,10,31,0.6);margin:14px 0 0;max-width:460px">{t.practices.caption}</p>
+  <section class="service-icon-section practices">
+    <div class="container rel practices__head">
+      <h2 class="practices__title">{t.practices.label}</h2>
+      <p class="practices__caption">{t.practices.caption}</p>
     </div>
-    <div class="service-icon-grid service-icon-grid--lead" style="position:relative">
+    <div class="service-icon-grid service-icon-grid--lead rel">
       {t.practices.items.map((item) => (
         <a href={localizePath(`/${item.key}`, lang)} class="service-icon-card">
           <div class="service-icon-card__icon">
@@ -115,20 +114,20 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   </section>
 
   <!-- MON CABINET -->
-  <section class="section section--dark" style={`position:relative;overflow:hidden;background:var(--${t.cabinet.bgColor === 'orange' ? 'orange' : 'blue'})`}>
-    <div class="container" style="position:relative">
-      <div class="grid-2" style="align-items:center">
+  <section class="section section--dark cabinet" style={`background:var(--${t.cabinet.bgColor === 'orange' ? 'orange' : 'blue'})`}>
+    <div class="container rel">
+      <div class="grid-2 row-center">
         <div>
           <span class="t-label">{t.cabinet.label}</span>
-          <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(56px,7vw,88px);line-height:1.02;margin:20px 0 24px;font-weight:400">
+          <h3 class="cabinet__title">
             {t.cabinet.titleLine1}<br />{t.cabinet.titleLine2}
           </h3>
-          <p style="font-size:17px;line-height:1.85;opacity:0.85;max-width:440px">{t.cabinet.body}</p>
-          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:28px">{c.cta.book}</a>
+          <p class="cabinet__body">{t.cabinet.body}</p>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white cabinet__cta">{c.cta.book}</a>
         </div>
-        <div class="photo-wrap" style="aspect-ratio:16/10;border-radius:2px">
+        <div class="photo-wrap cabinet__photo">
           <MediaSlot image={cabinetImage} video={t.cabinet.video} alt={t.cabinet.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="lazy" decoding="async" />
-          <span style="position:absolute;bottom:14px;left:16px;z-index:1;color:#fff;font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-shadow:0 1px 12px rgba(13,10,31,0.6)">{t.cabinet.caption}</span>
+          <span class="cabinet__caption">{t.cabinet.caption}</span>
         </div>
       </div>
     </div>
@@ -138,7 +137,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   {(t.gallery?.length ?? 0) > 0 && (
     <section class="section--sm">
       <div class="container">
-        <span class="t-label" style="display:block;margin-bottom:28px">{t.galleryLabel}</span>
+        <span class="t-label gallery__label">{t.galleryLabel}</span>
         <div class="photo-vrac">
           {t.gallery?.map((g) => (
             <div class="photo-vrac__item">
@@ -151,19 +150,19 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   )}
 
   <!-- TÉMOIGNAGES -->
-  <section class="section" style="position:relative;overflow:hidden;padding-top:7rem;padding-bottom:7rem">
-    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(600px,88vw);height:min(600px,88vw);opacity:0.07;pointer-events:none">
-      <SanityImage image={brand.circle} alt="" width={600} style="width:100%;height:100%;object-fit:contain" />
+  <section class="section reviews">
+    <div class="reviews__decor">
+      <SanityImage image={brand.circle} alt="" width={600} class="reviews__decor-img" />
     </div>
-    <div class="container" style="position:relative">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:44px">
-        <h3 class="t-label" style="white-space:nowrap">{t.testimonials.label}</h3>
-        <span style="font-family:'Tenor Sans',serif;font-size:12px;letter-spacing:0.14em;color:var(--ink);font-weight:700;white-space:nowrap">{t.testimonials.rating}</span>
+    <div class="container rel">
+      <div class="reviews__head">
+        <h3 class="t-label nowrap">{t.testimonials.label}</h3>
+        <span class="reviews__rating">{t.testimonials.rating}</span>
       </div>
       <div class="reviews-track">
         {t.testimonials.items.map((item) => (
           <figure class="testimonial">
-            <SanityImage image={brand.circle} alt="" aria-hidden="true" width={64} style="width:32px;height:32px;object-fit:contain;mix-blend-mode:multiply" />
+            <SanityImage image={brand.circle} alt="" aria-hidden="true" width={64} class="testimonial__mark" />
             <blockquote>« {item.quote} »</blockquote>
             <figcaption>{item.author}</figcaption>
           </figure>
@@ -175,14 +174,13 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   <Faq items={t.faqs} title={c.faqTitle} />
 
   <!-- CTA -->
-  <section class="section" style="padding-top:0">
+  <section class="section cta-section">
     <div class="container">
       <div class="cta-band" style={`background:var(--${t.ctaBand.bgColor === 'orange' ? 'orange' : 'blue'})`}>
-
         <div class="cta-band__content">
           <h3 class="cta-band__title">{t.ctaBand.titleLine1}<br />{t.ctaBand.titleLine2}</h3>
           <p class="cta-band__text">{t.ctaBand.text}</p>
-          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--white" style="margin-top:32px">
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--white cta-band__cta">
             {c.cta.bookPlanity} <Sym kind="arrow" size={16} />
           </a>
         </div>
@@ -193,3 +191,78 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   <Prose text={t.prose.text} label={t.prose.label} />
 
 </Layout>
+
+<style>
+  /* Utilitaires locaux */
+  .rel { position: relative; }
+  .nowrap { white-space: nowrap; }
+
+  /* Hero */
+  .hero__video { width: 100%; height: 100%; object-fit: cover; }
+  .hero__title--mb { margin-bottom: 2.5rem; }
+  .hero__actions { margin-top: 36px; }
+
+  /* Bienvenue */
+  .welcome { position: relative; overflow: hidden; }
+  .welcome__decor {
+    position: absolute; right: -120px; top: -80px; width: 500px;
+    opacity: 0.12; pointer-events: none; transform: rotate(-15deg);
+  }
+  .welcome__decor-img { width: 100%; display: block; }
+  .row-center { align-items: center; }
+  .welcome__quote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(32px, 4vw, 56px); line-height: 1.1; font-weight: 300; margin-top: 20px;
+  }
+  .welcome__lead { font-size: 17px; line-height: 1.85; color: var(--ink); }
+  .welcome__body { font-size: 17px; line-height: 1.85; color: var(--muted); margin-top: 16px; }
+  .welcome__link { margin-top: 36px; }
+
+  /* Pratiques */
+  .practices { position: relative; overflow: hidden; }
+  .practices__head { padding-top: 64px; padding-bottom: 40px; }
+  .practices__title {
+    font-family: 'Tenor Sans', serif; font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.05; font-weight: 400; margin: 0; color: var(--ink);
+  }
+  .practices__caption {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(18px, 2vw, 24px); color: rgba(13, 10, 31, 0.6); margin: 14px 0 0; max-width: 460px;
+  }
+
+  /* Cabinet (couleur de fond dynamique → inline) */
+  .cabinet { position: relative; overflow: hidden; }
+  .cabinet__title {
+    font-family: 'Tenor Sans', serif; font-size: clamp(56px, 7vw, 88px);
+    line-height: 1.02; margin: 20px 0 24px; font-weight: 400;
+  }
+  .cabinet__body { font-size: 17px; line-height: 1.85; opacity: 0.85; max-width: 440px; }
+  .cabinet__cta { margin-top: 28px; }
+  .cabinet__photo { aspect-ratio: 16 / 10; border-radius: 2px; }
+  .cabinet__caption {
+    position: absolute; bottom: 14px; left: 16px; z-index: 1; color: #fff;
+    font-family: 'Tenor Sans', serif; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; text-shadow: 0 1px 12px rgba(13, 10, 31, 0.6);
+  }
+
+  /* Galerie vrac */
+  .gallery__label { display: block; margin-bottom: 28px; }
+
+  /* Témoignages */
+  .reviews { position: relative; overflow: hidden; padding-top: 7rem; padding-bottom: 7rem; }
+  .reviews__decor {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: min(600px, 88vw); height: min(600px, 88vw); opacity: 0.07; pointer-events: none;
+  }
+  .reviews__decor-img { width: 100%; height: 100%; object-fit: contain; }
+  .reviews__head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 44px; }
+  .reviews__rating {
+    font-family: 'Tenor Sans', serif; font-size: 12px; letter-spacing: 0.14em;
+    color: var(--ink); font-weight: 700; white-space: nowrap;
+  }
+  .testimonial__mark { width: 32px; height: 32px; object-fit: contain; mix-blend-mode: multiply; }
+
+  /* CTA */
+  .cta-section { padding-top: 0; }
+  .cta-band__cta { margin-top: 32px; }
+</style>
