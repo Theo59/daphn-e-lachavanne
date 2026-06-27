@@ -118,7 +118,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   </section>
 
   <!-- MON CABINET -->
-  <section class="section section--dark" style="position:relative;overflow:hidden">
+  <section class="section section--dark" style={`position:relative;overflow:hidden;background:var(--${(t.cabinet as any).bgColor === 'orange' ? 'orange' : 'blue'})`}>
     <div class="container" style="position:relative">
       <div class="grid-2" style="align-items:center">
         <div>
@@ -180,7 +180,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   <!-- CTA -->
   <section class="section" style="padding-top:0">
     <div class="container">
-      <div class="cta-band" style="background:var(--blue)">
+      <div class="cta-band" style={`background:var(--${(t.ctaBand as any).bgColor === 'orange' ? 'orange' : 'blue'})`}>
 
         <div class="cta-band__content">
           <h3 class="cta-band__title">{t.ctaBand.titleLine1}<br />{t.ctaBand.titleLine2}</h3>

@@ -5,6 +5,7 @@
  * Le champ `language` est géré par le plugin document-internationalization.
  */
 import { defineType, defineField, defineArrayMember } from 'sanity';
+import { bgColorField } from './_fields';
 
 export default defineType({
   name: 'homePage',
@@ -97,6 +98,7 @@ export default defineType({
         defineField({ name: 'imgAlt', type: 'string' }),
         defineField({ name: 'image', title: 'Photo du cabinet', type: 'image', options: { hotspot: true } }),
         defineField({ name: 'video', title: 'Vidéo du cabinet (mp4, optionnel — remplace la photo)', type: 'file', options: { accept: 'video/mp4' } }),
+        bgColorField(),
       ],
     }),
 
@@ -175,6 +177,7 @@ export default defineType({
         defineField({ name: 'titleLine1', type: 'string' }),
         defineField({ name: 'titleLine2', type: 'string' }),
         defineField({ name: 'text', type: 'text', rows: 3 }),
+        bgColorField(),
       ],
     }),
   ],
