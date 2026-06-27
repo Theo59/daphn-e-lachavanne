@@ -701,6 +701,18 @@ a.service-icon-card:hover .service-icon-card__icon img { transform: scale(1.06);
 }
 .reviews-track > .testimonial { scroll-snap-align: start; min-width: 0; }
 
+/* Mobile/tablette : avis empilés verticalement (1 colonne), pas de carrousel. */
+@media (max-width: 900px) {
+  .reviews-track {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+}
+
 /* Vignettes « en vrac » (accueil) : collage masonry de petites photos */
 .photo-vrac {
   columns: 4 180px;
