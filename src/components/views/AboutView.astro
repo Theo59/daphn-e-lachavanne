@@ -3,6 +3,8 @@
  * Vue partagée de la page « À propos ». Rendue à la fois pour `/about` (FR) et
  * `/en/about` (EN). Le contenu vient de Sanity au build (getPageContent/getSettings),
  * avec fallback sur src/i18n/about.ts. Les routes ne font que monter cette vue avec la bonne langue.
+ *
+ * Styles : classes scopées (bloc <style>) ; aucun style dynamique ici.
  */
 import Layout from '../../layouts/Layout.astro';
 import SanityImage from '../SanityImage.astro';
@@ -10,7 +12,6 @@ import MediaSlot from '../MediaSlot.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
-import { bg } from '../../lib/views';
 import { richTextToInlineHtml } from '../../lib/sanity/richText';
 import type { Lang } from '../../i18n/config';
 
@@ -26,14 +27,11 @@ const headerImage = t.header.image;
 const photos = t.photos;
 const brand = c.brand ?? {};
 
-// URL CDN pour les fonds CSS (vide si l'image n'est pas définie).
-const gradient2 = bg(brand.gradient2);
-
-// Bande photo : image Sanity + alt (dico). Plus de filtre CSS : images affichées telles qu'uploadées dans Sanity.
+// Bande photo : image Sanity + alt (dico) ; vidéo optionnelle par emplacement.
 const STRIP_PHOTOS = [
-  { image: photos.image1, alt: t.photos.alt1, style: '', video: photos.image1Video },
-  { image: photos.image2, alt: t.photos.alt2, style: '', video: photos.image2Video },
-  { image: photos.image3, alt: t.photos.alt3, style: '', video: photos.image3Video },
+  { image: photos.image1, alt: t.photos.alt1, video: photos.image1Video },
+  { image: photos.image2, alt: t.photos.alt2, video: photos.image2Video },
+  { image: photos.image3, alt: t.photos.alt3, video: photos.image3Video },
 ];
 ---
 
@@ -42,15 +40,15 @@ const STRIP_PHOTOS = [
   <!-- EN-TÊTE PORTRAIT -->
   <div class="page-header">
     <div class="container">
-      <div class="grid-2" style="align-items:center">
+      <div class="grid-2 row-center">
         <div>
           <span class="t-label">{t.header.label}</span>
-          <h1 style="font-size:clamp(64px,9vw,132px);margin-top:24px">
-            {t.header.titleLine1}<br /><em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">{t.header.titleLine2}</em>
+          <h1 class="about__h1">
+            {t.header.titleLine1}<br /><em class="t-corm">{t.header.titleLine2}</em>
           </h1>
-          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;font-weight:300;margin-top:32px;color:rgba(13,10,31,0.75)" set:html={richTextToInlineHtml(t.header.subtitleHtml)} />
+          <p class="about__subtitle" set:html={richTextToInlineHtml(t.header.subtitleHtml)} />
         </div>
-        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+        <div class="photo-wrap photo-portrait">
           <MediaSlot image={headerImage} video={t.header.video} alt={t.header.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="eager" />
         </div>
       </div>
@@ -62,25 +60,19 @@ const STRIP_PHOTOS = [
     <div class="container">
       <div class="grid-label-content">
         <h2 class="t-label">{t.story.label}</h2>
-        <div style="font-size:17px;line-height:1.85;color:var(--ink);max-width:640px">
-          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.2vw,28px);line-height:1.4;font-weight:300;margin:0 0 24px">
-            {t.story.lead}
-          </p>
-          <p style="margin:0 0 16px">
-            {t.story.body1}
-          </p>
-          <p style="color:var(--muted);margin:0">
-            {t.story.body2}
-          </p>
+        <div class="story__text">
+          <p class="story__lead">{t.story.lead}</p>
+          <p class="story__p">{t.story.body1}</p>
+          <p class="story__p story__p--muted">{t.story.body2}</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PARCOURS -->
-  <section class="section" style="padding-top:0">
+  <section class="section pt0">
     <div class="container">
-      <h3 class="t-label" style="padding-bottom:20px;border-bottom:1px solid var(--ink);margin-bottom:0">{t.timeline.label}</h3>
+      <h3 class="t-label timeline__label">{t.timeline.label}</h3>
       {t.timeline.items.map((row) => (
         <div class="timeline-row">
           <span class="timeline-row__year">{row.year}</span>
@@ -96,8 +88,8 @@ const STRIP_PHOTOS = [
     <div class="container">
       <div class="grid-3">
         {STRIP_PHOTOS.map((photo) => (
-          <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-            <MediaSlot image={photo.image} video={photo.video} alt={photo.alt} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" style={photo.style} loading="lazy" decoding="async" />
+          <div class="photo-wrap photo-portrait">
+            <MediaSlot image={photo.image} video={photo.video} alt={photo.alt} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
           </div>
         ))}
       </div>
@@ -105,13 +97,13 @@ const STRIP_PHOTOS = [
   </section>
 
   <!-- CITATION -->
-  <section class="section" style="position:relative;overflow:hidden">
-    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(700px,80vw);height:min(700px,80vw);opacity:0.07;pointer-events:none">
-      <SanityImage image={brand.circle} alt="" width={700} style="width:100%;height:100%;object-fit:contain" />
+  <section class="section quote">
+    <div class="quote__decor">
+      <SanityImage image={brand.circle} alt="" width={700} class="quote__decor-img" />
     </div>
-    <div class="container" style="position:relative;text-align:center">
-      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,4vw,52px);line-height:1.25;font-weight:300;max-width:900px;margin:0 auto" set:html={richTextToInlineHtml(t.quote.textHtml)} />
-      <p class="t-label" style="margin-top:28px">{t.quote.author}</p>
+    <div class="container quote__inner">
+      <p class="quote__text" set:html={richTextToInlineHtml(t.quote.textHtml)} />
+      <p class="t-label quote__author">{t.quote.author}</p>
     </div>
   </section>
 
@@ -120,3 +112,43 @@ const STRIP_PHOTOS = [
   <Prose text={t.prose.text} label={t.prose.label} />
 
 </Layout>
+
+<style>
+  .row-center { align-items: center; }
+  .pt0 { padding-top: 0; }
+  .photo-portrait { aspect-ratio: 3 / 4; width: 100%; }
+
+  /* En-tête portrait */
+  .about__h1 { font-size: clamp(64px, 9vw, 132px); margin-top: 24px; }
+  .about__subtitle {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(18px, 2vw, 26px); line-height: 1.4; font-weight: 300;
+    margin-top: 32px; color: rgba(13, 10, 31, 0.75);
+  }
+
+  /* Mon histoire */
+  .story__text { font-size: 17px; line-height: 1.85; color: var(--ink); max-width: 640px; }
+  .story__lead {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; font-weight: 300; margin: 0 0 24px;
+  }
+  .story__p { margin: 0 0 16px; }
+  .story__p--muted { color: var(--muted); margin: 0; }
+
+  /* Parcours */
+  .timeline__label { padding-bottom: 20px; border-bottom: 1px solid var(--ink); margin-bottom: 0; }
+
+  /* Citation */
+  .quote { position: relative; overflow: hidden; }
+  .quote__decor {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: min(700px, 80vw); height: min(700px, 80vw); opacity: 0.07; pointer-events: none;
+  }
+  .quote__decor-img { width: 100%; height: 100%; object-fit: contain; }
+  .quote__inner { position: relative; text-align: center; }
+  .quote__text {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(24px, 4vw, 52px); line-height: 1.25; font-weight: 300; max-width: 900px; margin: 0 auto;
+  }
+  .quote__author { margin-top: 28px; }
+</style>
