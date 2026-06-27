@@ -22,9 +22,9 @@ const t = await getPageContent('about', lang);
 const c = await getSettings(lang);
 
 // Images (champs Sanity, hors typage des dicos texte).
-const headerImage = (t.header as any).image;
-const photos = t.photos as any;
-const brand = (c as any).brand ?? {};
+const headerImage = t.header.image;
+const photos = t.photos;
+const brand = c.brand ?? {};
 
 // URL CDN pour les fonds CSS (vide si l'image n'est pas définie).
 const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
@@ -52,7 +52,7 @@ const STRIP_PHOTOS = [
           <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;font-weight:300;margin-top:32px;color:rgba(13,10,31,0.75)" set:html={richTextToInlineHtml(t.header.subtitleHtml)} />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <MediaSlot image={headerImage} video={(t.header as any).video} alt={t.header.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="eager" />
+          <MediaSlot image={headerImage} video={t.header.video} alt={t.header.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="eager" />
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ const c = await getSettings(lang);
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
 // Visuels de marque (fonds partagés) + helper d'URL CDN pour les fonds CSS.
-const brand = (c as any).brand ?? {};
+const brand = c.brand ?? {};
 const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
 const gradient1 = bg(brand.gradient1); // ex-fond-2
 const gradient2 = bg(brand.gradient2); // ex-fond-3
@@ -74,13 +74,13 @@ const serviceSchema = serviceLd({
     <div class="container">
       <div class="grid-3">
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <MediaSlot image={(t.photo as any).image1} video={(t.photo as any).image1Video} alt={t.photo.alt1} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
+          <MediaSlot image={t.photo.image1} video={t.photo.image1Video} alt={t.photo.alt1} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <MediaSlot image={(t.photo as any).image2} video={(t.photo as any).image2Video} alt={t.photo.alt2} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
+          <MediaSlot image={t.photo.image2} video={t.photo.image2Video} alt={t.photo.alt2} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <MediaSlot image={(t.photo as any).image3} video={(t.photo as any).image3Video} alt={t.photo.alt3} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
+          <MediaSlot image={t.photo.image3} video={t.photo.image3Video} alt={t.photo.alt3} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@ const serviceSchema = serviceLd({
         {t.soins.map((s) => (
           <div class="service-icon-card">
             <div class="service-icon-card__icon">
-              <SanityImage image={(s as any).icon} alt={s.name} width={240} />
+              <SanityImage image={(s as { icon?: unknown }).icon} alt={s.name} width={240} />
             </div>
             <div class="service-icon-card__meta">
               <h4 class="service-icon-card__name">{s.name}</h4>
@@ -133,7 +133,7 @@ const serviceSchema = serviceLd({
       <h3 class="t-label" style="margin-top:56px;margin-bottom:32px">{t.packagesLabel}</h3>
       <div class="grid-3">
         {t.packages.map((p) => (
-          <div class="forfait" style={`background:var(--${(t as any).packagesBgColor === 'blue' ? 'blue' : 'orange'})`}>
+          <div class="forfait" style={`background:var(--${t.packagesBgColor === 'blue' ? 'blue' : 'orange'})`}>
             <div class="forfait__content">
               <div>
                 <span class="forfait__save">{p.save}</span>

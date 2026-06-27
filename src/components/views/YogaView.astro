@@ -26,7 +26,7 @@ const c = await getSettings(lang);
 const PLANITY = 'https://www.planity.com/daphne-lachavanne-75007-paris';
 
 // Visuels de marque (fonds CSS) depuis le groupe `brand` des réglages.
-const brand = (c as any).brand ?? {};
+const brand = c.brand ?? {};
 const bg = (img: unknown, w = 1600) => (hasImage(img) ? urlFor(img as any).width(w).url() : '');
 const gradient1 = bg(brand.gradient1);
 const gradient2 = bg(brand.gradient2);
@@ -62,13 +62,13 @@ const serviceSchema = serviceLd({
     <div class="container">
       <div class="grid-3">
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <MediaSlot image={(t.photos as any).image1} video={(t.photos as any).image1Video} alt={t.photos.alt1} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
+          <MediaSlot image={t.photos.image1} video={t.photos.image1Video} alt={t.photos.alt1} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <MediaSlot image={(t.photos as any).image2} video={(t.photos as any).image2Video} alt={t.photos.alt2} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
+          <MediaSlot image={t.photos.image2} video={t.photos.image2Video} alt={t.photos.alt2} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
         <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
-          <MediaSlot image={(t.photos as any).image3} video={(t.photos as any).image3Video} alt={t.photos.alt3} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
+          <MediaSlot image={t.photos.image3} video={t.photos.image3Video} alt={t.photos.alt3} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@ const serviceSchema = serviceLd({
       {t.principles.map((pr) => (
         <div class="service-icon-card">
           <div class="service-icon-card__icon">
-            <SanityImage image={(pr as any).icon} alt={pr.title} width={240} />
+            <SanityImage image={(pr as { icon?: unknown }).icon} alt={pr.title} width={240} />
           </div>
           <div class="service-icon-card__meta">
             <h4 class="service-icon-card__name">{pr.title}</h4>
@@ -105,7 +105,7 @@ const serviceSchema = serviceLd({
     </div>
   </div>
 
-  <section class="section section--dark" style={`position:relative;overflow:hidden;background:var(--${(t.tarif as any).bgColor === 'orange' ? 'orange' : 'blue'})`}>
+  <section class="section section--dark" style={`position:relative;overflow:hidden;background:var(--${t.tarif.bgColor === 'orange' ? 'orange' : 'blue'})`}>
     <div class="container" style="position:relative">
       <div class="grid-label-content">
         <div>

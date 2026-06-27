@@ -6,4 +6,9 @@ export default defineCliConfig({
     projectId: 'q5o5we3n',
     dataset: 'production',
   },
+  // Génère les types TS depuis le schéma + les requêtes GROQ (defineQuery).
+  // Lancer : npm run typegen → schema.json + sanity.types.ts.
+  typegen: {
+    enabled: true,
+  },
 });
