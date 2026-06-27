@@ -1,9 +1,8 @@
 ---
 /**
  * Vue partagée de la page Pilates. Rendue à la fois pour `/pilates` (FR) et
- * `/en/pilates` (EN). Tout le texte vient du dictionnaire src/i18n/pilates.ts
- * (+ common.ts). Les routes (src/pages/pilates.astro, src/pages/en/pilates.astro)
- * ne font que monter cette vue avec la bonne langue.
+ * `/en/pilates` (EN). Tout le texte vient du dictionnaire src/i18n/pilates.ts (+ common.ts).
+ * Styles : classes scopées (<style>) ; fond du bloc tarif dynamique → inline.
  */
 import Layout from '../../layouts/Layout.astro';
 import SanityImage from '../SanityImage.astro';
@@ -11,7 +10,7 @@ import MediaSlot from '../MediaSlot.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
-import { PLANITY, bg } from '../../lib/views';
+import { PLANITY } from '../../lib/views';
 import { richTextToInlineHtml } from '../../lib/sanity/richText';
 import { localizePath } from '../../i18n/utils';
 import { HTML_LANG, type Lang } from '../../i18n/config';
@@ -23,11 +22,6 @@ interface Props {
 const { lang } = Astro.props;
 const t = await getPageContent('pilates', lang);
 const c = await getSettings(lang);
-
-
-const brand = c.brand ?? {};
-const gradient1 = bg(brand.gradient1);
-const gradient2 = bg(brand.gradient2);
 
 const serviceSchema = serviceLd({
   name: t.schema.name,
@@ -41,17 +35,13 @@ const serviceSchema = serviceLd({
 
 <Layout activePage="pilates" title={t.meta.title} description={t.meta.description}>
 
-  <div class="page-header" style="position:relative;overflow:hidden">
-    <div class="container" style="position:relative">
+  <div class="page-header rel-clip">
+    <div class="container rel">
       <span class="t-label">{t.hero.label}</span>
-      <h1>{t.hero.title}<em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">.</em></h1>
-      <div class="grid-2" style="margin-top:44px">
-        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.5vw,32px);line-height:1.35;font-weight:300;margin:0">
-          {t.hero.quote}
-        </p>
-        <p style="font-size:16px;line-height:1.85;color:var(--muted)">
-          {t.hero.sub}
-        </p>
+      <h1>{t.hero.title}<em class="t-corm">.</em></h1>
+      <div class="grid-2 header__grid">
+        <p class="header__quote">{t.hero.quote}</p>
+        <p class="header__intro">{t.hero.sub}</p>
       </div>
     </div>
   </div>
@@ -59,36 +49,34 @@ const serviceSchema = serviceLd({
   <section class="section--sm">
     <div class="container">
       <div class="grid-3">
-        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+        <div class="photo-wrap photo-portrait">
           <MediaSlot image={t.gallery.image1} video={t.gallery.image1Video} alt={t.gallery.alt1} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
-        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+        <div class="photo-wrap photo-portrait">
           <MediaSlot image={t.gallery.image2} video={t.gallery.image2Video} alt={t.gallery.alt2} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
-        <div class="photo-wrap" style="aspect-ratio:3/4;width:100%">
+        <div class="photo-wrap photo-portrait">
           <MediaSlot image={t.gallery.image3} video={t.gallery.image3Video} alt={t.gallery.alt3} widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-bottom:0">
+  <section class="section pb0">
     <div class="container">
       <div class="grid-label-content">
         <div>
-          <h2 class="t-label" style="margin-bottom:24px">{t.approach.label}</h2>
+          <h2 class="t-label approche__label">{t.approach.label}</h2>
         </div>
         <div>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-style:italic;font-weight:300;line-height:1.15;margin:0">
-            {t.approach.title}
-          </h3>
+          <h3 class="approche__title">{t.approach.title}</h3>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="service-icon-section" style="position:relative;overflow:hidden;margin-top:40px">
-    <div class="service-icon-grid service-icon-grid--3" style="position:relative">
+  <div class="service-icon-section principles">
+    <div class="service-icon-grid service-icon-grid--3 rel">
       {t.principles.map((pr) => (
         <div class="service-icon-card">
           <div class="service-icon-card__icon">
@@ -103,14 +91,14 @@ const serviceSchema = serviceLd({
     </div>
   </div>
 
-  <section class="section section--dark" style={`position:relative;overflow:hidden;background:var(--${t.pricing.bgColor === 'orange' ? 'orange' : 'blue'})`}>
-    <div class="container" style="position:relative">
+  <section class="section section--dark tarif" style={`background:var(--${t.pricing.bgColor === 'orange' ? 'orange' : 'blue'})`}>
+    <div class="container rel">
       <div class="grid-label-content">
         <div>
-          <span style="font-family:'Tenor Sans',serif;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;opacity:0.65">{t.pricing.label}</span>
-          <h3 style="font-family:'Tenor Sans',serif;font-size:clamp(40px,5vw,56px);line-height:1;margin:20px 0 16px;font-weight:400" set:html={richTextToInlineHtml(t.pricing.titleHtml)} />
-          <p style="font-size:14px;line-height:1.85;opacity:0.65;max-width:260px">{t.pricing.text}</p>
-          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" style="margin-top:24px">{t.pricing.bookArrow}</a>
+          <span class="tarif__label">{t.pricing.label}</span>
+          <h3 class="tarif__title" set:html={richTextToInlineHtml(t.pricing.titleHtml)} />
+          <p class="tarif__body">{t.pricing.text}</p>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white tarif__cta">{t.pricing.bookArrow}</a>
         </div>
         <div>
           {t.pricing.rows.map((r) => (
@@ -121,7 +109,7 @@ const serviceSchema = serviceLd({
               </div>
               <div class="tarif-row__right">
                 <span class="tarif-row__price">{r.price}</span>
-                <a href={PLANITY} target="_blank" rel="noopener" style="font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.7);border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px">{t.pricing.bookArrow}</a>
+                <a href={PLANITY} target="_blank" rel="noopener" class="reserve-link">{t.pricing.bookArrow}</a>
               </div>
             </div>
           ))}
@@ -137,3 +125,46 @@ const serviceSchema = serviceLd({
   <Prose text={t.prose.text} label={t.prose.label} />
 
 </Layout>
+
+<style>
+  .rel { position: relative; }
+  .rel-clip { position: relative; overflow: hidden; }
+  .pb0 { padding-bottom: 0; }
+  .photo-portrait { aspect-ratio: 3 / 4; width: 100%; }
+
+  /* En-tête */
+  .header__grid { margin-top: 44px; }
+  .header__quote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(22px, 2.5vw, 32px); line-height: 1.35; font-weight: 300; margin: 0;
+  }
+  .header__intro { font-size: 16px; line-height: 1.85; color: var(--muted); }
+
+  /* Approche */
+  .approche__label { margin-bottom: 24px; }
+  .approche__title {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3.5vw, 46px);
+    font-style: italic; font-weight: 300; line-height: 1.15; margin: 0;
+  }
+
+  /* Principes */
+  .principles { position: relative; overflow: hidden; margin-top: 40px; }
+
+  /* Tarif (fond dynamique → inline) */
+  .tarif { position: relative; overflow: hidden; }
+  .tarif__label {
+    font-family: 'Tenor Sans', serif; font-size: 11px; letter-spacing: 0.3em;
+    text-transform: uppercase; opacity: 0.65;
+  }
+  .tarif__title {
+    font-family: 'Tenor Sans', serif; font-size: clamp(40px, 5vw, 56px);
+    line-height: 1; margin: 20px 0 16px; font-weight: 400;
+  }
+  .tarif__body { font-size: 14px; line-height: 1.85; opacity: 0.65; max-width: 260px; }
+  .tarif__cta { margin-top: 24px; }
+  .reserve-link {
+    font-family: 'Tenor Sans', serif; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; text-decoration: none; color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); padding-bottom: 2px;
+  }
+</style>

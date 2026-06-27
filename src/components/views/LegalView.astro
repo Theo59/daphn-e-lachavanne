@@ -3,6 +3,7 @@
  * Vue partagée des mentions légales. Rendue pour `/mentions-legales` (FR) et
  * `/en/mentions-legales` (EN). Le contenu vient de Sanity au build (getPageContent),
  * avec fallback sur src/i18n/legal.ts. Les routes ne font que monter cette vue avec la bonne langue.
+ * Styles : classes scopées (<style>).
  */
 import Layout from '../../layouts/Layout.astro';
 import { getPageContent } from '../../lib/sanity/content';
@@ -24,35 +25,54 @@ const t = await getPageContent('legal', lang);
   <div class="page-header container">
     <span class="t-label">{t.label}</span>
     <h1>
-      {t.titleLine1}<br /><em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300">{t.titleLine2}</em>
+      {t.titleLine1}<br /><em class="t-corm">{t.titleLine2}</em>
     </h1>
   </div>
 
-  <section class="section" style="padding-top:0">
-    <div class="container" style="max-width:760px;margin:0">
+  <section class="section pt0">
+    <div class="container legal-body">
       {t.sections.map((s) => (
-        <div style="margin-bottom:48px">
-          <h2 class="t-label" style="margin-bottom:8px">( {s.title} )</h2>
-          <dl style="margin:0;border-top:1px solid var(--rule)">
+        <div class="legal-block">
+          <h2 class="t-label legal-h2">( {s.title} )</h2>
+          <dl class="legal-dl">
             {s.rows.map((r) => (
-              <div style="display:grid;grid-template-columns:180px 1fr;gap:24px;padding:16px 0;border-bottom:1px solid var(--rule)">
-                <dt style="font-family:'Tenor Sans',serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)">{r.label}</dt>
-                <dd style="margin:0;font-size:15px;line-height:1.6">{r.value}</dd>
+              <div class="legal-row">
+                <dt class="legal-dt">{r.label}</dt>
+                <dd class="legal-dd">{r.value}</dd>
               </div>
             ))}
           </dl>
         </div>
       ))}
 
-      <div style="margin-bottom:48px">
-        <h2 class="t-label" style="margin-bottom:16px">( {t.ipLabel} )</h2>
-        <p style="font-size:15px;line-height:1.85;color:var(--ink)">{t.ipBody}</p>
+      <div class="legal-block">
+        <h2 class="t-label legal-h2--lg">( {t.ipLabel} )</h2>
+        <p class="legal-text">{t.ipBody}</p>
       </div>
 
       <div>
-        <h2 class="t-label" style="margin-bottom:16px">( {t.dataLabel} )</h2>
-        <p style="font-size:15px;line-height:1.85;color:var(--ink)" set:html={richTextToInlineHtml(t.dataBodyHtml)} />
+        <h2 class="t-label legal-h2--lg">( {t.dataLabel} )</h2>
+        <p class="legal-text" set:html={richTextToInlineHtml(t.dataBodyHtml)} />
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .pt0 { padding-top: 0; }
+  .legal-body { max-width: 760px; margin: 0; }
+  .legal-block { margin-bottom: 48px; }
+  .legal-h2 { margin-bottom: 8px; }
+  .legal-h2--lg { margin-bottom: 16px; }
+  .legal-dl { margin: 0; border-top: 1px solid var(--rule); }
+  .legal-row {
+    display: grid; grid-template-columns: 180px 1fr; gap: 24px;
+    padding: 16px 0; border-bottom: 1px solid var(--rule);
+  }
+  .legal-dt {
+    font-family: 'Tenor Sans', serif; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .legal-dd { margin: 0; font-size: 15px; line-height: 1.6; }
+  .legal-text { font-size: 15px; line-height: 1.85; color: var(--ink); }
+</style>
