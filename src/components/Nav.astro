@@ -38,7 +38,10 @@ const ctaHref = localizePath('/contact', lang);
 ---
 
 <nav class:list={['nav', dark ? 'nav--hero' : 'nav--light']} id="main-nav" aria-label={c.nav.ariaLabel}>
-  <a href={localizePath('/', lang)} class="nav__logo" aria-label={c.nav.logoAria}>
+  <!-- Pas d'aria-label : le nom accessible du lien vient du wordmark visible « Daphné
+       Lachavanne » (Logo.astro). Un aria-label qui ne reprend pas ce texte visible
+       déclenche WCAG 2.5.3 (label-content-name-mismatch). -->
+  <a href={localizePath('/', lang)} class="nav__logo">
     <Logo size={16} />
   </a>
 
