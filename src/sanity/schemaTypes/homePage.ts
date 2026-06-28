@@ -111,6 +111,7 @@ export default defineType({
         fields: [
           defineField({ name: 'image', title: 'Photo', type: 'image', options: { hotspot: true } }),
           defineField({ name: 'alt', title: 'Texte alternatif', type: 'string' }),
+          defineField({ name: 'video', title: 'Vidéo (mp4, optionnel — remplace la photo)', type: 'file', options: { accept: 'video/mp4' } }),
         ],
         preview: { select: { media: 'image', title: 'alt' } },
       }],
