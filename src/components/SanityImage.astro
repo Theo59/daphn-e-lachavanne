@@ -38,5 +38,5 @@ if (base) {
 ---
 
 {src && (
-  <img src={src} srcset={srcset} sizes={srcset ? (sizes ?? '100vw') : undefined} alt={alt} {...rest} />
+  <img src={src} srcset={srcset} sizes={srcset ? (sizes ?? '100vw') : undefined} alt={alt} width={!widths ? width : undefined} {...rest} />
 )}
