@@ -34,13 +34,15 @@
   border-bottom: 1px solid rgba(13,10,31,0.09);
 }
 
-.nav__logo { flex-shrink: 0; text-decoration: none; }
+.nav__logo { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
 
 .nav__links {
   display: flex;
+  align-items: center;
   gap: 26px;
   list-style: none;
 }
+.nav__links li { display: flex; align-items: center; }
 
 .nav__link {
   font-family: 'Tenor Sans', serif;

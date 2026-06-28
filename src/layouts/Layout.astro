@@ -202,6 +202,9 @@ if (activePage !== 'home' && navLinks[activePage]) {
 
   <!-- Données structurées globales : entreprise locale + praticienne -->
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+  <!-- Umami analytics (sans cookie, RGPD-friendly) -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="2f4dc2d9-fd25-4bf3-a82e-8c73cf3c9fb1"></script>
 </head>
 <body>
   <a href="#content" class="skip-link">{c.skipLink}</a>

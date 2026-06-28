@@ -92,6 +92,22 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
     </div>
   </section>
 
+  <!-- VIGNETTES EN VRAC -->
+  {(t.gallery?.length ?? 0) > 0 && (
+    <section class="section--sm">
+      <div class="container">
+        <span class="t-label gallery__label">{t.galleryLabel}</span>
+        <div class="photo-vrac">
+          {t.gallery?.map((g) => (
+            <div class="photo-vrac__item">
+              <MediaSlot image={g.image} video={(g as any).video} alt={g.alt ?? ''} widths={[400, 800]} sizes="(max-width:700px) 50vw, 20vw" loading="lazy" decoding="async" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- PRATIQUES - icon grid -->
   <section class="service-icon-section practices">
     <div class="container rel practices__head">
@@ -132,22 +148,6 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
       </div>
     </div>
   </section>
-
-  <!-- VIGNETTES EN VRAC -->
-  {(t.gallery?.length ?? 0) > 0 && (
-    <section class="section--sm">
-      <div class="container">
-        <span class="t-label gallery__label">{t.galleryLabel}</span>
-        <div class="photo-vrac">
-          {t.gallery?.map((g) => (
-            <div class="photo-vrac__item">
-              <MediaSlot image={g.image} video={(g as any).video} alt={g.alt ?? ''} widths={[400, 800]} sizes="(max-width:700px) 50vw, 20vw" loading="lazy" decoding="async" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
 
   <!-- TÉMOIGNAGES -->
   <section class="section reviews">
@@ -201,7 +201,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
   .hero__actions { margin-top: 36px; }
 
   /* Bienvenue */
-  .welcome { position: relative; overflow: hidden; }
+  .welcome { position: relative; overflow: hidden; padding-top: 4rem; padding-bottom: 4rem; }
   .welcome__decor {
     position: absolute; right: -120px; top: -80px; width: 500px;
     opacity: 0.12; pointer-events: none; transform: rotate(-15deg);
