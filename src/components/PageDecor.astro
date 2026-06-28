@@ -1,0 +1,108 @@
+---
+/**
+ * Illustrations de marque en arrière-plan — très légères, position fixe.
+ * 2 images par page, choisies et positionnées selon `seed` (0-7).
+ * pointer-events: none → aucune interférence avec les clics/sélections.
+ * mix-blend-mode: multiply → le fond blanc des images disparaît.
+ */
+
+interface Props {
+  seed?: number;
+}
+const { seed = 0 } = Astro.props;
+
+const IMGS = [
+  '/media/C1.jpg',
+  '/media/C3.jpg',
+  '/media/C4.jpg',
+  '/media/C5.jpg',
+  '/media/Calque 46B.jpg',
+  '/media/Calque 46C.jpg',
+  '/media/S2.jpg',
+  '/media/S8.jpg',
+];
+
+type P = {
+  src: string;
+  top?: string; bottom?: string;
+  left?: string; right?: string;
+  rotate: number; w: number;
+};
+
+const SETS: P[][] = [
+  // 0 – home
+  [
+    { src: IMGS[6], top: '-40px',  left:  '-60px', rotate:  12, w: 440 },
+    { src: IMGS[1], top:  '52%',   right: '-75px', rotate: -22, w: 370 },
+  ],
+  // 1 – soins
+  [
+    { src: IMGS[0], top: '-50px',  right: '-80px', rotate: -15, w: 410 },
+    { src: IMGS[4], bottom: '80px', left: '-60px', rotate:  28, w: 350 },
+  ],
+  // 2 – yoga
+  [
+    { src: IMGS[3], top: '-60px',  left:  '-70px', rotate:  18, w: 450 },
+    { src: IMGS[7], top:  '45%',   right: '-90px', rotate: -20, w: 380 },
+  ],
+  // 3 – breathwork
+  [
+    { src: IMGS[5], top: '-30px',  right: '-75px', rotate: -10, w: 370 },
+    { src: IMGS[2], bottom: '100px', left: '-80px', rotate: 32, w: 330 },
+  ],
+  // 4 – pilates
+  [
+    { src: IMGS[2], top: '-70px',  left:  '-55px', rotate:   8, w: 460 },
+    { src: IMGS[0], top:  '58%',   right: '-65px', rotate: -25, w: 340 },
+  ],
+  // 5 – about
+  [
+    { src: IMGS[6], bottom: '90px', left: '-65px', rotate:  22, w: 360 },
+  ],
+  // 6 – contact / tarifs
+  [
+    { src: IMGS[4], top: '-55px',  left:  '-75px', rotate:  15, w: 380 },
+    { src: IMGS[3], top:  '48%',   right: '-80px', rotate: -18, w: 355 },
+  ],
+  // 7 – autres
+  [
+    { src: IMGS[1], top: '-40px',  right: '-60px', rotate:  -8, w: 415 },
+    { src: IMGS[5], bottom: '70px', left: '-85px', rotate:  26, w: 320 },
+  ],
+];
+
+const items = SETS[seed % SETS.length];
+
+function style(p: P): string {
+  return [
+    p.top    && `top:${p.top}`,
+    p.bottom && `bottom:${p.bottom}`,
+    p.left   && `left:${p.left}`,
+    p.right  && `right:${p.right}`,
+    `transform:rotate(${p.rotate}deg)`,
+    `width:${p.w}px`,
+  ].filter(Boolean).join(';');
+}
+---
+
+<div class="page-decor" aria-hidden="true">
+  {items.map(item => (
+    <img src={item.src} alt="" class="page-decor__img" style={style(item)} loading="lazy" decoding="async" />
+  ))}
+</div>
+
+<style>
+  .page-decor {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .page-decor__img {
+    position: absolute;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+  }
+  @media (max-width: 600px) { .page-decor { display: none; } }
+</style>
