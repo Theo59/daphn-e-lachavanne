@@ -55,7 +55,7 @@ const fr = {
     alt3: 'Daphné Lachavanne, pratique du yoga à Paris',
     alt4: 'Daphné Lachavanne, bien-être Paris 7e',
     alt5: 'Daphné Lachavanne, praticienne certifiée Paris',
-    alt6: "Daphné Lachavanne, L’Art de la Circulation",
+    alt6: 'Daphné Lachavanne, L’Art de la Circulation',
   },
 
   quote: {
@@ -128,7 +128,7 @@ const en = {
     alt3: 'Daphné Lachavanne practising yoga in Paris',
     alt4: 'Daphné Lachavanne, wellbeing Paris 7th',
     alt5: 'Daphné Lachavanne, certified practitioner Paris',
-    alt6: "Daphné Lachavanne, L'Art de la Circulation",
+    alt6: 'Daphné Lachavanne, L’Art de la Circulation',
   },
 
   quote: {
