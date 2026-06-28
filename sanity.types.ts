@@ -964,6 +964,11 @@ export type HomePage = {
       _type: "image";
     };
     alt?: string;
+    video?: {
+      asset?: SanityFileAssetReference;
+      media?: unknown;
+      _type: "file";
+    };
     _key: string;
   }>;
   testimonials?: {

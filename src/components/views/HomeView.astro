@@ -141,7 +141,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
         <div class="photo-vrac">
           {t.gallery?.map((g) => (
             <div class="photo-vrac__item">
-              <SanityImage image={g.image} alt={g.alt ?? ''} width={500} />
+              <MediaSlot image={g.image} video={(g as any).video} alt={g.alt ?? ''} widths={[400, 800]} sizes="(max-width:700px) 50vw, 20vw" loading="lazy" decoding="async" />
             </div>
           ))}
         </div>
@@ -249,15 +249,17 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
     gap: 18px;
     align-items: flex-start;
   }
-  .photo-vrac__item { flex: 0 0 auto; }
-  .photo-vrac__item img { display: block; width: 100%; }
+  .photo-vrac__item { flex: 1 1 0%; min-width: 0; }
+  .photo-vrac__item :global(img),
+  .photo-vrac__item :global(video) { display: block; width: 100%; }
 
-  /* Widths + décalages verticaux cycliques (5 patterns) */
-  .photo-vrac__item:nth-child(5n+1) { width: 200px; margin-top: 64px; }
-  .photo-vrac__item:nth-child(5n+2) { width: 160px; margin-top: 0; }
-  .photo-vrac__item:nth-child(5n+3) { width: 220px; margin-top: 104px; }
-  .photo-vrac__item:nth-child(5n+4) { width: 175px; margin-top: 28px; }
-  .photo-vrac__item:nth-child(5n+5) { width: 235px; margin-top: 68px; }
+  /* Proportions + décalages verticaux cycliques (5 patterns)
+     Les flex-grow créent des largeurs relatives tout en remplissant le container */
+  .photo-vrac__item:nth-child(5n+1) { flex-grow: 2.0;  margin-top: 64px; }
+  .photo-vrac__item:nth-child(5n+2) { flex-grow: 1.6;  margin-top: 0; }
+  .photo-vrac__item:nth-child(5n+3) { flex-grow: 2.2;  margin-top: 104px; }
+  .photo-vrac__item:nth-child(5n+4) { flex-grow: 1.75; margin-top: 28px; }
+  .photo-vrac__item:nth-child(5n+5) { flex-grow: 2.35; margin-top: 68px; }
 
   @media (max-width: 700px) {
     .photo-vrac {
@@ -265,7 +267,7 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
-    .photo-vrac__item { width: auto !important; margin-top: 0 !important; }
+    .photo-vrac__item { flex-grow: unset; margin-top: 0 !important; }
     .photo-vrac__item:nth-child(2n) { margin-top: 20px !important; }
   }
 
