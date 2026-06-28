@@ -242,8 +242,32 @@ const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : u
     text-transform: uppercase; text-shadow: 0 1px 12px rgba(13, 10, 31, 0.6);
   }
 
-  /* Galerie vrac */
-  .gallery__label { display: block; margin-bottom: 28px; }
+  /* Galerie « en vrac » */
+  .gallery__label { display: block; margin-bottom: 36px; }
+  .photo-vrac {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .photo-vrac__item { flex: 0 0 auto; }
+  .photo-vrac__item img { display: block; width: 100%; }
+
+  /* Widths + décalages verticaux cycliques (5 patterns) */
+  .photo-vrac__item:nth-child(5n+1) { width: 200px; margin-top: 64px; }
+  .photo-vrac__item:nth-child(5n+2) { width: 160px; margin-top: 0; }
+  .photo-vrac__item:nth-child(5n+3) { width: 220px; margin-top: 104px; }
+  .photo-vrac__item:nth-child(5n+4) { width: 175px; margin-top: 28px; }
+  .photo-vrac__item:nth-child(5n+5) { width: 235px; margin-top: 68px; }
+
+  @media (max-width: 700px) {
+    .photo-vrac {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .photo-vrac__item { width: auto !important; margin-top: 0 !important; }
+    .photo-vrac__item:nth-child(2n) { margin-top: 20px !important; }
+  }
 
   /* Témoignages */
   .reviews { position: relative; overflow: hidden; padding-top: 7rem; padding-bottom: 7rem; }
