@@ -327,7 +327,7 @@ body.menu-open { overflow: hidden; }
 }
 @media (max-width: 900px) {
   .page-header { padding: 6rem 1.5rem 2.5rem; }
-  .page-header h1 { font-size: clamp(64px, 18vw, 100px); }
+  .page-header h1 { font-size: clamp(36px, 12vw, 100px); }
 }
 
 .section--dark {
