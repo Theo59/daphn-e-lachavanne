@@ -205,10 +205,10 @@ if (activePage !== 'home' && navLinks[activePage]) {
 </head>
 <body>
   <a href="#content" class="skip-link">{c.skipLink}</a>
-  <PageDecor seed={decorSeed} />
   <AnnouncementBar a={(c as any).announcement} />
   <Nav active={activePage} dark={darkNav} />
-  <main id="content" tabindex="-1" style="position:relative;z-index:1">
+  <main id="content" tabindex="-1" style="position:relative">
+    <PageDecor seed={decorSeed} />
     <slot />
   </main>
   {!noFooter && <Footer />}
