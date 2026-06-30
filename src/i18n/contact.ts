@@ -49,7 +49,7 @@ const fr = {
 
   cabinet: {
     label: '(  Le cabinet  )',
-    addressLine1: '3 Rue Valadon',
+    addressLine1: 'Omvida · 3 Rue Valadon',
     addressLine2: '75007 Paris',
     email: 'hello@daphnelachavanne.com',
     hours1: 'Lundi 15h - 22h30',
@@ -59,7 +59,7 @@ const fr = {
 
   map: {
     label: 'Le cabinet',
-    address: '3 Rue Valadon, Paris 7e',
+    address: 'Omvida, 3 Rue Valadon, Paris 7e',
   },
 
   prose: {
@@ -124,7 +124,7 @@ const en = {
 
   cabinet: {
     label: '(  The studio  )',
-    addressLine1: '3 Rue Valadon',
+    addressLine1: 'Omvida · 3 Rue Valadon',
     addressLine2: '75007 Paris',
     email: 'hello@daphnelachavanne.com',
     hours1: 'Monday 3–10:30 pm',
@@ -134,7 +134,7 @@ const en = {
 
   map: {
     label: 'The studio',
-    address: '3 Rue Valadon, Paris 7th',
+    address: 'Omvida, 3 Rue Valadon, Paris 7th',
   },
 
   prose: {
