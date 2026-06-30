@@ -81,7 +81,7 @@ const fr = {
           duration: '3 × 2h',
           price: '850 €',
           description: 'Trois Soins Signature (2h), soit 283 € la séance au lieu de 290 €.',
-          note: '−21 €',
+          note: '−20 €',
         },
         {
           name: 'Pack 5 séances',
@@ -93,7 +93,7 @@ const fr = {
         {
           name: 'Pack 10 séances',
           duration: '10 × 2h',
-          price: '2 290 €',
+          price: '2 590 €',
           description: 'Dix Soins Signature (2h), soit 259 € la séance au lieu de 290 €.',
           note: '−310 €',
         },
@@ -183,7 +183,7 @@ const en = {
           duration: '3 × 2 hrs',
           price: '€850',
           description: 'Three Signature Treatments (2 hrs), i.e. €283 per session instead of €290.',
-          note: '−€21',
+          note: '−€20',
         },
         {
           name: '5-session Pack',
