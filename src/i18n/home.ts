@@ -29,7 +29,7 @@ const fr = {
     label: 'Bienvenue',
     quote: '« Entre le corps<br />et l’âme, il y a<br />le souffle. »',
     body1Html:
-      'Certifiée méthode Renata França depuis 2013, j’ai développé <em>L’Art de la Circulation</em>, une approche globale qui unit le mouvement, le souffle et le travail énergétique.',
+      'Depuis plus de dix ans, j’accompagne à travers le yoga, le breathwork et les soins. J’ai développé <em>L’Art de la Circulation</em>, une approche globale qui unit mouvement, respiration et soin.',
     body2:
       'Pour libérer les trois corps : physique, mental, émotionnel. Chaque séance est conçue pour vous, selon votre moment, votre demande, votre corps.',
     link: 'Mon histoire',
@@ -51,10 +51,10 @@ const fr = {
     label: 'Le lieu',
     titleLine1: 'Mon',
     titleLine2: 'cabinet.',
-    body: '3 Rue Valadon, Paris 7e. Un espace confidentiel, sur rendez-vous, pensé pour la qualité de présence et la profondeur du soin.',
+    body: 'Omvida · 3 Rue Valadon, Paris 7e. Un espace confidentiel, sur rendez-vous, pensé pour la qualité de présence et la profondeur du soin.',
     caption: 'Le cabinet · Paris 7e',
     imgAlt:
-      'Le cabinet de Daphné Lachavanne, 3 rue Valadon à Paris 7e, espace de soin confidentiel sur la rive gauche',
+      'Le cabinet Omvida de Daphné Lachavanne, 3 rue Valadon à Paris 7e, espace de soin confidentiel sur la rive gauche',
   },
 
   galleryLabel: '(  En images  )',
@@ -117,7 +117,7 @@ const en = {
     label: 'Welcome',
     quote: '“Between the body<br />and the soul, there is<br />the breath.”',
     body1Html:
-      'Certified in the Renata França method since 2013, I developed <em>L’Art de la Circulation</em>, a holistic approach uniting movement, breath and energy work.',
+      'For over ten years, I have been accompanying people through yoga, breathwork and treatments. I developed <em>L’Art de la Circulation</em>, a holistic approach uniting movement, breath and care.',
     body2:
       'To free the three bodies: physical, mental, emotional. Each session is designed for you, according to your moment, your need, your body.',
     link: 'My story',
@@ -138,10 +138,10 @@ const en = {
     label: 'The place',
     titleLine1: 'My',
     titleLine2: 'studio.',
-    body: '3 Rue Valadon, Paris 7th. A private space, by appointment, designed for quality of presence and depth of care.',
+    body: 'Omvida · 3 Rue Valadon, Paris 7th. A private space, by appointment, designed for quality of presence and depth of care.',
     caption: 'The studio · Paris 7th',
     imgAlt:
-      'Daphné Lachavanne’s studio, 3 rue Valadon in Paris 7th, a private treatment space on the Left Bank',
+      'Daphné Lachavanne’s Omvida studio, 3 rue Valadon in Paris 7th, a private treatment space on the Left Bank',
   },
 
   galleryLabel: '(  In pictures  )',
