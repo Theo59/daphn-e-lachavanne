@@ -9,7 +9,7 @@ const fr = {
   meta: {
     title: 'Prestations & tarifs | Daphné Lachavanne, Paris 7e',
     description:
-      'Tarifs des soins de Daphné Lachavanne à Paris 7e : drainage lymphatique Renata França (150 €), Soin Signature (300 €), Miracle Face, Combo Détox, yoga & pilates. Sur rendez-vous.',
+      'Tarifs des soins de Daphné Lachavanne à Paris 7e : drainage lymphatique Renata França (160 €), Soin Signature (290 €), Miracle Face, Combo Détox, yoga & pilates. Sur rendez-vous.',
   },
 
   header: {
@@ -28,23 +28,23 @@ const fr = {
         {
           name: 'Soin Signature',
           duration: '2h',
-          price: '300 €',
+          price: '290 €',
           description:
-            'Le soin le plus complet : drainage lymphatique Renata França, breathwork guidé et travail énergétique (Reiki & magnétisme). Pour libérer les trois corps — physique, mental, émotionnel — en une seule séance.',
-          note: '',
+            'Le soin le plus complet : drainage lymphatique Renata França, breathwork guidé et travail énergétique. Pour libérer les trois corps — physique, mental, émotionnel — en une seule séance.',
+          note: '260 € 1re séance',
         },
         {
           name: 'Drainage lymphatique corps — Méthode Renata França',
           duration: '1h',
-          price: '150 €',
+          price: '160 €',
           description:
             'Massage manuel dynamique qui relance la circulation lymphatique, élimine les toxines, réduit les gonflements et la rétention d’eau. Idéal pour les jambes lourdes, les ballonnements et le post-opératoire.',
           note: '',
         },
         {
           name: 'Miracle Face — soin drainant du visage (Renata França)',
-          duration: '40 min',
-          price: '90 €',
+          duration: '30 min',
+          price: '95 €',
           description:
             'Drainage et massage sculptant du visage : décongestionne, réduit poches et cernes, lisse les traits, ravive l’éclat et apaise les tensions de la mâchoire.',
           note: '',
@@ -52,7 +52,7 @@ const fr = {
         {
           name: 'Combo Massage Détox — Corps + Visage',
           duration: '1h30',
-          price: '200 €',
+          price: '220 €',
           description:
             'Drainage complet corps et visage en une seule séance. La détox la plus profonde, idéale en préparation d’un événement.',
           note: '',
@@ -79,23 +79,23 @@ const fr = {
         {
           name: 'Pack 3 séances',
           duration: '3 × 2h',
-          price: '810 €',
-          description: 'Trois Soins Signature (2h), soit 270 € la séance au lieu de 300 €.',
-          note: '−90 €',
+          price: '850 €',
+          description: 'Trois Soins Signature (2h), soit 283 € la séance au lieu de 290 €.',
+          note: '−21 €',
         },
         {
           name: 'Pack 5 séances',
           duration: '5 × 2h',
-          price: '1 250 €',
-          description: 'Cinq Soins Signature (2h), soit 250 € la séance au lieu de 300 €.',
-          note: '−250 €',
+          price: '1 390 €',
+          description: 'Cinq Soins Signature (2h), soit 278 € la séance au lieu de 290 €.',
+          note: '−60 €',
         },
         {
           name: 'Pack 10 séances',
           duration: '10 × 2h',
-          price: '2 300 €',
-          description: 'Dix Soins Signature (2h), soit 230 € la séance au lieu de 300 €.',
-          note: '−700 €',
+          price: '2 290 €',
+          description: 'Dix Soins Signature (2h), soit 259 € la séance au lieu de 290 €.',
+          note: '−310 €',
         },
       ],
     },
@@ -111,7 +111,7 @@ const en = {
   meta: {
     title: 'Treatments & rates | Daphné Lachavanne, Paris 7th',
     description:
-      'Daphné Lachavanne’s rates in Paris 7th: Renata França lymphatic drainage (€150), Signature Treatment (€300), Miracle Face, Detox Combo, yoga & pilates. By appointment.',
+      'Daphné Lachavanne’s rates in Paris 7th: Renata França lymphatic drainage (€160), Signature Treatment (€290), Miracle Face, Detox Combo, yoga & pilates. By appointment.',
   },
 
   header: {
@@ -130,23 +130,23 @@ const en = {
         {
           name: 'Signature Treatment',
           duration: '2 hrs',
-          price: '€300',
+          price: '€290',
           description:
-            'The most complete treatment: Renata França lymphatic drainage, guided breathwork and energy work (Reiki & magnetism). To free the three bodies — physical, mental, emotional — in a single session.',
-          note: '',
+            'The most complete treatment: Renata França lymphatic drainage, guided breathwork and energy work. To free the three bodies — physical, mental, emotional — in a single session.',
+          note: '€260 first session',
         },
         {
           name: 'Body Lymphatic Drainage — Renata França Method',
           duration: '1 hr',
-          price: '€150',
+          price: '€160',
           description:
             'A dynamic manual massage that boosts lymphatic circulation, flushes toxins, reduces swelling and water retention. Ideal for heavy legs, bloating and post-operative recovery.',
           note: '',
         },
         {
           name: 'Miracle Face — facial drainage (Renata França)',
-          duration: '40 min',
-          price: '€90',
+          duration: '30 min',
+          price: '€95',
           description:
             'Facial drainage and sculpting massage: decongests, reduces puffiness and dark circles, smooths the features, revives radiance and eases jaw tension.',
           note: '',
@@ -154,7 +154,7 @@ const en = {
         {
           name: 'Detox Combo — Body + Face',
           duration: '1 hr 30',
-          price: '€200',
+          price: '€220',
           description:
             'Full body and facial drainage in a single session. The deepest detox, ideal to prepare for an event.',
           note: '',
@@ -181,23 +181,23 @@ const en = {
         {
           name: '3-session Pack',
           duration: '3 × 2 hrs',
-          price: '€810',
-          description: 'Three Signature Treatments (2 hrs), i.e. €270 per session instead of €300.',
-          note: '−€90',
+          price: '€850',
+          description: 'Three Signature Treatments (2 hrs), i.e. €283 per session instead of €290.',
+          note: '−€21',
         },
         {
           name: '5-session Pack',
           duration: '5 × 2 hrs',
-          price: '€1,250',
-          description: 'Five Signature Treatments (2 hrs), i.e. €250 per session instead of €300.',
-          note: '−€250',
+          price: '€1,390',
+          description: 'Five Signature Treatments (2 hrs), i.e. €278 per session instead of €290.',
+          note: '−€60',
         },
         {
           name: '10-session Pack',
           duration: '10 × 2 hrs',
-          price: '€2,300',
-          description: 'Ten Signature Treatments (2 hrs), i.e. €230 per session instead of €300.',
-          note: '−€700',
+          price: '€2,590',
+          description: 'Ten Signature Treatments (2 hrs), i.e. €259 per session instead of €290.',
+          note: '−€310',
         },
       ],
     },
