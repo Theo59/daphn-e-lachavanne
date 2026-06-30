@@ -75,9 +75,9 @@ const fr = {
 
   // Packs Soin Signature (séances de 2h). Tarif séance seule : 290 €.
   packages: [
-    { key: 'pack3', name: 'Pack 3 séances', detail: 'Soin Signature · 2h · soit 283 € la séance', price: '850 €', save: '−21 €' },
+    { key: 'pack3', name: 'Pack 3 séances', detail: 'Soin Signature · 2h · soit 283 € la séance', price: '850 €', save: '−20 €' },
     { key: 'pack5', name: 'Pack 5 séances', detail: 'Soin Signature · 2h · soit 278 € la séance', price: '1 390 €', save: '−60 €' },
-    { key: 'pack10', name: 'Pack 10 séances', detail: 'Soin Signature · 2h · soit 259 € la séance', price: '2 290 €', save: '−310 €' },
+    { key: 'pack10', name: 'Pack 10 séances', detail: 'Soin Signature · 2h · soit 259 € la séance', price: '2 590 €', save: '−310 €' },
   ],
 
   prose: {
@@ -88,7 +88,7 @@ Le Drainage Lymphatique (1h, 160 €) accompagne les jambes lourdes comme les im
 
 Pour le visage, le Miracle Face (30 min, 95 €) draine le visage et le crâne, détend les traits, redessine l’ovale et ravive l’éclat. Le Combo Détox (1h30, 220 €) réunit corps et visage en une seule séance, idéal en préparation d’un événement. Le Soin Signature (2h, 290 €) prolonge le geste par le breathwork et le travail énergétique, l’expérience la plus complète de L’Art de la Circulation, le concept né en 2025.
 
-Pour celles et ceux qui inscrivent le soin dans la durée, le Soin Signature se décline en packs dégressifs : 3 séances à 850 € (283 € la séance), 5 séances à 1 390 € (278 € la séance) ou 10 séances à 2 290 € (259 € la séance), au lieu de 290 € la séance. Chaque rendez-vous se réserve en ligne sur Planity, où le cabinet affiche une note de 5,0 / 5. Une praticienne, une méthode, un lieu, pour que le corps se souvienne.`,
+Pour celles et ceux qui inscrivent le soin dans la durée, le Soin Signature se décline en packs dégressifs : 3 séances à 850 € (283 € la séance), 5 séances à 1 390 € (278 € la séance) ou 10 séances à 2 590 € (259 € la séance), au lieu de 290 € la séance. Chaque rendez-vous se réserve en ligne sur Planity, où le cabinet affiche une note de 5,0 / 5. Une praticienne, une méthode, un lieu, pour que le corps se souvienne.`,
   },
 
   faqs: [
@@ -174,7 +174,7 @@ const en = {
   packagesLabel: '(  Packs  )',
 
   packages: [
-    { key: 'pack3', name: '3-session Pack', detail: 'Signature Treatment · 2 hrs · €283 per session', price: '€850', save: '−€21' },
+    { key: 'pack3', name: '3-session Pack', detail: 'Signature Treatment · 2 hrs · €283 per session', price: '€850', save: '−€20' },
     { key: 'pack5', name: '5-session Pack', detail: 'Signature Treatment · 2 hrs · €278 per session', price: '€1,390', save: '−€60' },
     { key: 'pack10', name: '10-session Pack', detail: 'Signature Treatment · 2 hrs · €259 per session', price: '€2,590', save: '−€310' },
   ],
