@@ -35,6 +35,8 @@ const fr = {
     link: 'Mon histoire',
   },
 
+  featuredLabel: '(  Les soins les plus demandés  )',
+
   practices: {
     label: 'Quatre disciplines',
     caption: 'Du soin au mouvement, une même attention au corps.',
@@ -122,6 +124,8 @@ const en = {
       'To free the three bodies: physical, mental, emotional. Each session is designed for you, according to your moment, your need, your body.',
     link: 'My story',
   },
+
+  featuredLabel: '(  Most requested treatments  )',
 
   practices: {
     label: 'Four disciplines',
