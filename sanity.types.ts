@@ -1055,6 +1055,9 @@ export type SiteSettings = {
       _type: "image";
     };
   };
+  social?: {
+    instagram?: string;
+  };
   colors?: {
     blue?: string;
     orange?: string;

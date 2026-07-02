@@ -59,6 +59,7 @@ const base = (Astro.site?.href ?? 'https://daphnelachavanne.netlify.app/').repla
 const brand = (c as any).brand ?? {};
 const logoUrl = hasImage(brand.logo) ? urlFor(brand.logo).width(600).url() : `${base}/og-image.jpg`;
 const portraitUrl = hasImage(brand.portrait) ? urlFor(brand.portrait).width(800).url() : `${base}/og-image.jpg`;
+const instagramUrl = (c as any).social?.instagram || 'https://www.instagram.com/daphne.lachavanne/';
 
 // JSON-LD global (GEO/AEO) : entreprise locale + praticienne + site.
 // Volontairement SANS aggregateRating/téléphone (non vérifiables → risque de pénalité).
@@ -98,7 +99,7 @@ const structuredData = {
         },
       ],
       hasMap: 'https://maps.google.com/?q=3+Rue+Valadon+75007+Paris',
-      sameAs: ['https://www.planity.com/daphne-lachavanne-75007-paris'],
+      sameAs: ['https://www.planity.com/daphne-lachavanne-75007-paris', instagramUrl],
       founder: { '@id': `${base}/#daphne` },
       employee: { '@id': `${base}/#daphne` },
       knowsAbout: [

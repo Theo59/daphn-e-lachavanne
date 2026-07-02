@@ -6494,6 +6494,22 @@
         },
         "optional": true
       },
+      "social": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "object",
+          "attributes": {
+            "instagram": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            }
+          }
+        },
+        "optional": true
+      },
       "colors": {
         "type": "objectAttribute",
         "value": {

@@ -29,6 +29,22 @@ export default defineType({
     }),
 
     defineField({
+      name: 'social',
+      title: 'Réseaux sociaux',
+      description: 'Liens vers les réseaux sociaux, réutilisés dans le pied de page et les données structurées.',
+      type: 'object',
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({
+          name: 'instagram',
+          title: 'Instagram',
+          type: 'url',
+          validation: (Rule) => Rule.uri({ scheme: ['http', 'https'] }),
+        }),
+      ],
+    }),
+
+    defineField({
       name: 'colors',
       title: 'Couleurs de la marque',
       description:
