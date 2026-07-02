@@ -31,3 +31,8 @@ media-src/*.mp4
 
 # jetbrains setting folder
 .idea/
+
+# graphify (knowledge graph tool output)
+graphify-out/
+.graphify_python
+.graphify_root
