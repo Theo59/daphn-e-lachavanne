@@ -955,6 +955,30 @@ export type HomePage = {
     };
     bgColor?: "blue" | "orange";
   };
+  featuredLabel?: string;
+  featuredImages?: {
+    signature?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    drainage?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    miracleFace?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
   gallery?: Array<{
     image?: {
       asset?: SanityImageAssetReference;
