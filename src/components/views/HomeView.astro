@@ -37,8 +37,10 @@ const brand = c.brand ?? {};
 const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : undefined;
 
 // Soins les plus demandés (CTA cards) : texte/prix repris de la page Soins (source
-// unique), chacun associé à une des 3 photos déjà éditées sur cette page.
-const FEATURED_PHOTO_BY_KEY: Record<string, unknown> = {
+// unique). Photo éditable dans Sanity (Accueil → Photos — Soins les plus demandés) ;
+// à défaut, fallback sur une des 3 photos déjà éditées sur la page Soins.
+const featuredImages = (t as any).featuredImages ?? {};
+const FEATURED_FALLBACK_PHOTO_BY_KEY: Record<string, unknown> = {
   signature: soinsT.photo.image2,
   drainage: soinsT.photo.image3,
   miracleFace: soinsT.photo.image1,
@@ -89,7 +91,7 @@ const featuredSoins = (['signature', 'drainage', 'miracleFace'] as const)
       <div class="grid-3">
         {featuredSoins.map((s) => (
           <a href={PLANITY} target="_blank" rel="noopener" class="forfait featured-card">
-            <SanityImage image={FEATURED_PHOTO_BY_KEY[s.key]} alt="" widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" class="forfait__bg featured-card__img" />
+            <SanityImage image={hasImage(featuredImages[s.key]) ? featuredImages[s.key] : FEATURED_FALLBACK_PHOTO_BY_KEY[s.key]} alt="" widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" class="forfait__bg featured-card__img" />
             <div class="featured-card__overlay"></div>
             <div class="forfait__content">
               <div>
