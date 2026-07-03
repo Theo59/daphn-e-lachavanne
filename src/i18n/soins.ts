@@ -21,7 +21,7 @@ const fr = {
     quote:
       '« Le toucher est une langue. J’apprends à la parler avec patience, pour que le corps se souvienne. »',
     intro:
-      'Certifiée méthode Renata França depuis 2013, chaque soin commence par un échange. Comprendre où vous en êtes, ce que vous cherchez. Puis nous laissons le silence prendre le relais.',
+      'Certifiée méthode Renata França depuis 2025, chaque soin commence par un échange. Comprendre où vous en êtes, ce que vous cherchez. Puis nous laissons le silence prendre le relais.',
     methodLabel: 'Méthode Renata França',
     sinceLabel: 'depuis 2025',
   },
@@ -53,7 +53,7 @@ const fr = {
       name: 'Drainage Lymphatique',
       sub: 'Méthode Renata França · 1h',
       price: '160 €',
-      text: 'La technique originale, certifiée depuis 2013. Mouvements rythmiques et précis qui relancent la circulation lymphatique, allègent, désenflent et régénèrent.',
+      text: 'La technique originale, certifiée depuis 2025. Mouvements rythmiques et précis qui relancent la circulation lymphatique, allègent, désenflent et régénèrent.',
     },
     {
       key: 'miracleFace',
@@ -82,7 +82,7 @@ const fr = {
 
   prose: {
     label: 'Le drainage lymphatique à Paris 7e',
-    text: `Au 3 Rue Valadon, sur la rive gauche de Paris, le drainage lymphatique méthode Renata França se pratique dans un cabinet confidentiel du 7e arrondissement, sur rendez-vous uniquement. Certifiée depuis 2013, Daphné Lachavanne travaille par mouvements rythmiques et pressions précises qui relancent la circulation, désengorgent les tissus et laissent au corps une vraie sensation de légèreté.
+    text: `Au 3 Rue Valadon, sur la rive gauche de Paris, le drainage lymphatique méthode Renata França se pratique dans un cabinet confidentiel du 7e arrondissement, sur rendez-vous uniquement. Certifiée depuis 2025, Daphné Lachavanne travaille par mouvements rythmiques et pressions précises qui relancent la circulation, désengorgent les tissus et laissent au corps une vraie sensation de légèreté.
 
 Le Drainage Lymphatique (1h, 160 €) accompagne les jambes lourdes comme les impressions de gonflement : il soulage, affine la silhouette et apaise. Sur le ventre, ce massage drainant aide à dégonfler et à retrouver de la légèreté.
 
@@ -122,7 +122,7 @@ const en = {
     quote:
       '“Touch is a language. I learn to speak it with patience, so the body remembers.”',
     intro:
-      'Certified in the Renata França method since 2013, every treatment begins with a conversation. To understand where you are, what you are looking for. Then we let the silence take over.',
+      'Certified in the Renata França method since 2025, every treatment begins with a conversation. To understand where you are, what you are looking for. Then we let the silence take over.',
     methodLabel: 'Renata França method',
     sinceLabel: 'since 2025',
   },
@@ -153,7 +153,7 @@ const en = {
       name: 'Lymphatic Drainage',
       sub: 'Renata França method · 1 hr',
       price: '€160',
-      text: 'The original technique, certified since 2013. Rhythmic, precise movements that revive lymphatic circulation, lighten, reduce swelling and regenerate.',
+      text: 'The original technique, certified since 2025. Rhythmic, precise movements that revive lymphatic circulation, lighten, reduce swelling and regenerate.',
     },
     {
       key: 'miracleFace',
@@ -181,7 +181,7 @@ const en = {
 
   prose: {
     label: 'Lymphatic drainage in Paris 7th',
-    text: `At 3 Rue Valadon, on the Left Bank of Paris, Renata França lymphatic drainage is practised in a private studio in the 7th arrondissement, by appointment only. Certified since 2013, Daphné Lachavanne works through rhythmic movements and precise pressure that revive circulation, decongest the tissues and leave the body with a genuine sense of lightness.
+    text: `At 3 Rue Valadon, on the Left Bank of Paris, Renata França lymphatic drainage is practised in a private studio in the 7th arrondissement, by appointment only. Certified since 2025, Daphné Lachavanne works through rhythmic movements and precise pressure that revive circulation, decongest the tissues and leave the body with a genuine sense of lightness.
 
 The Lymphatic Drainage (1 hr, €160) eases heavy legs and feelings of swelling: it relieves, refines the silhouette and soothes. On the stomach, this draining massage helps reduce bloating and regain lightness.
 

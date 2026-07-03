@@ -70,7 +70,7 @@ Le cabinet se situe au 3 rue Valadon, 75007 Paris, sur la rive gauche, dans le 7
 
 Vous pouvez prendre rendez-vous pour un drainage lymphatique méthode Renata França (1h, 160 €), le Soin Signature qui réunit drainage, breathwork et travail énergétique (2h, 290 €), le Miracle Face (30 min, 95 €) ou le Combo Détox (1h30, 220 €). Côté mouvement, le yoga et le Pilates se réservent selon les mêmes modalités : cours particuliers au cabinet, à 90 € l'heure pour le yoga comme pour le breathwork.
 
-Avant chaque suivi, un court échange permet de comprendre votre demande et d'ajuster la séance à votre moment. Certifiée méthode Renata França depuis 2013, Daphné a fondé en 2025 L'Art de la Circulation. Les retours des personnes reçues sont rassemblés sur Planity, où le cabinet est noté 5,0 / 5.`,
+Avant chaque suivi, un court échange permet de comprendre votre demande et d'ajuster la séance à votre moment. Certifiée méthode Renata França depuis 2025, année où Daphné a aussi fondé L'Art de la Circulation. Les retours des personnes reçues sont rassemblés sur Planity, où le cabinet est noté 5,0 / 5.`,
   },
 
   faqs: [
@@ -145,7 +145,7 @@ The studio is at 3 rue Valadon, 75007 Paris, on the Left Bank, in the 7th arrond
 
 You can book a Renata França lymphatic drainage (1 hr, €160), the Signature Treatment that brings together drainage, breathwork and energy work (2 hrs, €290), the Miracle Face (30 min, €95) or the Detox Combo (1 hr 30, €220). On the movement side, yoga and Pilates are booked the same way: private lessons at the studio, at €90 an hour for yoga as for breathwork.
 
-Before every journey, a short conversation helps to understand your needs and tune the session to your moment. Certified in the Renata França method since 2013, Daphné founded L'Art de la Circulation in 2025. Feedback from the people she has welcomed is gathered on Planity, where the studio is rated 5.0 / 5.`,
+Before every journey, a short conversation helps to understand your needs and tune the session to your moment. Certified in the Renata França method since 2025, the same year Daphné founded L'Art de la Circulation. Feedback from the people she has welcomed is gathered on Planity, where the studio is rated 5.0 / 5.`,
   },
 
   faqs: [
