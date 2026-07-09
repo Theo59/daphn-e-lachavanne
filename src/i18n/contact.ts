@@ -4,8 +4,8 @@
  * ÉDITION : pour changer un texte, modifie directement la valeur dans `fr` ou `en`.
  * `en` est typé `satisfies typeof fr` : oublier une clé = erreur au build.
  *
- * Le formulaire Netlify (name="contact", champ caché form-name, honeypot) est géré
- * dans la vue et reste partagé entre les deux langues — un seul endpoint.
+ * Le formulaire (honeypot, POST vers /api/contact) est géré dans la vue et reste
+ * partagé entre les deux langues — un seul endpoint serveur.
  */
 
 const fr = {
