@@ -53,7 +53,7 @@ const alternates = getAlternates(Astro.url).map((alt) => ({
 const xDefaultHref = alternates.find((a) => a.lang === DEFAULT_LOCALE)?.href;
 
 // Base sans slash final pour les @id de données structurées.
-const base = (Astro.site?.href ?? 'https://daphnelachavanne.fr/').replace(/\/$/, '');
+const base = (Astro.site?.href ?? 'https://daphnelachavanne.com/').replace(/\/$/, '');
 
 // Logo + portrait (JSON-LD) depuis les visuels de marque Sanity ; og-image reste local.
 const brand = (c as any).brand ?? {};
