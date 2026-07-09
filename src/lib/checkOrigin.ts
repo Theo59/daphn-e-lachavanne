@@ -7,7 +7,7 @@
  * le reverse proxy — elle rejetterait alors toute requête légitime.
  */
 const ALLOWED_ORIGINS = new Set([
-  'https://daphnelachavanne.fr',
+  'https://daphnelachavanne.com',
   // Dev local (astro dev).
   'http://localhost:4321',
 ]);
