@@ -3,7 +3,7 @@
  * Les prix proviennent directement des données de page → toujours exacts.
  */
 
-const SITE = 'https://daphnelachavanne.netlify.app';
+const SITE = 'https://daphnelachavanne.fr';
 const BUSINESS_ID = `${SITE}/#business`;
 
 /** '280 €' → 280 · '60 €/pers.' → 60 · 'Sur devis' → null */

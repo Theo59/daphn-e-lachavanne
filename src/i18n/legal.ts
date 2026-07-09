@@ -35,9 +35,9 @@ const fr = {
     {
       title: 'Hébergement',
       rows: [
-        { label: 'Hébergeur', value: 'Netlify, Inc.' },
-        { label: 'Adresse', value: '512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis' },
-        { label: 'Site', value: 'netlify.com' },
+        { label: 'Hébergeur', value: 'Hetzner Online GmbH' },
+        { label: 'Adresse', value: 'Industriestr. 25, 91710 Fürth, Allemagne' },
+        { label: 'Site', value: 'hetzner.com' },
       ],
     },
   ],
@@ -99,9 +99,9 @@ const en = {
     {
       title: 'Hosting',
       rows: [
-        { label: 'Host', value: 'Netlify, Inc.' },
-        { label: 'Address', value: '512 2nd Street, Suite 200, San Francisco, CA 94107, United States' },
-        { label: 'Website', value: 'netlify.com' },
+        { label: 'Host', value: 'Hetzner Online GmbH' },
+        { label: 'Address', value: 'Industriestr. 25, 91710 Fürth, Germany' },
+        { label: 'Website', value: 'hetzner.com' },
       ],
     },
   ],

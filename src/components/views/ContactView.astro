@@ -2,8 +2,9 @@
 /**
  * Vue partagée de la page Contact / réservation. Rendue pour `/contact` (FR) et
  * `/en/contact` (EN). Tout le texte vient de src/i18n/contact.ts (+ common.ts).
- * Le formulaire Netlify reste un endpoint unique (name="contact", form-name,
- * honeypot) ; seule l'action est localisée pour le retour ?ok=1.
+ * Le formulaire poste en natif (POST classique, sans JS) vers /api/contact,
+ * qui envoie le message via Brevo puis redirige vers la valeur du champ caché
+ * "redirect" (localisée FR/EN) pour afficher la confirmation.
  * Styles : classes scopées (<style>) ; fond du bloc réservation dynamique → inline.
  */
 import Layout from '../../layouts/Layout.astro';
@@ -43,8 +44,8 @@ const c = await getSettings(lang);
             <p class="form-success__text">{t.form.successText}</p>
           </div>
 
-          <form class="form-group" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action={localizePath('/contact', lang) + '?ok=1'}>
-            <input type="hidden" name="form-name" value="contact" />
+          <form class="form-group" name="contact" method="POST" action="/api/contact">
+            <input type="hidden" name="redirect" value={localizePath('/contact', lang) + '?ok=1'} />
             <p hidden aria-hidden="true">
               <label>{t.form.honeypot} <input name="bot-field" /></label>
             </p>
@@ -181,7 +182,7 @@ const c = await getSettings(lang);
 </style>
 
 <script is:inline>
-  // Netlify renvoie vers /contact?ok=1 après envoi : on confirme et on masque le formulaire.
+  // /api/contact redirige vers ?ok=1 après envoi : on confirme et on masque le formulaire.
   if (new URLSearchParams(location.search).get('ok')) {
     const banner = document.getElementById('contact-success');
     const form = document.querySelector('form[name="contact"]');

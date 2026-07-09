@@ -1,20 +1,23 @@
 /**
  * Inscription newsletter → API Brevo (côté serveur : la clé API n'est jamais exposée).
  * Reçoit { prenom, nom, email }, crée/maj le contact et l'ajoute à la liste configurée.
- *
- * Variables d'env Netlify requises :
- *   BREVO_API_KEY  — clé API v3 (Brevo → SMTP & API → API Keys). SECRET.
- *   BREVO_LIST_ID  — id numérique de la liste d'abonnés (Brevo → Contacts → Listes).
- *
- * Appelée par le front sur /.netlify/functions/newsletter (POST JSON).
+ * Remplace l'ex-Netlify Function du même nom (migration Coolify) ; même contrat,
+ * appelée par NewsletterPopup.astro sur /api/newsletter (POST JSON).
  */
+import type { APIRoute } from 'astro';
+import { isAllowedOrigin } from '../../lib/checkOrigin';
+
+export const prerender = false;
+
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 const json = (data: unknown, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json' } });
 
-export default async (req: Request): Promise<Response> => {
-  if (req.method !== 'POST') return json({ error: 'method_not_allowed' }, 405);
+export const POST: APIRoute = async ({ request }) => {
+  if (!isAllowedOrigin(request)) return json({ error: 'forbidden_origin' }, 403);
 
+  // process.env (pas import.meta.env) : ces secrets doivent rester des variables
+  // d'exécution, lues au moment de la requête — pas figées dans le build Docker.
   const apiKey = process.env.BREVO_API_KEY;
   const listId = process.env.BREVO_LIST_ID;
   if (!apiKey || !listId) {
@@ -24,7 +27,7 @@ export default async (req: Request): Promise<Response> => {
 
   let body: any;
   try {
-    body = await req.json();
+    body = await request.json();
   } catch {
     return json({ error: 'bad_request' }, 400);
   }

@@ -2,7 +2,7 @@
 /**
  * Popup d'inscription à la newsletter (sur toutes les pages via Layout).
  * Ouverte par tout élément `[data-newsletter-open]` (ex. lien Newsletter du footer).
- * Soumet prénom / nom / e-mail à la Netlify Function `/.netlify/functions/newsletter`
+ * Soumet prénom / nom / e-mail à la route serveur `/api/newsletter`
  * (qui parle à l'API Brevo côté serveur — la clé API n'est jamais dans le navigateur).
  * Textes : dico commun (c.newsletter), bilingue.
  */
@@ -191,7 +191,7 @@ const legalHref = localizePath('/mentions-legales', lang);
       btn.disabled = true;
       btn.textContent = submittingLabel;
       try {
-        const res = await fetch('/.netlify/functions/newsletter', {
+        const res = await fetch('/api/newsletter', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
