@@ -254,10 +254,19 @@ const featuredSoins = (['signature', 'drainage', 'miracleFace'] as const)
   /* Bienvenue */
   .welcome { position: relative; overflow: hidden; padding-top: 4rem; padding-bottom: 4rem; }
   .welcome__decor {
-    position: absolute; right: -120px; top: -80px; width: 500px;
+    /* top positif : le décor reste DANS la section (ne déborde plus par le haut,
+       donc plus d'arête coupée par overflow:hidden). Il ne fuit plus que hors de
+       l'écran à droite. Le mask ci-dessous adoucit les bords restants. */
+    position: absolute; right: -120px; top: 40px; width: 500px;
     opacity: 0.12; pointer-events: none; transform: rotate(-15deg);
   }
-  .welcome__decor-img { width: 100%; display: block; }
+  .welcome__decor-img {
+    width: 100%; display: block;
+    /* On estompe le décor vers ses bords : sinon l'overflow:hidden de la section
+       le coupe par une arête nette, très visible sur mobile (cf. bug bandeau bienvenue). */
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 72%);
+            mask-image: radial-gradient(ellipse at center, #000 30%, transparent 72%);
+  }
   .welcome__quote {
     font-family: 'Cormorant Garamond', serif; font-style: italic;
     font-size: clamp(32px, 4vw, 56px); line-height: 1.1; font-weight: 300; margin-top: 20px;
