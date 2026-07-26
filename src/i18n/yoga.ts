@@ -61,7 +61,9 @@ Chaque séance repose sur trois piliers. Le pranayama d’abord : le souffle yog
 
 Ce format en cours particulier convient au yoga débutant comme à une pratique avancée. Rien n’est standardisé : le rythme, les transitions et les appuis se construisent autour de vous. C’est aussi un espace pour celles et ceux qui n’osent pas le cours collectif, ou qui cherchent un suivi régulier auprès d’un professeur de yoga privé à Paris.
 
-Les tarifs sont clairs : le cours particulier d’une heure est à 90 € (130 € en duo), et le forfait de 5 séances, valable 3 mois, à 400 €. Les séances ont lieu au cabinet, uniquement sur rendez-vous. La réservation se fait en ligne via Planity, où la pratique est notée 5,0 / 5. Pour toute question préalable, l’échange peut commencer par e-mail à hello@daphnelachavanne.com.`,
+Les tarifs sont clairs : le cours particulier d’une heure est à 90 € (130 € en duo), et le forfait de 5 séances, valable 3 mois, à 400 €. Les séances ont lieu au cabinet, uniquement sur rendez-vous. La réservation se fait en ligne via Planity, où la pratique est notée 5,0 / 5. Pour toute question préalable, l’échange peut commencer par e-mail à hello@daphnelachavanne.com.
+
+Le yoga se combine naturellement avec le Pilates, le breathwork ou les soins de drainage lymphatique proposés au même cabinet, pour une même attention portée au corps et au souffle.`,
   },
 
   faqs: [
@@ -133,7 +135,9 @@ Each session rests on three pillars. Pranayama first: the yogic breath in three 
 
 This private-lesson format suits beginner yoga as much as an advanced practice. Nothing is standardised: the pace, the transitions and the supports are built around you. It is also a space for those who do not dare join a group class, or who are looking for regular guidance from a private yoga teacher in Paris.
 
-The pricing is clear: the one-hour private lesson is €90 (€130 in pairs), and the 5-session package, valid 3 months, is €400. Sessions take place at the studio, by appointment only. Booking is done online via Planity, where the practice is rated 5.0 / 5. For any question beforehand, the conversation can begin by email at hello@daphnelachavanne.com.`,
+The pricing is clear: the one-hour private lesson is €90 (€130 in pairs), and the 5-session package, valid 3 months, is €400. Sessions take place at the studio, by appointment only. Booking is done online via Planity, where the practice is rated 5.0 / 5. For any question beforehand, the conversation can begin by email at hello@daphnelachavanne.com.
+
+Yoga pairs naturally with Pilates, breathwork or the lymphatic drainage treatments offered at the same studio, all sharing the same attention to body and breath.`,
   },
 
   faqs: [

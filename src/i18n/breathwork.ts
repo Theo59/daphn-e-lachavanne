@@ -78,7 +78,9 @@ Trois chemins se dessinent. La cohérence cardiaque d'abord : cinq respirations 
 
 Le breathwork individuel à Paris 7e dure une heure et se pratique à 90 €. Pour celles et ceux qui préfèrent l'élan du groupe, le cercle de respiration breathwork accueille quatre à six personnes pendant deux heures, à 60 € par personne. Un cercle fermé, intime, où le souffle de chacun soutient celui des autres.
 
-Cet atelier de respiration consciente s'inscrit dans la démarche de Daphné Lachavanne, praticienne bien-être et créatrice de « L'Art de la Circulation ». Ici, on ne promet pas de guérir : on propose de circuler, de l'inspire à l'expire, du tendu vers le posé. La réservation se fait en ligne via Planity, ou par e-mail à hello@daphnelachavanne.com.`,
+Cet atelier de respiration consciente s'inscrit dans la démarche de Daphné Lachavanne, praticienne bien-être et créatrice de « L'Art de la Circulation ». Ici, on ne promet pas de guérir : on propose de circuler, de l'inspire à l'expire, du tendu vers le posé. La réservation se fait en ligne via Planity, ou par e-mail à hello@daphnelachavanne.com.
+
+Le breathwork se combine naturellement avec le yoga, le Pilates ou les soins de drainage lymphatique proposés au même cabinet, pour une même attention portée au corps et au souffle.`,
   },
 
   faqs: [
@@ -183,7 +185,9 @@ Three paths take shape. Cardiac coherence first: five breaths per minute, a rhyt
 
 One-to-one breathwork in Paris 7th lasts one hour, priced at €90. For those who prefer the momentum of the group, the breathwork circle welcomes four to six people over two hours, at €60 per person. A closed, intimate circle, where each person's breath supports the others.
 
-This conscious breathing workshop is part of the work of Daphné Lachavanne, wellbeing practitioner and creator of L'Art de la Circulation. Here, there is no promise to heal: the invitation is to circulate, from the in-breath to the out-breath, from tension towards calm. Booking is done online via Planity, or by email at hello@daphnelachavanne.com.`,
+This conscious breathing workshop is part of the work of Daphné Lachavanne, wellbeing practitioner and creator of L'Art de la Circulation. Here, there is no promise to heal: the invitation is to circulate, from the in-breath to the out-breath, from tension towards calm. Booking is done online via Planity, or by email at hello@daphnelachavanne.com.
+
+Breathwork pairs naturally with yoga, Pilates or the lymphatic drainage treatments offered at the same studio, all sharing the same attention to body and breath.`,
   },
 
   faqs: [
