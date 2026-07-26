@@ -156,10 +156,19 @@ export default defineType({
         defineField({
           name: 'linkUrl',
           title: 'URL du lien (optionnel)',
-          description: 'Lien externe (https://…, ouvre un nouvel onglet) ou interne (/tarifs).',
+          description:
+            'Lien externe (https://…, ouvre un nouvel onglet) ou interne (/tarifs). ' +
+            'Valeur spéciale #newsletter : le bouton ouvre la fenêtre d’inscription à la newsletter.',
           type: 'url',
+          // Accepte les URLs classiques + la valeur spéciale #newsletter (sinon la validation
+          // d'URI rejetterait un fragment seul → impossible à saisir dans le Studio).
           validation: (Rule) =>
-            Rule.uri({ allowRelative: true, scheme: ['http', 'https', 'mailto', 'tel'] }),
+            Rule.custom((value) => {
+              if (!value || value === '#newsletter') return true;
+              return /^(https?:\/\/|mailto:|tel:|\/)/i.test(String(value))
+                ? true
+                : 'Utilisez https://…, mailto:, tel:, un chemin interne (/tarifs) ou #newsletter.';
+            }),
         }),
         defineField({
           name: 'variant',
