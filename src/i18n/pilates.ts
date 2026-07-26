@@ -63,7 +63,9 @@ Trois principes guident chaque mouvement : l'alignement, pour retrouver l'axe et
 
 Les cours particuliers de Pilates à Paris 7e s'adressent autant aux débutants qu'aux pratiquants confirmés : la séance s'ajuste geste après geste, avec une correction millimétrique impossible en cours collectif. Le Pilates individuel peut aussi se partager en duo, à deux personnes, dans le même esprit d'écoute. La pratique reste un Pilates au sol (matwork) et non sur machine Reformer : le corps, le souffle et le petit matériel suffisent à construire une force durable.
 
-Professeure privée sur la rive gauche, Daphné reçoit uniquement sur rendez-vous, au 3 rue Valadon, 75007 Paris. Le cours particulier d’une heure est à 90 €, et le duo (deux personnes) à 130 € ; la réservation se fait en ligne via Planity ou par e-mail à hello@daphnelachavanne.com. Le Pilates s'inscrit dans « L'Art de la Circulation », son approche du mouvement, du souffle et du soin.`,
+Professeure privée sur la rive gauche, Daphné reçoit uniquement sur rendez-vous, au 3 rue Valadon, 75007 Paris. Le cours particulier d’une heure est à 90 €, et le duo (deux personnes) à 130 € ; la réservation se fait en ligne via Planity ou par e-mail à hello@daphnelachavanne.com. Le Pilates s'inscrit dans « L'Art de la Circulation », son approche du mouvement, du souffle et du soin.
+
+Le Pilates se combine naturellement avec le yoga, le breathwork ou les soins de drainage lymphatique proposés au même cabinet, pour une même attention portée au corps et au souffle.`,
   },
 
   faqs: [
@@ -136,7 +138,9 @@ Three principles guide every movement: alignment, to recover the axis and the ve
 
 Private Pilates lessons in Paris 7th suit beginners and seasoned practitioners alike: the session adjusts gesture after gesture, with a precise correction impossible in a group class. Individual Pilates can also be shared in pairs, with two people, in the same spirit of attentiveness. The practice remains mat Pilates (matwork) rather than the Reformer machine: the body, the breath and small equipment are enough to build lasting strength.
 
-A private teacher on the Left Bank, Daphné receives by appointment only, at 3 rue Valadon, 75007 Paris. The one-hour private lesson is €90, and the pair session (two people) €130; booking is done online via Planity or by email at hello@daphnelachavanne.com. Pilates is part of L'Art de la Circulation, her approach to movement, breath and care.`,
+A private teacher on the Left Bank, Daphné receives by appointment only, at 3 rue Valadon, 75007 Paris. The one-hour private lesson is €90, and the pair session (two people) €130; booking is done online via Planity or by email at hello@daphnelachavanne.com. Pilates is part of L'Art de la Circulation, her approach to movement, breath and care.
+
+Pilates pairs naturally with yoga, breathwork or the lymphatic drainage treatments offered at the same studio, all sharing the same attention to body and breath.`,
   },
 
   faqs: [
