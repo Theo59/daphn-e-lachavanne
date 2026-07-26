@@ -4,6 +4,7 @@
  */
 import richText from './richText';
 import siteSettings from './siteSettings';
+import pricing from './pricing';
 import homePage from './homePage';
 import soinsPage from './soinsPage';
 import yogaPage from './yogaPage';
@@ -17,6 +18,7 @@ import prestationsPage from './prestationsPage';
 export const schemaTypes = [
   richText,
   siteSettings,
+  pricing,
   homePage,
   soinsPage,
   yogaPage,

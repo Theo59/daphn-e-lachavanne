@@ -10,7 +10,8 @@ import SanityImage from '../SanityImage.astro';
 import MediaSlot from '../MediaSlot.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
-import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { getPageContent, getSettings, getPricing } from '../../lib/sanity/content';
+import { formatEuro, soinPriceByKey, packageByKey } from '../../lib/sanity/pricing';
 import { PLANITY } from '../../lib/views';
 import { localizePath } from '../../i18n/utils';
 import { serviceLd } from '../../lib/schema.ts';
@@ -22,6 +23,13 @@ interface Props {
 const { lang } = Astro.props;
 const t = await getPageContent('soins', lang);
 const c = await getSettings(lang);
+const pricing = await getPricing();
+
+// Prix affichés (soins + forfaits) : lus depuis « Tarifs (source unique) » via la
+// clé `key` de chaque item, pas depuis Sanity/le dico soinsPage — un seul endroit à
+// modifier pour tous les tarifs (voir /admin → Tarifs (source unique)).
+const soinPrice = (key: string) => formatEuro(soinPriceByKey(pricing, key) ?? 0, lang);
+const packagePrice = (key: string) => formatEuro(packageByKey(pricing, key)?.price ?? 0, lang);
 
 const serviceSchema = serviceLd({
   name: t.schema.name,
@@ -30,8 +38,8 @@ const serviceSchema = serviceLd({
   path: localizePath('/soins', lang),
   inLanguage: HTML_LANG[lang],
   offers: [
-    ...t.soins.map((s) => ({ name: s.name, price: s.price, description: s.sub })),
-    ...t.packages.map((p) => ({ name: `${t.schema.packagePrefix} ${p.name}`, price: p.price, description: p.detail })),
+    ...t.soins.map((s) => ({ name: s.name, price: soinPrice(s.key), description: s.sub })),
+    ...t.packages.map((p) => ({ name: `${t.schema.packagePrefix} ${p.name}`, price: packagePrice(p.key), description: p.detail })),
   ],
 });
 ---
@@ -105,7 +113,7 @@ const serviceSchema = serviceLd({
             </div>
             <p class="soin-row__text">{s.text}</p>
             <div class="soin-row__price">
-              <span class="soin-row__price-val">{s.price}</span>
+              <span class="soin-row__price-val">{soinPrice(s.key)}</span>
               <a href={PLANITY} target="_blank" rel="noopener" class="link-arrow reserve-sm">{t.catalogue.reserve}</a>
             </div>
           </article>
@@ -127,7 +135,7 @@ const serviceSchema = serviceLd({
                 <p class="forfait__detail">{p.detail}</p>
               </div>
               <div class="forfait__bottom">
-                <span class="forfait__price">{p.price}</span>
+                <span class="forfait__price">{packagePrice(p.key)}</span>
                 <Sym kind="arrow" size={20} color="#fff" />
               </div>
             </div>
