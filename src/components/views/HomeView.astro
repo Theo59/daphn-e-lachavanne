@@ -37,14 +37,7 @@ const brand = c.brand ?? {};
 const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : undefined;
 
 // Soins les plus demandés (CTA cards) : texte/prix repris de la page Soins (source
-// unique). Photo éditable dans Sanity (Accueil → Photos — Soins les plus demandés) ;
-// à défaut, fallback sur une des 3 photos déjà éditées sur la page Soins.
-const featuredImages = (t as any).featuredImages ?? {};
-const FEATURED_FALLBACK_PHOTO_BY_KEY: Record<string, unknown> = {
-  signature: soinsT.photo.image2,
-  drainage: soinsT.photo.image3,
-  miracleFace: soinsT.photo.image1,
-};
+// unique). Fond orange uni (charte : fonds unis, pas de photo ni de voile).
 const featuredSoins = (['signature', 'drainage', 'miracleFace'] as const)
   .map((key) => soinsT.soins.find((s) => s.key === key))
   .filter((s): s is NonNullable<typeof s> => Boolean(s));
@@ -91,8 +84,6 @@ const featuredSoins = (['signature', 'drainage', 'miracleFace'] as const)
       <div class="grid-3">
         {featuredSoins.map((s) => (
           <a href={PLANITY} target="_blank" rel="noopener" class="forfait featured-card">
-            <SanityImage image={hasImage(featuredImages[s.key]) ? featuredImages[s.key] : FEATURED_FALLBACK_PHOTO_BY_KEY[s.key]} alt="" widths={[480, 768]} sizes="(max-width:900px) 100vw, 33vw" loading="lazy" decoding="async" class="forfait__bg featured-card__img" />
-            <div class="featured-card__overlay"></div>
             <div class="forfait__content">
               <div>
                 <h3 class="forfait__name">{s.name}</h3>
@@ -244,12 +235,7 @@ const featuredSoins = (['signature', 'drainage', 'miracleFace'] as const)
 
   /* Soins les plus demandés */
   .featured-section__label { display: block; margin-bottom: 28px; }
-  .featured-card { text-decoration: none; }
-  .featured-card__img { width: 100%; height: 100%; object-fit: cover; }
-  .featured-card__overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(13,10,31,0.15) 0%, rgba(13,10,31,0.65) 100%);
-  }
+  .featured-card { text-decoration: none; background: var(--orange); }
 
   /* Bienvenue */
   .welcome { position: relative; overflow: hidden; padding-top: 4rem; padding-bottom: 4rem; }
