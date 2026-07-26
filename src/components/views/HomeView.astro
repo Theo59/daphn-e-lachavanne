@@ -72,7 +72,7 @@ const featuredSoins = (['signature', 'drainage', 'miracleFace'] as const)
       </h1>
       <p class="hero__sub">{t.hero.sub}</p>
       <div class="hero__actions">
-        <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white">{c.cta.book}</a>
+        <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white" data-umami-event="book_click" data-umami-event-location="home_hero">{c.cta.book}</a>
       </div>
     </div>
     <div class="hero__footer">
@@ -86,7 +86,7 @@ const featuredSoins = (['signature', 'drainage', 'miracleFace'] as const)
       <span class="t-label featured-section__label">{t.featuredLabel}</span>
       <div class="grid-3">
         {featuredSoins.map((s) => (
-          <a href={PLANITY} target="_blank" rel="noopener" class="forfait featured-card">
+          <a href={PLANITY} target="_blank" rel="noopener" class="forfait featured-card" data-umami-event="book_click" data-umami-event-location="home_featured_soin" data-umami-event-soin={s.key}>
             <div class="forfait__content">
               <div>
                 <h3 class="forfait__name">{s.name}</h3>
@@ -172,7 +172,7 @@ const featuredSoins = (['signature', 'drainage', 'miracleFace'] as const)
             {t.cabinet.titleLine1}<br />{t.cabinet.titleLine2}
           </h3>
           <p class="cabinet__body">{t.cabinet.body}</p>
-          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white cabinet__cta">{c.cta.book}</a>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white cabinet__cta" data-umami-event="book_click" data-umami-event-location="home_cabinet">{c.cta.book}</a>
         </div>
         <div class="photo-wrap cabinet__photo">
           <MediaSlot image={cabinetImage} video={t.cabinet.video} alt={t.cabinet.imgAlt} widths={[640, 1024]} sizes="(max-width:900px) 100vw, 50vw" loading="lazy" decoding="async" />
@@ -213,7 +213,7 @@ const featuredSoins = (['signature', 'drainage', 'miracleFace'] as const)
         <div class="cta-band__content">
           <h3 class="cta-band__title">{t.ctaBand.titleLine1}<br />{t.ctaBand.titleLine2}</h3>
           <p class="cta-band__text">{t.ctaBand.text}</p>
-          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--white cta-band__cta">
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--white cta-band__cta" data-umami-event="book_click" data-umami-event-location="home_cta_band">
             {c.cta.bookPlanity} <Sym kind="arrow" size={16} />
           </a>
         </div>

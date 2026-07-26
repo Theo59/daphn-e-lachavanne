@@ -53,7 +53,7 @@ const serviceNote = (s: { priceKey?: string | null; note?: string }) =>
                 <div class="presta__meta">
                   <span class="presta__dur">{s.duration}</span>
                   <span class="presta__price">{servicePrice(s)}</span>
-                  <a href={PLANITY} target="_blank" rel="noopener" class="link-arrow presta__cta">
+                  <a href={PLANITY} target="_blank" rel="noopener" class="link-arrow presta__cta" data-umami-event="book_click" data-umami-event-location="prestations_row" data-umami-event-service={s.name}>
                     {t.reserve} <Sym kind="arrow" size={14} />
                   </a>
                 </div>
@@ -64,7 +64,7 @@ const serviceNote = (s: { priceKey?: string | null; note?: string }) =>
       ))}
 
       <div class="actions">
-        <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--orange">
+        <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--orange" data-umami-event="book_click" data-umami-event-location="prestations_bottom">
           {c.cta.bookPlanity} <Sym kind="arrow" size={16} color="#fff" />
         </a>
       </div>

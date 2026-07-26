@@ -36,9 +36,9 @@ const INSTAGRAM = (c as any).social?.instagram || 'https://www.instagram.com/dap
     <div>
       <span class="footer__col-title">{c.footer.colFollow}</span>
       <div class="footer__links">
-        <a href={INSTAGRAM} target="_blank" rel="noopener">Instagram</a>
-        <a href={localizePath('/contact', lang)} data-newsletter-open>{c.footer.newsletter}</a>
-        <a href={PLANITY} target="_blank" rel="noopener">Planity</a>
+        <a href={INSTAGRAM} target="_blank" rel="noopener" data-umami-event="instagram_click">Instagram</a>
+        <a href={localizePath('/contact', lang)} data-newsletter-open data-umami-event="newsletter_open">{c.footer.newsletter}</a>
+        <a href={PLANITY} target="_blank" rel="noopener" data-umami-event="book_click" data-umami-event-location="footer">Planity</a>
       </div>
     </div>
   </div>
