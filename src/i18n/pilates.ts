@@ -13,7 +13,7 @@ const fr = {
   meta: {
     title: 'Pilates particulier Paris 7e | Daphné Lachavanne',
     description:
-      'Cours particuliers de Pilates au sol et petit matériel, en privé ou en duo, au cabinet de Paris 7e (3 rue Valadon). 90 € l’heure (130 € en duo), sur rendez-vous.',
+      'Cours particuliers de Pilates au sol, en privé ou en duo, au cabinet de Paris 7e (3 rue Valadon). 90 € l’heure (130 € en duo), sur rendez-vous.',
   },
 
   hero: {

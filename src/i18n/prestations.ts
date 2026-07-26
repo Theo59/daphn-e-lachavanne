@@ -9,7 +9,7 @@ const fr = {
   meta: {
     title: 'Prestations & tarifs | Daphné Lachavanne, Paris 7e',
     description:
-      'Tarifs des soins de Daphné Lachavanne à Paris 7e : drainage lymphatique Renata França (160 €), Soin Signature (290 €), Miracle Face, Combo Détox, yoga & pilates. Sur rendez-vous.',
+      'Tarifs des soins de Daphné Lachavanne à Paris 7e : drainage lymphatique (160 €), Soin Signature (290 €), Miracle Face, yoga & pilates.',
   },
 
   header: {
@@ -120,7 +120,7 @@ const en = {
   meta: {
     title: 'Treatments & rates | Daphné Lachavanne, Paris 7th',
     description:
-      'Daphné Lachavanne’s rates in Paris 7th: Renata França lymphatic drainage (€160), Signature Treatment (€290), Miracle Face, Detox Combo, yoga & pilates. By appointment.',
+      'Daphné Lachavanne’s rates in Paris 7th: lymphatic drainage (€160), Signature Treatment (€290), Miracle Face, yoga & pilates. By appointment.',
   },
 
   header: {
