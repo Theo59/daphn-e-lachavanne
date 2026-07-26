@@ -105,20 +105,6 @@ export default defineType({
     defineField({ name: 'featuredLabel', title: 'Libellé section « Soins les plus demandés »', type: 'string' }),
 
     defineField({
-      name: 'featuredImages',
-      title: 'Photos — Soins les plus demandés (cards CTA)',
-      description:
-        'Une photo de fond par card (Soin Signature, Drainage Lymphatique, Miracle Face), juste sous le hero de l’accueil. Si un champ est vide, une photo par défaut (reprise de la page Soins) est utilisée.',
-      type: 'object',
-      options: { collapsible: true, collapsed: true },
-      fields: [
-        defineField({ name: 'signature', title: 'Soin Signature', type: 'image', options: { hotspot: true } }),
-        defineField({ name: 'drainage', title: 'Drainage Lymphatique', type: 'image', options: { hotspot: true } }),
-        defineField({ name: 'miracleFace', title: 'Miracle Face', type: 'image', options: { hotspot: true } }),
-      ],
-    }),
-
-    defineField({
       name: 'gallery',
       title: 'Galerie « en vrac » (accueil) — plusieurs petites photos',
       type: 'array',
