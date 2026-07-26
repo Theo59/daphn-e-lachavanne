@@ -74,7 +74,7 @@ const fr = {
     label: 'Le breathwork à Paris 7e',
     text: `Le breathwork, c'est l'art d'habiter sa respiration. Au cabinet de Daphné Lachavanne, au 3 rue Valadon dans le 7e arrondissement de Paris, chaque séance commence par une écoute : selon ce que vous traversez, on choisit ensemble la pratique. Une séance de breathwork à Paris 7e se déroule dans un espace privé, sur rendez-vous, loin de l'agitation de la ville.
 
-Trois chemins se dessinent. La cohérence cardiaque d'abord : cinq respirations par minute, un rythme qui aligne le cœur et apaise le système nerveux. C'est l'exercice de respiration pour la gestion du stress le plus accessible, celui qui se glisse ensuite dans le quotidien. La respiration holotropique ensuite, un souffle ample et continu pour traverser, libérer, parfois pleurer, toujours en sécurité. Daphné s'est formée à cette pratique à Amsterdam en 2019. Le pranayama avancé enfin, avec ses techniques de rétention, de Tummo et de méthode Wim Hof, pour la vitalité profonde.
+Trois chemins se dessinent. La cohérence cardiaque d'abord : cinq respirations par minute, un rythme qui aligne le cœur et apaise le système nerveux. C'est l'exercice de respiration pour la gestion du stress le plus accessible, celui qui se glisse ensuite dans le quotidien. La respiration holotropique ensuite, un souffle ample et continu pour traverser, libérer, parfois pleurer, toujours en sécurité. Daphné s'est formée au Breathwork Teacher Training à Paris en 2022. Le pranayama avancé enfin, avec ses techniques de rétention, de Tummo et de méthode Wim Hof, pour la vitalité profonde.
 
 Le breathwork individuel à Paris 7e dure une heure et se pratique à 90 €. Pour celles et ceux qui préfèrent l'élan du groupe, le cercle de respiration breathwork accueille quatre à six personnes pendant deux heures, à 60 € par personne. Un cercle fermé, intime, où le souffle de chacun soutient celui des autres.
 
@@ -94,7 +94,7 @@ Le breathwork se combine naturellement avec le yoga, le Pilates ou les soins de 
     },
     {
       q: 'La respiration holotropique, est-ce sans risque ?',
-      a: "Le souffle holotropique est ample et continu, pratiqué toujours dans un cadre sécurisé et accompagné. Daphné s'est formée à cette approche à Amsterdam en 2019. Il s'agit d'un accompagnement bien-être, sans promesse médicale ni thérapeutique.",
+      a: "Le souffle holotropique est ample et continu, pratiqué toujours dans un cadre sécurisé et accompagné. Daphné s'est formée au Breathwork Teacher Training à Paris en 2022. Il s'agit d'un accompagnement bien-être, sans promesse médicale ni thérapeutique.",
     },
     {
       q: 'Comment fonctionne le cercle de souffle ?',
@@ -181,7 +181,7 @@ const en = {
     label: 'Breathwork in Paris 7th',
     text: `Breathwork is the art of inhabiting your breath. At Daphné Lachavanne's studio, at 3 rue Valadon in the 7th arrondissement of Paris, every session begins with listening: according to what you are going through, we choose the practice together. A breathwork session in Paris 7th unfolds in a private space, by appointment, far from the bustle of the city.
 
-Three paths take shape. Cardiac coherence first: five breaths per minute, a rhythm that aligns the heart and calms the nervous system. It is the most accessible breathing exercise for managing stress, the one that then slips into everyday life. Holotropic breathing next, a full, continuous breath to move through, release, sometimes weep, always in safety. Daphné trained in this practice in Amsterdam in 2019. Advanced pranayama lastly, with its techniques of retention, Tummo and the Wim Hof method, for deep vitality.
+Three paths take shape. Cardiac coherence first: five breaths per minute, a rhythm that aligns the heart and calms the nervous system. It is the most accessible breathing exercise for managing stress, the one that then slips into everyday life. Holotropic breathing next, a full, continuous breath to move through, release, sometimes weep, always in safety. Daphné completed her Breathwork Teacher Training in Paris in 2022. Advanced pranayama lastly, with its techniques of retention, Tummo and the Wim Hof method, for deep vitality.
 
 One-to-one breathwork in Paris 7th lasts one hour, priced at €90. For those who prefer the momentum of the group, the breathwork circle welcomes four to six people over two hours, at €60 per person. A closed, intimate circle, where each person's breath supports the others.
 
@@ -201,7 +201,7 @@ Breathwork pairs naturally with yoga, Pilates or the lymphatic drainage treatmen
     },
     {
       q: 'Is holotropic breathing safe?',
-      a: 'Holotropic breathing is full and continuous, always practised in a safe, guided setting. Daphné trained in this approach in Amsterdam in 2019. It is a wellbeing practice, with no medical or therapeutic promise.',
+      a: 'Holotropic breathing is full and continuous, always practised in a safe, guided setting. Daphné completed her Breathwork Teacher Training in Paris in 2022. It is a wellbeing practice, with no medical or therapeutic promise.',
     },
     {
       q: 'How does the breath circle work?',
