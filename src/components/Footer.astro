@@ -47,10 +47,14 @@ const INSTAGRAM = (c as any).social?.instagram || 'https://www.instagram.com/dap
   </div>
   <div style="display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:0 var(--pad) 28px;font-family:'Tenor Sans',serif;font-size:10px;letter-spacing:0.15em;color:rgba(13,10,31,0.65)">
     <span>{c.footer.rights}</span>
-    <span aria-hidden="true">·</span>
-    <!-- Crédit dev : vrai lien dans le template (pas du HTML injecté dans le contenu CMS,
-         pour éviter tout échappement selon la façon dont `rights` est rendu). -->
-    <span>{lang === 'en' ? 'Development' : 'Développement'} : <a href="https://jetdev.fr" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Jetdev</a></span>
+    {c.footer.devCredit && (
+      <>
+        <span aria-hidden="true">·</span>
+        {/* Crédit dev éditable dans le CMS (footer.devCredit / footer.devUrl). Vrai lien dans le
+            template — pas de HTML injecté dans une string, donc aucun risque d'échappement. */}
+        <a href={c.footer.devUrl} target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">{c.footer.devCredit}</a>
+      </>
+    )}
     <span aria-hidden="true">·</span>
     <a href={localizePath('/mentions-legales', lang)} style="color:inherit;text-decoration:none">{c.footer.legal}</a>
   </div>

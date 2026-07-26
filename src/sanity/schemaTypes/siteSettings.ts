@@ -130,6 +130,8 @@ export default defineType({
         defineField({ name: 'newsletter', type: 'string' }),
         defineField({ name: 'legal', type: 'string' }),
         defineField({ name: 'rights', type: 'string' }),
+        defineField({ name: 'devCredit', title: 'Crédit développement (texte du lien)', type: 'string' }),
+        defineField({ name: 'devUrl', title: 'Crédit développement (URL)', type: 'url' }),
       ],
     }),
 

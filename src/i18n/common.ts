@@ -48,6 +48,8 @@ const fr = {
     newsletter: 'Newsletter',
     legal: 'Mentions légales',
     rights: '© 2026 Daphné Lachavanne. Tous droits réservés. Conception et création : Studio Moore.',
+    devCredit: 'Développement par Jetdev',
+    devUrl: 'https://jetdev.fr',
   },
 
   breadcrumbHome: 'Accueil',
@@ -133,6 +135,8 @@ const en = {
     newsletter: 'Newsletter',
     legal: 'Legal notice',
     rights: '© 2026 Daphné Lachavanne. All rights reserved. Design and creation: Studio Moore.',
+    devCredit: 'Development by Jetdev',
+    devUrl: 'https://jetdev.fr',
   },
 
   breadcrumbHome: 'Home',
