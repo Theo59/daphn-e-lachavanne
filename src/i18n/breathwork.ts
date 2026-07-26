@@ -34,7 +34,7 @@ const fr = {
   },
 
   approach: {
-    label: '(  Approche  )',
+    label: '(  Approche  )',
     title: 'Le souffle, comme un instrument que l’on apprend à jouer.',
   },
 
@@ -58,7 +58,7 @@ const fr = {
   ],
 
   pricing: {
-    label: '(  Tarif & Réservation  )',
+    label: '(  Tarif & Réservation  )',
     titleHtml: 'Sur<br />rendez-vous.',
     text: 'Séances individuelles au cabinet. Réservation via Planity.',
     book: 'Réserver →',
@@ -143,7 +143,7 @@ const en = {
   },
 
   approach: {
-    label: '(  Approach  )',
+    label: '(  Approach  )',
     title: 'The breath, like an instrument one learns to play.',
   },
 
@@ -166,7 +166,7 @@ const en = {
   ],
 
   pricing: {
-    label: '(  Pricing & Booking  )',
+    label: '(  Pricing & Booking  )',
     titleHtml: 'By<br />appointment.',
     text: 'One-to-one sessions at the studio. Booking via Planity.',
     book: 'Book →',

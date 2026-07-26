@@ -29,7 +29,7 @@ const fr = {
   },
 
   story: {
-    label: '(  Mon histoire  )',
+    label: '(  Mon histoire  )',
     lead: 'Depuis plus de dix ans, j’accompagne à travers le yoga, le pilates, le breathwork et le drainage lymphatique. J’aime créer des espaces où chacun peut se reconnecter à soi.',
     body1:
       'Je me suis particulièrement consacrée au bien-être féminin et à l’accompagnement des douleurs propres aux femmes — endométriose, tensions pelviennes, fatigue chronique — avec une approche holistique qui unit mouvement, respiration et soin.',
@@ -38,7 +38,7 @@ const fr = {
   },
 
   timeline: {
-    label: '(  Parcours  )',
+    label: '(  Parcours  )',
     items: [
       { year: '2014', event: 'Certification yoga Yoga Alliance 300h · Vinyasa, Hatha', place: 'Berlin' },
       { year: '2015', event: 'Formation Pilates Teacher Training 50h', place: 'Berlin' },
@@ -102,7 +102,7 @@ const en = {
   },
 
   story: {
-    label: '(  My story  )',
+    label: '(  My story  )',
     lead: 'For over ten years, I have been accompanying people through yoga, pilates, breathwork and lymphatic drainage. I love creating spaces where everyone can reconnect with themselves.',
     body1:
       'I have dedicated myself particularly to feminine wellbeing and to supporting women with their specific pain — endometriosis, pelvic tension, chronic fatigue — with a holistic approach that unites movement, breath and care.',
@@ -111,7 +111,7 @@ const en = {
   },
 
   timeline: {
-    label: '(  Journey  )',
+    label: '(  Journey  )',
     items: [
       { year: '2014', event: 'Yoga Alliance 300h certification · Vinyasa, Hatha', place: 'Berlin' },
       { year: '2015', event: 'Pilates Teacher Training 50h', place: 'Berlin' },

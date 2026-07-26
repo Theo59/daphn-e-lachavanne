@@ -34,7 +34,7 @@ const fr = {
   },
 
   catalogue: {
-    label: '(  Catalogue  )',
+    label: '(  Catalogue  )',
     all: 'Tous les soins · 30 min à 2h',
     reserve: 'Réserver →',
   },
@@ -67,7 +67,7 @@ const fr = {
     },
   ],
 
-  packagesLabel: '(  Packs  )',
+  packagesLabel: '(  Packs  )',
 
   // Packs Soin Signature (séances de 2h). Prix/économie : voir « Tarifs (source unique) » dans Sanity.
   packages: [
@@ -138,7 +138,7 @@ const en = {
   },
 
   catalogue: {
-    label: '(  Catalogue  )',
+    label: '(  Catalogue  )',
     all: 'All treatments · 30 min to 2 hrs',
     reserve: 'Book →',
   },
@@ -170,7 +170,7 @@ const en = {
     },
   ],
 
-  packagesLabel: '(  Packs  )',
+  packagesLabel: '(  Packs  )',
 
   packages: [
     { key: 'pack3', name: '3-session Pack', detail: 'Signature Treatment · 2 hrs · €283 per session' },

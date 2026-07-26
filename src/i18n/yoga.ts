@@ -29,7 +29,7 @@ const fr = {
   },
 
   approche: {
-    label: '(  Approche  )',
+    label: '(  Approche  )',
     title: 'Une pratique du souffle, du sol vers le ciel.',
   },
 
@@ -41,7 +41,7 @@ const fr = {
   ],
 
   tarif: {
-    label: '(  Tarif & Réservation  )',
+    label: '(  Tarif & Réservation  )',
     titleLine1: 'Sur',
     titleLine2: 'rendez-vous.',
     body: 'Séances individuelles au cabinet. Réservation via Planity.',
@@ -104,7 +104,7 @@ const en = {
   },
 
   approche: {
-    label: '(  Approach  )',
+    label: '(  Approach  )',
     title: 'A practice of breath, from the ground toward the sky.',
   },
 
@@ -115,7 +115,7 @@ const en = {
   ],
 
   tarif: {
-    label: '(  Pricing & Booking  )',
+    label: '(  Pricing & Booking  )',
     titleLine1: 'By',
     titleLine2: 'appointment.',
     body: 'One-to-one sessions at the studio. Booking via Planity.',

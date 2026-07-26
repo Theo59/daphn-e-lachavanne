@@ -22,7 +22,7 @@ const fr = {
   },
 
   form: {
-    label: '(  Un message  )',
+    label: '(  Un message  )',
     honeypot: 'Ne pas remplir si vous êtes humain :',
     successTitle: 'Message bien reçu.',
     successText:
@@ -41,14 +41,14 @@ const fr = {
   },
 
   booking: {
-    label: '(  Réservation en ligne  )',
+    label: '(  Réservation en ligne  )',
     eyebrow: 'Disponibilités en direct',
     title: 'Planity',
     text: 'Choisissez votre soin, un créneau, et confirmez en deux minutes. Annulation gratuite jusqu’à 24h avant.',
   },
 
   cabinet: {
-    label: '(  Le cabinet  )',
+    label: '(  Le cabinet  )',
     addressLine1: 'Omvida · 3 Rue Valadon',
     addressLine2: '75007 Paris',
     email: 'hello@daphnelachavanne.com',
@@ -97,7 +97,7 @@ const en = {
   },
 
   form: {
-    label: '(  A message  )',
+    label: '(  A message  )',
     honeypot: 'Do not fill in if you are human:',
     successTitle: 'Message received.',
     successText:
@@ -116,14 +116,14 @@ const en = {
   },
 
   booking: {
-    label: '(  Online booking  )',
+    label: '(  Online booking  )',
     eyebrow: 'Live availability',
     title: 'Planity',
     text: 'Choose your treatment, a time slot, and confirm in two minutes. Free cancellation up to 24 hrs before.',
   },
 
   cabinet: {
-    label: '(  The studio  )',
+    label: '(  The studio  )',
     addressLine1: 'Omvida · 3 Rue Valadon',
     addressLine2: '75007 Paris',
     email: 'hello@daphnelachavanne.com',

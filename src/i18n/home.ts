@@ -16,7 +16,7 @@ const fr = {
   },
 
   hero: {
-    label: '◦  soins · breathwork · yoga · pilates  ◦',
+    label: '◦  soins · breathwork · yoga · pilates  ◦',
     titleLine1: 'L’art de',
     titleLine2: 'la circulation.',
     sub: 'Je vous accueille dans mon cabinet du 7e arrondissement pour des soins sur-mesure, du mouvement à l’énergie.',
@@ -35,7 +35,9 @@ const fr = {
     link: 'Mon histoire',
   },
 
-  featuredLabel: '(  Les soins les plus demandés  )',
+  // Espaces insécables (U+00A0) collées aux parenthèses : évite qu'une parenthèse se
+  // retrouve seule sur sa propre ligne quand le texte casse sur mobile.
+  featuredLabel: '(  Les soins les plus demandés  )',
 
   practices: {
     label: 'Quatre disciplines',
@@ -59,10 +61,10 @@ const fr = {
       'Le cabinet Omvida de Daphné Lachavanne, 3 rue Valadon à Paris 7e, espace de soin confidentiel sur la rive gauche',
   },
 
-  galleryLabel: '(  En images  )',
+  galleryLabel: '(  En images  )',
 
   testimonials: {
-    label: '(  Avis  )',
+    label: '(  Avis  )',
     rating: '5,0 / 5 · Planity',
     items: [
       { quote: 'Une expérience transformatrice. Daphné a une façon unique d’écouter le corps, son drainage est une révélation.', author: 'L.M. · drainage lymphatique' },
@@ -106,7 +108,7 @@ const en = {
   },
 
   hero: {
-    label: '◦  treatments · breathwork · yoga · pilates  ◦',
+    label: '◦  treatments · breathwork · yoga · pilates  ◦',
     titleLine1: 'The art of',
     titleLine2: 'circulation.',
     sub: 'I welcome you to my studio in the 7th arrondissement for bespoke treatments, from movement to energy.',
@@ -125,7 +127,7 @@ const en = {
     link: 'My story',
   },
 
-  featuredLabel: '(  Most requested treatments  )',
+  featuredLabel: '(  Most requested treatments  )',
 
   practices: {
     label: 'Four disciplines',
@@ -148,10 +150,10 @@ const en = {
       'Daphné Lachavanne’s Omvida studio, 3 rue Valadon in Paris 7th, a private treatment space on the Left Bank',
   },
 
-  galleryLabel: '(  In pictures  )',
+  galleryLabel: '(  In pictures  )',
 
   testimonials: {
-    label: '(  Reviews  )',
+    label: '(  Reviews  )',
     rating: '5.0 / 5 · Planity',
     items: [
       { quote: 'A transformative experience. Daphné has a unique way of listening to the body — her drainage is a revelation.', author: 'L.M. · lymphatic drainage' },

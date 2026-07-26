@@ -32,7 +32,7 @@ const fr = {
   },
 
   approach: {
-    label: '(  Approche  )',
+    label: '(  Approche  )',
     title: "Force, alignement, fluidité. Le mouvement comme une écriture.",
   },
 
@@ -44,7 +44,7 @@ const fr = {
   ],
 
   pricing: {
-    label: '(  Tarif & Réservation  )',
+    label: '(  Tarif & Réservation  )',
     titleHtml: 'Sur<br />rendez-vous.',
     text: 'Séances individuelles au cabinet. Réservation via Planity.',
     bookArrow: 'Réserver →',
@@ -109,7 +109,7 @@ const en = {
   },
 
   approach: {
-    label: '(  Approach  )',
+    label: '(  Approach  )',
     title: 'Strength, alignment, fluidity. Movement as a form of writing.',
   },
 
@@ -120,7 +120,7 @@ const en = {
   ],
 
   pricing: {
-    label: '(  Pricing & Booking  )',
+    label: '(  Pricing & Booking  )',
     titleHtml: 'By<br />appointment.',
     text: 'Individual sessions at the studio. Booking via Planity.',
     bookArrow: 'Book →',
