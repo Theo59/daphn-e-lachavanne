@@ -127,10 +127,26 @@ const structuredData = {
       image: portraitUrl,
       knowsAbout: ['Drainage lymphatique', 'Méthode Renata França', 'Yoga', 'Breathwork', 'Pilates'],
       hasCredential: [
-        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Yoga Alliance 300h — Vinyasa, Hatha', dateCreated: '2014' },
-        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Pilates Teacher Training 50h', dateCreated: '2015' },
-        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Breathwork Teacher Training', dateCreated: '2022' },
-        { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'Méthode Renata França — 4 certifications', dateCreated: '2025' },
+        {
+          '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification',
+          name: 'Yoga Alliance 300h — Vinyasa, Hatha', dateCreated: '2014',
+          recognizedBy: { '@type': 'Organization', name: 'Yoga Alliance' },
+        },
+        {
+          '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification',
+          name: 'Pilates Teacher Training 50h', dateCreated: '2015',
+          recognizedBy: { '@type': 'Organization', name: 'Core Power' },
+        },
+        {
+          '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification',
+          name: 'Breathwork Teacher Training', dateCreated: '2022',
+          recognizedBy: { '@type': 'Organization', name: 'Psychedelic Breath' },
+        },
+        {
+          '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification',
+          name: 'Méthode Renata França — 4 certifications', dateCreated: '2025',
+          recognizedBy: { '@type': 'Organization', name: 'Renata França' },
+        },
       ],
     },
     {
