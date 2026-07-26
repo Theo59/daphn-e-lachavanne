@@ -47,7 +47,7 @@ const fr = {
     itinerary: 'Itinéraire →',
     newsletter: 'Newsletter',
     legal: 'Mentions légales',
-    rights: '© 2026 Daphné Lachavanne. Tous droits réservés. Conception et création : Studio Moore. Développement : <a href="https://jetdev.fr" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Jetdev</a>.',
+    rights: '© 2026 Daphné Lachavanne. Tous droits réservés. Conception et création : Studio Moore.',
   },
 
   breadcrumbHome: 'Accueil',
@@ -132,7 +132,7 @@ const en = {
     itinerary: 'Directions →',
     newsletter: 'Newsletter',
     legal: 'Legal notice',
-    rights: '© 2026 Daphné Lachavanne. All rights reserved. Design and creative: Studio Moore. Development: <a href="https://jetdev.fr" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Jetdev</a>.',
+    rights: '© 2026 Daphné Lachavanne. All rights reserved. Design and creation: Studio Moore.',
   },
 
   breadcrumbHome: 'Home',
