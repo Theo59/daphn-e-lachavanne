@@ -204,6 +204,7 @@ const legalHref = localizePath('/mentions-legales', lang);
         formWrap.hidden = true;
         successEl.hidden = false;
         try { localStorage.setItem('nl_subscribed', '1'); } catch (_) {}
+        if (typeof umami !== 'undefined') umami.track('newsletter_signup');
       } catch (_) {
         errorEl.hidden = false;
         btn.disabled = false;

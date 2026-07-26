@@ -85,7 +85,7 @@ const c = await getSettings(lang);
               <span class="booking__eyebrow">{t.booking.eyebrow}</span>
               <h3 class="booking__title">{t.booking.title}</h3>
               <p class="booking__text">{t.booking.text}</p>
-              <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white booking__cta">
+              <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white booking__cta" data-umami-event="book_click" data-umami-event-location="contact_booking">
                 {c.cta.bookPlanity} →
               </a>
             </div>
@@ -191,6 +191,7 @@ const c = await getSettings(lang);
       banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     if (form) form.hidden = true;
+    if (typeof umami !== 'undefined') umami.track('contact_form_submit');
   }
 </script>
 

@@ -114,7 +114,7 @@ const serviceSchema = serviceLd({
             <p class="soin-row__text">{s.text}</p>
             <div class="soin-row__price">
               <span class="soin-row__price-val">{soinPrice(s.key)}</span>
-              <a href={PLANITY} target="_blank" rel="noopener" class="link-arrow reserve-sm">{t.catalogue.reserve}</a>
+              <a href={PLANITY} target="_blank" rel="noopener" class="link-arrow reserve-sm" data-umami-event="book_click" data-umami-event-location="soins_row" data-umami-event-service={s.name}>{t.catalogue.reserve}</a>
             </div>
           </article>
         ))}

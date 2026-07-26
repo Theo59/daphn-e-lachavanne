@@ -97,7 +97,7 @@ const serviceSchema = serviceLd({
           <span class="tarif__label">{t.tarif.label}</span>
           <h3 class="tarif__title">{t.tarif.titleLine1}<br />{t.tarif.titleLine2}</h3>
           <p class="tarif__body">{t.tarif.body}</p>
-          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white tarif__cta">{t.tarif.reserve}</a>
+          <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white tarif__cta" data-umami-event="book_click" data-umami-event-location="yoga_tarif">{t.tarif.reserve}</a>
         </div>
         <div>
           {t.tarif.rows.map((r) => (
@@ -108,7 +108,7 @@ const serviceSchema = serviceLd({
               </div>
               <div class="tarif-row__right">
                 <span class="tarif-row__price">{r.price}</span>
-                <a href={PLANITY} target="_blank" rel="noopener" class="reserve-link">{t.tarif.reserve}</a>
+                <a href={PLANITY} target="_blank" rel="noopener" class="reserve-link" data-umami-event="book_click" data-umami-event-location="yoga_row" data-umami-event-service={r.title}>{t.tarif.reserve}</a>
               </div>
             </div>
           ))}

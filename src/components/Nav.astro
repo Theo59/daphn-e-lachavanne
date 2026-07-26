@@ -66,7 +66,7 @@ const ctaHref = localizePath('/contact', lang);
           : <a class="nav__lang-item" href={alt.path} hreflang={alt.htmlLang} aria-label={LANG_NAMES[alt.lang]}>{LANG_LABELS[alt.lang]}</a>
       ))}
     </div>
-    <a href={ctaHref} class="nav__cta">{c.nav.cta}</a>
+    <a href={ctaHref} class="nav__cta" data-umami-event="nav_contact_click">{c.nav.cta}</a>
   </div>
 
   <button class="nav__hamburger" id="hamburger-btn" aria-label={c.nav.menuOpen} aria-expanded="false" aria-controls="mobile-menu">
