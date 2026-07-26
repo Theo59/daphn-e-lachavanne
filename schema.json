@@ -6955,6 +6955,20 @@
                 "type": "string"
               },
               "optional": true
+            },
+            "devCredit": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "devUrl": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
             }
           }
         },
