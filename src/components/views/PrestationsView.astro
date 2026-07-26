@@ -29,7 +29,7 @@ const serviceNote = (s: { priceKey?: string | null; note?: string }) =>
   servicePackageSaving(pricing, s.priceKey, lang) ?? s.note ?? '';
 ---
 
-<Layout activePage="prestations" title={t.meta.title} description={t.meta.description}>
+<Layout activePage="prestations" title={t.meta.title} description={t.meta.description} updatedAt={t._updatedAt} createdAt={t._createdAt}>
 
   <div class="page-header container">
     <span class="t-label">{t.header.label}</span>

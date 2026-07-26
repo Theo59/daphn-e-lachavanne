@@ -23,7 +23,7 @@ const t = await getPageContent('contact', lang);
 const c = await getSettings(lang);
 ---
 
-<Layout activePage="contact" title={t.meta.title} description={t.meta.description}>
+<Layout activePage="contact" title={t.meta.title} description={t.meta.description} updatedAt={t._updatedAt} createdAt={t._createdAt}>
 
   <div class="page-header container rel-clip">
     <span class="t-label">{t.header.label}</span>

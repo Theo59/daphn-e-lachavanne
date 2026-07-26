@@ -92,7 +92,13 @@ export function getPageContent<K extends PageKey>(page: K, lang: Lang): Promise<
     if (!sanityClient) return local;
     try {
       const doc = await sanityClient.fetch(QUERIES[page], { lang });
-      return doc ? (deepFill(local, doc) as PageContent<K>) : local;
+      if (!doc) return local;
+      const filled = deepFill(local, doc) as PageContent<K>;
+      // deepFill ignore volontairement les champs système Sanity (_id/_type/_rev…) ;
+      // _updatedAt/_createdAt sont utiles (dateModified/datePublished JSON-LD) → repassés explicitement.
+      filled._updatedAt = doc._updatedAt;
+      filled._createdAt = doc._createdAt;
+      return filled;
     } catch (err) {
       console.warn(`[sanity] fetch ${page}/${lang} échoué → fallback dico`, err);
       return local;

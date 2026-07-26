@@ -21,6 +21,8 @@ const t = await getPageContent('legal', lang);
   activePage=""
   title={t.meta.title}
   description={t.meta.description}
+  updatedAt={t._updatedAt}
+  createdAt={t._createdAt}
 >
   <div class="page-header container">
     <span class="t-label">{t.label}</span>

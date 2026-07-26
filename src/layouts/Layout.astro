@@ -21,6 +21,9 @@ interface Props {
   noFooter?: boolean;
   /** Image de partage social (chemin absolu sous /). 1200×630 recommandé. */
   image?: string;
+  /** _updatedAt/_createdAt Sanity de la page (JSON-LD WebPage.dateModified/datePublished). */
+  updatedAt?: string;
+  createdAt?: string;
 }
 
 // Langue dérivée de l'URL (/en/... → 'en', sinon 'fr').
@@ -36,6 +39,8 @@ const {
   darkNav = false,
   noFooter = false,
   image = '/og-image.jpg',
+  updatedAt,
+  createdAt,
 } = Astro.props;
 
 // URL canonique de la page courante, dérivée de `site` (astro.config.mjs).
@@ -155,6 +160,21 @@ if (activePage !== 'home' && navLinks[activePage]) {
     ],
   } as any);
 }
+
+// Entité WebPage : porte dateModified/datePublished (signal de fraîcheur GEO/SEO), absent
+// des autres nœuds du graphe. updatedAt/createdAt viennent de _updatedAt/_createdAt Sanity
+// (voir lib/sanity/content.ts) ; omis en fallback dico pur (pas de date fiable dans ce cas).
+structuredData['@graph'].push({
+  '@type': 'WebPage',
+  '@id': `${canonical}#webpage`,
+  url: canonical,
+  name: title,
+  description,
+  inLanguage: HTML_LANG[lang],
+  isPartOf: { '@id': `${base}/#website` },
+  ...(updatedAt ? { dateModified: updatedAt } : {}),
+  ...(createdAt ? { datePublished: createdAt } : {}),
+} as any);
 ---
 
 <!doctype html>
