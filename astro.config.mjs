@@ -17,6 +17,75 @@ const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
 // Sinon, le site build en fallback sur les dicos src/i18n/*.ts (rien ne casse).
 const sanityConfigured = Boolean(PUBLIC_SANITY_PROJECT_ID);
 
+// `lastmod` du sitemap = date de dernière modification RÉELLE de la page dans Sanity
+// (`_updatedAt`), pas la date de build. Google n'utilise `lastmod` que s'il le juge
+// « constamment et vérifiablement exact » : mettre la date du build sur les 18 URL à
+// chaque déploiement fait déclarer que tout le site a changé alors que rien n'a bougé,
+// et c'est exactement le motif pour lequel le signal finit ignoré. Même valeur que le
+// `dateModified` du JSON-LD (Layout.astro), donc les deux signaux concordent.
+/** @type {Record<string, string>} */
+const TYPE_BY_PATH = {
+  homePage: '',
+  soinsPage: '/soins',
+  yogaPage: '/yoga',
+  breathworkPage: '/breathwork',
+  pilatesPage: '/pilates',
+  aboutPage: '/about',
+  contactPage: '/contact',
+  legalPage: '/mentions-legales',
+  prestationsPage: '/tarifs',
+};
+
+const SITE_URL = 'https://daphnelachavanne.com';
+
+/**
+ * URL absolue d'un document (type + langue) → même forme que les items du sitemap.
+ * @param {string} type
+ * @param {string} language
+ * @returns {string | null}
+ */
+function urlForDoc(type, language) {
+  const path = TYPE_BY_PATH[type];
+  if (path === undefined) return null;
+  return `${SITE_URL}${language === 'en' ? '/en' : ''}${path}`;
+}
+
+/**
+ * url → _updatedAt, construit une seule fois. Map vide si Sanity n'est pas joignable.
+ * @type {Promise<Map<string, string>> | undefined}
+ */
+let lastmodMap;
+
+/** @returns {Promise<Map<string, string>>} */
+function getLastmodMap() {
+  if (lastmodMap) return lastmodMap;
+  lastmodMap = (async () => {
+    /** @type {Map<string, string>} */
+    const map = new Map();
+    if (!sanityConfigured) return map;
+    const query = `*[_type in ${JSON.stringify(Object.keys(TYPE_BY_PATH))}]{_type, language, _updatedAt}`;
+    const dataset = PUBLIC_SANITY_DATASET || 'production';
+    const endpoint =
+      `https://${PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v2026-03-01/data/query/${dataset}` +
+      `?query=${encodeURIComponent(query)}`;
+    try {
+      const res = await fetch(endpoint);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const { result = [] } = await res.json();
+      for (const doc of result) {
+        const url = urlForDoc(doc._type, doc.language);
+        if (url && doc._updatedAt) map.set(url, doc._updatedAt);
+      }
+    } catch (err) {
+      // Pas de date plutôt qu'une fausse : un `lastmod` absent est neutre, un `lastmod`
+      // inventé décrédibilise le signal pour tout le sitemap.
+      console.warn('[sitemap] _updatedAt Sanity indisponible → sitemap sans lastmod', err);
+    }
+    return map;
+  })();
+  return lastmodMap;
+}
+
 const integrations = [
   sitemap({
     // Déclare les correspondances de langues → génère les <xhtml:link hreflang> par URL.
@@ -26,9 +95,11 @@ const integrations = [
     },
     // Le Studio n'a pas à figurer dans le sitemap.
     filter: (page) => !page.includes('/admin'),
-    // Signal de fraîcheur (valorisé par les crawlers IA) : date de build par URL.
-    serialize(item) {
-      item.lastmod = new Date().toISOString();
+    async serialize(item) {
+      const map = await getLastmodMap();
+      // `build.format: 'file'` → les URL arrivent sans slash final, sauf la racine.
+      const lastmod = map.get(item.url.replace(/\/$/, ''));
+      if (lastmod) item.lastmod = lastmod;
       return item;
     },
   }),
