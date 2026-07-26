@@ -159,9 +159,9 @@ export default defineType({
           description:
             'Lien externe (https://…, ouvre un nouvel onglet) ou interne (/tarifs). ' +
             'Valeur spéciale #newsletter : le bouton ouvre la fenêtre d’inscription à la newsletter.',
-          type: 'url',
-          // Accepte les URLs classiques + la valeur spéciale #newsletter (sinon la validation
-          // d'URI rejetterait un fragment seul → impossible à saisir dans le Studio).
+          // Type `string` (et non `url`) : le type `url` applique sa propre validation d'URL
+          // qui rejette un fragment seul comme #newsletter. On valide donc nous-mêmes ci-dessous.
+          type: 'string',
           validation: (Rule) =>
             Rule.custom((value) => {
               if (!value || value === '#newsletter') return true;
