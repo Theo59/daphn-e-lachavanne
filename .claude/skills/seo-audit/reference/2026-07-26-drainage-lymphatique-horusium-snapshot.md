@@ -1,9 +1,12 @@
 # Audit Horusium — « Drainage lymphatique » — 26/07/2026
 
-Snapshot figé au moment de l'audit (réf. `HOR-E94FC`, https://www.horusium.com/audits/HOR-E94FC).
-**Ces chiffres se périment vite** — dès qu'une page cible change (et on en a changé plusieurs le
-26/07), il faut relancer l'audit (« Recalculer mon score ») pour des données à jour. Gardé ici comme
-exemple concret de méthodologie et comme base de comparaison avant/après.
+Snapshot figé d'un audit Horusium payant (réf. `HOR-E94FC`, https://www.horusium.com/audits/HOR-E94FC),
+gardé ici comme **vérité de référence** pour calibrer la méthode DIY décrite dans `../SKILL.md` (ex. :
+`node scripts/page-metrics.mjs .../soins --keyword "..."` a été validé en comparant sa sortie à ces
+chiffres). **Ces chiffres se périment vite** — dès qu'une page cible change (et on en a changé
+plusieurs le 26/07), ils ne reflètent plus l'état réel. Ne pas les recopier comme s'ils étaient à
+jour ; relancer les scripts du skill (gratuit) plutôt qu'un nouvel audit Horusium (payant), sauf
+besoin ponctuel de comparer les deux méthodes.
 
 ## Configuration de l'audit
 
