@@ -1,27 +1,35 @@
 ---
-name: seo-audit
-description: Run a full competitive SEO audit (score, competitor gap analysis, missing topics, exact-keyword/title/H1 checks, semantic terms, structure, speed, indexability) for any page on daphnelachavanne.com without needing the paid Horusium tool — using WebSearch/WebFetch for competitor research and the bundled scripts for deterministic checks. Use when the user asks for an SEO audit, wants to check a page's SEO score, mentions competitor keyword research, or asks to redo/verify a Horusium-style audit.
+name: seo-geo-audit
+description: Run a full competitive SEO audit (score, competitor gap analysis, missing topics, exact-keyword/title/H1 checks, semantic terms, structure, speed, indexability) AND a GEO audit (AI-search citation readiness — structured data, credentials/E-E-A-T signals, AI bot access, answer-first content, freshness) for any page on daphnelachavanne.com, without needing paid tools like Horusium or Geoptie — using WebSearch/WebFetch for competitor research and the bundled scripts for deterministic checks. Use when the user asks for an SEO or GEO audit, wants to check a page's SEO/GEO score, mentions competitor keyword research or AI-search visibility, or asks to redo/verify a Horusium- or Geoptie-style audit.
 ---
 
-# SEO audit — DIY (no paid tool required)
+# SEO + GEO audit — DIY (no paid tool required)
 
-Full point-by-point checklist, with the DIY method for each: **[CHECKLIST.md](CHECKLIST.md)**.
-Historical ground-truth snapshot used to calibrate this method: `reference/2026-07-26-drainage-lymphatique-horusium-snapshot.md`.
+Two disciplines, two checklists — read the one that matches the request (or both, they overlap on
+content depth):
+- **[SEO-CHECKLIST.md](SEO-CHECKLIST.md)** — classic Google ranking (13 points, calibrated against a
+  real Horusium audit).
+- **[GEO-CHECKLIST.md](GEO-CHECKLIST.md)** — AI-search citation readiness (6 points, calibrated
+  against a real Geoptie audit).
 
-## Quick start — full audit workflow
+Historical ground-truth snapshots (dated, for calibration — not current data):
+`reference/2026-07-26-drainage-lymphatique-horusium-snapshot.md` (SEO),
+`reference/2026-07-26-soins-geoptie-snapshot.md` (GEO).
+
+## Quick start — SEO audit workflow
 
 1. **Discover competitors**: `WebSearch("<mot-clé exact>")`. Keep the 5-10 genuinely relevant
    organic results (drop directories/socials/off-topic).
 2. **Measure our page and every competitor with the same yardstick**:
    ```
-   node .claude/skills/seo-audit/scripts/page-metrics.mjs <url> --keyword "<mot-clé>"
+   node .claude/skills/seo-geo-audit/scripts/page-metrics.mjs <url> --keyword "<mot-clé>"
    ```
    Run once per URL (ours + each competitor). Compare titleLength/metaDescriptionLength/h1/
    bodyWordCount/keyword density across the set — the competitor numbers ARE the "suggested range",
    there's no fixed universal target.
 3. **Term/topic gap**:
    ```
-   node .claude/skills/seo-audit/scripts/term-gap.mjs --ours <url> --competitors <url1,url2,url3>
+   node .claude/skills/seo-geo-audit/scripts/term-gap.mjs --ours <url> --competitors <url1,url2,url3>
    ```
    Then `WebFetch` each competitor with a prompt like "list every distinct subtopic this page covers
    about X" to get the qualitative "sujets manquants" equivalent — reading beats pure term frequency
@@ -29,10 +37,32 @@ Historical ground-truth snapshot used to calibrate this method: `reference/2026-
 4. **Internal linking**: grep this repo's `src/i18n/*.ts` and/or query Sanity (GROQ) for existing
    mentions of the target keyword/practice on OTHER pages that aren't yet links to the target page.
 5. **Backlinks**: our own site only, via Google Search Console → Links. No free reliable source for
-   competitor backlink counts (see CHECKLIST.md §8) — don't fabricate a number.
+   competitor backlink counts (see SEO-CHECKLIST.md §8) — don't fabricate a number.
 6. **Synthesize**: sort findings into technical (safe, fast — title/H1/meta length, exact-keyword
    placement) vs content depth (missing topics, word count — filter through the content policy
    below) vs internal linking. Don't compute a fake 0-100 score; give a prioritized punch list.
+
+## Quick start — GEO audit workflow
+
+1. **Structured data reality check**: `curl <url> -s | grep -o '<script type="application/ld+json"[^>]*>.*'`
+   (or write a small parse step) — read what JSON-LD is ACTUALLY on the page before trusting any
+   tool's "missing schema" claim. This project already emits `LocalBusiness`/`Person`/`WebSite`/
+   `Service`/`FAQPage`/`BreadcrumbList` (see `src/layouts/Layout.astro` + `src/lib/schema.ts`) — a
+   "missing org signals" finding is very likely a false positive, verify before acting.
+2. **Credential depth**: check each `hasCredential` entry for a `recognizedBy` (issuing body) — name
+   + date alone reads as low-authority to an AI-search crawler even though it's not literally absent.
+3. **AI bot access**: check `public/robots.txt` allows (or doesn't broadly disallow) the known AI
+   crawler user-agents — see GEO-CHECKLIST.md §2 for the list.
+4. **Core Web Vitals**: PageSpeed Insights API (free) for real LCP/FID/CLS numbers, or
+   `page-metrics.mjs` for an approximate TTFB/load time.
+5. **Content checks**: answer-first opening paragraph, FAQ schema present, `dateModified` present,
+   competitor topic coverage — see GEO-CHECKLIST.md §3-6.
+6. Every GEO finding gets the same skepticism as an SEO one — cross-check against the live page
+   before writing a fix (see `reference/2026-07-26-soins-geoptie-snapshot.md` for a worked example
+   of a real false positive caught this way).
+
+## Both workflows end the same way
+
 7. Ship fixes the way this project always has: edit content in **Sanity directly** (immediate live
    effect via the publish webhook) **and** mirror the same text in the matching `src/i18n/*.ts` dico
    for fallback parity — every content fix this session touched both, on a branch + PR (never main).
