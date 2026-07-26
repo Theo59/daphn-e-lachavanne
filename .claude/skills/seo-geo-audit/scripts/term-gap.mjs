@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Term frequency gap — DIY approximation of Horusium's "Termes à utiliser".
- * Crude 1-3-gram frequency comparison, NOT semantic/lemmatized like Horusium's.
+ * Term frequency gap — crude 1-3-gram frequency comparison between our page
+ * and N competitor pages, NOT semantic/lemmatized.
  * Good for spotting obvious high-frequency terms competitors use that we don't;
  * not a substitute for actually reading the competitor pages for meaning/context.
  *

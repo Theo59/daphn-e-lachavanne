@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * SEO page metrics — DIY replacement for Horusium's "Structure de page" /
- * "Mots-clés exacts" / "Longueur du titre et de la meta description" checks.
+ * SEO page metrics — structure, title/meta length, exact-keyword density,
+ * speed, indexability signals, for any URL.
  * Usage: node page-metrics.mjs <url> [--keyword "exact phrase"]
  */
 import { JSDOM } from 'jsdom';
@@ -58,7 +58,7 @@ const h3 = [...doc.querySelectorAll('h3')].map(text);
 const h2h3WordCount = [...h2, ...h3].join(' ').split(/\s+/).filter(Boolean).length;
 
 // Body word count: strip nav/header/footer/script/style to approximate "main content"
-// the way Horusium likely does (avoids counting nav links repeated on every page).
+// (avoids counting nav links repeated on every page).
 const clone = doc.body.cloneNode(true);
 clone.querySelectorAll('script, style, nav, header, footer, noscript').forEach((n) => n.remove());
 const bodyText = clone.textContent.replace(/\s+/g, ' ').trim();

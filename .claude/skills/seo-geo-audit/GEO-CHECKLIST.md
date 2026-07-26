@@ -1,10 +1,9 @@
 # Checklist GEO — préparation aux moteurs de recherche IA (ChatGPT, Perplexity, Claude, Gemini, Google AI)
 
 GEO (Generative Engine Optimization) ≠ SEO classique : l'objectif n'est plus de ranker dans une SERP
-à 10 liens bleus, mais d'être **cité/synthétisé** par un modèle qui répond directement. Reconstituée
-en observant un audit réel Geoptie (voir `reference/2026-07-26-soins-geoptie-snapshot.md`), complétée
-par les bonnes pratiques GEO connues (structured data, E-E-A-T, accès bots). Pour chaque point : ce
-qu'il mesure et comment le vérifier/corriger soi-même.
+à 10 liens bleus, mais d'être **cité/synthétisé** par un modèle qui répond directement. Basée sur les
+bonnes pratiques GEO connues (structured data, E-E-A-T, accès bots). Pour chaque point : ce qu'il
+mesure et comment le vérifier/corriger soi-même.
 
 ## 1. Autorité de citation (source credibility, citation format, brand authority)
 
@@ -57,9 +56,9 @@ d'entités cohérents et non ambigus (toujours "Daphné Lachavanne", jamais un p
 
 ## 5. Fraîcheur du contenu (content freshness)
 
-**Mesure** : des signaux indiquent-ils que le contenu est à jour ? **DIY** : `dateModified` en
-JSON-LD (absent actuellement, voir reference/), date visible "mis à jour le…" sur la page si
-pertinent, `lastmod` du sitemap (déjà présent, généré automatiquement par `@astrojs/sitemap`).
+**Mesure** : des signaux indiquent-ils que le contenu est à jour ? **DIY** : vérifier la présence de
+`dateModified`/`datePublished` en JSON-LD, une date visible "mis à jour le…" sur la page si pertinent,
+et le `lastmod` du sitemap (déjà présent, généré automatiquement par `@astrojs/sitemap`).
 
 ## 6. Contexte concurrentiel (competitive context)
 
@@ -70,9 +69,9 @@ citation IA, les deux dimensions se recoupent largement.
 
 ## Piège général : vérifier avant d'agir
 
-Un audit GEO gratuit/automatisé peut produire des **faux positifs** — ex. Geoptie a signalé
-« missing org signals » alors qu'un schema `LocalBusiness` complet existait bien sur la page (son
-crawler ou son résumé IA a eu un angle mort). Avant de corriger quoi que ce soit : `curl` la page en
-direct, extraire le JSON-LD réel, et confirmer que le problème existe vraiment. Même réflexe que pour
-les alertes Search Console (voir mémoire projet, épisode "page non indexée" qui était une fausse
-alerte basée sur un cache Google périmé) et le mauvais ciblage de page par Horusium.
+Avant de conclure qu'un signal GEO manque (schema, credential, fraîcheur…) : `curl` la page en direct,
+extraire le JSON-LD réel, et confirmer que le problème existe vraiment plutôt que de le supposer.
+Un schema qui semble absent en théorie peut très bien être déjà présent dans le code — vérifier le
+rendu réel avant d'écrire un correctif. Même réflexe que pour toute alerte technique (Search Console,
+robots.txt…) : une page qui semble avoir un problème peut simplement refléter une donnée mise en
+cache ou périmée ailleurs — toujours vérifier en direct avant d'agir.
