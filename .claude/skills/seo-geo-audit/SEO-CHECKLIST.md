@@ -46,8 +46,11 @@ volontairement — voir politique de contenu).
 
 ## 6. Empreinte de mots-clés des concurrents (au-delà de la page auditée)
 
-**Mesure** : sur quels autres mots-clés/pages un concurrent est visible (nécessite un outil payant
-type Ahrefs/Semrush pour une liste exhaustive — non disponible ici). **DIY approximatif** :
+**Mesure** : sur quels autres mots-clés/pages un concurrent est visible.
+**Si un accès Ahrefs/Semrush est disponible** (l'utilisateur a un compte Ahrefs payant, cf. §8) :
+Site Explorer → coller le domaine concurrent → *Organic keywords* / *Top pages* donne la liste
+exhaustive, directement. Le moyen le plus fiable, à privilégier si l'accès est ouvert dans la session.
+**DIY approximatif sinon** :
 - `WebSearch` plusieurs variantes/longue-traîne du mot-clé principal, noter quels domaines reviennent.
 - `WebSearch("site:domaine.fr <thème>")` pour lister les pages d'un concurrent sur un sujet.
 - Inspecter `https://domaine.fr/sitemap.xml` (souvent public) pour voir l'inventaire de pages et en
@@ -64,11 +67,22 @@ dans SKILL.md.
 
 ## 8. Netlinking (backlinks)
 
-**Mesure** : domaines référents pointant vers la page, comparé aux concurrents. **DIY — limite
-honnête** : aucune donnée fiable et gratuite sur les backlinks d'un concurrent (nécessite Ahrefs/
-Semrush/Majestic, payants). Pour **notre propre site** uniquement : Google Search Console →
-section *Links* (liens externes) donne la liste réelle des domaines référents — gratuit, fiable,
-mais ne couvre que notre site, pas les concurrents.
+**Mesure** : domaines référents pointant vers la page, comparé aux concurrents.
+**Si un accès Ahrefs (ou Semrush/Majestic) est ouvert dans la session** : Site Explorer → domaine
+(nous ou un concurrent) → *Backlink profile* → *Referring domains*. Fonctionne pour n'importe quel
+domaine, pas seulement le nôtre — comble le trou qui existait sans outil payant.
+**Deux pièges vérifiés concrètement le 26/07** (voir `reference/2026-07-26-ahrefs-snapshot.md`) :
+1. **Filtrer les domaines marqués `SPAM`** avant de compter un total — un domaine peut afficher
+   « 325 referring domains » alors qu'ils sont TOUS des réseaux de liens automatisés sans lien
+   éditorial réel. Le total brut n'est pas une mesure d'autorité utilisable tel quel.
+2. **Vérifier la fraîcheur du crawl** avant de comparer un DR/Domain Rating entre deux domaines — un
+   DR à 0 avec un statut « Site en construction » sur un site qui tourne parfaitement (vérifié via
+   `curl`) signifie juste qu'Ahrefs n'a pas recrawlé récemment, pas que le site a un vrai problème.
+   Toujours croiser avec un `curl` direct du site avant de conclure quoi que ce soit.
+
+Sans accès payant, pour **notre propre site** uniquement : Google Search Console → section *Links*
+(liens externes) donne la liste réelle des domaines référents — gratuit, fiable, mais ne couvre que
+notre site, pas les concurrents.
 
 ## 9. Structure de page (H1, nombre de mots, headings)
 

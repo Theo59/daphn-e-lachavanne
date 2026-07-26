@@ -1,9 +1,9 @@
 ---
 name: seo-geo-audit
-description: Run a full competitive SEO audit (score, competitor gap analysis, missing topics, exact-keyword/title/H1 checks, semantic terms, structure, speed, indexability) AND a GEO audit (AI-search citation readiness — structured data, credentials/E-E-A-T signals, AI bot access, answer-first content, freshness) for any page on daphnelachavanne.com, without needing paid tools like Horusium or Geoptie — using WebSearch/WebFetch for competitor research and the bundled scripts for deterministic checks. Use when the user asks for an SEO or GEO audit, wants to check a page's SEO/GEO score, mentions competitor keyword research or AI-search visibility, or asks to redo/verify a Horusium- or Geoptie-style audit.
+description: Run a full competitive SEO audit (score, competitor gap analysis, missing topics, exact-keyword/title/H1 checks, semantic terms, structure, speed, indexability, backlinks) AND a GEO audit (AI-search citation readiness — structured data, credentials/E-E-A-T signals, AI bot access, answer-first content, freshness) for any page on daphnelachavanne.com — free via WebSearch/WebFetch/scripts, or using Ahrefs/Horusium/Geoptie directly when the user has one open in their browser session. Use when the user asks for an SEO or GEO audit, wants to check a page's SEO/GEO score, mentions competitor keyword research, backlinks, or AI-search visibility, or asks to redo/verify a Horusium-, Geoptie-, or Ahrefs-style audit.
 ---
 
-# SEO + GEO audit — DIY (no paid tool required)
+# SEO + GEO audit
 
 Two disciplines, two checklists — read the one that matches the request (or both, they overlap on
 content depth):
@@ -12,9 +12,18 @@ content depth):
 - **[GEO-CHECKLIST.md](GEO-CHECKLIST.md)** — AI-search citation readiness (6 points, calibrated
   against a real Geoptie audit).
 
+Every point has a free DIY method (WebSearch/WebFetch/bundled scripts). If the user has a paid tool
+open in their browser session (Horusium, Geoptie, Ahrefs, Semrush...) during the session, use it
+directly via `claude-in-chrome` instead — it's already validated to agree with the DIY method where
+they overlap (see reference snapshots), and gives data the DIY method can't (real backlink indexes,
+real Core Web Vitals field data). Don't assume a paid tool is available by default; check what's
+open in the current tab group first.
+
 Historical ground-truth snapshots (dated, for calibration — not current data):
-`reference/2026-07-26-drainage-lymphatique-horusium-snapshot.md` (SEO),
-`reference/2026-07-26-soins-geoptie-snapshot.md` (GEO).
+`reference/2026-07-26-drainage-lymphatique-horusium-snapshot.md` (SEO, Horusium),
+`reference/2026-07-26-soins-geoptie-snapshot.md` (GEO, Geoptie),
+`reference/2026-07-26-ahrefs-snapshot.md` (backlinks, Ahrefs — includes a real stale-crawl false
+alarm and a real 100%-spam backlink profile finding, both worked examples of verifying before acting).
 
 ## Quick start — SEO audit workflow
 
@@ -36,8 +45,12 @@ Historical ground-truth snapshots (dated, for calibration — not current data):
    for judging what's actually missing.
 4. **Internal linking**: grep this repo's `src/i18n/*.ts` and/or query Sanity (GROQ) for existing
    mentions of the target keyword/practice on OTHER pages that aren't yet links to the target page.
-5. **Backlinks**: our own site only, via Google Search Console → Links. No free reliable source for
-   competitor backlink counts (see SEO-CHECKLIST.md §8) — don't fabricate a number.
+5. **Backlinks**: if Ahrefs (or similar) is open in the session, use it directly for both our site
+   and competitors — but **filter out anything flagged `SPAM`** and **sanity-check the crawl date**
+   before trusting a Domain Rating or backlink count (see SEO-CHECKLIST.md §8 — this project's own
+   domain showed a stale "Site en construction" Ahrefs snapshot with a 100%-spam backlink profile on
+   26/07, neither of which reflected reality). Free fallback: our own site only, via Google Search
+   Console → Links. No free reliable source for competitor backlinks.
 6. **Synthesize**: sort findings into technical (safe, fast — title/H1/meta length, exact-keyword
    placement) vs content depth (missing topics, word count — filter through the content policy
    below) vs internal linking. Don't compute a fake 0-100 score; give a prioritized punch list.
@@ -96,5 +109,11 @@ commit touching `prose.text` for the exact patch shape. The i18n dico fallback i
 - No embeddings tool → semantic similarity is qualitative (LLM reading), not a reproducible %.
 - `term-gap.mjs` is raw 1-3-gram frequency, no lemmatization/stemming, no relevance scoring — treat
   it as a lead generator, not a verdict.
-- No backlink index for competitors — only our own site via GSC.
+- No free backlink index for competitors — only our own site via GSC, unless a paid tool (Ahrefs...)
+  is open in the session. Even then: filter `SPAM`-flagged domains and check the crawl date (see
+  `reference/2026-07-26-ahrefs-snapshot.md`) before trusting a number.
 - `page-metrics.mjs` timing is a single script-side fetch, not a real-browser Lighthouse run.
+- Any tool-reported metric (score, DR, "missing X") can be stale, mis-targeted, or a false positive —
+  three confirmed real examples this session (Horusium audited the wrong page, Geoptie flagged schema
+  that existed, Ahrefs showed a stale crawl). Cross-check against the live page/code before acting,
+  every time.
