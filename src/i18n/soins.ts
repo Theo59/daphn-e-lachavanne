@@ -10,7 +10,7 @@
 
 const fr = {
   meta: {
-    title: 'Drainage lymphatique à Paris 7e — Méthode Renata França certifiée',
+    title: 'Drainage lymphatique à Paris 7e, méthode Renata França certifiée',
     description:
       'Drainage lymphatique méthode Renata França à Paris 7e (75007). Soin Signature, Miracle Face, Combo Détox dès 95 €. Cabinet rive gauche, sur rendez-vous.',
   },
@@ -80,9 +80,9 @@ const fr = {
     label: 'Le drainage lymphatique à Paris 7e',
     text: `Au 3 Rue Valadon, sur la rive gauche de Paris, le drainage lymphatique méthode Renata França se pratique dans un cabinet confidentiel du 7e arrondissement, sur rendez-vous uniquement. Certifiée depuis 2025, Daphné Lachavanne travaille par mouvements rythmiques et pressions précises qui relancent la circulation, désengorgent les tissus et laissent au corps une vraie sensation de légèreté.
 
-Chaque séance débute par un temps d’écoute, pour comprendre où en est le corps ce jour-là. Vient ensuite l’installation, allongée, dans une lumière tamisée et un silence propice au lâcher-prise. Les mouvements, lents et doux, suivent le sens de la circulation de la lymphe, le long des vaisseaux lymphatiques, des extrémités vers les ganglions lymphatiques : une pression légère, jamais un massage profond, pour stimuler le système lymphatique sans jamais forcer. Les zones travaillées varient selon le soin choisi — jambes et ventre pour le Drainage Lymphatique, visage et crâne pour le Miracle Face — mais le geste reste le même : rythmique, précis, entièrement manuel.
+Chaque séance débute par un temps d’écoute, pour comprendre où en est le corps ce jour-là. Vient ensuite l’installation, allongée, dans une lumière tamisée et un silence propice au lâcher-prise. Les mouvements, lents et doux, suivent le sens de la circulation de la lymphe, le long des vaisseaux lymphatiques, des extrémités vers les ganglions lymphatiques : une pression légère, jamais un massage profond, pour stimuler le système lymphatique sans jamais forcer. Les zones travaillées varient selon le soin choisi : jambes et ventre pour le Drainage Lymphatique, visage et crâne pour le Miracle Face. Le geste, lui, reste le même : rythmique, précis, entièrement manuel.
 
-Les bienfaits se ressentent dès la première séance. Le drainage lymphatique soulage la sensation de jambes lourdes et de gonflement, stimule la circulation de la lymphe et favorise l’élimination des toxines, réduit la rétention d’eau et redonne au corps une vraie sensation de légèreté. Sur le visage, il détend les traits, atténue poches et cernes, et ravive l’éclat du teint. Un soin de bien-être, sans visée médicale, pensé pour accompagner le corps au quotidien — pas pour se substituer à un avis médical en cas de doute.
+Les bienfaits se ressentent dès la première séance. Le drainage lymphatique soulage la sensation de jambes lourdes et de gonflement, stimule la circulation de la lymphe et favorise l’élimination des toxines, réduit la rétention d’eau et redonne au corps une vraie sensation de légèreté. Sur le visage, il détend les traits, atténue poches et cernes, et ravive l’éclat du teint. Un soin de bien-être, sans visée médicale, pensé pour accompagner le corps au quotidien, pas pour se substituer à un avis médical en cas de doute.
 
 Le Drainage Lymphatique (1h, 160 €) accompagne les jambes lourdes comme les impressions de gonflement : il soulage, affine la silhouette et apaise. Sur le ventre, ce massage drainant aide à dégonfler et à retrouver de la légèreté.
 
@@ -114,7 +114,7 @@ Pour celles et ceux qui inscrivent le soin dans la durée, le Soin Signature se 
 
 const en = {
   meta: {
-    title: 'Lymphatic Drainage in Paris 7th — Certified Renata França Method',
+    title: 'Lymphatic Drainage in Paris 7th, Certified Renata França Method',
     description:
       'Renata França lymphatic drainage in Paris 7th (75007). Signature Treatment, Miracle Face, Detox Combo from €95. Left Bank studio, by appointment.',
   },
@@ -182,9 +182,9 @@ const en = {
     label: 'Lymphatic drainage in Paris 7th',
     text: `At 3 Rue Valadon, on the Left Bank of Paris, Renata França lymphatic drainage is practised in a private studio in the 7th arrondissement, by appointment only. Certified since 2025, Daphné Lachavanne works through rhythmic movements and precise pressure that revive circulation, decongest the tissues and leave the body with a genuine sense of lightness.
 
-Every session begins with a moment of listening, to understand where the body stands that day. Then comes the settling in — lying down, in soft light and a silence that invites you to let go. The movements are slow and gentle, following the direction of lymphatic flow, along the lymphatic vessels, from the extremities towards the lymph nodes: a light pressure, never a deep massage, to stimulate the lymphatic system without ever forcing it. The areas worked vary with the treatment chosen — legs and stomach for the Lymphatic Drainage, face and scalp for the Miracle Face — but the gesture stays the same: rhythmic, precise, entirely manual.
+Every session begins with a moment of listening, to understand where the body stands that day. Then comes the settling in: lying down, in soft light and a silence that invites you to let go. The movements are slow and gentle, following the direction of lymphatic flow, along the lymphatic vessels, from the extremities towards the lymph nodes: a light pressure, never a deep massage, to stimulate the lymphatic system without ever forcing it. The areas worked vary with the treatment chosen: legs and stomach for the Lymphatic Drainage, face and scalp for the Miracle Face. The gesture itself stays the same: rhythmic, precise, entirely manual.
 
-The benefits are felt from the very first session. Lymphatic drainage eases the sensation of heavy, swollen legs, stimulates lymph circulation and supports the elimination of toxins, reduces water retention and leaves the body with a genuine sense of lightness. On the face, it relaxes the features, softens puffiness and dark circles, and revives the complexion’s radiance. A wellbeing treatment, with no medical purpose — designed to support the body day to day, not to replace medical advice when in doubt.
+The benefits are felt from the very first session. Lymphatic drainage eases the sensation of heavy, swollen legs, stimulates lymph circulation and supports the elimination of toxins, reduces water retention and leaves the body with a genuine sense of lightness. On the face, it relaxes the features, softens puffiness and dark circles, and revives the complexion’s radiance. A wellbeing treatment, with no medical purpose, designed to support the body day to day, not to replace medical advice when in doubt.
 
 The Lymphatic Drainage (1 hr, €160) eases heavy legs and feelings of swelling: it relieves, refines the silhouette and soothes. On the stomach, this draining massage helps reduce bloating and regain lightness.
 
