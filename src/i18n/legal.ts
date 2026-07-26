@@ -7,7 +7,7 @@
  * Certaines valeurs contiennent du HTML inline (lien <a>) ; elles sont rendues
  * via `set:html` dans la vue (contenu de confiance, édité ici, suffixe « Html »).
  *
- * Le placeholder SIRET reste à compléter par l'éditrice (identique FR/EN).
+ * SIRET et n° de TVA vérifiés (registre officiel + confirmation cliente), identiques FR/EN.
  */
 
 const fr = {
@@ -28,8 +28,8 @@ const fr = {
         { label: 'Responsable', value: 'Daphné Lachavanne, praticienne bien-être' },
         { label: 'Adresse', value: '3 rue Valadon, 75007 Paris, France' },
         { label: 'Contact', value: 'hello@daphnelachavanne.com' },
-        { label: 'SIRET', value: '[à compléter par l’éditrice]' },
-        { label: 'TVA', value: 'TVA non applicable, art. 293 B du CGI (à confirmer)' },
+        { label: 'SIRET', value: '944 524 974 00028' },
+        { label: 'TVA', value: 'FR70944524974' },
       ],
     },
     {
@@ -92,8 +92,8 @@ const en = {
         { label: 'Responsible', value: 'Daphné Lachavanne, wellbeing practitioner' },
         { label: 'Address', value: '3 rue Valadon, 75007 Paris, France' },
         { label: 'Contact', value: 'hello@daphnelachavanne.com' },
-        { label: 'SIRET', value: '[to be completed by the publisher]' },
-        { label: 'VAT', value: 'VAT not applicable, art. 293 B of the French Tax Code (to be confirmed)' },
+        { label: 'SIRET', value: '944 524 974 00028' },
+        { label: 'VAT', value: 'FR70944524974' },
       ],
     },
     {
