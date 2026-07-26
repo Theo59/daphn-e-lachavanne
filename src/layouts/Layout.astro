@@ -8,7 +8,7 @@ import Footer from '../components/Footer.astro';
 import NewsletterPopup from '../components/NewsletterPopup.astro';
 import AnnouncementBar from '../components/AnnouncementBar.astro';
 import PageDecor from '../components/PageDecor.astro';
-import { getSettings, getBrandColors } from '../lib/sanity/content';
+import { getSettings, getBrandColors, getPricing } from '../lib/sanity/content';
 import { OG_LOCALE, HTML_LANG, DEFAULT_LOCALE } from '../i18n/config';
 import { getLangFromUrl, getAlternates } from '../i18n/utils';
 import { urlFor, hasImage } from '../lib/sanity/image';
@@ -31,6 +31,17 @@ const lang = getLangFromUrl(Astro.url);
 const c = await getSettings(lang);
 // Couleurs de marque éditables dans Sanity → surchargent --blue/--orange de :root.
 const brandColors = await getBrandColors();
+
+// `priceRange` calculé depuis la source unique des tarifs, jamais écrit en dur : la
+// valeur figée précédente ('60-780 €') était fausse depuis la refonte des packs, qui
+// montent à 2 590 €. Borne basse = prestation la moins chère à l'unité, borne haute =
+// pack le plus cher. NB : le cercle de souffle (60 €/personne, tarif de groupe) vit
+// dans le dico Breathwork et non dans `pricing` — il n'entre donc pas dans le calcul ;
+// pour l'y inclure, il faudrait l'ajouter au singleton « Tarifs » de Sanity.
+const pricing = await getPricing();
+const unitPrices = [...Object.values(pricing.soins), pricing.movement.hour];
+const packPrices = Object.values(pricing.packages).map((p) => p.price);
+const priceRange = `${Math.min(...unitPrices)}-${Math.max(...unitPrices, ...packPrices)} €`;
 
 const {
   title = c.siteName,
@@ -81,7 +92,7 @@ const structuredData = {
       image: `${base}/og-image.jpg`,
       logo: logoUrl,
       email: 'hello@daphnelachavanne.com',
-      priceRange: '60-780 €',
+      priceRange,
       currenciesAccepted: 'EUR',
       address: {
         '@type': 'PostalAddress',
