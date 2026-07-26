@@ -1135,6 +1135,8 @@ export type SiteSettings = {
     newsletter?: string;
     legal?: string;
     rights?: string;
+    devCredit?: string;
+    devUrl?: string;
   };
   breadcrumbHome?: string;
   faqTitle?: string;
