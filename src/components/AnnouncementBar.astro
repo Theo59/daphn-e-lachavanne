@@ -9,7 +9,8 @@
  * - Fermable (✕) ; mémorisé en sessionStorage → reste fermé pour la session, revient
  *   à la prochaine visite. La clé dépend du contenu → une NOUVELLE annonce réapparaît.
  * - Couleur au choix (bleu profond / orange) via le champ `variant`.
- * - Lien optionnel : externe (https://…) → nouvel onglet ; interne (/tarifs) → même onglet.
+ * - Lien optionnel : externe (https://…) → nouvel onglet ; interne (/tarifs) → même onglet ;
+ *   valeur spéciale `#newsletter` → ouvre la popup d'inscription (bouton, pas de navigation).
  *
  * Le décalage de la nav fixe et du contenu se fait via la variable CSS `--banner-h`
  * (cf. global.css : `body:has(.announce)`), donc aucun saut de mise en page.
@@ -25,7 +26,10 @@ const visible = message.length > 0;
 const variant = a?.variant === 'orange' ? 'orange' : 'blue';
 const linkLabel = String(a?.linkLabel ?? '').trim();
 const linkUrl = String(a?.linkUrl ?? '').trim();
-const hasLink = !!(linkLabel && linkUrl);
+// Valeur spéciale : `#newsletter` → le CTA ouvre la popup d'inscription (déclencheur
+// `data-newsletter-open` capté par NewsletterPopup) au lieu de naviguer.
+const isNewsletter = !!linkLabel && linkUrl.toLowerCase() === '#newsletter';
+const hasLink = !!(linkLabel && linkUrl) && !isNewsletter;
 const external = /^https?:\/\//i.test(linkUrl);
 const closeLabel = String(a?.close ?? 'Fermer');
 const regionLabel = String(a?.label ?? 'Annonce');
@@ -45,6 +49,11 @@ const key = hashKey([message, linkLabel, linkUrl, variant].join('|'));
     <aside class={`announce announce--${variant}`} role="region" aria-label={regionLabel} data-key={key}>
       <p class="announce__msg">
         {message}
+        {isNewsletter && (
+          <button class="announce__link announce__link--action" type="button" data-newsletter-open>
+            {linkLabel}
+          </button>
+        )}
         {hasLink && (
           <a
             class="announce__link"
@@ -129,6 +138,12 @@ const key = hashKey([message, linkLabel, linkUrl, variant].join('|'));
     text-decoration: underline;
     text-underline-offset: 2px;
     white-space: nowrap;
+  }
+  /* Variante bouton (déclencheur newsletter) : mêmes styles visuels que le lien
+     (le reset button de base.css enlève déjà bordure/fond et met la police en inherit). */
+  .announce__link--action {
+    font-size: inherit;
+    padding: 0;
   }
   /* Lien en orange sur le bandeau bleu pour le faire ressortir. */
   .announce--blue .announce__link {
