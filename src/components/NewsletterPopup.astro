@@ -160,7 +160,13 @@ const legalHref = localizePath('/mentions-legales', lang);
     };
 
     document.querySelectorAll('[data-newsletter-open]').forEach((el) =>
-      el.addEventListener('click', (e) => { e.preventDefault(); open(); }),
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        open();
+        // Tracé ici (pas via data-umami-event sur le lien) : sur un <a href>, Umami force la
+        // navigation après l'événement, ce qui refermait la popup en changeant de page.
+        if (typeof umami !== 'undefined') umami.track('newsletter_open');
+      }),
     );
     popup.querySelectorAll('[data-newsletter-close]').forEach((el) => el.addEventListener('click', close));
     document.addEventListener('keydown', (e) => {

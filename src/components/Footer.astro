@@ -37,7 +37,10 @@ const INSTAGRAM = (c as any).social?.instagram || 'https://www.instagram.com/dap
       <span class="footer__col-title">{c.footer.colFollow}</span>
       <div class="footer__links">
         <a href={INSTAGRAM} target="_blank" rel="noopener" data-umami-event="instagram_click">Instagram</a>
-        <a href={localizePath('/contact', lang)} data-newsletter-open data-umami-event="newsletter_open">{c.footer.newsletter}</a>
+        <!-- Pas de data-umami-event ici : sur un <a> avec href, Umami force la navigation vers le href
+             après l'événement (pour que les liens trackés marchent), ce qui rouvrait /contact et faisait
+             disparaître la popup. L'ouverture est tracée manuellement dans NewsletterPopup.astro. -->
+        <a href={localizePath('/contact', lang)} data-newsletter-open>{c.footer.newsletter}</a>
         <a href={PLANITY} target="_blank" rel="noopener" data-umami-event="book_click" data-umami-event-location="footer">Planity</a>
       </div>
     </div>
