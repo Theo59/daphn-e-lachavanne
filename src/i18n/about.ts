@@ -16,7 +16,7 @@ const fr = {
   meta: {
     title: 'À propos | Daphné Lachavanne, bien-être Paris 7e',
     description:
-      'Daphné Lachavanne, praticienne yoga, breathwork et soins certifiée Renata França, vous reçoit à Paris 7e (Omvida). Depuis plus de dix ans au service du bien-être féminin.',
+      'Daphné Lachavanne, praticienne yoga, breathwork et soins certifiée Renata França à Paris 7e. Plus de dix ans au service du bien-être féminin.',
   },
 
   header: {
@@ -89,7 +89,7 @@ const en = {
   meta: {
     title: 'About | Daphné Lachavanne, wellbeing Paris 7th',
     description:
-      'Daphné Lachavanne, yoga, breathwork and Renata França certified practitioner, welcomes you in Paris 7th (Omvida). Over ten years dedicated to feminine wellbeing.',
+      'Daphné Lachavanne, yoga, breathwork and Renata França certified practitioner in Paris 7th. Over ten years dedicated to feminine wellbeing.',
   },
 
   header: {

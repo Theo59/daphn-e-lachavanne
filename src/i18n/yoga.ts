@@ -12,7 +12,7 @@ const fr = {
   meta: {
     title: 'Cours de yoga particulier Paris 7e | Daphné Lachavanne',
     description:
-      'Cours particuliers de yoga (vinyasa, hatha, yin) et pranayama à Paris 7e, rive gauche. 1h à 90 € (130 € en duo), en cabinet privé sur rendez-vous. Réservez en ligne.',
+      'Cours particuliers de yoga (vinyasa, hatha, yin) à Paris 7e, rive gauche. 1h à 90 € (130 € en duo), en cabinet privé sur rendez-vous.',
   },
 
   header: {
