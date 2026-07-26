@@ -55,7 +55,7 @@ const fr = {
 
   prose: {
     label: 'Le yoga en cours particulier à Paris 7e',
-    text: `Le yoga avec Daphné Lachavanne se vit en cours particulier, dans un cabinet privé du 7e arrondissement de Paris, au 3 rue Valadon, sur la rive gauche. Une seule personne, une heure d’attention complète, sans miroir ni comparaison. Formée au yoga lors d’un cursus de 200 heures en Inde en 2017, elle enseigne le vinyasa, le hatha et le yin, et choisit le style selon votre corps, votre niveau et votre énergie du jour.
+    text: `Le yoga avec Daphné Lachavanne se vit en cours particulier, dans un cabinet privé du 7e arrondissement de Paris, au 3 rue Valadon, sur la rive gauche. Une seule personne, une heure d’attention complète, sans miroir ni comparaison. Titulaire d’une certification Yoga Alliance 300 h obtenue à Berlin en 2014, elle enseigne le vinyasa, le hatha et le yin, et choisit le style selon votre corps, votre niveau et votre énergie du jour.
 
 Chaque séance repose sur trois piliers. Le pranayama d’abord : le souffle yogi en trois temps (diaphragmatique, thoracique, claviculaire) qui pose le système nerveux et prépare le mouvement. La posture ensuite : des asanas tenues, ajustées et accompagnées, où l’on cherche la justesse plutôt que la performance. La méditation enfin : quelques minutes assises, en pleine conscience, pour laisser la pratique s’intégrer.
 
@@ -129,7 +129,7 @@ const en = {
 
   prose: {
     label: 'Private yoga lessons in Paris 7th',
-    text: `Yoga with Daphné Lachavanne is experienced in private lessons, in a private studio in the 7th arrondissement of Paris, at 3 rue Valadon, on the Left Bank. One person, one hour of full attention, with no mirror and no comparison. Trained in yoga through a 200-hour course in India in 2017, she teaches vinyasa, hatha and yin, and chooses the style according to your body, your level and your energy of the day.
+    text: `Yoga with Daphné Lachavanne is experienced in private lessons, in a private studio in the 7th arrondissement of Paris, at 3 rue Valadon, on the Left Bank. One person, one hour of full attention, with no mirror and no comparison. Holding a Yoga Alliance 300-hour certification obtained in Berlin in 2014, she teaches vinyasa, hatha and yin, and chooses the style according to your body, your level and your energy of the day.
 
 Each session rests on three pillars. Pranayama first: the yogic breath in three parts (diaphragmatic, thoracic, clavicular) that settles the nervous system and prepares the movement. Then posture: asanas held, adjusted and guided, where we seek precision rather than performance. And finally meditation: a few minutes seated, in mindfulness, to let the practice take root.
 
