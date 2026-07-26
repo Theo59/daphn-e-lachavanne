@@ -82,8 +82,7 @@ export default defineType({
             defineField({ name: 'key', title: 'Clé (signature/drainage/miracleFace/comboDetox)', type: 'string' }),
             defineField({ name: 'name', title: 'Nom', type: 'string' }),
             defineField({ name: 'sub', title: 'Sous-titre', type: 'string' }),
-            defineField({ name: 'price', title: 'Prix', type: 'string' }),
-            defineField({ name: 'text', title: 'Description', type: 'text', rows: 3 }),
+            defineField({ name: 'text', title: 'Description', type: 'text', rows: 3, description: 'Le prix est géré dans « Tarifs (source unique) », pas ici — sauf mention libre en texte (ex. « 260 € pour la 1re séance »).' }),
             defineField({ name: 'icon', title: 'Icône', type: 'image', options: { hotspot: true } }),
           ],
           preview: { select: { title: 'name', subtitle: 'sub' } },
@@ -97,16 +96,15 @@ export default defineType({
     defineField({
       name: 'packages',
       title: 'Forfaits',
+      description: 'Prix et économie sont calculés depuis « Tarifs (source unique) » — pas éditables ici.',
       type: 'array',
       of: [
         defineArrayMember({
           type: 'object',
           fields: [
-            defineField({ name: 'key', title: 'Clé (decouverte/suiviSaison/intensif)', type: 'string' }),
+            defineField({ name: 'key', title: 'Clé (pack3/pack5/pack10)', type: 'string' }),
             defineField({ name: 'name', title: 'Nom', type: 'string' }),
             defineField({ name: 'detail', title: 'Détail', type: 'string' }),
-            defineField({ name: 'price', title: 'Prix', type: 'string' }),
-            defineField({ name: 'save', title: 'Économie', type: 'string' }),
           ],
           preview: { select: { title: 'name', subtitle: 'detail' } },
         }),

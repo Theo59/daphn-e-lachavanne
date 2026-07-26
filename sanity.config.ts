@@ -28,9 +28,10 @@ const TRANSLATED_TYPES = [
   'prestationsPage',
 ];
 
-// Ces types sont des singletons (un doc FR + un doc EN, fixes) : on bloque la
-// création de nouveaux docs et on retire dupliquer/supprimer/dépublier.
-const SINGLETONS = new Set(TRANSLATED_TYPES);
+// Ces types sont des singletons : on bloque la création de nouveaux docs et on
+// retire dupliquer/supprimer/dépublier. `pricing` s'y ajoute mais n'est pas traduit
+// (un seul document, pas de doc FR + doc EN) donc pas dans TRANSLATED_TYPES.
+const SINGLETONS = new Set([...TRANSLATED_TYPES, 'pricing']);
 const LOCKED_ACTIONS = new Set(['duplicate', 'delete', 'unpublish']);
 
 export default defineConfig({

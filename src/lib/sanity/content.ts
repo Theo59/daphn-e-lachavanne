@@ -10,7 +10,8 @@
 import type { Lang } from '../../i18n/config';
 import { DEFAULT_LOCALE } from '../../i18n/config';
 import { sanityClient } from './client';
-import { QUERIES, type PageKey } from './queries';
+import { QUERIES, PRICING_QUERY, type PageKey } from './queries';
+import { PRICING_FALLBACK, type Pricing } from './pricing';
 import type {
   HomePage, SoinsPage, YogaPage, BreathworkPage, PilatesPage,
   AboutPage, ContactPage, LegalPage, PrestationsPage, SiteSettings,
@@ -139,6 +140,53 @@ export function getBrandColors(): Promise<{ blue: string; orange: string }> {
     } catch (err) {
       console.warn('[sanity] fetch couleurs échoué → charte par défaut', err);
       return { ...COLOR_DEFAULTS };
+    }
+  });
+}
+
+const num = (v: unknown, fallback: number): number => (typeof v === 'number' && Number.isFinite(v) ? v : fallback);
+
+/**
+ * Tarifs (source unique, `pricing`) : indépendant de la langue, comme les couleurs.
+ * Fusionne champ par champ avec PRICING_FALLBACK (un prix oublié dans Sanity ne casse
+ * pas les autres).
+ */
+export function getPricing(): Promise<Pricing> {
+  return memo('pricing', async () => {
+    if (!sanityClient) return PRICING_FALLBACK;
+    try {
+      const doc = await sanityClient.fetch(PRICING_QUERY);
+      if (!doc) return PRICING_FALLBACK;
+      return {
+        soins: {
+          signature: num(doc.soins?.signature, PRICING_FALLBACK.soins.signature),
+          signatureFirstSession: num(doc.soins?.signatureFirstSession, PRICING_FALLBACK.soins.signatureFirstSession),
+          drainage: num(doc.soins?.drainage, PRICING_FALLBACK.soins.drainage),
+          miracleFace: num(doc.soins?.miracleFace, PRICING_FALLBACK.soins.miracleFace),
+          comboDetox: num(doc.soins?.comboDetox, PRICING_FALLBACK.soins.comboDetox),
+        },
+        packages: {
+          pack3: {
+            sessions: num(doc.packages?.pack3?.sessions, PRICING_FALLBACK.packages.pack3.sessions),
+            price: num(doc.packages?.pack3?.price, PRICING_FALLBACK.packages.pack3.price),
+          },
+          pack5: {
+            sessions: num(doc.packages?.pack5?.sessions, PRICING_FALLBACK.packages.pack5.sessions),
+            price: num(doc.packages?.pack5?.price, PRICING_FALLBACK.packages.pack5.price),
+          },
+          pack10: {
+            sessions: num(doc.packages?.pack10?.sessions, PRICING_FALLBACK.packages.pack10.sessions),
+            price: num(doc.packages?.pack10?.price, PRICING_FALLBACK.packages.pack10.price),
+          },
+        },
+        movement: {
+          hour: num(doc.movement?.hour, PRICING_FALLBACK.movement.hour),
+          duoSurcharge: num(doc.movement?.duoSurcharge, PRICING_FALLBACK.movement.duoSurcharge),
+        },
+      };
+    } catch (err) {
+      console.warn('[sanity] fetch tarifs échoué → repli par défaut', err);
+      return PRICING_FALLBACK;
     }
   });
 }

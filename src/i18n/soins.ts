@@ -45,39 +45,35 @@ const fr = {
       key: 'signature',
       name: 'Soin Signature',
       sub: 'Drainage + breathwork + énergétique · 2h',
-      price: '290 €',
       text: 'Le soin le plus complet. Drainage lymphatique Renata França, respiration guidée et travail sur les centres énergétiques. Pour libérer les trois corps en une seule séance. 260 € pour la 1re séance.',
     },
     {
       key: 'drainage',
       name: 'Drainage Lymphatique',
       sub: 'Méthode Renata França · 1h',
-      price: '160 €',
       text: 'La technique originale, certifiée depuis 2025. Mouvements rythmiques et précis qui relancent la circulation lymphatique, allègent, désenflent et régénèrent.',
     },
     {
       key: 'miracleFace',
       name: 'Miracle Face',
       sub: 'Drainage facial · 30 min',
-      price: '95 €',
       text: 'Drainage du visage et du crâne. Détonifie les traits, élimine les tensions, redonne de l’éclat et du volume. Idéal en soin express ou en complément corps.',
     },
     {
       key: 'comboDetox',
       name: 'Combo Détox',
       sub: 'Corps + Visage · 1h30',
-      price: '220 €',
       text: 'Drainage complet corps et visage en une session. Le traitement signature pour une détox profonde, le soin le plus demandé en préparation d’événement.',
     },
   ],
 
   packagesLabel: '(  Packs  )',
 
-  // Packs Soin Signature (séances de 2h). Tarif séance seule : 290 €.
+  // Packs Soin Signature (séances de 2h). Prix/économie : voir « Tarifs (source unique) » dans Sanity.
   packages: [
-    { key: 'pack3', name: 'Pack 3 séances', detail: 'Soin Signature · 2h · soit 283 € la séance', price: '850 €', save: '−20 €' },
-    { key: 'pack5', name: 'Pack 5 séances', detail: 'Soin Signature · 2h · soit 278 € la séance', price: '1 390 €', save: '−60 €' },
-    { key: 'pack10', name: 'Pack 10 séances', detail: 'Soin Signature · 2h · soit 259 € la séance', price: '2 590 €', save: '−310 €' },
+    { key: 'pack3', name: 'Pack 3 séances', detail: 'Soin Signature · 2h · soit 283 € la séance' },
+    { key: 'pack5', name: 'Pack 5 séances', detail: 'Soin Signature · 2h · soit 278 € la séance' },
+    { key: 'pack10', name: 'Pack 10 séances', detail: 'Soin Signature · 2h · soit 259 € la séance' },
   ],
 
   prose: {
@@ -145,28 +141,24 @@ const en = {
       key: 'signature',
       name: 'Signature Treatment',
       sub: 'Drainage + breathwork + energy work · 2 hrs',
-      price: '€290',
       text: 'The most complete treatment. Renata França lymphatic drainage, guided breathing and work on the energy centres. To free the three bodies in a single session. €260 for the first session.',
     },
     {
       key: 'drainage',
       name: 'Lymphatic Drainage',
       sub: 'Renata França method · 1 hr',
-      price: '€160',
       text: 'The original technique, certified since 2025. Rhythmic, precise movements that revive lymphatic circulation, lighten, reduce swelling and regenerate.',
     },
     {
       key: 'miracleFace',
       name: 'Miracle Face',
       sub: 'Facial drainage · 30 min',
-      price: '€95',
       text: 'A drainage of the face and scalp. It releases the features, eases tension and restores radiance and volume. Ideal as an express treatment or alongside a body session.',
     },
     {
       key: 'comboDetox',
       name: 'Detox Combo',
       sub: 'Body + Face · 1 hr 30',
-      price: '€220',
       text: 'A full body and face drainage in a single session. The signature treatment for a deep detox, the most requested before an event.',
     },
   ],
@@ -174,9 +166,9 @@ const en = {
   packagesLabel: '(  Packs  )',
 
   packages: [
-    { key: 'pack3', name: '3-session Pack', detail: 'Signature Treatment · 2 hrs · €283 per session', price: '€850', save: '−€20' },
-    { key: 'pack5', name: '5-session Pack', detail: 'Signature Treatment · 2 hrs · €278 per session', price: '€1,390', save: '−€60' },
-    { key: 'pack10', name: '10-session Pack', detail: 'Signature Treatment · 2 hrs · €259 per session', price: '€2,590', save: '−€310' },
+    { key: 'pack3', name: '3-session Pack', detail: 'Signature Treatment · 2 hrs · €283 per session' },
+    { key: 'pack5', name: '5-session Pack', detail: 'Signature Treatment · 2 hrs · €278 per session' },
+    { key: 'pack10', name: '10-session Pack', detail: 'Signature Treatment · 2 hrs · €259 per session' },
   ],
 
   prose: {
@@ -192,7 +184,7 @@ For those who make treatment part of a longer journey, the Signature Treatment c
 
   faqs: [
     { q: 'Does lymphatic drainage really help with heavy legs?', a: 'Renata França lymphatic drainage (1 hr, €160) revives circulation through rhythmic, precise movements. It eases the sensation of heavy, swollen legs. It is a wellbeing treatment, with no medical purpose.' },
-    { q: 'How much does a lymphatic drainage session cost in Paris 7th?', a: 'The Lymphatic Drainage alone is €160 (1 hr). The Miracle Face is €95 (30 min), the body + face Detox Combo €220 (1 hr 30) and the Signature Treatment €290 (2 hrs, €260 first session). The Signature Treatment also comes in packs: 3 sessions at €850 (€270 each), down to €259 per session for 10 sessions.' },
+    { q: 'How much does a lymphatic drainage session cost in Paris 7th?', a: 'The Lymphatic Drainage alone is €160 (1 hr). The Miracle Face is €95 (30 min), the body + face Detox Combo €220 (1 hr 30) and the Signature Treatment €290 (2 hrs, €260 first session). The Signature Treatment also comes in packs: 3 sessions at €850 (€283 each), down to €259 per session for 10 sessions.' },
     { q: 'What is the Miracle Face?', a: 'The Miracle Face (30 min, €95) is a drainage of the face and scalp. It relaxes the features, eases tension and revives radiance. It is offered as an express treatment or alongside a body drainage.' },
     { q: 'What is the difference between the Signature Treatment and a simple drainage?', a: 'The Lymphatic Drainage (1 hr, €160) focuses on circulation. The Signature Treatment (2 hrs, €290) adds breathwork and energy work to the Renata França drainage: the most complete experience of L’Art de la Circulation.' },
     { q: 'Where is the studio and how do I book?', a: 'The studio is at 3 Rue Valadon, 75007 Paris, on the Left Bank, in the 7th arrondissement. The space is private and by appointment. Booking is done online on Planity, or by email at hello@daphnelachavanne.com.' },

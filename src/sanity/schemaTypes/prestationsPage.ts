@@ -56,7 +56,31 @@ export default defineType({
                   fields: [
                     defineField({ name: 'name', title: 'Nom', type: 'string' }),
                     defineField({ name: 'duration', title: 'Durée', type: 'string' }),
-                    defineField({ name: 'price', title: 'Prix', type: 'string' }),
+                    defineField({
+                      name: 'priceKey',
+                      title: 'Tarif (source unique)',
+                      description:
+                        'Prix affiché, tiré de « Tarifs (source unique) ». Laisser vide pour saisir un prix libre ci-dessous (déconseillé — risque de désynchronisation).',
+                      type: 'string',
+                      options: {
+                        list: [
+                          { title: 'Soin Signature', value: 'signature' },
+                          { title: 'Drainage Lymphatique', value: 'drainage' },
+                          { title: 'Miracle Face', value: 'miracleFace' },
+                          { title: 'Combo Détox', value: 'comboDetox' },
+                          { title: 'Cours particulier yoga/pilates (1h)', value: 'movementHour' },
+                          { title: 'Pack 3 séances', value: 'pack3' },
+                          { title: 'Pack 5 séances', value: 'pack5' },
+                          { title: 'Pack 10 séances', value: 'pack10' },
+                        ],
+                      },
+                    }),
+                    defineField({
+                      name: 'price',
+                      title: 'Prix libre (repli)',
+                      description: 'Utilisé seulement si « Tarif (source unique) » est vide.',
+                      type: 'string',
+                    }),
                     defineField({ name: 'description', title: 'Description', type: 'text', rows: 3 }),
                     defineField({ name: 'note', title: 'Note (ex. « +40 € en duo »)', type: 'string' }),
                   ],

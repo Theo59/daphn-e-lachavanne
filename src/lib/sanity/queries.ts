@@ -30,3 +30,6 @@ export const QUERIES: Record<PageKey | 'settings', string> = {
   ) as Record<PageKey, string>),
   settings: docByLang('siteSettings'),
 };
+
+/** `pricing` n'est pas traduit (un prix n'a pas de langue) : document unique, pas de filtre `language`. */
+export const PRICING_QUERY = `*[_type == "pricing"][0]`;

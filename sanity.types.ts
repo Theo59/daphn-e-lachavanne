@@ -15,6 +15,39 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type Pricing = {
+  _id: string;
+  _type: "pricing";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  soins?: {
+    signature?: number;
+    signatureFirstSession?: number;
+    drainage?: number;
+    miracleFace?: number;
+    comboDetox?: number;
+  };
+  packages?: {
+    pack3?: {
+      sessions?: number;
+      price?: number;
+    };
+    pack5?: {
+      sessions?: number;
+      price?: number;
+    };
+    pack10?: {
+      sessions?: number;
+      price?: number;
+    };
+  };
+  movement?: {
+    hour?: number;
+    duoSurcharge?: number;
+  };
+};
+
 export type RichText = Array<{
   children?: Array<{
     marks?: Array<string>;
@@ -158,6 +191,15 @@ export type PrestationsPage = {
     services?: Array<{
       name?: string;
       duration?: string;
+      priceKey?:
+        | "signature"
+        | "drainage"
+        | "miracleFace"
+        | "comboDetox"
+        | "movementHour"
+        | "pack3"
+        | "pack5"
+        | "pack10";
       price?: string;
       description?: string;
       note?: string;
@@ -841,7 +883,6 @@ export type SoinsPage = {
     key?: string;
     name?: string;
     sub?: string;
-    price?: string;
     text?: string;
     icon?: {
       asset?: SanityImageAssetReference;
@@ -858,8 +899,6 @@ export type SoinsPage = {
     key?: string;
     name?: string;
     detail?: string;
-    price?: string;
-    save?: string;
     _key: string;
   }>;
   prose?: {
@@ -956,29 +995,6 @@ export type HomePage = {
     bgColor?: "blue" | "orange";
   };
   featuredLabel?: string;
-  featuredImages?: {
-    signature?: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-    drainage?: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-    miracleFace?: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
   gallery?: Array<{
     image?: {
       asset?: SanityImageAssetReference;
@@ -1238,6 +1254,7 @@ export type Slug = {
 };
 
 export type AllSanitySchemaTypes =
+  | Pricing
   | RichText
   | TranslationMetadata
   | InternationalizedArrayReference

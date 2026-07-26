@@ -6,7 +6,8 @@
 import Layout from '../../layouts/Layout.astro';
 import Sym from '../Sym.astro';
 import Faq from '../Faq.astro';
-import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { getPageContent, getSettings, getPricing } from '../../lib/sanity/content';
+import { formatEuro, servicePriceByKey, servicePackageSaving } from '../../lib/sanity/pricing';
 import { PLANITY } from '../../lib/views';
 import type { Lang } from '../../i18n/config';
 
@@ -16,6 +17,16 @@ interface Props {
 const { lang } = Astro.props;
 const t = await getPageContent('prestations', lang);
 const c = await getSettings(lang);
+const pricing = await getPricing();
+
+// Prix affiché : « priceKey » (source unique) si renseignée, sinon repli sur le
+// champ « price » libre. Idem pour la note des packs (économie calculée).
+const servicePrice = (s: { priceKey?: string | null; price?: string }) => {
+  const amount = servicePriceByKey(pricing, s.priceKey);
+  return amount !== undefined ? formatEuro(amount, lang) : (s.price ?? '');
+};
+const serviceNote = (s: { priceKey?: string | null; note?: string }) =>
+  servicePackageSaving(pricing, s.priceKey, lang) ?? s.note ?? '';
 ---
 
 <Layout activePage="prestations" title={t.meta.title} description={t.meta.description}>
@@ -37,11 +48,11 @@ const c = await getSettings(lang);
                 <div class="presta__main">
                   <h3 class="presta__name">{s.name}</h3>
                   <p class="presta__desc">{s.description}</p>
-                  {s.note && <span class="presta__note">{s.note}</span>}
+                  {serviceNote(s) && <span class="presta__note">{serviceNote(s)}</span>}
                 </div>
                 <div class="presta__meta">
                   <span class="presta__dur">{s.duration}</span>
-                  <span class="presta__price">{s.price}</span>
+                  <span class="presta__price">{servicePrice(s)}</span>
                   <a href={PLANITY} target="_blank" rel="noopener" class="link-arrow presta__cta">
                     {t.reserve} <Sym kind="arrow" size={14} />
                   </a>

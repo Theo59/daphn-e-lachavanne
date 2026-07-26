@@ -24,10 +24,19 @@ export const structure: StructureResolver = (S) => {
       .id(type)
       .child(S.document().schemaType(type).documentId(`${type}-fr`).title(title));
 
+  // `pricing` n'est pas traduit (un prix n'a pas de langue) : un seul document,
+  // id fixe `pricing` (pas de suffixe `-fr`/`-en` comme les types i18n ci-dessus).
+  const nonLocalizedSingleton = (type: string, title: string) =>
+    S.listItem()
+      .title(title)
+      .id(type)
+      .child(S.document().schemaType(type).documentId(type).title(title));
+
   return S.list()
     .title('Contenu')
     .items([
       singleton('siteSettings', 'Réglages du site'),
+      nonLocalizedSingleton('pricing', 'Tarifs (source unique)'),
       S.divider(),
       ...PAGES.map(([type, title]) => singleton(type, title)),
     ]);

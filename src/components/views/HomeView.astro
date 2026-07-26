@@ -14,7 +14,8 @@ import SanityImage from '../SanityImage.astro';
 import MediaSlot from '../MediaSlot.astro';
 import Prose from '../Prose.astro';
 import Faq from '../Faq.astro';
-import { getPageContent, getSettings } from '../../lib/sanity/content';
+import { getPageContent, getSettings, getPricing } from '../../lib/sanity/content';
+import { formatEuro, soinPriceByKey } from '../../lib/sanity/pricing';
 import { urlFor, fileUrl, hasImage } from '../../lib/sanity/image';
 import { PLANITY } from '../../lib/views';
 import { richTextToInlineHtml } from '../../lib/sanity/richText';
@@ -35,9 +36,11 @@ const heroVideoUrl = fileUrl(t.hero.video?.asset?._ref);
 const cabinetImage = t.cabinet.image;
 const brand = c.brand ?? {};
 const heroPoster = hasImage(heroImage) ? urlFor(heroImage).width(1600).url() : undefined;
+const pricing = await getPricing();
 
-// Soins les plus demandés (CTA cards) : texte/prix repris de la page Soins (source
-// unique). Fond orange uni (charte : fonds unis, pas de photo ni de voile).
+// Soins les plus demandés (CTA cards) : texte repris de la page Soins, prix de
+// « Tarifs (source unique) » (un seul endroit à modifier pour tous les tarifs).
+// Fond orange uni (charte : fonds unis, pas de photo ni de voile).
 const featuredSoins = (['signature', 'drainage', 'miracleFace'] as const)
   .map((key) => soinsT.soins.find((s) => s.key === key))
   .filter((s): s is NonNullable<typeof s> => Boolean(s));
@@ -90,7 +93,7 @@ const featuredSoins = (['signature', 'drainage', 'miracleFace'] as const)
                 <p class="forfait__detail">{s.sub}</p>
               </div>
               <div class="forfait__bottom">
-                <span class="forfait__price">{s.price}</span>
+                <span class="forfait__price">{formatEuro(soinPriceByKey(pricing, s.key) ?? 0, lang)}</span>
                 <Sym kind="arrow" size={20} color="#fff" />
               </div>
             </div>

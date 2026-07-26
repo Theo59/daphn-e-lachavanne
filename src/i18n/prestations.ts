@@ -28,6 +28,7 @@ const fr = {
         {
           name: 'Soin Signature',
           duration: '2h',
+          priceKey: 'signature',
           price: '290 €',
           description:
             'Le soin le plus complet : drainage lymphatique Renata França, breathwork guidé et travail énergétique. Pour libérer les trois corps — physique, mental, émotionnel — en une seule séance.',
@@ -36,6 +37,7 @@ const fr = {
         {
           name: 'Drainage lymphatique corps — Méthode Renata França',
           duration: '1h',
+          priceKey: 'drainage',
           price: '160 €',
           description:
             'Massage manuel dynamique qui relance la circulation lymphatique, élimine les toxines, réduit les gonflements et la rétention d’eau. Idéal pour les jambes lourdes, les ballonnements et le post-opératoire.',
@@ -44,6 +46,7 @@ const fr = {
         {
           name: 'Miracle Face — soin drainant du visage (Renata França)',
           duration: '30 min',
+          priceKey: 'miracleFace',
           price: '95 €',
           description:
             'Drainage et massage sculptant du visage : décongestionne, réduit poches et cernes, lisse les traits, ravive l’éclat et apaise les tensions de la mâchoire.',
@@ -52,6 +55,7 @@ const fr = {
         {
           name: 'Combo Massage Détox — Corps + Visage',
           duration: '1h30',
+          priceKey: 'comboDetox',
           price: '220 €',
           description:
             'Drainage complet corps et visage en une seule séance. La détox la plus profonde, idéale en préparation d’un événement.',
@@ -60,6 +64,7 @@ const fr = {
         {
           name: 'Yoga — Cours particulier',
           duration: '1h',
+          priceKey: 'movementHour',
           price: '90 €',
           description: 'Cours particulier de yoga, en français ou en anglais, adapté à votre niveau et à votre moment.',
           note: '+40 € en duo',
@@ -67,6 +72,7 @@ const fr = {
         {
           name: 'Pilates mat — Cours particulier',
           duration: '1h',
+          priceKey: 'movementHour',
           price: '90 €',
           description: 'Cours particulier de Pilates au sol, en français ou en anglais, pour un alignement et un renforcement profonds.',
           note: '+40 € en duo',
@@ -79,6 +85,7 @@ const fr = {
         {
           name: 'Pack 3 séances',
           duration: '3 × 2h',
+          priceKey: 'pack3',
           price: '850 €',
           description: 'Trois Soins Signature (2h), soit 283 € la séance au lieu de 290 €.',
           note: '−20 €',
@@ -86,6 +93,7 @@ const fr = {
         {
           name: 'Pack 5 séances',
           duration: '5 × 2h',
+          priceKey: 'pack5',
           price: '1 390 €',
           description: 'Cinq Soins Signature (2h), soit 278 € la séance au lieu de 290 €.',
           note: '−60 €',
@@ -93,6 +101,7 @@ const fr = {
         {
           name: 'Pack 10 séances',
           duration: '10 × 2h',
+          priceKey: 'pack10',
           price: '2 590 €',
           description: 'Dix Soins Signature (2h), soit 259 € la séance au lieu de 290 €.',
           note: '−310 €',
@@ -130,6 +139,7 @@ const en = {
         {
           name: 'Signature Treatment',
           duration: '2 hrs',
+          priceKey: 'signature',
           price: '€290',
           description:
             'The most complete treatment: Renata França lymphatic drainage, guided breathwork and energy work. To free the three bodies — physical, mental, emotional — in a single session.',
@@ -138,6 +148,7 @@ const en = {
         {
           name: 'Body Lymphatic Drainage — Renata França Method',
           duration: '1 hr',
+          priceKey: 'drainage',
           price: '€160',
           description:
             'A dynamic manual massage that boosts lymphatic circulation, flushes toxins, reduces swelling and water retention. Ideal for heavy legs, bloating and post-operative recovery.',
@@ -146,6 +157,7 @@ const en = {
         {
           name: 'Miracle Face — facial drainage (Renata França)',
           duration: '30 min',
+          priceKey: 'miracleFace',
           price: '€95',
           description:
             'Facial drainage and sculpting massage: decongests, reduces puffiness and dark circles, smooths the features, revives radiance and eases jaw tension.',
@@ -154,6 +166,7 @@ const en = {
         {
           name: 'Detox Combo — Body + Face',
           duration: '1 hr 30',
+          priceKey: 'comboDetox',
           price: '€220',
           description:
             'Full body and facial drainage in a single session. The deepest detox, ideal to prepare for an event.',
@@ -162,6 +175,7 @@ const en = {
         {
           name: 'Yoga — Private lesson',
           duration: '1 hr',
+          priceKey: 'movementHour',
           price: '€90',
           description: 'Private yoga lesson, in French or English, tailored to your level and your moment.',
           note: '+€40 in pairs',
@@ -169,6 +183,7 @@ const en = {
         {
           name: 'Mat Pilates — Private lesson',
           duration: '1 hr',
+          priceKey: 'movementHour',
           price: '€90',
           description: 'Private mat Pilates lesson, in French or English, for deep alignment and strengthening.',
           note: '+€40 in pairs',
@@ -181,6 +196,7 @@ const en = {
         {
           name: '3-session Pack',
           duration: '3 × 2 hrs',
+          priceKey: 'pack3',
           price: '€850',
           description: 'Three Signature Treatments (2 hrs), i.e. €283 per session instead of €290.',
           note: '−€20',
@@ -188,6 +204,7 @@ const en = {
         {
           name: '5-session Pack',
           duration: '5 × 2 hrs',
+          priceKey: 'pack5',
           price: '€1,390',
           description: 'Five Signature Treatments (2 hrs), i.e. €278 per session instead of €290.',
           note: '−€60',
@@ -195,6 +212,7 @@ const en = {
         {
           name: '10-session Pack',
           duration: '10 × 2 hrs',
+          priceKey: 'pack10',
           price: '€2,590',
           description: 'Ten Signature Treatments (2 hrs), i.e. €259 per session instead of €290.',
           note: '−€310',
