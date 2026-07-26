@@ -1,18 +1,36 @@
 ---
 name: seo-geo-audit
-description: Run a full competitive SEO audit (score, competitor gap analysis, missing topics, exact-keyword/title/H1 checks, semantic terms, structure, speed, indexability, backlinks) AND a GEO audit (AI-search citation readiness — structured data, credentials/E-E-A-T signals, AI bot access, answer-first content, freshness) for any page on daphnelachavanne.com, self-contained — using WebSearch/WebFetch for competitor research and the bundled scripts for deterministic checks, no external subscription required. Use when the user asks for an SEO or GEO audit, wants to check a page's SEO/GEO score, mentions competitor keyword research, backlinks, or AI-search visibility.
+description: Choose target keywords (always ask the user first, then research variations and lower-competition opportunities, and estimate Google Ads CPC), then run a full competitive SEO audit (score, competitor gap analysis, missing topics, exact-keyword/title/H1 checks, semantic terms, structure, speed, indexability, backlinks) AND a GEO audit (AI-search citation readiness — structured data, credentials/E-E-A-T signals, AI bot access, answer-first content, freshness) for any page on daphnelachavanne.com, self-contained — using WebSearch/WebFetch for research and the bundled scripts for deterministic checks, no external subscription required. Use when the user asks for an SEO or GEO audit, wants keyword research or ad-cost estimates, wants to check a page's SEO/GEO score, or mentions competitor keyword research, backlinks, or AI-search visibility.
 ---
 
-# SEO + GEO audit
+# Keyword strategy + SEO + GEO audit
 
-Two disciplines, two checklists — read the one that matches the request (or both, they overlap on
-content depth):
+Three stages — pick the one that matches the request, or run all three in order for a full pass:
+- **[KEYWORD-CHECKLIST.md](KEYWORD-CHECKLIST.md)** — which keywords to target, declined into
+  variations, lower-competition opportunities, Google Ads CPC. **Always start here when the ask is
+  open-ended** ("improve our SEO", "what should we target") — don't jump to auditing a page before
+  a keyword is chosen.
 - **[SEO-CHECKLIST.md](SEO-CHECKLIST.md)** — classic Google ranking, 13 points.
 - **[GEO-CHECKLIST.md](GEO-CHECKLIST.md)** — AI-search citation readiness, 6 points.
 
 Every point has a self-contained method: `WebSearch` to discover competitors, `WebFetch` to read
 their pages, the bundled scripts for deterministic measurement. Do the analysis yourself — don't
 delegate it to an external audit site.
+
+## Quick start — keyword strategy workflow
+
+1. **Ask the user** which keyword(s) they want to target, for which page — see KEYWORD-CHECKLIST.md
+   §0. Never assume a keyword from existing page content.
+2. **Decline into variations**: `WebSearch` natural variations (location, modifiers, question forms),
+   read competitor FAQs already gathered during SEO/GEO research. See KEYWORD-CHECKLIST.md §1.
+3. **Find lower-competition opportunities**: cross-reference `term-gap.mjs` output and check who
+   ranks for each candidate long-tail variant — weak competitors there means an easier opening. See
+   KEYWORD-CHECKLIST.md §2.
+4. **Estimate Google Ads cost**: no DIY substitute for real CPC exists — use Google Ads Keyword
+   Planner if accessible in the session, otherwise say so plainly rather than guessing a number. See
+   KEYWORD-CHECKLIST.md §3.
+5. **Present a table**: seed → variations → opportunity flag → CPC range if available → SEO vs paid
+   recommendation. Then move into the SEO/GEO workflows below for the chosen keyword(s).
 
 ## Quick start — SEO audit workflow
 
