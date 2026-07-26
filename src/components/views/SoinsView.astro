@@ -155,6 +155,11 @@ const serviceSchema = serviceLd({
 
 <style>
   /* Classes communes → src/styles/views.css. Ici : uniquement le spécifique. */
+  /* H1 plus long que les autres pages (« Soins & drainage lymphatique. ») : le
+     clamp() par défaut de .page-header h1 (jusqu'à 200px) est prévu pour un mot
+     court (« Yoga. », « Pilates. »…) et déborde ici. Taille réduite, propre à
+     cette page. */
+  .page-header h1 { font-size: clamp(40px, 6.5vw, 108px); }
   /* En-tête (margin-top 48px, différent des autres pratiques → reste local) */
   .header__grid { margin-top: 48px; }
   .header__method { margin-top: 20px; display: flex; align-items: center; gap: 16px; }
