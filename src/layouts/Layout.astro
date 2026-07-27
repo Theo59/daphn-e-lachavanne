@@ -78,7 +78,9 @@ const portraitUrl = hasImage(brand.portrait) ? urlFor(brand.portrait).width(800)
 const instagramUrl = (c as any).social?.instagram || 'https://www.instagram.com/daphne.lachavanne/';
 
 // JSON-LD global (GEO/AEO) : entreprise locale + praticienne + site.
-// Volontairement SANS aggregateRating/téléphone (non vérifiables → risque de pénalité).
+// Volontairement SANS aggregateRating : un avis auto-déclaré sur son propre LocalBusiness
+// est traité comme self-serving par Google. `telephone` est en revanche renseigné depuis
+// que le numéro de la fiche Google Business Profile a été communiqué (NAP complet).
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -92,6 +94,11 @@ const structuredData = {
       image: `${base}/og-image.jpg`,
       logo: logoUrl,
       email: 'hello@daphnelachavanne.com',
+      // Format E.164 exigé par schema.org / Google (indicatif pays, sans espaces).
+      // Doit rester identique au numéro de la fiche Google Business Profile : c'est le
+      // « P » du NAP (Name/Address/Phone), dont la cohérence entre le site et la fiche
+      // est un signal direct de référencement local.
+      telephone: '+33613747643',
       priceRange,
       currenciesAccepted: 'EUR',
       address: {
