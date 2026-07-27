@@ -104,7 +104,15 @@ const structuredData = {
         },
       ],
       hasMap: 'https://maps.google.com/?q=3+Rue+Valadon+75007+Paris',
-      sameAs: ['https://www.planity.com/daphne-lachavanne-75007-paris', instagramUrl],
+      // `sameAs` sert à consolider l'entité : il dit aux moteurs que ces profils désignent
+      // le même établissement que ce site. La 3ᵉ URL référence la fiche Google Business
+      // Profile par son identifiant Knowledge Graph (/g/11yk4dwvyy), stable et indépendant
+      // du nom affiché sur la fiche — contrairement à un lien Maps construit sur le libellé.
+      sameAs: [
+        'https://www.planity.com/daphne-lachavanne-75007-paris',
+        instagramUrl,
+        'https://www.google.com/search?kgmid=/g/11yk4dwvyy',
+      ],
       founder: { '@id': `${base}/#daphne` },
       employee: { '@id': `${base}/#daphne` },
       knowsAbout: [
