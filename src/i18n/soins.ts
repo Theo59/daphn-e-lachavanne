@@ -10,7 +10,7 @@
 
 const fr = {
   meta: {
-    title: 'Drainage lymphatique à Paris 7e, méthode Renata França certifiée',
+    title: 'Drainage lymphatique Paris 7e · Renata França certifiée',
     description:
       'Drainage lymphatique méthode Renata França à Paris 7e (75007). Soin Signature, Miracle Face, Combo Détox dès 95 €. Cabinet rive gauche, sur rendez-vous.',
   },
@@ -114,7 +114,7 @@ Pour celles et ceux qui inscrivent le soin dans la durée, le Soin Signature se 
 
 const en = {
   meta: {
-    title: 'Lymphatic Drainage in Paris 7th, Certified Renata França Method',
+    title: 'Lymphatic Drainage Paris 7th · Certified Renata França',
     description:
       'Renata França lymphatic drainage in Paris 7th (75007). Signature Treatment, Miracle Face, Detox Combo from €95. Left Bank studio, by appointment.',
   },
