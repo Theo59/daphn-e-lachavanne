@@ -80,7 +80,7 @@ Les réservations se font en ligne via Planity ou par e-mail à hello@daphnelach
     { q: 'Où se trouve le cabinet de Daphné Lachavanne ?', a: 'Au cabinet Omvida, 3 Rue Valadon, 75007 Paris, dans le 7e arrondissement. C’est un espace privé, accessible uniquement sur rendez-vous.' },
     { q: 'Quel est le parcours de Daphné Lachavanne ?', a: 'Certification yoga Yoga Alliance 300h (2014), formation Pilates 50h (2015), spécialisation yoga prénatal & postnatal (2015–2016), formation Breathwork Teacher Training (2022), puis quatre certifications Renata França et fondation de L’Art de la Circulation (2025).' },
     { q: 'Daphné donne-t-elle des cours de yoga et de breathwork ?', a: 'Oui, en cours particuliers au cabinet Omvida, Paris 7e. Le yoga (vinyasa, hatha, yin, prénatal, postnatal) et le breathwork individuel sont à 90 € l’heure ; un cercle de souffle de 4 à 6 personnes (2h) est à 60 € par personne.' },
-    { q: 'Quels soins propose Daphné Lachavanne ?', a: 'Le Drainage Lymphatique Renata França (1h, 160 €), le Soin Signature (2h, 290 €), le Miracle Face (30 min, 95 €) et le Combo Détox (1h30, 220 €), complétés par des packs Soin Signature dégressifs.' },
+    { q: 'Quels soins propose Daphné Lachavanne ?', a: 'Le Drainage Lymphatique Renata França (1h, 160 €), le Soin Signature (2h, 290 €), le Miracle Face (40 min, 95 €) et le Combo Détox (1h30, 220 €), complétés par des packs Soin Signature dégressifs.' },
     { q: 'Comment prendre rendez-vous avec Daphné Lachavanne ?', a: 'En ligne sur Planity ou par e-mail à hello@daphnelachavanne.com. Les séances se déroulent sur rendez-vous, au cabinet Omvida, Paris 7e.' },
   ],
 };
@@ -153,7 +153,7 @@ Bookings are made online via Planity or by email at hello@daphnelachavanne.com. 
     { q: 'Where is Daphné Lachavanne’s studio?', a: 'At the Omvida studio, 3 Rue Valadon, 75007 Paris, in the 7th arrondissement. It is a private space, open by appointment only.' },
     { q: 'What is Daphné Lachavanne’s background?', a: 'Yoga Alliance 300h certification (2014), Pilates training 50h (2015), prenatal & postnatal yoga specialisation (2015–2016), Breathwork Teacher Training (2022), then four Renata França certifications and founding of L’Art de la Circulation (2025).' },
     { q: 'Does Daphné teach yoga and breathwork lessons?', a: 'Yes, in private lessons at the Omvida studio, Paris 7th. Yoga (vinyasa, hatha, yin, prenatal, postnatal) and one-to-one breathwork are €90 per hour; a breath circle of 4 to 6 people (2 hrs) is €60 per person.' },
-    { q: 'What treatments does Daphné Lachavanne offer?', a: 'Renata França lymphatic drainage (1 hr, €160), the Signature Treatment (2 hrs, €290), the Miracle Face (30 min, €95) and the Detox Combo (1 hr 30, €220), rounded out by tiered Signature Treatment packs.' },
+    { q: 'What treatments does Daphné Lachavanne offer?', a: 'Renata França lymphatic drainage (1 hr, €160), the Signature Treatment (2 hrs, €290), the Miracle Face (40 min, €95) and the Detox Combo (1 hr 30, €220), rounded out by tiered Signature Treatment packs.' },
     { q: 'How do I book an appointment with Daphné Lachavanne?', a: 'Online on Planity or by email at hello@daphnelachavanne.com. Sessions are by appointment, at the Omvida studio, Paris 7th.' },
   ],
 } satisfies typeof fr;
