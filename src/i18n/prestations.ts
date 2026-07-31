@@ -45,7 +45,7 @@ const fr = {
         },
         {
           name: 'Miracle Face — soin drainant du visage (Renata França)',
-          duration: '30 min',
+          duration: '40 min',
           priceKey: 'miracleFace',
           price: '95 €',
           description:
@@ -156,7 +156,7 @@ const en = {
         },
         {
           name: 'Miracle Face — facial drainage (Renata França)',
-          duration: '30 min',
+          duration: '40 min',
           priceKey: 'miracleFace',
           price: '€95',
           description:
