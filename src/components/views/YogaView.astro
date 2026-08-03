@@ -12,7 +12,7 @@ import Faq from '../Faq.astro';
 import { getPageContent, getSettings } from '../../lib/sanity/content';
 import { PLANITY } from '../../lib/views';
 import { localizePath } from '../../i18n/utils';
-import { HTML_LANG, type Lang } from '../../i18n/config';
+import { type Lang } from '../../i18n/config';
 import { serviceLd } from '../../lib/schema.ts';
 
 interface Props {
@@ -27,7 +27,6 @@ const serviceSchema = serviceLd({
   serviceType: t.schema.serviceType,
   description: t.schema.description,
   path: localizePath('/yoga', lang),
-  inLanguage: HTML_LANG[lang],
   offers: t.tarif.rows.map((r) => ({ name: r.title, price: r.price, description: r.detail })),
 });
 ---
