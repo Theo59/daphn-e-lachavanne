@@ -15,7 +15,7 @@ import { formatEuro, soinPriceByKey, packageByKey } from '../../lib/sanity/prici
 import { PLANITY } from '../../lib/views';
 import { localizePath } from '../../i18n/utils';
 import { serviceLd } from '../../lib/schema.ts';
-import { HTML_LANG, type Lang } from '../../i18n/config';
+import { type Lang } from '../../i18n/config';
 
 interface Props {
   lang: Lang;
@@ -36,7 +36,6 @@ const serviceSchema = serviceLd({
   serviceType: t.schema.serviceType,
   description: t.schema.description,
   path: localizePath('/soins', lang),
-  inLanguage: HTML_LANG[lang],
   offers: [
     ...t.soins.map((s) => ({ name: s.name, price: soinPrice(s.key), description: s.sub })),
     ...t.packages.map((p) => ({ name: `${t.schema.packagePrefix} ${p.name}`, price: packagePrice(p.key), description: p.detail })),

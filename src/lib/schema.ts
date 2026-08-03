@@ -28,7 +28,6 @@ export function serviceLd(opts: {
   description: string;
   path: string; // ex: '/soins' ou '/en/soins'
   offers: OfferInput[];
-  inLanguage?: string; // BCP-47, ex: 'fr-FR' / 'en-US'
 }) {
   const url = `${SITE}${opts.path}`;
   const offers = opts.offers.map((o) => {
@@ -63,7 +62,11 @@ export function serviceLd(opts: {
     serviceType: opts.serviceType,
     description: opts.description,
     url,
-    ...(opts.inLanguage ? { inLanguage: opts.inLanguage } : {}),
+    // Pas d'`inLanguage` ici : schema.org ne le déclare que sur CreativeWork, Event,
+    // BroadcastService et quelques actions — pas sur `Service`, qui dérive d'Intangible.
+    // Le mettre produisait une erreur de validation schema.org sur les 4 pages de
+    // prestation × 2 langues. La langue de la page est déjà portée par les nœuds
+    // WebPage et WebSite (Layout.astro), qui sont des CreativeWork : rien n'est perdu.
     provider: { '@id': BUSINESS_ID },
     areaServed: { '@type': 'City', name: 'Paris' },
     availableChannel: {

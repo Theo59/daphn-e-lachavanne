@@ -37,6 +37,17 @@ if (base) {
 }
 ---
 
-{src && (
+{/*
+  Deux branches pour une seule raison : Astro sérialise TOUTE expression valant la chaîne
+  vide en attribut nu (`<img alt>`), y compris via un spread. Seul un `alt=""` écrit en
+  toutes lettres dans le template produit `alt=""`. Les deux formes sont équivalentes en
+  HTML (un attribut sans valeur vaut la chaîne vide), mais les crawlers SEO signalent la
+  forme nue comme « alt manquant » — ce qui noyait les vraies images sans alt dans le
+  bruit. Ne pas fusionner ces deux branches en une seule : le bruit reviendrait.
+*/}
+{src && alt === '' && (
+  <img src={src} srcset={srcset} sizes={srcset ? (sizes ?? '100vw') : undefined} alt="" width={!widths ? width : undefined} {...rest} />
+)}
+{src && alt !== '' && (
   <img src={src} srcset={srcset} sizes={srcset ? (sizes ?? '100vw') : undefined} alt={alt} width={!widths ? width : undefined} {...rest} />
 )}
