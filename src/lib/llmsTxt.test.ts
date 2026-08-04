@@ -49,3 +49,42 @@ describe('buildLlmsTxt()', () => {
     expect(txt).toContain('French version');
   });
 });
+
+/**
+ * Conformité au format llms.txt (llmstxt.org). Un audit a signalé le fichier comme non
+ * conforme — « le fichier ne semble pas contenir de liens » — parce que les entrées de
+ * liste étaient du texte brut avec des URL nues. La spécification impose que chaque
+ * entrée sous un titre H2 soit un lien Markdown `[titre](url)`, éventuellement suivi de
+ * « : » et de précisions.
+ */
+describe('conformité au format llms.txt', () => {
+  for (const lang of ['fr', 'en'] as const) {
+    it(`${lang} : un seul H1, une blockquote, au moins un H2`, async () => {
+      const lignes = (await buildLlmsTxt(lang)).split('\n');
+      expect(lignes.filter((l) => l.startsWith('# ')), 'H1 unique et en tête').toHaveLength(1);
+      expect(lignes[0].startsWith('# ')).toBe(true);
+      expect(lignes.filter((l) => l.startsWith('> ')).length).toBeGreaterThan(0);
+      expect(lignes.filter((l) => l.startsWith('## ')).length).toBeGreaterThan(0);
+    });
+
+    it(`${lang} : chaque entrée de liste est un lien Markdown`, async () => {
+      const puces = (await buildLlmsTxt(lang)).split('\n').filter((l) => l.startsWith('- '));
+      expect(puces.length).toBeGreaterThan(0);
+      const nonConformes = puces.filter((l) => !/^- \[[^\]]+\]\(https?:\/\/[^)]+\)/.test(l));
+      expect(nonConformes, `entrées sans lien Markdown :\n${nonConformes.join('\n')}`).toEqual([]);
+    });
+
+    it(`${lang} : aucune URL nue hors d’un lien Markdown`, async () => {
+      const lignes = (await buildLlmsTxt(lang)).split('\n');
+      // Une URL non précédée d'une parenthèse ouvrante = URL nue.
+      const nues = lignes.filter((l) => /(?<!\()https?:\/\//.test(l));
+      expect(nues, `URL nues :\n${nues.join('\n')}`).toEqual([]);
+    });
+
+    it(`${lang} : expose une section « Optional »`, async () => {
+      // Sens réservé par la spec : son contenu peut être ignoré si le contexte doit
+      // être raccourci. On y place l'autre langue et les mentions légales.
+      expect(await buildLlmsTxt(lang)).toContain('\n## Optional\n');
+    });
+  }
+});
