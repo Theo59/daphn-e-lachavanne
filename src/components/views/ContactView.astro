@@ -36,7 +36,35 @@ const c = await getSettings(lang);
     <div class="container">
       <div class="grid-2">
 
-        <div>
+        <div class="col-booking">
+          <h2 class="t-label col-label">{t.booking.label}</h2>
+
+          <div class="booking" style={`background:var(--${t.booking.bgColor === 'orange' ? 'orange' : 'blue'})`}>
+            <div class="booking__inner">
+              <span class="booking__eyebrow">{t.booking.eyebrow}</span>
+              <h3 class="booking__title">{t.booking.title}</h3>
+              <p class="booking__text">{t.booking.text}</p>
+              <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white booking__cta" data-umami-event="book_click" data-umami-event-location="contact_booking">
+                {c.cta.bookPlanity} →
+              </a>
+            </div>
+          </div>
+
+          <h2 class="t-label col-label--tight">{t.cabinet.label}</h2>
+          <address class="address">
+            <p class="address__name">
+              {t.cabinet.addressLine1}<br />{t.cabinet.addressLine2}
+            </p>
+            <p class="address__detail">
+              {t.cabinet.email}<br /><br />
+              {t.cabinet.hours1}<br />
+              {t.cabinet.hours2}<br />
+              {t.cabinet.hours3}
+            </p>
+          </address>
+        </div>
+
+        <div class="col-form">
           <h2 class="t-label col-label">{t.form.label}</h2>
 
           <div id="contact-success" class="form-success" hidden role="status">
@@ -77,34 +105,6 @@ const c = await getSettings(lang);
           </form>
         </div>
 
-        <div>
-          <h2 class="t-label col-label">{t.booking.label}</h2>
-
-          <div class="booking" style={`background:var(--${t.booking.bgColor === 'orange' ? 'orange' : 'blue'})`}>
-            <div class="booking__inner">
-              <span class="booking__eyebrow">{t.booking.eyebrow}</span>
-              <h3 class="booking__title">{t.booking.title}</h3>
-              <p class="booking__text">{t.booking.text}</p>
-              <a href={PLANITY} target="_blank" rel="noopener" class="btn btn--outline-white booking__cta" data-umami-event="book_click" data-umami-event-location="contact_booking">
-                {c.cta.bookPlanity} →
-              </a>
-            </div>
-          </div>
-
-          <h2 class="t-label col-label--tight">{t.cabinet.label}</h2>
-          <address class="address">
-            <p class="address__name">
-              {t.cabinet.addressLine1}<br />{t.cabinet.addressLine2}
-            </p>
-            <p class="address__detail">
-              {t.cabinet.email}<br /><br />
-              {t.cabinet.hours1}<br />
-              {t.cabinet.hours2}<br />
-              {t.cabinet.hours3}
-            </p>
-          </address>
-        </div>
-
       </div>
     </div>
   </section>
@@ -131,6 +131,14 @@ const c = await getSettings(lang);
   /* Utilitaires communs (.rel-clip, .pt0) → src/styles/views.css */
   .col-label { margin-bottom: 28px; }
   .col-label--tight { margin-bottom: 20px; }
+
+  /* La réservation Planity est d'abord dans le DOM : sur mobile (1 colonne) elle
+     s'affiche donc avant le formulaire, ordre de lecture inclus. Sur desktop on
+     replace explicitement chaque colonne pour garder formulaire à gauche. */
+  @media (min-width: 901px) {
+    .col-form { grid-column: 1; grid-row: 1; }
+    .col-booking { grid-column: 2; grid-row: 1; }
+  }
 
   /* Bloc réservation (fond dynamique → inline) */
   .booking { position: relative; border-radius: 6px; overflow: hidden; min-height: 220px; margin-bottom: 36px; }
